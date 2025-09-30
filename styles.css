@@ -103,7 +103,7 @@ body {
 }
 
 .pop-wrap .pop-card {
-    display: none;
+    display: none !important;
     position: absolute;
     left: 0;
     top: 1.8em;
@@ -114,10 +114,15 @@ body {
     border: 2px solid #667eea;
     z-index: 100;
     pointer-events: none;
+    visibility: hidden;
+    opacity: 0;
 }
 
 .pop-wrap:hover .pop-card {
-    display: block;
+    display: block !important;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.2s ease;
 }
 
 .pop-wrap .pop-card img {
@@ -431,6 +436,7 @@ body {
 
 .day-card.active .day-content {
     max-height: 5000px;
+    overflow: visible;
 }
 
 .day-section {
