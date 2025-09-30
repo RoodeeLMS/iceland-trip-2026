@@ -92,6 +92,42 @@ body {
     font-size: 1rem;
 }
 
+/* ===== HOVER POPUP FOR PLACE IMAGES ===== */
+.pop-wrap {
+    position: relative;
+    cursor: zoom-in;
+    color: #667eea;
+    font-weight: 500;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+
+.pop-wrap .pop-card {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 1.8em;
+    background: #fff;
+    padding: 8px;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+    border: 2px solid #667eea;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.pop-wrap:hover .pop-card {
+    display: block;
+}
+
+.pop-wrap .pop-card img {
+    width: 320px;
+    max-width: 80vw;
+    height: auto;
+    border-radius: 8px;
+    display: block;
+}
+
 /* ===== HERO SECTION ===== */
 .hero {
     background: var(--primary-gradient);
