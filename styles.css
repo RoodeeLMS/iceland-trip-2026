@@ -92,6 +92,51 @@ body {
     font-size: 1rem;
 }
 
+/* ===== DROPDOWN MENU ===== */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: white;
+    min-width: 180px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    padding: 8px 0;
+    margin-top: 8px;
+    z-index: 1000;
+    list-style: none;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li {
+    width: 100%;
+}
+
+.dropdown-menu li a {
+    color: #2d3748 !important;
+    padding: 10px 20px;
+    display: block;
+    transition: background 0.2s ease;
+}
+
+.dropdown-menu li a:hover,
+.dropdown-menu li a.active {
+    background: #f7fafc !important;
+    color: #667eea !important;
+}
+
 /* ===== HOVER POPUP FOR PLACE IMAGES ===== */
 .pop-wrap {
     position: relative;

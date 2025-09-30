@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comparison of Trip Itineraries</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -63,6 +64,31 @@
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">Iceland 2026 🇮🇸</div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="itinerary.html">Itinerary</a></li>
+                <li><a href="flights.html">Flights</a></li>
+                <li><a href="planning.html">Planning</a></li>
+                <li><a href="logistics.html">Logistics</a></li>
+                <li><a href="analysis.html">Analysis</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">AI Reviews ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="gemini_comment.html">Gemini Review</a></li>
+                        <li><a href="gpt_comment.html">GPT Review</a></li>
+                        <li><a href="grok_comment.html">Grok Review</a></li>
+                        <li><a href="sonnet_comment.html">Sonnet Review</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
     <div class="container">
         <h1>Analysis of Trip Itineraries: <code>Plan.html</code> vs. <code>index.html</code></h1>
 
@@ -114,5 +140,17 @@
             <p>The <code>index.html</code> file seems to represent an earlier, more aspirational idea of the trip (a full Ring Road tour) that has since been refined into the more focused plan detailed in <code>Plan.html</code>. It is recommended to update <code>index.html</code> to accurately reflect the well-defined itinerary from <code>Plan.html</code> to avoid confusion.</p>
         </div>
     </div>
+    </main>
+
+    <footer>
+        <p>Iceland Trip 2026 | Journey through Fire and Ice 🇮🇸</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
