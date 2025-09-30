@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis - Iceland Trip 2026</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">Iceland 2026 🇮🇸</div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="itinerary.html">Itinerary</a></li>
+                <li><a href="planning.html">Planning</a></li>
+                <li><a href="logistics.html">Logistics</a></li>
+                <li><a href="analysis.html" class="active">Analysis</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="page-header">
+            <h1>Visual Intelligence Dashboard</h1>
+            <p>Strategic insights for optimal Iceland experience</p>
+        </div>
+
+        <!-- Weather Intelligence -->
+        <section class="analysis-section">
+            <h2>🌡️ Weather Intelligence</h2>
+
+            <div class="dashboard-card">
+                <h3>Summer Season (June-August) - RECOMMENDED</h3>
+                <div class="season-details">
+                    <div class="season-pros">
+                        <h4>✅ Advantages</h4>
+                        <ul>
+                            <li><strong>Midnight Sun:</strong> Nearly 24-hour daylight (sunset ~midnight, sunrise ~3am)</li>
+                            <li><strong>Warmest temps:</strong> 10-15°C (50-59°F) average</li>
+                            <li><strong>All roads open:</strong> Best accessibility including F-roads</li>
+                            <li><strong>Lupine flowers:</strong> Purple fields across countryside (late June-July)</li>
+                            <li><strong>Puffins:</strong> Nesting season (May-August)</li>
+                            <li><strong>Whale watching:</strong> Peak season for sightings</li>
+                        </ul>
+                    </div>
+                    <div class="season-cons">
+                        <h4>⚠️ Considerations</h4>
+                        <ul>
+                            <li><strong>Peak season:</strong> Most tourists, higher prices</li>
+                            <li><strong>Book early:</strong> Blue Lagoon, hotels, popular tours fill up</li>
+                            <li><strong>No Northern Lights:</strong> Too much daylight</li>
+                            <li><strong>Midges:</strong> Around Lake Mývatn (annoying but harmless)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Spring/Fall (April-May, Sep-Oct)</h3>
+                <div class="season-details">
+                    <div class="season-pros">
+                        <h4>✅ Advantages</h4>
+                        <ul>
+                            <li><strong>Fewer tourists:</strong> Shoulder season pricing and crowds</li>
+                            <li><strong>Northern Lights:</strong> Visible from September onward</li>
+                            <li><strong>Autumn colors:</strong> Golden landscapes in September</li>
+                            <li><strong>Good weather:</strong> Still relatively mild</li>
+                        </ul>
+                    </div>
+                    <div class="season-cons">
+                        <h4>⚠️ Considerations</h4>
+                        <ul>
+                            <li><strong>Variable weather:</strong> More rain and wind</li>
+                            <li><strong>Shorter days:</strong> Limited daylight in early spring/late fall</li>
+                            <li><strong>Some roads closed:</strong> F-roads and highland areas</li>
+                            <li><strong>Colder:</strong> 0-10°C, need warm layers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Winter (Nov-March)</h3>
+                <div class="season-details">
+                    <div class="season-pros">
+                        <h4>✅ Advantages</h4>
+                        <ul>
+                            <li><strong>Northern Lights:</strong> Best viewing season</li>
+                            <li><strong>Natural ice caves:</strong> Accessible Nov-March</li>
+                            <li><strong>Snowy landscapes:</strong> Dramatic winter scenery</li>
+                            <li><strong>Lowest prices:</strong> Cheaper accommodations and cars</li>
+                        </ul>
+                    </div>
+                    <div class="season-cons">
+                        <h4>⚠️ Considerations</h4>
+                        <ul>
+                            <li><strong>Limited daylight:</strong> Only 4-5 hours in December/January</li>
+                            <li><strong>Harsh weather:</strong> Snow, ice, storms, road closures</li>
+                            <li><strong>4WD essential:</strong> Icy roads throughout</li>
+                            <li><strong>Some attractions closed:</strong> Limited access to highlands</li>
+                            <li><strong>Challenging driving:</strong> Not recommended for inexperienced winter drivers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Crowd Intelligence -->
+        <section class="analysis-section">
+            <h2>👥 Crowd Intelligence</h2>
+
+            <div class="dashboard-card">
+                <h3>10-Day Crowd Forecast</h3>
+                <div class="crowd-timeline">
+                    <div class="timeline-day crowd-medium">
+                        <div class="day-label">Day 1-2</div>
+                        <div class="crowd-indicator">🟡🟡</div>
+                        <div class="location-label">Reykjavík & Golden Circle</div>
+                        <p><strong>Crowd Level:</strong> Medium-High (popular tourist spots)</p>
+                        <p><strong>Strategy:</strong> Visit Golden Circle sites early morning or late afternoon</p>
+                    </div>
+
+                    <div class="timeline-day crowd-high">
+                        <div class="day-label">Day 3</div>
+                        <div class="crowd-indicator">🟠🟠</div>
+                        <div class="location-label">South Coast Waterfalls</div>
+                        <p><strong>Crowd Level:</strong> High (tour bus central)</p>
+                        <p><strong>Strategy:</strong> Visit Seljalandsfoss early (8am), Skógafoss before 10am, Reynisfjara in evening</p>
+                    </div>
+
+                    <div class="timeline-day crowd-high">
+                        <div class="day-label">Day 4</div>
+                        <div class="crowd-indicator">🟠🟠</div>
+                        <div class="location-label">Jökulsárlón Glacier Lagoon</div>
+                        <p><strong>Crowd Level:</strong> High (Iceland's most famous spot)</p>
+                        <p><strong>Strategy:</strong> Visit at sunrise or late evening for fewer people + best light</p>
+                    </div>
+
+                    <div class="timeline-day crowd-low">
+                        <div class="day-label">Day 5</div>
+                        <div class="crowd-indicator">🟢</div>
+                        <div class="location-label">East Fjords</div>
+                        <p><strong>Crowd Level:</strong> Low (remote area)</p>
+                        <p><strong>Strategy:</strong> Enjoy the solitude, stop at viewpoints freely</p>
+                    </div>
+
+                    <div class="timeline-day crowd-medium">
+                        <div class="day-label">Day 6</div>
+                        <div class="crowd-indicator">🟡🟡</div>
+                        <div class="location-label">Lake Mývatn</div>
+                        <p><strong>Crowd Level:</strong> Medium (popular but dispersed sites)</p>
+                        <p><strong>Strategy:</strong> Visit Hverir and Dimmuborgir mid-morning, Mývatn Baths late afternoon</p>
+                    </div>
+
+                    <div class="timeline-day crowd-low">
+                        <div class="day-label">Day 7</div>
+                        <div class="crowd-indicator">🟢🟡</div>
+                        <div class="location-label">Akureyri & Húsavík</div>
+                        <p><strong>Crowd Level:</strong> Low-Medium</p>
+                        <p><strong>Strategy:</strong> Whale watching tours are small groups, city is calm</p>
+                    </div>
+
+                    <div class="timeline-day crowd-low">
+                        <div class="day-label">Day 8</div>
+                        <div class="crowd-indicator">🟢</div>
+                        <div class="location-label">West Iceland Drive</div>
+                        <p><strong>Crowd Level:</strong> Low (long driving day)</p>
+                        <p><strong>Strategy:</strong> Stop as desired, few tourists on this route</p>
+                    </div>
+
+                    <div class="timeline-day crowd-medium">
+                        <div class="day-label">Day 9</div>
+                        <div class="crowd-indicator">🟡🟡</div>
+                        <div class="location-label">Snæfellsnes Peninsula</div>
+                        <p><strong>Crowd Level:</strong> Medium (day-trippers from Reykjavík)</p>
+                        <p><strong>Strategy:</strong> Visit Kirkjufell early morning, other sites less crowded</p>
+                    </div>
+
+                    <div class="timeline-day crowd-high">
+                        <div class="day-label">Day 10</div>
+                        <div class="crowd-indicator">🔴</div>
+                        <div class="location-label">Blue Lagoon</div>
+                        <p><strong>Crowd Level:</strong> Very High (most touristy spot)</p>
+                        <p><strong>Strategy:</strong> Book earliest morning slot (7-8am) for fewer crowds</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Time Management -->
+        <section class="analysis-section">
+            <h2>⏰ Time Management Intelligence</h2>
+
+            <div class="dashboard-card">
+                <h3>Critical Time Considerations</h3>
+
+                <div class="time-alert high">
+                    <h4>⚠️ Day 5: Longest Driving Day</h4>
+                    <p><strong>Distance:</strong> ~250 km through winding East Fjords</p>
+                    <p><strong>Estimated Time:</strong> 4-5 hours minimum (more with stops)</p>
+                    <p><strong>Strategy:</strong></p>
+                    <ul>
+                        <li>Start early to avoid late arrival</li>
+                        <li>Limit stops to essential viewpoints only</li>
+                        <li>Pack lunch to eat while driving</li>
+                        <li>Fill up gas tank before entering fjords</li>
+                    </ul>
+                </div>
+
+                <div class="time-alert medium">
+                    <h4>⚠️ Day 8: Another Long Drive</h4>
+                    <p><strong>Distance:</strong> ~300 km across North Iceland</p>
+                    <p><strong>Strategy:</strong> Consider this primarily a driving day with minimal stops</p>
+                </div>
+
+                <div class="time-alert low">
+                    <h4>✅ Built-in Buffer Days</h4>
+                    <p><strong>Day 6-7:</strong> Mývatn and Akureyri area with flexibility</p>
+                    <p><strong>Day 9:</strong> Snæfellsnes loop is compact, easy to adjust</p>
+                    <p><strong>Strategy:</strong> Use these days to recover from long drives</p>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Recommended Daily Schedule (Summer)</h3>
+                <div class="schedule-grid">
+                    <div class="schedule-item">
+                        <div class="time-slot">7:00-8:00 AM</div>
+                        <div class="activity">Wake up, breakfast</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="time-slot">8:00-9:00 AM</div>
+                        <div class="activity">Hit the road (beat crowds)</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="time-slot">9:00-12:00 PM</div>
+                        <div class="activity">Morning attractions</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="time-slot">12:00-1:00 PM</div>
+                        <div class="activity">Lunch break</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="time-slot">1:00-6:00 PM</div>
+                        <div class="activity">Afternoon exploration</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="time-slot">6:00-8:00 PM</div>
+                        <div class="activity">Dinner, check-in to hotel</div>
+                    </div>
+                    <div class="schedule-item">
+                        <div class="time-slot">8:00-11:00 PM</div>
+                        <div class="activity">Evening activities (still daylight!)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Packing Guide -->
+        <section class="analysis-section">
+            <h2>🎒 Smart Packing Guide</h2>
+
+            <div class="dashboard-card">
+                <h3>Layering System for Iceland</h3>
+
+                <div class="packing-category">
+                    <h4>Layer 1: Base Layers</h4>
+                    <ul>
+                        <li>Thermal underwear (top & bottom)</li>
+                        <li>Merino wool or synthetic (NOT cotton)</li>
+                        <li>Bring 2-3 sets</li>
+                    </ul>
+                </div>
+
+                <div class="packing-category">
+                    <h4>Layer 2: Mid Layers</h4>
+                    <ul>
+                        <li>Fleece jacket or pullover</li>
+                        <li>Lightweight down jacket</li>
+                        <li>Long-sleeve shirts</li>
+                    </ul>
+                </div>
+
+                <div class="packing-category">
+                    <h4>Layer 3: Outer Shell</h4>
+                    <ul>
+                        <li><strong>ESSENTIAL:</strong> Waterproof, windproof jacket with hood</li>
+                        <li>Waterproof pants (for waterfalls and rain)</li>
+                        <li>This is your #1 most important clothing item</li>
+                    </ul>
+                </div>
+
+                <div class="packing-category">
+                    <h4>Footwear</h4>
+                    <ul>
+                        <li><strong>ESSENTIAL:</strong> Waterproof hiking boots with good tread</li>
+                        <li>Break them in before the trip!</li>
+                        <li>Wool hiking socks (3-4 pairs)</li>
+                        <li>Optional: Sandals for hot springs/hotel</li>
+                    </ul>
+                </div>
+
+                <div class="packing-category">
+                    <h4>Accessories</h4>
+                    <ul>
+                        <li>Warm hat/beanie</li>
+                        <li>Gloves (even in summer for glaciers)</li>
+                        <li>Sunglasses (very bright in summer)</li>
+                        <li>Sunscreen (SPF 30+, strong sun reflection)</li>
+                        <li>Eye mask (for midnight sun)</li>
+                        <li>Reusable water bottle</li>
+                        <li>Small backpack for day hikes</li>
+                    </ul>
+                </div>
+
+                <div class="packing-category">
+                    <h4>Tech & Extras</h4>
+                    <ul>
+                        <li>Phone charger + car adapter</li>
+                        <li>Camera + extra batteries (cold drains batteries)</li>
+                        <li>Power bank</li>
+                        <li>European plug adapter (Type C/F)</li>
+                        <li>Headphones/earbuds</li>
+                    </ul>
+                </div>
+
+                <div class="packing-category">
+                    <h4>Toiletries & Misc</h4>
+                    <ul>
+                        <li>Swimsuit (for hot springs and Blue Lagoon)</li>
+                        <li>Small towel (most hotels provide, but useful for car)</li>
+                        <li>Toiletries (minimize liquids for flights)</li>
+                        <li>First aid kit basics</li>
+                        <li>Medications + copies of prescriptions</li>
+                        <li>Snacks for long drives</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>What NOT to Bring</h3>
+                <ul>
+                    <li>❌ Cotton clothing (stays wet, doesn't insulate)</li>
+                    <li>❌ Umbrella (useless in Iceland wind, wear a hood)</li>
+                    <li>❌ Too many clothes (laundry available, pack light)</li>
+                    <li>❌ Formal attire (Iceland is casual everywhere)</li>
+                    <li>❌ Hair dryer (hotels provide them)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Budget Optimization -->
+        <section class="analysis-section">
+            <h2>💰 Budget Optimization Strategies</h2>
+
+            <div class="dashboard-card">
+                <h3>Money-Saving Tips</h3>
+
+                <div class="tip-category">
+                    <h4>🛒 Food & Groceries</h4>
+                    <ul>
+                        <li><strong>Shop at Bónus:</strong> Discount supermarket (recognizable pink pig logo), 20-30% cheaper</li>
+                        <li><strong>Cook breakfast:</strong> Most accommodations have kitchens</li>
+                        <li><strong>Pack lunch:</strong> Make sandwiches for driving days</li>
+                        <li><strong>Restaurant strategy:</strong> Lunch specials cheaper than dinner (same food)</li>
+                        <li><strong>Try hotdogs:</strong> Bæjarins Beztu in Reykjavík ($4) - cult favorite</li>
+                        <li><strong>Skip bottled water:</strong> Tap water is pristine (best in the world)</li>
+                    </ul>
+                </div>
+
+                <div class="tip-category">
+                    <h4>🏨 Accommodation</h4>
+                    <ul>
+                        <li><strong>Book early:</strong> Prices increase as dates approach</li>
+                        <li><strong>Guesthouses > Hotels:</strong> Often half the price, same quality</li>
+                        <li><strong>Consider hostels:</strong> Many have private rooms with shared facilities</li>
+                        <li><strong>Airbnb with kitchen:</strong> Save money cooking meals</li>
+                    </ul>
+                </div>
+
+                <div class="tip-category">
+                    <h4>🎫 Attractions & Tours</h4>
+                    <ul>
+                        <li><strong>Free attractions:</strong> Most waterfalls, beaches, viewpoints are free</li>
+                        <li><strong>DIY vs Tours:</strong> Self-drive almost always cheaper for multiple people</li>
+                        <li><strong>Skip the overpriced:</strong> Some museums/attractions not worth the cost</li>
+                        <li><strong>Blue Lagoon alternatives:</strong> Mývatn Nature Baths ($50 vs $80), Secret Lagoon ($35)</li>
+                    </ul>
+                </div>
+
+                <div class="tip-category">
+                    <h4>🚗 Transport</h4>
+                    <ul>
+                        <li><strong>Book car early:</strong> Prices double last-minute</li>
+                        <li><strong>Fill up in towns:</strong> Rural gas stations more expensive</li>
+                        <li><strong>Avoid Keflavík/Reykjavík gas:</strong> Cheaper outside tourist areas</li>
+                        <li><strong>Carpool/split costs:</strong> Rental + gas divided between travelers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="dashboard-card">
+                <h3>Budget vs Splurge Recommendations</h3>
+                <div class="budget-comparison">
+                    <div class="budget-column">
+                        <h4>💰 Worth Spending On</h4>
+                        <ul>
+                            <li>✅ Good rental car with insurance</li>
+                            <li>✅ Blue Lagoon (once-in-lifetime experience)</li>
+                            <li>✅ Whale watching tour</li>
+                            <li>✅ Quality waterproof jacket</li>
+                            <li>✅ Glacier tour/ice cave</li>
+                            <li>✅ Fresh Icelandic seafood (at least once)</li>
+                        </ul>
+                    </div>
+                    <div class="budget-column">
+                        <h4>💸 Save Money On</h4>
+                        <ul>
+                            <li>❌ Every meal at restaurants</li>
+                            <li>❌ Bottled water</li>
+                            <li>❌ Expensive hotels when guesthouse works</li>
+                            <li>❌ Souvenirs (Iceland is expensive)</li>
+                            <li>❌ Multiple hot spring spas (pick 1-2 favorites)</li>
+                            <li>❌ Organized tours for free natural sites</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Iceland Trip 2026 | Journey through Fire and Ice 🇮🇸</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

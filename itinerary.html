@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinerary - Iceland Trip 2026</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">Iceland 2026 🇮🇸</div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="itinerary.html" class="active">Itinerary</a></li>
+                <li><a href="planning.html">Planning</a></li>
+                <li><a href="logistics.html">Logistics</a></li>
+                <li><a href="analysis.html">Analysis</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="page-header">
+            <h1>10-Day Iceland Itinerary</h1>
+            <p>Complete day-by-day breakdown of our Iceland adventure</p>
+            <div class="accordion-controls">
+                <button onclick="expandAll()" class="control-btn">Expand All</button>
+                <button onclick="collapseAll()" class="control-btn">Collapse All</button>
+            </div>
+        </div>
+
+        <!-- Reykjavík & Golden Circle (Days 1-2) -->
+        <div class="region-header">
+            <h2>🏙️ Reykjavík & Golden Circle</h2>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header" onclick="toggleDay(this)">
+                <div class="day-title">
+                    <span class="day-number">Day 1</span>
+                    <span class="day-name">Arrival & Reykjavík Exploration</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="day-content">
+                <div class="day-section">
+                    <h4>📍 Plan</h4>
+                    <ul>
+                        <li>Arrive at Keflavík International Airport</li>
+                        <li>Pick up rental car</li>
+                        <li>Drive to Reykjavík (45 minutes)</li>
+                        <li>Check into hotel</li>
+                        <li>Explore downtown: Hallgrímskirkja Church, Harpa Concert Hall</li>
+                        <li>Walk along the waterfront</li>
+                        <li>Dinner at local restaurant (try Icelandic lamb or seafood)</li>
+                    </ul>
+                </div>
+                <div class="day-section">
+                    <h4>🎯 Focus</h4>
+                    <p>Settle in, shake off jet lag, get oriented in the capital</p>
+                </div>
+                <div class="day-section">
+                    <h4>🚗 Transport</h4>
+                    <p>Pick up rental car at airport | Drive: 45km to Reykjavík</p>
+                </div>
+                <div class="day-section">
+                    <h4>🏨 Hotel</h4>
+                    <p>Reykjavík accommodation (2 nights)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header" onclick="toggleDay(this)">
+                <div class="day-title">
+                    <span class="day-number">Day 2</span>
+                    <span class="day-name">Golden Circle Tour</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="day-content">
+                <div class="day-section">
+                    <h4>📍 Plan</h4>
+                    <ul>
+                        <li>Þingvellir National Park - UNESCO site, continental drift</li>
+                        <li>Geysir Geothermal Area - Strokkur geyser eruption</li>
+                        <li>Gullfoss Waterfall - "Golden Falls"</li>
+                        <li>Optional: Kerið Crater or Secret Lagoon hot spring</li>
+                        <li>Return to Reykjavík for evening</li>
+                    </ul>
+                </div>
+                <div class="day-section">
+                    <h4>🎯 Focus</h4>
+                    <p>Iceland's most famous attractions in one circuit</p>
+                </div>
+                <div class="day-section">
+                    <h4>🚗 Transport</h4>
+                    <p>Self-drive Golden Circle | Total: ~300km round trip</p>
+                </div>
+                <div class="day-section">
+                    <h4>🏨 Hotel</h4>
+                    <p>Reykjavík accommodation (night 2)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- South Coast (Days 3-4) -->
+        <div class="region-header">
+            <h2>🌊 South Coast Adventure</h2>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header" onclick="toggleDay(this)">
+                <div class="day-title">
+                    <span class="day-number">Day 3</span>
+                    <span class="day-name">Waterfalls & Black Sand Beach</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="day-content">
+                <div class="day-section">
+                    <h4>📍 Plan</h4>
+                    <ul>
+                        <li>Depart Reykjavík heading east</li>
+                        <li>Seljalandsfoss Waterfall - walk behind it</li>
+                        <li>Skógafoss Waterfall - climb stairs for view</li>
+                        <li>Reynisfjara Black Sand Beach - basalt columns, sea stacks</li>
+                        <li>Dyrhólaey Peninsula viewpoint</li>
+                        <li>Arrive in Vík area for overnight</li>
+                    </ul>
+                </div>
+                <div class="day-section">
+                    <h4>🎯 Focus</h4>
+                    <p>Iconic South Coast waterfalls and dramatic coastal scenery</p>
+                </div>
+                <div class="day-section">
+                    <h4>🚗 Transport</h4>
+                    <p>Drive east on Ring Road | ~180km</p>
+                </div>
+                <div class="day-section">
+                    <h4>🏨 Hotel</h4>
+                    <p>Vík or nearby accommodation (1 night)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header" onclick="toggleDay(this)">
+                <div class="day-title">
+                    <span class="day-number">Day 4</span>
+                    <span class="day-name">Glacier Lagoon & Ice Caves</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="day-content">
+                <div class="day-section">
+                    <h4>📍 Plan</h4>
+                    <ul>
+                        <li>Drive to Skaftafell National Park</li>
+                        <li>Short hike to Svartifoss waterfall (basalt columns)</li>
+                        <li>Continue to Jökulsárlón Glacier Lagoon</li>
+                        <li>Watch icebergs floating in the lagoon</li>
+                        <li>Diamond Beach - ice chunks on black sand</li>
+                        <li>Optional: Glacier ice cave tour (book in advance)</li>
+                        <li>Overnight near Höfn</li>
+                    </ul>
+                </div>
+                <div class="day-section">
+                    <h4>🎯 Focus</h4>
+                    <p>Glaciers and Iceland's most photogenic location</p>
+                </div>
+                <div class="day-section">
+                    <h4>🚗 Transport</h4>
+                    <p>Continue east on Ring Road | ~200km</p>
+                </div>
+                <div class="day-section">
+                    <h4>🏨 Hotel</h4>
+                    <p>Höfn or Jökulsárlón area (1 night)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- East Fjords & North (Days 5-7) -->
+        <div class="region-header">
+            <h2>⛰️ East Fjords & Northern Iceland</h2>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header" onclick="toggleDay(this)">
+                <div class="day-title">
+                    <span class="day-number">Day 5</span>
+                    <span class="day-name">East Fjords Scenic Drive</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="day-content">
+                <div class="day-section">
+                    <h4>📍 Plan</h4>
+                    <ul>
+                        <li>Drive through winding East Fjords</li>
+                        <li>Stop at scenic viewpoints along the way</li>
+                        <li>Visit Djúpivogur or Stöðvarfjörður fishing villages</li>
+                        <li>Continue to Egilsstaðir area</li>
+                        <li>Relax and prepare for tomorrow's activities</li>
+                    </ul>
+                </div>
+                <div class="day-section">
+                    <h4>🎯 Focus</h4>
+                    <p>Scenic driving day through remote fjord landscapes</p>
+                </div>
+                <div class="day-section">
+                    <h4>🚗 Transport</h4>
+                    <p>Long scenic drive | ~250km</p>
+                </div>
+                <div class="day-section">
+                    <h4>🏨 Hotel</h4>
+                    <p>Egilsstaðir area (1 night)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header" onclick="toggleDay(this)">
+                <div class="day-title">
+                    <span class="day-number">Day 6</span>
+                    <span class="day-name">Lake Mývatn & Geothermal Wonders</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="day-content">
+                <div class="day-section">
+                    <h4>📍 Plan</h4>
+                    <ul>
+                        <li>Drive to Lake Mývatn area</li>
+                        <li>Dimmuborgir lava formations - "Dark Castles"</li>
+                        <li>Hverir geothermal area - bubbling mud pots</li>
+                        <li>Grjótagjá cave (Game of Thrones filming location)</li>
+                        <li>Mývatn Nature Baths - geothermal spa (less touristy than Blue Lagoon)</li>
+                        <li>Optional: Dettifoss waterfall (Europe's most powerful)</li>
+                    </ul>
+                </div>
+                <div class="day-section">
+                    <h4>🎯 Focus</h4>
+                    <p>Volcanic landscapes and geothermal activity</p>
+                </div>
+                <div class="day-section">
+                    <h4>🚗 Transport</h4>
+                    <p>Drive to Mývatn region | ~170km</p>
+                </div>
+                <div class="day-section">
+                    <h4>🏨 Hotel</h4>
+                    <p>Mývatn area or Akureyri (1 night)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header" onclick="toggleDay(this)">
+                <div class="day-title">
+                    <span class="day-number">Day 7</span>
+                    <span class="day-name">Akureyri & Whale Watching</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="day-content">
+                <div class="day-section">
+                    <h4>📍 Plan</h4>
+                    <ul>
+                        <li>Morning in Akureyri - "Capital of the North"</li>
+                        <li>Akureyrarkirkja Church viewpoint</li>
+                        <li>Botanical Gardens</li>
+                        <li>Drive to Húsavík for whale watching tour (book ahead)</li>
+                        <li>High chance of humpback whales and dolphins</li>
+                        <li>Explore Húsavík Whale Museum</li>
+                    </ul>
+                </div>
+                <div class="day-section">
+                    <h4>🎯 Focus</h4>
+                    <p>Northern Iceland's capital and whale watching</p>
+                </div>
+                <div class="day-section">
+                    <h4>🚗 Transport</h4>
+                    <p>Akureyri to Húsavík | ~90km</p>
+                </div>
+                <div class="day-section">
+                    <h4>🏨 Hotel</h4>
+                    <p>Akureyri or Húsavík area (1 night)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- West Iceland (Days 8-9) -->
+        <div class="region-header">
+            <h2>🏔️ West Iceland & Snæfellsnes</h2>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header" onclick="toggleDay(this)">
+                <div class="day-title">
+                    <span class="day-number">Day 8</span>
+                    <span class="day-name">Journey West</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="day-content">
+                <div class="day-section">
+                    <h4>📍 Plan</h4>
+                    <ul>
+                        <li>Long drive west across northern Iceland</li>
+                        <li>Stop at Glaumbær turf houses (historical museum)</li>
+                        <li>Drive through Skagafjörður valley</li>
+                        <li>Optional: Hvítserkur rock formation</li>
+                        <li>Arrive at Snæfellsnes Peninsula</li>
+                    </ul>
+                </div>
+                <div class="day-section">
+                    <h4>🎯 Focus</h4>
+                    <p>Transition day with cultural stops</p>
+                </div>
+                <div class="day-section">
+                    <h4>🚗 Transport</h4>
+                    <p>Long drive west | ~300km</p>
+                </div>
+                <div class="day-section">
+                    <h4>🏨 Hotel</h4>
+                    <p>Snæfellsnes Peninsula area (2 nights)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header" onclick="toggleDay(this)">
+                <div class="day-title">
+                    <span class="day-number">Day 9</span>
+                    <span class="day-name">Snæfellsnes Peninsula Circuit</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="day-content">
+                <div class="day-section">
+                    <h4>📍 Plan</h4>
+                    <ul>
+                        <li>Kirkjufell Mountain - most photographed mountain in Iceland</li>
+                        <li>Kirkjufellsfoss waterfall in foreground</li>
+                        <li>Djúpalónssandur black pebble beach</li>
+                        <li>Snæfellsjökull Glacier viewpoints</li>
+                        <li>Arnarstapi coastal cliffs and rock arch</li>
+                        <li>Búðakirkja black church</li>
+                        <li>Ytri Tunga seal colony</li>
+                    </ul>
+                </div>
+                <div class="day-section">
+                    <h4>🎯 Focus</h4>
+                    <p>"Iceland in Miniature" - diverse landscapes in compact area</p>
+                </div>
+                <div class="day-section">
+                    <h4>🚗 Transport</h4>
+                    <p>Loop around peninsula | ~200km</p>
+                </div>
+                <div class="day-section">
+                    <h4>🏨 Hotel</h4>
+                    <p>Snæfellsnes Peninsula (night 2)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Return to Reykjavík (Day 10) -->
+        <div class="region-header">
+            <h2>🏁 Final Day</h2>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header" onclick="toggleDay(this)">
+                <div class="day-title">
+                    <span class="day-number">Day 10</span>
+                    <span class="day-name">Blue Lagoon & Departure</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="day-content">
+                <div class="day-section">
+                    <h4>📍 Plan</h4>
+                    <ul>
+                        <li>Drive back toward Reykjavík/Keflavík</li>
+                        <li>Blue Lagoon geothermal spa (BOOK IN ADVANCE!)</li>
+                        <li>Relax in milky blue waters</li>
+                        <li>Silica mud mask included</li>
+                        <li>Drive to Keflavík Airport</li>
+                        <li>Return rental car</li>
+                        <li>Depart Iceland</li>
+                    </ul>
+                </div>
+                <div class="day-section">
+                    <h4>🎯 Focus</h4>
+                    <p>Relaxation and reflection before departure</p>
+                </div>
+                <div class="day-section">
+                    <h4>🚗 Transport</h4>
+                    <p>Return to Keflavík Airport | ~150km</p>
+                </div>
+                <div class="day-section">
+                    <h4>🏨 Hotel</h4>
+                    <p>N/A - Departure day</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Iceland Trip 2026 | Journey through Fire and Ice 🇮🇸</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        function toggleDay(header) {
+            const dayCard = header.parentElement;
+            const content = dayCard.querySelector('.day-content');
+            const icon = header.querySelector('.toggle-icon');
+
+            dayCard.classList.toggle('active');
+
+            if (dayCard.classList.contains('active')) {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.textContent = '▲';
+            } else {
+                content.style.maxHeight = '0';
+                icon.textContent = '▼';
+            }
+        }
+
+        function expandAll() {
+            const dayCards = document.querySelectorAll('.day-card');
+            dayCards.forEach(card => {
+                const content = card.querySelector('.day-content');
+                const icon = card.querySelector('.toggle-icon');
+                card.classList.add('active');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.textContent = '▲';
+            });
+        }
+
+        function collapseAll() {
+            const dayCards = document.querySelectorAll('.day-card');
+            dayCards.forEach(card => {
+                const content = card.querySelector('.day-content');
+                const icon = card.querySelector('.toggle-icon');
+                card.classList.remove('active');
+                content.style.maxHeight = '0';
+                icon.textContent = '▼';
+            });
+        }
+    </script>
+</body>
+</html>
