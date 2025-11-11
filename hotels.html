@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Bookings - Iceland Trip 2026</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hotel-hero {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+        .hotel-hero h1 {
+            margin: 0 0 15px 0;
+            font-size: 3rem;
+            font-weight: 700;
+        }
+        .hotel-hero .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin: 10px 0;
+        }
+        .booking-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+        .booking-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            border-color: #f59e0b;
+        }
+        .booking-header {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .booking-header:hover {
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+        }
+        .booking-title {
+            flex: 1;
+        }
+        .booking-title h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.5rem;
+        }
+        .booking-meta {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .booking-meta span {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .toggle-icon {
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+        .booking-card.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        .booking-content {
+            padding: 30px;
+            background: #fafbfc;
+        }
+        .booking-content.collapsed {
+            display: none;
+        }
+        .booking-section {
+            margin-bottom: 25px;
+        }
+        .booking-section:last-child {
+            margin-bottom: 0;
+        }
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f59e0b;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #fcd34d;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 12px;
+        }
+        .info-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #f59e0b;
+        }
+        .info-label {
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        .info-value {
+            font-size: 1.1rem;
+            color: #374151;
+        }
+        .guest-list {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #f59e0b;
+            margin-top: 12px;
+        }
+        .guest-list ul {
+            margin: 10px 0 0 0;
+            padding-left: 20px;
+        }
+        .guest-list li {
+            margin: 6px 0;
+            color: #374151;
+        }
+        .amenities-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        .amenity-tag {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid #fcd34d;
+        }
+        .cancellation-policy {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+        .cancellation-policy h4 {
+            margin-top: 0;
+            color: #d97706;
+        }
+        .cancellation-policy ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .cancellation-policy li {
+            margin: 8px 0;
+            color: #374151;
+        }
+        .location-info {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 12px;
+            border-left: 4px solid #95a5a6;
+        }
+        .location-info p {
+            margin: 5px 0;
+            color: #2c3e50;
+        }
+        .payment-info {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #f59e0b;
+            margin-top: 12px;
+        }
+        .itinerary-link {
+            background: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            color: #065f46;
+        }
+        .itinerary-link strong {
+            color: #059669;
+        }
+        .summary-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .summary-box h2 {
+            margin-top: 0;
+            color: #d97706;
+            font-size: 1.8rem;
+        }
+        .summary-box p {
+            color: #92400e;
+            font-size: 1.05rem;
+            margin: 10px 0;
+        }
+        .map-button {
+            background: #f59e0b;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        .map-button:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">Iceland 2026 🇮🇸</div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="itinerary.html">Itinerary</a></li>
+                <li><a href="flights.html">Flights</a></li>
+                <li><a href="planning.html">Planning</a></li>
+                <li><a href="logistics.html">Logistics</a></li>
+                <li><a href="hotels.html" class="active">🏨 Hotels</a></li>
+                <li><a href="analysis.html">Analysis</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">AI Reviews ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="gemini_comment.html">Gemini Review</a></li>
+                        <li><a href="gpt_comment.html">GPT Review</a></li>
+                        <li><a href="grok_comment.html">Grok Review</a></li>
+                        <li><a href="sonnet_comment.html">Sonnet Review</a></li>
+                    </ul>
+                </li>
+                <li><a href="ultimate_itinerary.html" style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 8px 16px; border-radius: 6px; font-weight: 600;">🏆 Ultimate Plan</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="hotel-hero">
+            <h1>🏨 Hotel Bookings</h1>
+            <p class="subtitle">Your Home Away from Home Across Iceland</p>
+            <p class="subtitle" style="font-size: 1.1rem; margin-top: 15px;">4 nights in carefully selected locations</p>
+        </div>
+
+        <div class="summary-box">
+            <h2>Quick Summary</h2>
+            <p><strong>Total Nights:</strong> 4 nights across 4 unique properties</p>
+            <p><strong>Dates:</strong> April 9-16, 2026</p>
+            <p><strong>Guests:</strong> 4 adults (Thanakorn, Arpaporn, Nick, Aekkalag)</p>
+        </div>
+
+        <!-- Hotel 1: Hvolsvollur -->
+        <div id="hvolsvollur" class="booking-card">
+            <div class="booking-header" onclick="toggleBooking(this)">
+                <div class="booking-title">
+                    <h3>🏡 Guesthouse Spuni Cozy Cottage 861</h3>
+                    <div class="booking-meta">
+                        <span>📍 Hvolsvollur, South Iceland</span>
+                        <span>📅 April 9-10, 2026</span>
+                        <span>🌙 1 night</span>
+                    </div>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="booking-content">
+                <div class="itinerary-link">
+                    <strong>🔗 Part of:</strong> Day 2 (April 9) - Golden Circle
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">📍 Location & Address</div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Region</div>
+                            <div class="info-value">Hvolsvollur, South Iceland</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Postal Code</div>
+                            <div class="info-value">861</div>
+                        </div>
+                    </div>
+                    <div class="location-info">
+                        <p><strong>Full Address:</strong></p>
+                        <p>Skeggjastaðir land 18 0101, Vestur-Landeyjahreppur, Hvolsvollur, Iceland, 861</p>
+                    </div>
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">🛏️ Room Details</div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Room Type</div>
+                            <div class="info-value">Two-Bedroom House</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Rooms</div>
+                            <div class="info-value">1</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Beds</div>
+                            <div class="info-value">2 bedrooms</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Capacity</div>
+                            <div class="info-value">4 adults, 0 children</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">👥 Guests</div>
+                    <div class="guest-list">
+                        <ul>
+                            <li>Thanakorn Athithanathaworn</li>
+                            <li>Arpaporn Chamnong</li>
+                            <li>Nick Chamnong</li>
+                            <li>Aekkalag Sonthilug</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">✨ Amenities & Benefits</div>
+                    <div class="amenities-list">
+                        <span class="amenity-tag">☕ Coffee & Tea</span>
+                        <span class="amenity-tag">🚗 Parking</span>
+                        <span class="amenity-tag">📡 Free WiFi</span>
+                    </div>
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">💳 Booking & Payment</div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Booking ID</div>
+                            <div class="info-value">1951993306</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Reference No</div>
+                            <div class="info-value">6460838197</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Booked Via</div>
+                            <div class="info-value">Agoda / Booking.com</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Payment</div>
+                            <div class="info-value">MasterCard (****5475)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cancellation-policy">
+                    <h4>📋 Cancellation Policy</h4>
+                    <ul>
+                        <li><strong>Free Cancellation:</strong> Before April 2, 2026</li>
+                        <li><strong>7 days before arrival:</strong> 83% of booking value</li>
+                        <li><strong>On check-in day:</strong> 83% of booking value</li>
+                        <li><strong>No-show:</strong> 83% of booking value (Hotel policy)</li>
+                    </ul>
+                </div>
+
+                <div class="itinerary-link">
+                    <strong>📌 Day 2 (April 9):</strong> Golden Circle route. Great positioning for exploring Þingvellir, Geysir, and Gullfoss waterfalls. This location serves as your base after the arrival day.
+                </div>
+            </div>
+        </div>
+
+        <!-- Hotel 2: Jökulsárlón Area -->
+        <div id="jokulsarlon" class="booking-card">
+            <div class="booking-header" onclick="toggleBooking(this)">
+                <div class="booking-title">
+                    <h3>🏡 Home Under a Waterfall (7 mins from Glacier Lagoon)</h3>
+                    <div class="booking-meta">
+                        <span>📍 Hali, South Iceland</span>
+                        <span>📅 April 11-12, 2026</span>
+                        <span>🌙 1 night</span>
+                    </div>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="booking-content">
+                <div class="itinerary-link">
+                    <strong>🔗 Part of:</strong> Day 4 (April 11) - Jökulsárlón Glacier Lagoon
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">📍 Location & Address</div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Region</div>
+                            <div class="info-value">Hali, South Iceland</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Postal Code</div>
+                            <div class="info-value">781</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Distance to Glacier Lagoon</div>
+                            <div class="info-value">~7 minutes drive</div>
+                        </div>
+                    </div>
+                    <div class="location-info">
+                        <p><strong>Full Address:</strong></p>
+                        <p>Reynivellir, Hali, Hali, Iceland, 781</p>
+                    </div>
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">🛏️ Room Details</div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Room Type</div>
+                            <div class="info-value">Three-Bedroom House</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Rooms</div>
+                            <div class="info-value">1</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Beds</div>
+                            <div class="info-value">3 bedrooms</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Capacity</div>
+                            <div class="info-value">4 adults, 0 children</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">👥 Guests</div>
+                    <div class="guest-list">
+                        <ul>
+                            <li>Thanakorn Athithanathaworn</li>
+                            <li>Arpaporn Chamnong</li>
+                            <li>Nick Chamnong</li>
+                            <li>Aekkalag Sonthilug</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">✨ Amenities & Benefits</div>
+                    <div class="amenities-list">
+                        <span class="amenity-tag">🚗 Parking</span>
+                        <span class="amenity-tag">📡 Free WiFi</span>
+                        <span class="amenity-tag">☕ Coffee & Tea</span>
+                    </div>
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">💳 Booking & Payment</div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Booking ID</div>
+                            <div class="info-value">1943627817</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Reference No</div>
+                            <div class="info-value">5796514480</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Booked Via</div>
+                            <div class="info-value">Agoda / Booking.com</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Payment</div>
+                            <div class="info-value">MasterCard (****5475)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cancellation-policy">
+                    <h4>📋 Cancellation Policy</h4>
+                    <ul>
+                        <li><strong>Free Cancellation:</strong> Before April 6, 2026</li>
+                        <li><strong>5 days before arrival:</strong> 100% of booking value</li>
+                        <li><strong>On check-in day:</strong> 100% of booking value</li>
+                        <li><strong>No-show:</strong> 100% of booking value (Hotel policy)</li>
+                    </ul>
+                </div>
+
+                <div class="itinerary-link">
+                    <strong>📌 Day 4 (April 11):</strong> Prime location for Jökulsárlón Glacier Lagoon exploration. The unique waterfall setting provides a memorable stay while being perfectly positioned for glacier adventures. Only 7 minutes to the lagoon!
+                </div>
+            </div>
+        </div>
+
+        <!-- Hotel 3: Borgarnes -->
+        <div id="borgarnes" class="booking-card">
+            <div class="booking-header" onclick="toggleBooking(this)">
+                <div class="booking-title">
+                    <h3>🏡 Fossatun Sunset Cottage</h3>
+                    <div class="booking-meta">
+                        <span>📍 Borgarnes, West Iceland</span>
+                        <span>📅 April 13-14, 2026</span>
+                        <span>🌙 1 night</span>
+                    </div>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="booking-content">
+                <div class="itinerary-link">
+                    <strong>🔗 Part of:</strong> Day 6 (April 13) - Reykjadalur Hot River Hike → Borgarnes
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">📍 Location & Address</div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Region</div>
+                            <div class="info-value">Borgarnes, West Iceland</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Postal Code</div>
+                            <div class="info-value">311</div>
+                        </div>
+                    </div>
+                    <div class="location-info">
+                        <p><strong>Full Address:</strong></p>
+                        <p>Fossatún, Borgarnes, Borgarnes, Iceland, 311</p>
+                    </div>
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">🛏️ Room Details</div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Room Type</div>
+                            <div class="info-value">Cottage (Two Bedrooms)</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Rooms</div>
+                            <div class="info-value">1</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Special Features</div>
+                            <div class="info-value">Panoramic & Valley Views</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Capacity</div>
+                            <div class="info-value">4 adults, 0 children</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">👥 Guests</div>
+                    <div class="guest-list">
+                        <ul>
+                            <li>Thanakorn Athithanathaworn</li>
+                            <li>Aekkalag Sonthilug</li>
+                        </ul>
+                        <p style="color: #6b7280; font-style: italic; margin-top: 10px;">Note: Only 2 guests listed for this booking</p>
+                    </div>
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">✨ Amenities & Benefits</div>
+                    <div class="amenities-list">
+                        <span class="amenity-tag">📡 Free WiFi</span>
+                        <span class="amenity-tag">🚗 Parking</span>
+                        <span class="amenity-tag">🌅 Panoramic Views</span>
+                        <span class="amenity-tag">🚭 Non-Smoking</span>
+                    </div>
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">💳 Booking & Payment</div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Booking ID</div>
+                            <div class="info-value">1951996198</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Reference No</div>
+                            <div class="info-value">25111104196198575</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Booked Via</div>
+                            <div class="info-value">Agoda</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Payment</div>
+                            <div class="info-value">Visa (****1568)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cancellation-policy">
+                    <h4>📋 Cancellation Policy</h4>
+                    <ul>
+                        <li><strong>Free Cancellation:</strong> Before March 29, 2026</li>
+                        <li><strong>15 days before arrival:</strong> 100% of booking value</li>
+                        <li><strong>On check-in day:</strong> 100% of booking value</li>
+                        <li><strong>No-show:</strong> 100% of booking value (Hotel policy)</li>
+                    </ul>
+                </div>
+
+                <div class="itinerary-link">
+                    <strong>📌 Day 6 (April 13):</strong> Perfect base for exploring West Iceland. After the Reykjadalur hot river hike in the morning, this cottage's stunning panoramic valley views provide a relaxing evening. Gateway to Snæfellsnes peninsula exploration over the next days.
+                </div>
+            </div>
+        </div>
+
+        <!-- Hotel 4: Grundarfjordur -->
+        <div id="grundarfjordur" class="booking-card">
+            <div class="booking-header" onclick="toggleBooking(this)">
+                <div class="booking-title">
+                    <h3>🏡 Sæbol/Ocean Lair</h3>
+                    <div class="booking-meta">
+                        <span>📍 Grundarfjordur, West Iceland</span>
+                        <span>📅 April 15-16, 2026</span>
+                        <span>🌙 1 night</span>
+                    </div>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="booking-content">
+                <div class="itinerary-link">
+                    <strong>🔗 Part of:</strong> Day 8 (April 15) - Snæfellsnes North → REYKJAVÍK
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">📍 Location & Address</div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Region</div>
+                            <div class="info-value">Grundarfjordur, West Iceland</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Postal Code</div>
+                            <div class="info-value">350</div>
+                        </div>
+                    </div>
+                    <div class="location-info">
+                        <p><strong>Full Address:</strong></p>
+                        <p>Sæból 46 Íbúð 1, Grundarfjordur, Grundarfjordur, Iceland, 350</p>
+                    </div>
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">🛏️ Room Details</div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Room Type</div>
+                            <div class="info-value">Apartment</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Rooms</div>
+                            <div class="info-value">1</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Beds</div>
+                            <div class="info-value">Multiple bedrooms</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Capacity</div>
+                            <div class="info-value">4 adults, 0 children</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">👥 Guests</div>
+                    <div class="guest-list">
+                        <ul>
+                            <li>Thanakorn Athithanathaworn</li>
+                            <li>Arpaporn Chamnong</li>
+                            <li>Nick Chamnong</li>
+                            <li>Aekkalag Sonthilug</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">✨ Amenities & Benefits</div>
+                    <div class="amenities-list">
+                        <span class="amenity-tag">🚗 Parking</span>
+                        <span class="amenity-tag">☕ Coffee & Tea</span>
+                        <span class="amenity-tag">📡 Free WiFi</span>
+                    </div>
+                </div>
+
+                <div class="booking-section">
+                    <div class="section-title">💳 Booking & Payment</div>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Booking ID</div>
+                            <div class="info-value">1952105079</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Reference No</div>
+                            <div class="info-value">5264899058</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Booked Via</div>
+                            <div class="info-value">Agoda / Booking.com</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Payment</div>
+                            <div class="info-value">Visa (****1568)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cancellation-policy">
+                    <h4>📋 Cancellation Policy</h4>
+                    <ul>
+                        <li><strong>Free Cancellation:</strong> Before April 8, 2026</li>
+                        <li><strong>7 days before arrival:</strong> 100% of booking value</li>
+                        <li><strong>On check-in day:</strong> 100% of booking value</li>
+                        <li><strong>No-show:</strong> 100% of booking value (Hotel policy)</li>
+                    </ul>
+                </div>
+
+                <div class="itinerary-link">
+                    <strong>📌 Day 8 (April 15):</strong> Final night before heading back to Reykjavík. Located on the scenic Snæfellsnes Peninsula, this is your last chance to enjoy the raw beauty of West Iceland before transitioning to the capital for final activities and departure.
+                </div>
+            </div>
+        </div>
+
+        <!-- Missing Days Notice -->
+        <div style="background: #e0f2fe; border-left: 4px solid #0284c7; padding: 20px; border-radius: 8px; margin-top: 40px;">
+            <h3 style="color: #0c4a6e; margin-top: 0;">📝 Accommodation for Other Days</h3>
+            <p><strong>Day 1 (April 8):</strong> TBD - Reykjavík area (arrival day)</p>
+            <p><strong>Day 3 (April 10):</strong> TBD - South Coast/Vík area</p>
+            <p><strong>Day 5 (April 12):</strong> TBD - Flexibility day</p>
+            <p><strong>Day 7 (April 14):</strong> TBD - Snæfellsnes area</p>
+            <p><strong>Day 9 (April 16):</strong> TBD - Reykjavík area (departure day)</p>
+        </div>
+    </main>
+
+    <footer style="background: #1f2937; color: white; text-align: center; padding: 30px; margin-top: 60px;">
+        <p>&copy; 2026 Iceland Trip Planning | All hotel information from Agoda/Booking.com confirmations</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script>
+        function toggleBooking(element) {
+            const card = element.closest('.booking-card');
+            card.classList.toggle('collapsed');
+            const content = card.querySelector('.booking-content');
+            content.classList.toggle('collapsed');
+        }
+
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
