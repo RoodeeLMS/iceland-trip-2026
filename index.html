@@ -1,201 +1,1124 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iceland Trip 2026 - Adventure Awaits</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Iceland Trip 2026 - Journey Through Fire & Ice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F8FAFC;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F8FAFC 0%, #E0F2FE 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .navbar-brand {
+            color: var(--aurora-green);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3em;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 3px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .navbar-item {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: 0.3s;
+            font-size: 0.85em;
+            white-space: nowrap;
+        }
+
+        .navbar-item:hover {
+            background: rgba(0, 180, 216, 0.2);
+            color: var(--aurora-green);
+        }
+
+        .navbar-item.active {
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        @media (max-width: 900px) {
+            .navbar-item { font-size: 0.8em; padding: 6px 10px; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%);
+                padding: 10px 0;
+                max-height: calc(100vh - 60px);
+                overflow-y: auto;
+            }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item {
+                padding: 12px 20px;
+                border-radius: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                font-size: 0.95em;
+            }
+            .menu-toggle { display: block; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        /* Grid & Cards */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            color: var(--primary-blue);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            border-bottom: 3px solid var(--aurora-green);
+            padding-bottom: 10px;
+        }
+
+        .card-content {
+            color: #333;
+            line-height: 1.8;
+        }
+
+        /* Countdown Section */
+        .countdown-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 25px 20px;
+            margin-bottom: 0;
+        }
+
+        .countdown-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .countdown-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .countdown-header h2 {
+            color: var(--aurora-green);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .countdown-header .subtitle {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9em;
+        }
+
+        .countdown-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15);
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .countdown-event {
+            color: white;
+        }
+
+        .countdown-event .event-type {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+        }
+
+        .countdown-event .event-title {
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .countdown-event .event-details {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .countdown-event .event-details .detail-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 4px 0;
+        }
+
+        .countdown-timer {
+            text-align: center;
+            min-width: 200px;
+        }
+
+        .timer-display {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .timer-unit {
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 12px 8px;
+            min-width: 55px;
+        }
+
+        .timer-value {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--aurora-green);
+            line-height: 1;
+        }
+
+        .timer-label {
+            font-size: 0.65em;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        .countdown-status {
+            font-size: 0.85em;
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: inline-block;
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+        }
+
+        @media (max-width: 700px) {
+            .countdown-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .countdown-event .event-details .detail-row { justify-content: center; }
+            .timer-unit { min-width: 48px; padding: 10px 6px; }
+            .timer-value { font-size: 1.5em; }
+        }
+
+        /* Quick Link Sections */
+        .grid-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .quick-link {
+            background: var(--glacier-white);
+            padding: 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--primary-blue);
+            border-left: 4px solid var(--aurora-green);
+            transition: 0.3s;
+            display: block;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .quick-link:hover {
+            background: white;
+            transform: translateX(5px);
+            border-left-color: var(--primary-blue);
+        }
+
+        .quick-link h3 {
+            color: var(--primary-blue);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 5px;
+        }
+
+        .quick-link p {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        /* Timeline Styles */
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: linear-gradient(to bottom, var(--aurora-green), var(--primary-blue));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+
+        .timeline-row {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-row::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -12.5px;
+            background-color: white;
+            border: 4px solid var(--primary-blue);
+            top: 25px;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 0 4px var(--aurora-green);
+        }
+
+        .timeline-left { left: 0; }
+        .timeline-right { left: 50%; }
+
+        .timeline-left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 28px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid white;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent white;
+        }
+
+        .timeline-right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 28px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid white;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent white transparent transparent;
+        }
+
+        .timeline-right::after { left: -12.5px; }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-date {
+            color: var(--primary-blue);
+            font-weight: bold;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .timeline-title {
+            margin: 0 0 10px 0;
+            color: #333;
+            font-size: 1.3em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timeline-body {
+            color: #555;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        @media screen and (max-width: 800px) {
+            .timeline-row {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-left::after,
+            .timeline-right::after { left: 15px; }
+            .timeline-right { left: 0%; }
+            .timeline-container::after { left: 27px; }
+            .timeline-left::before,
+            .timeline-right::before {
+                left: 60px;
+                border: medium solid white;
+                border-color: transparent white transparent transparent;
+            }
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            cursor: zoom-out;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-content {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            z-index: 10000;
+        }
+
+        .lightbox-close:hover {
+            color: var(--lava-red);
+            transform: scale(1.2);
+        }
+
+        .lightbox-caption {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 1.1em;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px 25px;
+            border-radius: 25px;
+        }
+
+        .clickable-image {
+            cursor: zoom-in;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .clickable-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2) !important;
+        }
+
+        /* Status Badge */
+        .status-badge {
+            display: inline-block;
+            background: var(--moss-green);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+
+        .status-badge.pending {
+            background: var(--sunset-gold);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            color: #5A5A5A;
+            padding: 30px 20px;
+            background: var(--deep-navy);
+            color: white;
+        }
+
+        footer p { margin: 5px 0; }
+
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 2em; }
+            .grid { grid-template-columns: 1fr; }
+            .card { padding: 20px; }
+        }
+    </style>
 </head>
+
 <body>
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="" alt="">
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
+    <!-- Navigation Bar -->
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">Iceland 2026 🇮🇸</div>
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="itinerary.html">Itinerary</a></li>
-                <li><a href="flights.html">Flights</a></li>
-                <li><a href="planning.html">Planning</a></li>
-                <li><a href="logistics.html">Logistics</a></li>
-                <li><a href="hotels.html" style="color: #f59e0b; font-weight: 600;">🏨 Hotels</a></li>
-                <li><a href="analysis.html">Analysis</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle">AI Reviews ▼</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="gemini_comment.html">Gemini Review</a></li>
-                        <li><a href="gpt_comment.html">GPT Review</a></li>
-                        <li><a href="grok_comment.html">Grok Review</a></li>
-                        <li><a href="sonnet_comment.html">Sonnet Review</a></li>
-                    </ul>
-                </li>
-                <li><a href="ultimate_itinerary.html" style="background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 8px 16px; border-radius: 6px; font-weight: 600;">🏆 Ultimate Plan</a></li>
-            </ul>
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="index.html" class="navbar-item active">Home</a>
+                <a href="itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="flights.html" class="navbar-item">Flights</a>
+                <a href="hotels.html" class="navbar-item">Hotels</a>
+                <a href="planning.html" class="navbar-item">Planning</a>
+                <a href="logistics.html" class="navbar-item">Logistics</a>
+                <a href="analysis.html" class="navbar-item">Analysis</a>
+            </div>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1>Iceland Adventure 2026</h1>
-            <p class="hero-subtitle">Journey through Fire and Ice</p>
-            <p class="hero-description">Explore glaciers, waterfalls, volcanic landscapes, and the midnight sun in the land of Vikings</p>
+    <div class="page-header">
+        <h1>Iceland Adventure 2026</h1>
+        <p class="subtitle">Journey Through Fire & Ice | April 8-17, 2026</p>
+    </div>
+
+    <!-- Countdown Section -->
+    <section class="countdown-section">
+        <div class="countdown-container">
+            <div class="countdown-header">
+                <h2>Departure Countdown</h2>
+                <p class="subtitle">Bangkok to Reykjavik via Doha</p>
+            </div>
+            <div class="countdown-card" id="countdownCard">
+                <div class="countdown-event">
+                    <span class="event-type">Adventure Begins</span>
+                    <div class="event-title">Flight to Iceland</div>
+                    <div class="event-details">
+                        <div class="detail-row"><span>✈️</span><span>BKK → DOH → KEF (Qatar Airways)</span></div>
+                        <div class="detail-row"><span>📅</span><span>April 8, 2026 at 01:35 AM</span></div>
+                        <div class="detail-row"><span>👥</span><span>7 Travelers</span></div>
+                    </div>
+                </div>
+                <div class="countdown-timer">
+                    <div class="timer-display" id="timerDisplay">
+                        <div class="timer-unit">
+                            <div class="timer-value" id="days">--</div>
+                            <div class="timer-label">Days</div>
+                        </div>
+                        <div class="timer-unit">
+                            <div class="timer-value" id="hours">--</div>
+                            <div class="timer-label">Hours</div>
+                        </div>
+                        <div class="timer-unit">
+                            <div class="timer-value" id="minutes">--</div>
+                            <div class="timer-label">Mins</div>
+                        </div>
+                        <div class="timer-unit">
+                            <div class="timer-value" id="seconds">--</div>
+                            <div class="timer-label">Secs</div>
+                        </div>
+                    </div>
+                    <span class="countdown-status">Upcoming</span>
+                </div>
+            </div>
         </div>
-    </header>
+    </section>
 
-    <main class="container">
-        <section class="stats-section">
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-number">10</div>
-                    <div class="stat-label">Days</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">8</div>
-                    <div class="stat-label">Locations</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">~1,000km</div>
-                    <div class="stat-label">Total Drive</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">9</div>
-                    <div class="stat-label">Nights</div>
-                </div>
-            </div>
-        </section>
+    <div class="container">
+        <!-- Trip Overview Card -->
+        <div class="grid">
+            <div class="card" style="grid-column: 1/-1;">
+                <h2>Trip Overview & Status</h2>
+                <div class="card-content">
+                    <!-- Quick Stats Row -->
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-bottom: 25px;">
+                        <div style="background: linear-gradient(135deg, var(--primary-blue) 0%, var(--aurora-green) 100%); color: white; padding: 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 2em; font-weight: bold; margin-bottom: 5px;">10</div>
+                            <div style="font-size: 0.95em; opacity: 0.9;">Days Total</div>
+                            <div style="font-size: 0.8em; opacity: 0.8; margin-top: 5px;">Apr 8-17</div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 2em; font-weight: bold; margin-bottom: 5px;">7</div>
+                            <div style="font-size: 0.95em; opacity: 0.9;">Travelers</div>
+                            <div style="font-size: 0.8em; opacity: 0.8; margin-top: 5px;">Adventure crew</div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 2em; font-weight: bold; margin-bottom: 5px;">~1000</div>
+                            <div style="font-size: 0.95em; opacity: 0.9;">km Driving</div>
+                            <div style="font-size: 0.8em; opacity: 0.8; margin-top: 5px;">Ring Road route</div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 2em; font-weight: bold; margin-bottom: 5px;">14-15h</div>
+                            <div style="font-size: 0.95em; opacity: 0.9;">Daylight</div>
+                            <div style="font-size: 0.8em; opacity: 0.8; margin-top: 5px;">Golden hours!</div>
+                        </div>
+                    </div>
 
-        <section class="highlights-section">
-            <h2>Trip Highlights</h2>
+                    <!-- Highlights -->
+                    <div style="background: #f0fdf4; padding: 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid var(--moss-green);">
+                        <strong style="color: #166534;">Trip Highlights</strong>
+                        <p style="margin: 10px 0 0 0; color: #666; font-size: 0.95em; line-height: 1.8;">
+                            <strong>Golden Circle</strong> - Thingvellir tectonic plates, Geysir & Gullfoss |
+                            <strong>South Coast</strong> - Skogafoss, Seljalandsfoss, Reynisfjara black beach |
+                            <strong>Glacier Lagoon</strong> - Jokulsarlon icebergs & Diamond Beach |
+                            <strong>Snaefellsnes</strong> - Kirkjufell "Iceland in miniature" |
+                            <strong>Blue Lagoon</strong> - Final day relaxation
+                        </p>
+                    </div>
 
-            <div class="highlight-category">
-                <h3>🏔️ Natural Wonders</h3>
-                <div class="highlight-grid">
-                    <div class="highlight-card">
-                        <h4>Jökulsárlón Glacier Lagoon</h4>
-                        <p>Witness floating icebergs in crystal blue waters</p>
+                    <!-- April Weather Alert -->
+                    <div style="background: #fef3c7; padding: 15px; border-radius: 6px; border-left: 4px solid #f59e0b; margin-bottom: 15px;">
+                        <strong style="color: #92400e;">April Weather Intel</strong>
+                        <p style="margin: 8px 0 0 0; color: #666; font-size: 0.9em; line-height: 1.6;">
+                            Temperature: <strong>0-5°C</strong> with wind chill below freezing. Extended golden hours for photography.
+                            <strong>Aurora possible</strong> until mid-April (Kp > 3 needed). Pack layers & waterproof gear!
+                        </p>
                     </div>
-                    <div class="highlight-card">
-                        <h4>Skógafoss & Seljalandsfoss</h4>
-                        <p>Iconic waterfalls of the South Coast</p>
-                    </div>
-                    <div class="highlight-card">
-                        <h4>Reykjadalur Hot River Hike</h4>
-                        <p>Bathe in a naturally heated thermal river</p>
-                    </div>
-                    <div class="highlight-card">
-                        <h4>Reynisfjara Black Sand Beach</h4>
-                        <p>Dramatic basalt columns and volcanic shores</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="highlight-category">
-                <h3>🌋 Volcanic Landscapes</h3>
-                <div class="highlight-grid">
-                    <div class="highlight-card">
-                        <h4>Þingvellir National Park</h4>
-                        <p>Walk between tectonic plates at Golden Circle</p>
-                    </div>
-                    <div class="highlight-card">
-                        <h4>Geysir Geothermal Area</h4>
-                        <p>Strokkur erupts every 5-10 minutes</p>
-                    </div>
-                    <div class="highlight-card">
-                        <h4>Fjaðrárgljúfur Canyon</h4>
-                        <p>Dramatic canyon with moss-covered walls</p>
-                    </div>
-                    <div class="highlight-card">
-                        <h4>Snæfellsnes Peninsula</h4>
-                        <p>Iceland in miniature with Kirkjufell mountain</p>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="itinerary.html" style="flex: 1; min-width: 150px; background: var(--primary-blue); color: white; padding: 12px; border-radius: 6px; text-align: center; text-decoration: none; font-weight: 500; transition: 0.3s;">📅 Day-by-Day Itinerary</a>
+                        <a href="hotels.html" style="flex: 1; min-width: 150px; background: var(--aurora-green); color: white; padding: 12px; border-radius: 6px; text-align: center; text-decoration: none; font-weight: 500; transition: 0.3s;">🏨 Hotel Bookings</a>
+                        <a href="flights.html" style="flex: 1; min-width: 150px; background: var(--deep-navy); color: white; padding: 12px; border-radius: 6px; text-align: center; text-decoration: none; font-weight: 500; transition: 0.3s;">✈️ Flight Details</a>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="highlight-category">
-                <h3>💎 Cultural & Relaxation</h3>
-                <div class="highlight-grid">
-                    <div class="highlight-card">
-                        <h4>Blue Lagoon (Day 9)</h4>
-                        <p>End the trip with iconic geothermal spa</p>
-                    </div>
-                    <div class="highlight-card">
-                        <h4>Reykjavík Culture</h4>
-                        <p>Vibrant capital with Nordic charm</p>
-                    </div>
-                    <div class="highlight-card">
-                        <h4>Northern Lights (April)</h4>
-                        <p>End of aurora season - still possible!</p>
-                    </div>
-                    <div class="highlight-card">
-                        <h4>Borgarnes Gateway</h4>
-                        <p>Charming town to Snæfellsnes Peninsula</p>
+        <!-- Hidden Gems Section -->
+        <div class="grid">
+            <div class="card" style="grid-column: 1/-1;">
+                <h2>Hidden Gems & Local Secrets</h2>
+                <div class="card-content">
+                    <p style="margin-bottom: 20px; color: #666;">Carefully researched spots to escape the crowds and discover the real Iceland.</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
+                        <div style="background: linear-gradient(135deg, #dbeafe, #eff6ff); padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary-blue);">
+                            <strong style="color: var(--primary-blue);">Bruarfoss (Blue Waterfall)</strong>
+                            <p style="font-size: 0.9em; color: #555; margin-top: 8px;">Electric blue water churning through a black volcanic slot canyon. New parking lot makes it a 3km round trip walk. Best kept secret of the Golden Circle!</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #dcfce7, #f0fdf4); padding: 15px; border-radius: 8px; border-left: 4px solid var(--moss-green);">
+                            <strong style="color: var(--moss-green);">Gljufrabui (Canyon Dweller)</strong>
+                            <p style="font-size: 0.9em; color: #555; margin-top: 8px;">Hidden waterfall 500m from Seljalandsfoss. Wade through a shallow stream into a slot canyon where a waterfall crashes into a mossy chamber. Bring waterproof everything!</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #fef3c7, #fffbeb); padding: 15px; border-radius: 8px; border-left: 4px solid var(--sunset-gold);">
+                            <strong style="color: #b45309;">Kvernufoss</strong>
+                            <p style="font-size: 0.9em; color: #555; margin-top: 8px;">Behind Skogar Museum - same walk-behind experience as Seljalandsfoss but with 5% of the visitors. The view looking out from behind the waterfall is spectacular.</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #f3e8ff, #faf5ff); padding: 15px; border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                            <strong style="color: #7c3aed;">Mulagljufur Canyon</strong>
+                            <p style="font-size: 0.9em; color: #555; margin-top: 8px;">Alternative to crowded Fjadrargljufur. 45-60 min hike to a majestic canyon with Hangandifoss waterfall. Often completely empty!</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #fce7f3, #fdf2f8); padding: 15px; border-radius: 8px; border-left: 4px solid #ec4899;">
+                            <strong style="color: #be185d;">Raudfeldsgja Gorge</strong>
+                            <p style="font-size: 0.9em; color: #555; margin-top: 8px;">A narrow "Indiana Jones" crack in the mountain on Snaefellsnes. You can walk inside! Note: May have ice/snow in April.</p>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #fee2e2, #fef2f2); padding: 15px; border-radius: 8px; border-left: 4px solid var(--lava-red);">
+                            <strong style="color: #dc2626;">Selvallafoss (Sheep's Waterfall)</strong>
+                            <p style="font-size: 0.9em; color: #555; margin-top: 8px;">Unmarked pullout on Route 56 (Snaefellsnes). Walk 5 mins to a waterfall you can walk behind - often completely deserted!</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="route-section">
-            <h2>The Route</h2>
-            <div class="route-description">
-                <p><strong>South Coast & West Adventure:</strong> Starting from Reykjavík, we'll explore the iconic Golden Circle, journey along the stunning South Coast to the glacier lagoons, return west via the Reykjadalur hot river hike, and complete two full days exploring the magical Snæfellsnes Peninsula before ending at the Blue Lagoon.</p>
+        <!-- 10-Day Journey Timeline -->
+        <div style="margin-top: 50px;">
+            <h2 style="color: var(--primary-blue); font-size: 2em; margin-bottom: 10px; text-align: center; font-family: 'Playfair Display', serif;">Your 10-Day Journey</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 40px; font-size: 1.1em;">South Coast & Snaefellsnes Peninsula Adventure</p>
 
-                <div class="route-stops">
-                    <div class="route-stop">📍 <strong>Day 1: Reykjavík</strong> - Capital exploration</div>
-                    <div class="route-stop">📍 <strong>Day 2: Golden Circle</strong> - Þingvellir, Geysir, Gullfoss</div>
-                    <div class="route-stop">📍 <strong>Day 3: South Coast</strong> - Waterfalls & black beaches</div>
-                    <div class="route-stop">📍 <strong>Day 4-5: Jökulsárlón</strong> - Glacier lagoons & canyons</div>
-                    <div class="route-stop">📍 <strong>Day 6: Reykjadalur</strong> - Hot river hike to Borgarnes</div>
-                    <div class="route-stop">📍 <strong>Day 7-8: Snæfellsnes</strong> - Two days exploring peninsula</div>
-                    <div class="route-stop">📍 <strong>Day 9: Blue Lagoon</strong> - Final relaxation</div>
+            <div class="timeline-container">
+                <!-- Day 1 -->
+                <div class="timeline-row timeline-left">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Apr 8</span>
+                        <h3 class="timeline-title">🛬 Arrival in Reykjavik</h3>
+                        <p class="timeline-body">
+                            • Arrive KEF 14:00<br>
+                            • Pick up rental (9-seater van)<br>
+                            • Explore Hallgrimskirkja & Harpa<br>
+                            • Grocery run at Bonus/Kronan
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="timeline-row timeline-right">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Apr 9</span>
+                        <h3 class="timeline-title">🌋 Golden Circle</h3>
+                        <p class="timeline-body">
+                            • Thingvellir tectonic plates<br>
+                            • Bruarfoss (hidden gem!)<br>
+                            • Geysir & Strokkur eruptions<br>
+                            • Gullfoss waterfall<br>
+                            • Kerid crater
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Day 3 -->
+                <div class="timeline-row timeline-left">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Apr 10</span>
+                        <h3 class="timeline-title">💧 South Coast Waterfalls</h3>
+                        <p class="timeline-body">
+                            • Seljalandsfoss (walk behind it!)<br>
+                            • Gljufrabui (hidden canyon fall)<br>
+                            • Skogafoss + Kvernufoss<br>
+                            • Reynisfjara black sand beach<br>
+                            • <strong>Stock up at Kronan Vik!</strong>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Day 4 -->
+                <div class="timeline-row timeline-right">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Apr 11</span>
+                        <h3 class="timeline-title">🧊 Glacier Realm</h3>
+                        <p class="timeline-body">
+                            • Eldhraun lava field (no walking on moss!)<br>
+                            • Mulagljufur Canyon hike<br>
+                            • Skaftafell & Svartifoss<br>
+                            • Jokulsarlon glacier lagoon<br>
+                            • Diamond Beach sunset
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Day 5 -->
+                <div class="timeline-row timeline-left">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Apr 12</span>
+                        <h3 class="timeline-title">🔄 Return West</h3>
+                        <p class="timeline-body">
+                            • Optional: Vestrahorn sunrise<br>
+                            • Hofskirkja turf church<br>
+                            • Dverghamrar dwarf cliffs<br>
+                            • Revisit any missed spots<br>
+                            • Drive to Hvolsvollur
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Day 6 -->
+                <div class="timeline-row timeline-right">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Apr 13</span>
+                        <h3 class="timeline-title">♨️ Hot River Hike</h3>
+                        <p class="timeline-body">
+                            • Reykjadalur hot river (3km hike)<br>
+                            • Bathe in naturally heated river<br>
+                            • Hraunfossar & Barnafoss<br>
+                            • Krauma geothermal baths<br>
+                            • Drive to Borgarnes
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Day 7 -->
+                <div class="timeline-row timeline-left">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Apr 14</span>
+                        <h3 class="timeline-title">🏔️ Snaefellsnes North</h3>
+                        <p class="timeline-body">
+                            • Berserkjahraun lava field (4WD)<br>
+                            • Stykkisholmur harbor town<br>
+                            • Library of Water art installation<br>
+                            • Selvallafoss (walk behind it!)<br>
+                            • Kirkjufell sunset photo
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Day 8 -->
+                <div class="timeline-row timeline-right">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Apr 15</span>
+                        <h3 class="timeline-title">⛰️ Snaefellsnes South</h3>
+                        <p class="timeline-body">
+                            • Svortuloft orange lighthouse<br>
+                            • Djupalonssandur lifting stones<br>
+                            • Arnarstapi & Gatklettur arch<br>
+                            • Raudfeldsgja gorge<br>
+                            • Budakirkja black church<br>
+                            • Ytri-Tunga seal beach
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Day 9 -->
+                <div class="timeline-row timeline-left">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Apr 16</span>
+                        <h3 class="timeline-title">🌊 Reykjanes & Blue Lagoon</h3>
+                        <p class="timeline-body">
+                            • Kleifarvatn moody lake<br>
+                            • Seltun geothermal area<br>
+                            • Brimketill & Gunnuhver<br>
+                            • Blue Lagoon (pre-book!)<br>
+                            • Final dinner in Keflavik
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Day 10 -->
+                <div class="timeline-row timeline-right">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Apr 17</span>
+                        <h3 class="timeline-title">✈️ Departure</h3>
+                        <p class="timeline-body">
+                            • Early flight 07:55 AM<br>
+                            • Return rental car by 05:00<br>
+                            • KEF → OSL → DOH → BKK<br>
+                            • Arrive Bangkok Apr 18
+                        </p>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <section class="gallery-section">
-            <h2>Photo Gallery</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <p>Jökulsárlón<br>Glacier Lagoon</p>
-                    </div>
+        <!-- Practical Info Cards -->
+        <div class="grid" style="margin-top: 40px;">
+            <div class="card">
+                <h2>🛒 Supermarket Strategy</h2>
+                <div class="card-content">
+                    <p style="margin-bottom: 15px; color: #dc2626; font-weight: 600;">Critical: Plan your grocery stops!</p>
+                    <ul style="margin-left: 20px; color: #555; line-height: 2;">
+                        <li><strong>Reykjavik (Day 1)</strong> - Bonus/Kronan: Stock 80% of supplies</li>
+                        <li><strong>Selfoss (Day 2)</strong> - Last big variety before south</li>
+                        <li><strong>Vik (Day 3)</strong> - <span style="color: #dc2626;">CRITICAL!</span> Last major store for Days 4-5</li>
+                        <li><strong>Borgarnes (Day 6)</strong> - Restock before Snaefellsnes</li>
+                        <li><strong>Stykkisholmur (Day 7)</strong> - Rare Bonus in remote town</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-size: 0.9em; color: #666;">Hours: Bonus 10:00-20:00 | Kronan 09:00-21:00</p>
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <p>Skógafoss<br>Waterfall</p>
+            </div>
+
+            <div class="card">
+                <h2>📸 Photography Tips</h2>
+                <div class="card-content">
+                    <div style="margin-bottom: 15px;">
+                        <strong style="color: var(--primary-blue);">April Light Quality</strong>
+                        <p style="font-size: 0.9em; color: #555; margin-top: 5px;">Extended golden hours 06:00-08:00 & 19:30-21:00. Low sun = long shadows and textured landscapes.</p>
                     </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <p>Reynisfjara<br>Black Sand Beach</p>
+                    <div style="margin-bottom: 15px;">
+                        <strong style="color: var(--primary-blue);">Essential Gear</strong>
+                        <p style="font-size: 0.9em; color: #555; margin-top: 5px;">Wide angle (14-24mm), telephoto (70-200mm), ND filter (6-stop), polarizer (cuts wet rock glare), many microfiber cloths!</p>
                     </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <p>Northern Lights<br>Aurora Display</p>
+                    <div style="margin-bottom: 15px;">
+                        <strong style="color: var(--primary-blue);">Drone Rules</strong>
+                        <p style="font-size: 0.9em; color: #555; margin-top: 5px;">BANNED in National Parks (Thingvellir, Snaefellsjokull, Vatnajokull) and major tourist sites without permit.</p>
                     </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <p>Strokkur<br>Geyser</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-placeholder">
-                        <p>Blue Lagoon<br>Geothermal Spa</p>
+                    <div>
+                        <strong style="color: #dc2626;">Spray Warning</strong>
+                        <p style="font-size: 0.9em; color: #555; margin-top: 5px;">Skogafoss & Gljufrabui: Intense spray! Keep lens cap on until you shoot.</p>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+
+        <!-- Weather Contingency -->
+        <div class="grid">
+            <div class="card" style="grid-column: 1/-1;">
+                <h2>🌧️ Rainy Day Backup Plans</h2>
+                <div class="card-content">
+                    <p style="margin-bottom: 15px; color: #666;">Iceland weather can cancel outdoor plans instantly. Here are the best indoor alternatives:</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                        <div style="background: #f7fafc; padding: 15px; border-radius: 8px;">
+                            <strong>South Coast West</strong>
+                            <p style="font-size: 0.9em; color: #555; margin-top: 5px;">Lava Centre (Hvolsvollur) - Interactive volcano museum, 2-3 hours</p>
+                        </div>
+                        <div style="background: #f7fafc; padding: 15px; border-radius: 8px;">
+                            <strong>Vik Area</strong>
+                            <p style="font-size: 0.9em; color: #555; margin-top: 5px;">Icelandic Lava Show - Watch real lava being melted! Also: Skogar Museum</p>
+                        </div>
+                        <div style="background: #f7fafc; padding: 15px; border-radius: 8px;">
+                            <strong>Southeast (Hali)</strong>
+                            <p style="font-size: 0.9em; color: #555; margin-top: 5px;">Thorbergur Centre - Literary museum with restaurant</p>
+                        </div>
+                        <div style="background: #f7fafc; padding: 15px; border-radius: 8px;">
+                            <strong>Snaefellsnes</strong>
+                            <p style="font-size: 0.9em; color: #555; margin-top: 5px;">Vatnshellir Cave (lava tube tour) | Bjarnarhofn Shark Museum</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Links Section -->
+        <div style="margin-top: 40px;">
+            <h2 style="color: var(--primary-blue); font-size: 1.8em; margin-bottom: 30px; text-align: center; font-family: 'Playfair Display', serif;">Planning Sections</h2>
+            <div class="grid-section">
+                <a href="itinerary.html" class="quick-link">
+                    <h3>📅 Day-by-Day Itinerary</h3>
+                    <p>Complete timeline with activities, directions, and accommodation details</p>
+                </a>
+                <a href="hotels.html" class="quick-link">
+                    <h3>🏨 Hotel Bookings</h3>
+                    <p>All accommodation confirmations and check-in details</p>
+                </a>
+                <a href="flights.html" class="quick-link">
+                    <h3>✈️ Flight Information</h3>
+                    <p>Complete flight details, booking references, and passenger info</p>
+                </a>
+                <a href="planning.html" class="quick-link">
+                    <h3>📋 Planning Checklist</h3>
+                    <p>Booking tasks, packing list, and budget breakdown</p>
+                </a>
+                <a href="logistics.html" class="quick-link">
+                    <h3>🚗 Logistics & Driving</h3>
+                    <p>Route details, driving tips, weather resources</p>
+                </a>
+                <a href="analysis.html" class="quick-link">
+                    <h3>📊 Trip Analysis</h3>
+                    <p>Crowd levels, time management, and optimization tips</p>
+                </a>
+            </div>
+        </div>
+
+        <!-- Trip Statistics -->
+        <div style="background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 30px; border-radius: 12px; margin: 40px 0; color: white; text-align: center;">
+            <h2 style="color: white; margin-bottom: 25px; font-family: 'Playfair Display', serif;">Trip Statistics</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px;">
+                <div>
+                    <div style="font-size: 2.5em; font-weight: bold; margin-bottom: 5px; color: var(--aurora-green);">10</div>
+                    <div style="opacity: 0.9;">Days Total</div>
+                </div>
+                <div>
+                    <div style="font-size: 2.5em; font-weight: bold; margin-bottom: 5px; color: var(--aurora-green);">7</div>
+                    <div style="opacity: 0.9;">Travelers</div>
+                </div>
+                <div>
+                    <div style="font-size: 2.5em; font-weight: bold; margin-bottom: 5px; color: var(--aurora-green);">~1000</div>
+                    <div style="opacity: 0.9;">km Driving</div>
+                </div>
+                <div>
+                    <div style="font-size: 2.5em; font-weight: bold; margin-bottom: 5px; color: var(--aurora-green);">9</div>
+                    <div style="opacity: 0.9;">Unique Stays</div>
+                </div>
+                <div>
+                    <div style="font-size: 2.5em; font-weight: bold; margin-bottom: 5px; color: var(--aurora-green);">20+</div>
+                    <div style="opacity: 0.9;">Waterfalls</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <footer>
-        <p>Iceland Trip 2026 | Journey through Fire and Ice 🇮🇸</p>
+        <p>Iceland Adventure 2026 | Journey Through Fire & Ice</p>
+        <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.8;">Last updated: January 2026</p>
     </footer>
 
     <script>
+        // Mobile menu toggle
         function toggleMobileMenu() {
-            const navMenu = document.getElementById('navMenu');
-            navMenu.classList.toggle('active');
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('mobile-open');
         }
+
+        // Lightbox functions
+        function openLightbox(img) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            lightboxImg.src = img.src;
+            lightboxCaption.textContent = img.dataset.caption || img.alt;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // Close mobile menu when link clicked
+        document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.navbar-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    document.getElementById('navMenu').classList.remove('mobile-open');
+                });
+            });
+        });
+
+        // Countdown Timer
+        function updateCountdown() {
+            const tripDate = new Date('2026-04-08T01:35:00+07:00'); // Bangkok time
+            const now = new Date();
+            const diff = tripDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        // Initialize countdown
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
     </script>
 </body>
+
 </html>
