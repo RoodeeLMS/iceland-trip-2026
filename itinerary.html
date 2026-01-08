@@ -5,95 +5,536 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Itinerary - Iceland Trip 2026</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-red: #E85A4F;
+            --moss-green: #52B788;
+            --text-dark: #2D2D2D;
+            --text-medium: #5A5A5A;
+            --golden-hour: #F4A261;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .navbar-brand {
+            color: var(--aurora-green);
+            font-size: 1.3em;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 3px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .navbar-item {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: 0.3s;
+            font-size: 0.85em;
+            white-space: nowrap;
+        }
+
+        .navbar-item:hover {
+            background: rgba(0, 180, 216, 0.2);
+            color: var(--aurora-green);
+        }
+
+        .navbar-item.active {
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%);
+                padding: 10px 0;
+            }
+
+            .navbar-menu.mobile-open {
+                display: flex;
+            }
+
+            .navbar-item {
+                padding: 12px 20px;
+                border-radius: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .accordion-controls {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Region Headers */
+        .region-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--aurora-green) 100%);
+            color: white;
+            padding: 1.25rem 1.5rem;
+            border-radius: 16px;
+            margin: 2rem 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
+        }
+
+        .region-header h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        /* Day Cards */
+        .day-card {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            border-left: 5px solid var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        .day-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .day-header {
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-bottom: 1px solid #eee;
+        }
+
+        .day-title {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .day-number {
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .day-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .toggle-icon {
+            color: var(--primary-blue);
+            font-size: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .day-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            padding: 0 1.5rem;
+        }
+
+        .day-card.active .day-content {
+            padding: 1.5rem;
+            max-height: 5000px;
+        }
+
+        .day-card.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Day Sections */
+        .day-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .day-section h4 {
+            color: var(--primary-blue);
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--ice-blue);
+        }
+
+        .day-section ul {
+            margin-left: 1.5rem;
+            color: var(--text-medium);
+        }
+
+        .day-section li {
+            margin-bottom: 0.5rem;
+            line-height: 1.7;
+        }
+
+        .day-section p {
+            color: var(--text-medium);
+            line-height: 1.7;
+        }
+
+        /* Tables */
+        .day-section table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .day-section th {
+            background: var(--ice-blue);
+            color: var(--primary-blue);
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .day-section td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #eee;
+            color: var(--text-medium);
+        }
+
+        /* Accommodation Booked Box */
+        .accommodation-booked {
+            background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+            border-left: 4px solid var(--moss-green);
+            padding: 1rem 1.25rem;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 1rem;
+        }
+
+        .accommodation-booked strong {
+            color: #059669;
+        }
+
+        .accommodation-booked a {
+            color: var(--moss-green);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .accommodation-booked a:hover {
+            text-decoration: underline;
+        }
+
+        /* Google Maps Link */
+        .map-link {
+            display: inline-block;
+            color: var(--primary-blue);
+            font-weight: 500;
+            text-decoration: none;
+            border: 2px solid var(--primary-blue);
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            margin: 15px 0;
+        }
+
+        .map-link:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        /* Pop-up image cards */
+        .pop-wrap {
+            position: relative;
+            display: inline;
+            color: var(--primary-blue);
+            font-weight: 500;
+            cursor: pointer;
+            border-bottom: 1px dashed var(--aurora-green);
+        }
+
+        .pop-card {
+            display: none;
+            position: absolute;
+            z-index: 100;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 5px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .pop-wrap:hover .pop-card {
+            display: block;
+        }
+
+        .pop-card img {
+            max-width: 280px;
+            max-height: 200px;
+            border-radius: 8px;
+            display: block;
+        }
+
+        /* Warning box */
+        .warning-box {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border-left: 4px solid var(--golden-hour);
+            padding: 1rem;
+            border-radius: 0 12px 12px 0;
+            margin: 1rem 0;
+            color: #92400E;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-navy);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .day-title {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+
+            .accordion-controls {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">Iceland 2026 🇮🇸</div>
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="itinerary.html" class="active">Itinerary</a></li>
-                <li><a href="flights.html">Flights</a></li>
-                <li><a href="hotels.html">Hotels</a></li>
-                <li><a href="planning.html">Planning</a></li>
-                <li><a href="logistics.html">Logistics</a></li>
-                <li><a href="analysis.html">Analysis</a></li>
-            </ul>
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="index.html" class="navbar-item">Home</a>
+                <a href="itinerary.html" class="navbar-item active">Itinerary</a>
+                <a href="flights.html" class="navbar-item">Flights</a>
+                <a href="hotels.html" class="navbar-item">Hotels</a>
+                <a href="planning.html" class="navbar-item">Planning</a>
+                <a href="logistics.html" class="navbar-item">Logistics</a>
+                <a href="analysis.html" class="navbar-item">Analysis</a>
+            </div>
         </div>
     </nav>
 
-    <main class="container">
-        <div class="page-header">
-            <h1>10-Day Iceland Itinerary</h1>
-            <p>Complete day-by-day breakdown of our Iceland adventure</p>
-            <div class="accordion-controls">
-                <button onclick="expandAll()" class="control-btn">Expand All</button>
-                <button onclick="collapseAll()" class="control-btn">Collapse All</button>
-            </div>
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>📅 10-Day Iceland Itinerary</h1>
+        <p>Complete day-by-day breakdown of our Iceland adventure</p>
+        <div class="accordion-controls">
+            <button onclick="expandAll()" class="control-btn">Expand All</button>
+            <button onclick="collapseAll()" class="control-btn">Collapse All</button>
         </div>
+    </header>
 
-        <!-- Reykjavík & Golden Circle (Days 1-2) -->
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Reykjavík & Golden Circle -->
         <div class="region-header">
-            <h2>🏙️ Reykjavík & Golden Circle</h2>
+            <h2>🏙️ Reykjavík & Golden Circle (Days 1-2)</h2>
         </div>
 
-        <div class="day-card">
+        <!-- Day 1 -->
+        <div class="day-card" id="day-1">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
                     <span class="day-number">Day 1</span>
-                    <span class="day-name">April 8, 2026 - Arrival & Reykjavík Exploration</span>
+                    <span class="day-name">April 8 - Arrival & Reykjavík Exploration</span>
                 </div>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="day-content">
-                <p><em>Sunrise: ~06:25 | Sunset: ~20:20</em></p>
-                <p style="text-align: center; margin: 15px 0;">
+                <div
+                    style="text-align: center; margin-bottom: 20px; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <img src="images/infographics/day_01_info.png" alt="Day 1 Infographic"
+                        style="width: 100%; height: auto; display: block;">
+                </div>
+                <p style="color: var(--golden-hour); font-style: italic; margin-bottom: 1rem;">☀️ Sunrise: ~06:25 | 🌙
+                    Sunset: ~20:20</p>
+
+                <p style="text-align: center;">
                     <a href="https://www.google.com/maps/dir/?api=1&origin=Keflav%C3%ADk+International+Airport&destination=Reykjav%C3%ADk"
-                        target="_blank" rel="noopener"
-                        style="color: #667eea; font-weight: 500; text-decoration: none; border: 2px solid #667eea; padding: 8px 16px; border-radius: 8px; display: inline-block; transition: all 0.3s ease;">
-                        🗺️ View Day 1 Route on Google Maps
-                    </a>
+                        target="_blank" class="map-link">🗺️ View Day 1 Route on Google Maps</a>
                 </p>
+
                 <div class="day-section">
                     <h4>Morning (11:00 - 12:30)</h4>
                     <ul>
                         <li>Arrive at Keflavík (KEF), clear immigration, and pick up the rental car</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>Afternoon (12:30 - 14:00)</h4>
                     <ul>
                         <li>Drive directly to Reykjavík (approx. 50 min drive) and check into your accommodation</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>Late Afternoon (14:00 - 18:00)</h4>
                     <ul>
-                        <li>Spend the afternoon exploring the city. Visit the iconic <span
-                                class="pop-wrap">Hallgrímskirkja<span class="pop-card"><img
-                                        src="https://live.staticflickr.com/8800/17224599985_c557fdbe56_b.jpg"
-                                        alt="Hallgrímskirkja"></span></span> church, wander down the main shopping
-                            streets like Laugavegur, and see the <span class="pop-wrap">Sun Voyager<span
+                        <li>Explore the city: Visit the iconic <span class="pop-wrap">Hallgrímskirkja<span
                                     class="pop-card"><img
+                                        src="https://live.staticflickr.com/8800/17224599985_c557fdbe56_b.jpg"
+                                        alt="Hallgrímskirkja"></span></span> church, wander down Laugavegur shopping
+                            street, and see the <span class="pop-wrap">Sun Voyager<span class="pop-card"><img
                                         src="https://live.staticflickr.com/4100/35588460982_23d447c657_b.jpg"
                                         alt="Sun Voyager"></span></span> sculpture by the sea</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>Evening (18:00 onwards)</h4>
                     <ul>
-                        <li>Enjoy dinner at one of Reykjavík's many excellent restaurants. A relaxed start to your trip.
-                        </li>
+                        <li>Enjoy dinner at one of Reykjavík's excellent restaurants</li>
                         <li><strong>Group Logistics:</strong> With 7 adults, ensure your rental is a 9-seater van or two
-                            4WDs.</li>
+                            4WDs</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>🏨 Accommodation Areas: Reykjavík</h4>
-                    <p>Focus on finding a stylish two-bedroom apartment or house rental.</p>
                     <table>
                         <tr>
                             <th>Area</th>
@@ -102,664 +543,603 @@
                         </tr>
                         <tr>
                             <td><strong>City Center (101)</strong></td>
-                            <td>Heart of the action; walkable to sights and a huge variety of restaurants. Large
-                                selection of beautiful, modern apartments.</td>
-                            <td>Parking can be very difficult and expensive. Can be noisy on weekends. Generally the
-                                most expensive area.</td>
+                            <td>Heart of the action; walkable to sights and restaurants</td>
+                            <td>Parking difficult and expensive. Can be noisy on weekends</td>
                         </tr>
                         <tr>
-                            <td><strong>Vesturbær (West Town) or nearby residential areas</strong></td>
-                            <td>Quieter, more local feel. Easier and often free parking. You can find larger houses with
-                                better amenities for the price.</td>
-                            <td>A 15-25 minute walk or a short drive to the absolute center. Fewer shops right at your
-                                doorstep.</td>
+                            <td><strong>Vesturbær (West Town)</strong></td>
+                            <td>Quieter, local feel. Easier parking. Larger houses available</td>
+                            <td>15-25 minute walk to center</td>
                         </tr>
                     </table>
-                </div>
-                <div class="day-section">
-                    <h4>📝 Notes</h4>
-                    <p>Having the first day in the city allows you to recover from the flight, buy any needed supplies,
-                        and soak in the culture before starting the road trip.</p>
                 </div>
             </div>
         </div>
 
-        <div class="day-card">
+        <!-- Day 2 -->
+        <div class="day-card" id="day-2">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
                     <span class="day-number">Day 2</span>
-                    <span class="day-name">April 9, 2026 - The Golden Circle</span>
+                    <span class="day-name">April 9 - The Golden Circle</span>
                 </div>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="day-content">
-                <p><em>Sunrise: ~06:22 | Sunset: ~20:23</em></p>
-                <p style="text-align: center; margin: 15px 0;">
+                <div
+                    style="text-align: center; margin-bottom: 20px; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <img src="images/infographics/day_02_info.png" alt="Day 2 Infographic"
+                        style="width: 100%; height: auto; display: block;">
+                </div>
+                <p style="color: var(--golden-hour); font-style: italic; margin-bottom: 1rem;">☀️ Sunrise: ~06:22 | 🌙
+                    Sunset: ~20:23</p>
+
+                <p style="text-align: center;">
                     <a href="https://www.google.com/maps/dir/?api=1&origin=Reykjav%C3%ADk&destination=Hvolsv%C3%B6llur&waypoints=%C3%9Eingvellir+National+Park|Geysir|Gullfoss|Kerid+Crater"
-                        target="_blank" rel="noopener"
-                        style="color: #667eea; font-weight: 500; text-decoration: none; border: 2px solid #667eea; padding: 8px 16px; border-radius: 8px; display: inline-block; transition: all 0.3s ease;">
-                        🗺️ View Day 2 Route on Google Maps
-                    </a>
+                        target="_blank" class="map-link">🗺️ View Day 2 Route on Google Maps</a>
                 </p>
+
                 <div class="day-section">
                     <h4>Morning (09:00 - 12:00)</h4>
                     <ul>
-                        <li>After breakfast in Reykjavík, drive to <span class="pop-wrap">Þingvellir National Park<span
-                                    class="pop-card"><img
+                        <li>Drive to <span class="pop-wrap">Þingvellir National Park<span class="pop-card"><img
                                         src="https://live.staticflickr.com/3271/2434865402_c8e3645d9b_b.jpg"
-                                        alt="Þingvellir National Park"></span></span> (approx. 50 min drive). Walk
-                            between the tectonic plates and see Öxarárfoss waterfall.</li>
-                        <li><strong>Hidden Gem:</strong> Detour to <span class="pop-wrap">Brúarfoss<span
-                                    class="pop-card"><img src="https://i.imgur.com/XXX.jpg"
-                                        alt="Brúarfoss"></span></span> (The Blue Waterfall). Recently made accessible
-                            via a new parking lot (3km round trip walk). Stunning photography spot.</li>
+                                        alt="Þingvellir"></span></span> (50 min). Walk between tectonic plates and see
+                            Öxarárfoss waterfall</li>
+                        <li><strong>💎 Hidden Gem:</strong> Detour to <strong>Brúarfoss</strong> (The Blue Waterfall).
+                            3km round trip walk from new parking lot. Stunning photography spot!</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>Afternoon (12:00 - 16:00)</h4>
                     <ul>
-                        <li>Continue to the <span class="pop-wrap">Geysir<span class="pop-card"><img
+                        <li>Continue to <span class="pop-wrap">Geysir<span class="pop-card"><img
                                         src="https://live.staticflickr.com/2918/13648693873_6a84060be2_b.jpg"
-                                        alt="Geysir"></span></span> geothermal area (approx. 1 hour drive).</li>
-                        <li><strong>Lunch Recommendation:</strong> <span class="pop-wrap">Friðheimar Tomato Farm<span
-                                    class="pop-card"><img src="https://i.imgur.com/XXX.jpg"
-                                        alt="Friðheimar"></span></span> (booking essential) - dine in a greenhouse with
-                            their famous tomato soup.</li>
-                        <li>After lunch, visit the magnificent <span class="pop-wrap">Gullfoss<span
-                                    class="pop-card"><img
+                                        alt="Geysir"></span></span> geothermal area (1 hour drive)</li>
+                        <li><strong>🍅 Lunch Rec:</strong> <strong>Friðheimar Tomato Farm</strong> (booking essential) -
+                            dine in a greenhouse with famous tomato soup</li>
+                        <li>Visit magnificent <span class="pop-wrap">Gullfoss<span class="pop-card"><img
                                         src="https://live.staticflickr.com/8718/16460002824_2310b9963d_b.jpg"
-                                        alt="Gullfoss"></span></span> waterfall (approx. 10 min drive).</li>
+                                        alt="Gullfoss"></span></span> waterfall (10 min drive)</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>Late Afternoon (16:00 - 18:00)</h4>
                     <ul>
-                        <li>Make a final stop at the <span class="pop-wrap">Kerið<span class="pop-card"><img
+                        <li>Final stop at <span class="pop-wrap">Kerið<span class="pop-card"><img
                                         src="https://live.staticflickr.com/3106/2434825760_715623b45e_b.jpg"
-                                        alt="Kerið"></span></span> crater (approx. 40 min drive) to see its striking
-                            volcanic colors.</li>
+                                        alt="Kerið"></span></span> crater (40 min drive) - striking volcanic colors</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>Evening (18:00 onwards)</h4>
                     <ul>
-                        <li>Drive to your accommodation in the Hvolsvöllur/Hella area (approx. 1 hour drive) to get a
-                            head start on the South Coast tomorrow. Have dinner and relax.</li>
+                        <li>Drive to accommodation in Hvolsvöllur/Hella area (1 hour drive)</li>
+                        <li><strong>Dinner Recommendations:</strong>
+                            <ul>
+                                <li><em>Casual/Fun:</em> <strong>Midgard Base Camp</strong> (Great burgers & vibe)</li>
+                                <li><em>Upscale:</em> <strong>Hygge Restaurant</strong> (Panoramic views, fusion
+                                    cuisine)</li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>🏨 Accommodation - BOOKED</h4>
-                    <div
-                        style="background: #dcfce7; border-left: 4px solid #10b981; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div class="accommodation-booked">
                         <strong>✅ Guesthouse Spuni Cozy Cottage 861</strong><br>
                         📍 Skeggjastaðir land 18 0101, Hvolsvöllur (861)<br>
-                        🛏️ Two-Bedroom House | 7 adults (Check capacity!)<br>
-                        <a href="hotels.html#hvolsvollur"
-                            style="color: #10b981; font-weight: 600; text-decoration: none;">View booking details →</a>
+                        🛏️ Two-Bedroom House | 7 adults<br>
+                        <a href="hotels.html#hvolsvollur">View booking details →</a>
                     </div>
                 </div>
-                <div class="day-section">
-                    <h4>🏨 Accommodation Areas: Hvolsvöllur / Hella</h4>
-                    <p>This is a great area to find a beautiful, private cabin or cottage.</p>
-                    <table>
-                        <tr>
-                            <th>Area</th>
-                            <th>Pros</th>
-                            <th>Cons</th>
-                        </tr>
-                        <tr>
-                            <td><strong>Rural Countryside Cabins (off the main road)</strong></td>
-                            <td>Often very scenic, beautiful, and private with great kitchens. Ideal for seeing Northern
-                                Lights due to low light pollution. Many modern 2-bedroom options.</td>
-                            <td>Requires driving on smaller roads. You must buy groceries in a larger town (like Selfoss
-                                or Hella) beforehand.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Near Hella or Hvolsvöllur Towns</strong></td>
-                            <td>Convenient for accessing supermarkets and gas stations. Easier to find after a long day
-                                of driving.</td>
-                            <td>Less scenic and private compared to the countryside. The properties might be more
-                                functional than beautiful.</td>
-                        </tr>
-                    </table>
-                </div>
+
                 <div class="day-section">
                     <h4>📝 Notes</h4>
-                    <p>Starting from Reykjavík adds a bit of driving, but staying near Hella/Hvolsvöllur positions you
-                        perfectly for the next day's waterfall visits. If the sky is clear tonight, it's your first good
-                        chance to look for the Northern Lights!</p>
+                    <p><strong>Logistics Tip:</strong> Download the <strong>Parka App</strong> now. You'll need it for
+                        parking fees at Thingvellir (P1/P2) and almost all major stops upcoming.</p>
+                    <p>Staying near Hella/Hvolsvöllur positions you perfectly for tomorrow's waterfalls. If sky is clear
+                        tonight, first good chance to spot the Northern Lights!</p>
                 </div>
             </div>
         </div>
 
-        <!-- South Coast (Days 3-4) -->
+        <!-- South Coast -->
         <div class="region-header">
-            <h2>🌊 South Coast Adventure</h2>
+            <h2>🌊 South Coast Adventure (Days 3-4)</h2>
         </div>
 
-        <div class="day-card">
+        <!-- Day 3 -->
+        <div class="day-card" id="day-3">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
                     <span class="day-number">Day 3</span>
-                    <span class="day-name">April 10, 2026 - Waterfalls & Black Sand Beaches</span>
+                    <span class="day-name">April 10 - Waterfalls & Black Sand Beaches</span>
                 </div>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="day-content">
-                <p><em>Sunrise: ~06:18 | Sunset: ~20:26</em></p>
-                <p style="text-align: center; margin: 15px 0;">
+                <div
+                    style="text-align: center; margin-bottom: 20px; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <img src="images/infographics/day_03_info.png" alt="Day 3 Infographic"
+                        style="width: 100%; height: auto; display: block;">
+                </div>
+                <p style="color: var(--golden-hour); font-style: italic; margin-bottom: 1rem;">☀️ Sunrise: ~06:18 | 🌙
+                    Sunset: ~20:26</p>
+
+                <p style="text-align: center;">
                     <a href="https://www.google.com/maps/dir/?api=1&origin=Hvolsv%C3%B6llur&destination=V%C3%ADk&waypoints=Seljalandsfoss|Gljufrabui|Skogafoss|Dyrholaey|Reynisfjara"
-                        target="_blank" rel="noopener"
-                        style="color: #667eea; font-weight: 500; text-decoration: none; border: 2px solid #667eea; padding: 8px 16px; border-radius: 8px; display: inline-block; transition: all 0.3s ease;">
-                        🗺️ View Day 3 Route on Google Maps
-                    </a>
+                        target="_blank" class="map-link">🗺️ View Day 3 Route on Google Maps</a>
                 </p>
+
                 <div class="day-section">
                     <h4>Morning (09:00 - 12:00)</h4>
                     <ul>
-                        <li>From your accommodation, it's a short drive to the iconic <span
-                                class="pop-wrap">Seljalandsfoss<span class="pop-card"><img
+                        <li>Short drive to iconic <span class="pop-wrap">Seljalandsfoss<span class="pop-card"><img
                                         src="https://live.staticflickr.com/2899/14403728981_6c52cc302c_b.jpg"
-                                        alt="Seljalandsfoss"></span></span> (approx. 20 min drive). Don't miss the
-                            nearby hidden gem, <span class="pop-wrap">Gljúfrabúi<span class="pop-card"><img
+                                        alt="Seljalandsfoss"></span></span> (20 min). Walk behind the waterfall!</li>
+                        <li><strong>💎 Hidden Gem:</strong> Nearby <span class="pop-wrap">Gljúfrabúi<span
+                                    class="pop-card"><img
                                         src="https://live.staticflickr.com/509/20212452191_efa036e97e_b.jpg"
-                                        alt="Gljúfrabúi"></span></span> ("Canyon Dweller" falls - prepare to get slighly
-                            wet!).</li>
-                        <li>Continue to the powerful <span class="pop-wrap">Skógafoss<span class="pop-card"><img
+                                        alt="Gljúfrabúi"></span></span> ("Canyon Dweller" - prepare to get wet!)</li>
+                        <li>Continue to powerful <span class="pop-wrap">Skógafoss<span class="pop-card"><img
                                         src="https://live.staticflickr.com/8803/17222826652_066c6f7995_b.jpg"
-                                        alt="Skógafoss"></span></span> waterfall.</li>
-                        <li><strong>Hidden Gem: Kvernufoss.</strong> Park at Skógar Museum. A 15-min walk leads to this
-                            gorge canyon waterfall you can walk behind. Far fewer tourists.</li>
+                                        alt="Skógafoss"></span></span></li>
+                        <li><strong>💎 Hidden Gem: Kvernufoss</strong> - Park at Skógar Museum. 15-min walk to this
+                            gorge canyon waterfall you can walk behind. Far fewer tourists!</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>Afternoon (12:00 - 17:00)</h4>
                     <ul>
-                        <li>This is an ideal time for a pre-booked glacier hike on <span
-                                class="pop-wrap">Sólheimajökull<span class="pop-card"><img
-                                        src="https://live.staticflickr.com/5451/13896975077_f139beddd1_b.jpg"
-                                        alt="Sólheimajökull"></span></span> (approx. 10 min drive from Skógafoss to the
-                            turn-off). If not hiking, head towards Vík to see the <span class="pop-wrap">Dyrhólaey<span
+                        <li>Option: Pre-booked glacier hike on <span class="pop-wrap">Sólheimajökull<span
                                     class="pop-card"><img
+                                        src="https://live.staticflickr.com/5451/13896975077_f139beddd1_b.jpg"
+                                        alt="Sólheimajökull"></span></span></li>
+                        <li>Head towards Vík to see the <span class="pop-wrap">Dyrhólaey<span class="pop-card"><img
                                         src="https://live.staticflickr.com/8619/16118329044_48aa211c65_b.jpg"
-                                        alt="Dyrhólaey"></span></span> cliffs (approx. 25 min drive).</li>
+                                        alt="Dyrhólaey"></span></span> cliffs</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>Late Afternoon (17:00 - 18:30)</h4>
                     <ul>
-                        <li>Visit the world-famous <span class="pop-wrap">Reynisfjara<span class="pop-card"><img
+                        <li>Visit world-famous <span class="pop-wrap">Reynisfjara<span class="pop-card"><img
                                         src="https://live.staticflickr.com/65535/49886327007_bae8830d3c_b.jpg"
-                                        alt="Reynisfjara"></span></span> beach (approx. 20 min drive from Dyrhólaey).
-                            <strong style="color: #e67e22;">Always be vigilant for dangerous sneaker waves.</strong>
-                        </li>
+                                        alt="Reynisfjara"></span></span> black sand beach</li>
                     </ul>
+                    <div class="warning-box">
+                        <strong>⚠️ DANGER:</strong> Always be vigilant for dangerous sneaker waves at Reynisfjara!
+                    </div>
                 </div>
+
                 <div class="day-section">
                     <h4>Evening (18:30 onwards)</h4>
                     <ul>
-                        <li>Check into your accommodation in Vík (approx. 10 min drive) and have dinner.</li>
-                        <li><strong style="color: #d97706;">CRITICAL LOGISTICS:</strong> Vík has the last major
-                            supermarket (Krónan) before the east. You <strong>MUST</strong> buy fresh food
-                            (meat/veg/dinner supplies) for Days 4-5 here. Options east of Vík are scarce and expensive.
+                        <li>Check into accommodation in Vík</li>
+                        <li><strong>Dinner Recommendations:</strong>
+                            <ul>
+                                <li><em>Celebration:</em> <strong>Berg Restaurant</strong> (Upscale, view of sea stacks)
+                                </li>
+                                <li><em>Cozy:</em> <strong>Suður-Vík</strong> (Pizza/Curry in an old house)</li>
+                            </ul>
                         </li>
                     </ul>
+                    <div class="warning-box">
+                        <strong>🛒 CRITICAL LOGISTICS:</strong> Vík has the last major supermarket (Krónan) before the
+                        east. You <strong>MUST</strong> buy fresh food (meat/veg/dinner supplies) for Days 4-5 here.
+                        Options east of Vík are scarce and expensive!
+                    </div>
                 </div>
-                <div class="day-section">
-                    <h4>🏨 Accommodation Areas: Vík</h4>
-                    <p>Look for modern cottages in the countryside for the best experience.</p>
-                    <table>
-                        <tr>
-                            <th>Area</th>
-                            <th>Pros</th>
-                            <th>Cons</th>
-                        </tr>
-                        <tr>
-                            <td><strong>Countryside around Vík (5-20 min drive)</strong></td>
-                            <td>Excellent selection of beautiful, modern cottages with 2+ bedrooms and full kitchens.
-                                More scenic, private, and quiet.</td>
-                            <td>Requires a drive to the supermarket or restaurants in Vík. These properties are popular
-                                and must be booked early.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>In Vík Village</strong></td>
-                            <td>Convenient; you can walk to the black sand beach, restaurants, and local services.</td>
-                            <td>Very few houses/apartments available for 4 people with kitchens. Less privacy and can
-                                feel crowded.</td>
-                        </tr>
-                    </table>
-                </div>
+
                 <div class="day-section">
                     <h4>📝 Notes</h4>
-                    <p>Waterproof gear is your best friend today. Check tide times for the best and safest experience at
-                        the coastal locations. Vík is another great location to check the aurora forecast.</p>
+                    <p>Waterproof gear is your best friend today. Check tide times for coastal locations. Vík is another
+                        great location to check the aurora forecast.</p>
                 </div>
             </div>
         </div>
 
-        <div class="day-card">
+        <!-- Day 4 -->
+        <div class="day-card" id="day-4">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
                     <span class="day-number">Day 4</span>
-                    <span class="day-name">April 11, 2026 - Canyons, Glaciers & Ice Lagoons</span>
+                    <span class="day-name">April 11 - Canyons, Glaciers & Ice Lagoons</span>
                 </div>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="day-content">
-                <p><em>Sunrise: ~06:14 | Sunset: ~20:29</em></p>
-                <p style="text-align: center; margin: 15px 0;">
+                <div
+                    style="text-align: center; margin-bottom: 20px; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <img src="images/infographics/day_04_info.png" alt="Day 4 Infographic"
+                        style="width: 100%; height: auto; display: block;">
+                </div>
+                <p style="color: var(--golden-hour); font-style: italic; margin-bottom: 1rem;">☀️ Sunrise: ~06:14 | 🌙
+                    Sunset: ~20:29</p>
+
+                <p style="text-align: center;">
                     <a href="https://www.google.com/maps/dir/?api=1&origin=V%C3%ADk&destination=J%C3%B6kuls%C3%A1rl%C3%B3n&waypoints=Eldhraun|Fja%C3%B0r%C3%A1rglj%C3%BAfur|Skaftafell|Svartifoss|Fjalls%C3%A1rl%C3%B3n"
-                        target="_blank" rel="noopener"
-                        style="color: #667eea; font-weight: 500; text-decoration: none; border: 2px solid #667eea; padding: 8px 16px; border-radius: 8px; display: inline-block; transition: all 0.3s ease;">
-                        🗺️ View Day 4 Route on Google Maps
-                    </a>
+                        target="_blank" class="map-link">🗺️ View Day 4 Route on Google Maps</a>
                 </p>
+
                 <div class="day-section">
                     <h4>Morning (09:00 - 12:30)</h4>
                     <ul>
-                        <li>Drive east from Vík through the <span class="pop-wrap">Eldhraun<span class="pop-card"><img
+                        <li>Drive east through <span class="pop-wrap">Eldhraun<span class="pop-card"><img
                                         src="https://live.staticflickr.com/2158/2406715027_e35bb4f6ab.jpg"
-                                        alt="Eldhraun"></span></span> lava field. <em>(Strict rule: Do not walk on the
-                                moss!)</em></li>
+                                        alt="Eldhraun"></span></span> lava field. <em
+                                style="color: var(--volcanic-red);">Strict rule: Do not walk on the moss!</em></li>
                         <li><strong>Canyon Choice:</strong> Visit <span class="pop-wrap">Fjaðrárgljúfur<span
                                     class="pop-card"><img
                                         src="https://live.staticflickr.com/4684/39174240342_d69aa32b82_b.jpg"
-                                        alt="Fjaðrárgljúfur"></span></span> if open (often closed in April).</li>
-                        <li><strong>Alternative Gem: Múlagljúfur Canyon.</strong> quieter, majestic canyon with
-                            Hangandifoss. (45-60 min hike).</li>
+                                        alt="Fjaðrárgljúfur"></span></span> if open (often closed in April)</li>
+                        <li><strong>💎 Alternative Gem: Múlagljúfur Canyon</strong> - Quieter, majestic canyon with
+                            Hangandifoss (45-60 min hike)</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>Afternoon (12:30 - 17:00)</h4>
                     <ul>
                         <li>Head to <span class="pop-wrap">Skaftafell<span class="pop-card"><img
                                         src="https://live.staticflickr.com/7403/13951371054_c2915c3cbc_b.jpg"
-                                        alt="Skaftafell"></span></span> National Park (approx. 1 hour drive). After
-                            lunch, hike to the unique <span class="pop-wrap">Svartifoss<span class="pop-card"><img
+                                        alt="Skaftafell"></span></span> National Park (1 hour drive)</li>
+                        <li>Hike to unique <span class="pop-wrap">Svartifoss<span class="pop-card"><img
                                         src="https://live.staticflickr.com/5342/9371975912_5d28f40e8b_b.jpg"
-                                        alt="Svartifoss"></span></span> waterfall (1.5-2 hours round trip).</li>
+                                        alt="Svartifoss"></span></span> waterfall (1.5-2 hours round trip)</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>Late Afternoon (17:00 - 19:00)</h4>
                     <ul>
-                        <li>Stop at the serene <span class="pop-wrap">Fjallsárlón<span class="pop-card"><img
+                        <li>Stop at serene <span class="pop-wrap">Fjallsárlón<span class="pop-card"><img
                                         src="https://upload.wikimedia.org/wikipedia/commons/8/87/Fjalls%C3%A1rl%C3%B3n_Iceland_2016_06.jpg"
-                                        alt="Fjallsárlón"></span></span> lagoon.</li>
+                                        alt="Fjallsárlón"></span></span> lagoon</li>
                         <li>Sunset at <span class="pop-wrap">Jökulsárlón<span class="pop-card"><img
                                         src="https://upload.wikimedia.org/wikipedia/commons/5/53/J%C3%B6kuls%C3%A1rl%C3%B3n_April_07-3.JPG"
-                                        alt="Jökulsárlón"></span></span> and <strong>Diamond Beach</strong>. Use slow
-                            shutter speed (0.5s) for waves on ice!</li>
-                        <li><em>Note: Blue Ice Caves at Jökulsárlón may be closed in April. <strong>Backup:</strong>
-                                Katla Ice Cave near Vík is safe year-round.</em></li>
+                                        alt="Jökulsárlón"></span></span> and <strong>Diamond Beach</strong></li>
+                        <li><em>📸 Photo Tip: Use slow shutter speed (0.5s) for waves on ice!</em></li>
                     </ul>
-                </div>
-                <div class="day-section">
-                    <h4>Evening (19:00 onwards)</h4>
-                    <ul>
-                        <li>Check into your nearby accommodation for a two-night stay.</li>
-                    </ul>
-                </div>
-                <div class="day-section">
-                    <h4>🏨 Accommodation - BOOKED</h4>
-                    <div
-                        style="background: #dcfce7; border-left: 4px solid #10b981; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
-                        <strong>✅ Home Under a Waterfall (7 mins from Glacier Lagoon)</strong><br>
-                        📍 Reynivellir, Hali, Iceland (781)<br>
-                        🛏️ Three-Bedroom House | 7 adults (Check capacity!)<br>
-                        <a href="hotels.html#jokulsarlon"
-                            style="color: #10b981; font-weight: 600; text-decoration: none;">View booking details →</a>
+                    <div class="warning-box">
+                        <strong>❄️ Ice Cave Note:</strong> Blue Ice Caves at Jökulsárlón may be closed in April.
+                        <strong>Backup:</strong> Katla Ice Cave near Vík is safe year-round.
                     </div>
                 </div>
+
                 <div class="day-section">
-                    <h4>🏨 Accommodation Areas: Jökulsárlón / Höfn</h4>
-                    <p>Options are limited; booking well in advance is critical.</p>
-                    <table>
-                        <tr>
-                            <th>Area</th>
-                            <th>Pros</th>
-                            <th>Cons</th>
-                        </tr>
-                        <tr>
-                            <td><strong>Countryside between Skaftafell & Höfn</strong></td>
-                            <td>Puts you closer to the lagoons for sunset/sunrise. Can find very isolated and beautiful
-                                cottages perfect for your group.</td>
-                            <td>Extremely limited number of properties with 2+ bedrooms. Very few services
-                                (restaurants/shops). Must book 12+ months in advance.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>In or near Höfn</strong></td>
-                            <td>Höfn is a proper town with a supermarket and multiple restaurants. More choice of large
-                                apartments or houses.</td>
-                            <td>It is a 1-hour drive from Jökulsárlón, which makes a trip for sunrise very difficult and
-                                a long drive back after sunset.</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="day-section">
-                    <h4>📝 Notes</h4>
-                    <p>This is a long but rewarding day. Pack snacks and drinks, as facilities are limited between Vík
-                        and Skaftafell. This area has very dark skies, making it ideal for aurora hunting if conditions
-                        are right.</p>
+                    <h4>🏨 Accommodation - BOOKED</h4>
+                    <div class="accommodation-booked">
+                        <strong>✅ Home Under a Waterfall (7 mins from Glacier Lagoon)</strong><br>
+                        📍 Reynivellir, Hali, Iceland (781)<br>
+                        🛏️ Three-Bedroom House | 7 adults<br>
+                        <a href="hotels.html#jokulsarlon">View booking details →</a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Return West & Snæfellsnes (Days 5-8) -->
+        <!-- Return West & Snæfellsnes -->
         <div class="region-header">
-            <h2>🌋 Return West & Snæfellsnes Peninsula</h2>
+            <h2>🌋 Return West & Snæfellsnes Peninsula (Days 5-8)</h2>
         </div>
 
-        <div class="day-card">
+        <!-- Day 5 -->
+        <div class="day-card" id="day-5">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
                     <span class="day-number">Day 5</span>
-                    <span class="day-name">April 12, 2026 - Ice, Ice & the Drive West</span>
+                    <span class="day-name">April 12 - Ice, Ice & The Drive West</span>
                 </div>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="day-content">
-                <p><em>Sunrise: ~06:11 | Sunset: ~20:32</em></p>
-                <p style="text-align: center; margin: 15px 0;">
+                <div
+                    style="text-align: center; margin-bottom: 20px; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <img src="images/infographics/day_05_info.png" alt="Day 5 Infographic"
+                        style="width: 100%; height: auto; display: block;">
+                </div>
+                <p style="color: var(--golden-hour); font-style: italic; margin-bottom: 1rem;">☀️ Sunrise: ~06:11 | 🌙
+                    Sunset: ~20:32</p>
+
+                <p style="text-align: center;">
                     <a href="https://www.google.com/maps/dir/?api=1&origin=J%C3%B6kuls%C3%A1rl%C3%B3n&destination=V%C3%ADk&waypoints=Diamond+Beach"
-                        target="_blank" rel="noopener"
-                        style="color: #667eea; font-weight: 500; text-decoration: none; border: 2px solid #667eea; padding: 8px 16px; border-radius: 8px; display: inline-block; transition: all 0.3s ease;">
-                        🗺️ View Day 5 Route on Google Maps
-                    </a>
+                        target="_blank" class="map-link">🗺️ View Day 5 Route on Google Maps</a>
                 </p>
+
                 <div class="day-section">
                     <h4>Morning (07:00 - 10:00)</h4>
                     <ul>
-                        <li>Catch the sunrise at <span class="pop-wrap">Jökulsárlón<span class="pop-card"><img
+                        <li>Catch sunrise at <span class="pop-wrap">Jökulsárlón<span class="pop-card"><img
                                         src="https://upload.wikimedia.org/wikipedia/commons/5/53/J%C3%B6kuls%C3%A1rl%C3%B3n_April_07-3.JPG"
                                         alt="Jökulsárlón"></span></span>. Look for seals in the channel!</li>
-                        <li>Drive West. Stop at <strong>Hofskirkja</strong> (historic turf church) in Öræfi.</li>
+                        <li>Drive West. Stop at <strong>Hofskirkja</strong> (historic turf church) in Öræfi</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
-                    <h4>Afternoon & Evening</h4>
+                    <h4>Afternoon & Evening (The Return Journey)</h4>
                     <ul>
-                        <li>Return west, driving past Vík to <strong>Hvolsvöllur</strong>.</li>
-                        <li>Overnight in Hvolsvöllur area (approx. 2.5 hours from Vík).</li>
+                        <li><strong>Lunch in Vík:</strong> Try <em>The Soup Company</em> or <em>Black Crust
+                                Pizzeria</em></li>
+                        <li><strong>Hidden Gem: Gluggafoss (Merkjárfoss)</strong>. Stops near Hvolsvöllur (Route 261). A
+                            unique waterfall flowing through natural "windows" in the cliff. Access is easy!</li>
+                        <li>Dinner at <strong>Midgard Base Camp</strong> or cook at your cottage</li>
+                        <li>Overnight in Hvolsvöllur area (Stora Mork 3)</li>
                     </ul>
                 </div>
-                <div class="day-section">
-                    <h4>🏨 Accommodation</h4>
-                    <p>Hvolsvöllur area (Returning to Day 2 base or similar). This saves driving time tomorrow.</p>
-                </div>
+
                 <div class="day-section">
                     <h4>📝 Notes</h4>
                     <p>This day is intentionally lighter to provide flexibility and a buffer against unpredictable
-                        weather before you continue your journey west. Another chance to spot the aurora tonight!</p>
+                        weather. Another chance to spot the aurora tonight!</p>
                 </div>
             </div>
         </div>
 
-        <div class="day-card">
+        <!-- Day 6 -->
+        <div class="day-card" id="day-6">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
                     <span class="day-number">Day 6</span>
-                    <span class="day-name">April 13, 2026 - Hot River Hike & Journey North</span>
+                    <span class="day-name">April 13 - Hot River Hike & Journey North</span>
                 </div>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="day-content">
-                <p><em>Sunrise: ~06:07 | Sunset: ~20:35</em></p>
-                <p style="text-align: center; margin: 15px 0;">
+                <div
+                    style="text-align: center; margin-bottom: 20px; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <img src="images/infographics/day_06_info.png" alt="Day 6 Infographic"
+                        style="width: 100%; height: auto; display: block;">
+                </div>
+                <p style="color: var(--golden-hour); font-style: italic; margin-bottom: 1rem;">☀️ Sunrise: ~06:07 | 🌙
+                    Sunset: ~20:35</p>
+
+                <p style="text-align: center;">
                     <a href="https://www.google.com/maps/dir/?api=1&origin=V%C3%ADk&destination=Borgarnes&waypoints=Reykjadalur+Hot+Spring+Thermal+River"
-                        target="_blank" rel="noopener"
-                        style="color: #667eea; font-weight: 500; text-decoration: none; border: 2px solid #667eea; padding: 8px 16px; border-radius: 8px; display: inline-block; transition: all 0.3s ease;">
-                        🗺️ View Day 6 Route on Google Maps
-                    </a>
+                        target="_blank" class="map-link">🗺️ View Day 6 Route on Google Maps</a>
                 </p>
+
                 <div class="day-section">
                     <h4>Morning (09:00 - 13:30)</h4>
                     <ul>
-                        <li>Drive from Hvolsvöllur towards Hveragerði (approx. 45 mins). This shorter drive allows for a
-                            mroe relaxed morning before the <span class="pop-wrap">Reykjadalur<span
+                        <li>Drive to Hveragerði (45 mins). The <span class="pop-wrap">Reykjadalur<span
                                     class="pop-card"><img
                                         src="https://live.staticflickr.com/7052/6957177899_afd98ecf08_b.jpg"
-                                        alt="Reykjadalur"></span></span> hot river hike. The hike is ~1 hour each way,
-                            plus time to bathe in the naturally hot river.</li>
+                                        alt="Reykjadalur"></span></span> hot river hike is ~1 hour each way, plus time
+                            to bathe in the naturally hot river!</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>Afternoon (13:30 - 17:00)</h4>
                     <ul>
-                        <li>After the hike, have lunch at <strong>Ölverk Pizza & Brewery</strong> in Hveragerði.</li>
+                        <li>Lunch at <strong>Ölverk Pizza & Brewery</strong> in Hveragerði</li>
                         <li><em>Backup Plan:</em> If Reykjadalur is too muddy/icy, visit <strong>Krauma Geothermal
-                                Baths</strong> (Deildartunguhver) in West Iceland later today.</li>
-                        <li>Drive north towards Borgarnes via the tunnel.</li>
+                                Baths</strong> later today</li>
+                        <li>Drive north towards Borgarnes via the tunnel</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>Evening (17:00 onwards)</h4>
                     <ul>
-                        <li>Arrive in the town of <strong>Borgarnes</strong> (approx. 1.5-hour drive from Hveragerði).
-                            Check into your accommodation, have dinner, and rest. Borgarnes is the perfect gateway to
-                            the Snæfellsnes Peninsula for tomorrow.</li>
+                        <li>Arrive in <strong>Borgarnes</strong> (1.5 hour drive from Hveragerði). Perfect gateway to
+                            Snæfellsnes Peninsula</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>🏨 Accommodation - BOOKED</h4>
-                    <div
-                        style="background: #dcfce7; border-left: 4px solid #10b981; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div class="accommodation-booked">
                         <strong>✅ Fossatun Sunset Cottage</strong><br>
                         📍 Fossatún, Borgarnes, Iceland (311)<br>
                         🛏️ Two-Bedroom Cottage with Panoramic Valley View | 7 adults<br>
-                        <a href="hotels.html#borgarnes"
-                            style="color: #10b981; font-weight: 600; text-decoration: none;">View booking details →</a>
+                        <a href="hotels.html#borgarnes">View booking details →</a>
                     </div>
                 </div>
-                <div class="day-section">
-                    <h4>🏨 Accommodation Areas: Borgarnes</h4>
-                    <p>Look for a cottage with a view of the fjord.</p>
-                    <table>
-                        <tr>
-                            <th>Area</th>
-                            <th>Pros</th>
-                            <th>Cons</th>
-                        </tr>
-                        <tr>
-                            <td><strong>Countryside outside Borgarnes</strong></td>
-                            <td>You can find beautiful houses and cottages with stunning water or mountain views. Very
-                                peaceful and a great place to relax.</td>
-                            <td>Requires a short drive into town for the supermarket or restaurants.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>In Borgarnes Town</strong></td>
-                            <td>Convenient access to services after a long day's drive. Walkable to everything in town.
-                            </td>
-                            <td>More of a functional town setting; less likely to find the "beautiful, scenic house"
-                                you're looking for.</td>
-                        </tr>
-                    </table>
-                </div>
+
                 <div class="day-section">
                     <h4>📝 Notes</h4>
-                    <p>This route efficiently moves you from the South Coast to the West without needing to enter
-                        Reykjavík again. Remember to bring a towel and swimwear for the hot river! Check the aurora
-                        forecast once you are settled in your rural cottage.</p>
+                    <p>Remember to bring a towel and swimwear for the hot river! Check the aurora forecast once you're
+                        settled in your rural cottage.</p>
                 </div>
             </div>
         </div>
 
-        <div class="day-card">
+        <!-- Day 7 -->
+        <div class="day-card" id="day-7">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
                     <span class="day-number">Day 7</span>
-                    <span class="day-name">April 14, 2026 - Snæfellsnes Peninsula - South Coast</span>
+                    <span class="day-name">April 14 - Snæfellsnes Peninsula - South Coast</span>
                 </div>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="day-content">
-                <p><em>Sunrise: ~06:03 | Sunset: ~20:38</em></p>
-                <p style="text-align: center; margin: 15px 0;">
+                <div
+                    style="text-align: center; margin-bottom: 20px; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <img src="images/infographics/day_07_info.png" alt="Day 7 Infographic"
+                        style="width: 100%; height: auto; display: block;">
+                </div>
+                <p style="color: var(--golden-hour); font-style: italic; margin-bottom: 1rem;">☀️ Sunrise: ~06:03 | 🌙
+                    Sunset: ~20:38</p>
+
+                <p style="text-align: center;">
                     <a href="https://www.google.com/maps/dir/?api=1&origin=Borgarnes&destination=Arnarstapi&waypoints=Ger%C3%B0uberg|Ytri-Tunga|B%C3%BA%C3%B0akirkja"
-                        target="_blank" rel="noopener"
-                        style="color: #667eea; font-weight: 500; text-decoration: none; border: 2px solid #667eea; padding: 8px 16px; border-radius: 8px; display: inline-block; transition: all 0.3s ease;">
-                        🗺️ View Day 7 Route on Google Maps
-                    </a>
+                        target="_blank" class="map-link">🗺️ View Day 7 Route on Google Maps</a>
                 </p>
+
                 <div class="day-section">
                     <h4>Morning (09:00 - 12:30)</h4>
                     <ul>
-                        <li>From Borgarnes, drive north. <strong>Hidden Gem: Berserkjahraun lava field.</strong> A
-                            scenic 4WD gravel track through 4,000-year-old jagged lava.</li>
-                        <li>Drive to <strong>Stykkishólmur</strong>. Climb Súgandisey hill for views of the Westfjords.
-                        </li>
-                        <li>Lunch at <em>Sjávarpakkhúsið</em> (great mussels).</li>
+                        <li>From Borgarnes, drive north. <strong>💎 Hidden Gem: Berserkjahraun lava field</strong> -
+                            Scenic 4WD gravel track through 4,000-year-old jagged lava</li>
+                        <li>Drive to <strong>Stykkishólmur</strong>. Climb Súgandisey hill for Westfjords views</li>
+                        <li>Lunch at <em>Sjávarpakkhúsið</em> (great mussels)</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>Afternoon: The Mountain Pass</h4>
                     <ul>
-                        <li>Drive Route 56 south. <strong>Hidden Gem: Selvallafoss (Sheep's Waterfall).</strong>
-                            Unmarked pullout on the right. You can walk behind this waterfall!</li>
+                        <li>Drive Route 56 south</li>
+                        <li><strong>💎 Hidden Gem: Selvallafoss (Sheep's Waterfall)</strong> - Unmarked pullout on the
+                            right. You can walk behind this waterfall!</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>Afternoon (12:30 - 17:00)</h4>
                     <ul>
-                        <li>Visit the iconic <span class="pop-wrap">Búðakirkja<span class="pop-card"><img
+                        <li>Visit iconic <span class="pop-wrap">Búðakirkja<span class="pop-card"><img
                                         src="https://live.staticflickr.com/8891/28606658232_a7435d839b_b.jpg"
-                                        alt="Búðakirkja"></span></span> black church (approx. 20 min drive). Then,
-                            continue to the village of <span class="pop-wrap">Arnarstapi<span class="pop-card"><img
+                                        alt="Búðakirkja"></span></span> black church</li>
+                        <li>Continue to <span class="pop-wrap">Arnarstapi<span class="pop-card"><img
                                         src="https://live.staticflickr.com/4481/37602191092_3d757a822e_b.jpg"
-                                        alt="Arnarstapi"></span></span> (approx. 20 min drive). Have a late lunch here.
-                        </li>
+                                        alt="Arnarstapi"></span></span> village for late lunch</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>Late Afternoon (17:00 onwards)</h4>
                     <ul>
-                        <li>After exploring the south coast, cross the peninsula to the northern side via Route 54/56.
-                        </li>
-                        <li>Arrive in the charming town of <strong>Stykkishólmur</strong>. Check into your accommodation
-                            for a 2-night stay.</li>
+                        <li>Cross the peninsula via Route 54/56 to <strong>Stykkishólmur</strong></li>
+                        <li>Check into accommodation for a 2-night stay</li>
                     </ul>
                 </div>
-                <div class="day-section">
-                    <h4>🏨 Accommodation Areas: Stykkishólmur</h4>
-                    <p>Stykkishólmur is the largest town on the peninsula with great restaurants and harbor views.</p>
-                </div>
+
                 <div class="day-section">
                     <h4>📝 Notes</h4>
-                    <p>Splitting the peninsula into two days allows for a much more relaxed pace to enjoy this
-                        incredible scenery. The isolation here is perfect for trying to see the Northern Lights.</p>
+                    <p>Splitting the peninsula into two days allows for a much more relaxed pace. The isolation here is
+                        perfect for aurora viewing.</p>
                 </div>
             </div>
         </div>
 
-        <div class="day-card">
+        <!-- Day 8 -->
+        <div class="day-card" id="day-8">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
                     <span class="day-number">Day 8</span>
-                    <span class="day-name">April 15, 2026 - Snæfellsnes Peninsula - North Coast</span>
+                    <span class="day-name">April 15 - Snæfellsnes Peninsula - North Coast</span>
                 </div>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="day-content">
-                <p><em>Sunrise: ~05:59 | Sunset: ~20:41</em></p>
-                <p style="text-align: center; margin: 15px 0;">
+                <div
+                    style="text-align: center; margin-bottom: 20px; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <img src="images/infographics/day_08_info.png" alt="Day 8 Infographic"
+                        style="width: 100%; height: auto; display: block;">
+                </div>
+                <p style="color: var(--golden-hour); font-style: italic; margin-bottom: 1rem;">☀️ Sunrise: ~05:59 | 🌙
+                    Sunset: ~20:41</p>
+
+                <p style="text-align: center;">
                     <a href="https://www.google.com/maps/dir/?api=1&origin=Arnarstapi&destination=Grundarfj%C3%B6r%C3%B0ur&waypoints=Hellnar|Dj%C3%BApal%C3%B3nssandur"
-                        target="_blank" rel="noopener"
-                        style="color: #667eea; font-weight: 500; text-decoration: none; border: 2px solid #667eea; padding: 8px 16px; border-radius: 8px; display: inline-block; transition: all 0.3s ease;">
-                        🗺️ View Day 8 Route on Google Maps
-                    </a>
+                        target="_blank" class="map-link">🗺️ View Day 8 Route on Google Maps</a>
                 </p>
+
                 <div class="day-section">
                     <h4>Morning & Afternoon</h4>
                     <ul>
-                        <li>Drive west to **Skarðsvík Beach** (Golden sand) and **Svörtuloft Lighthouse** (orange tower
-                            against black cliffs). Great for seabirds.</li>
-                        <li>Stop at **Djúpalónssandur**. Try the "lifting stones".</li>
-                        <li>Visit **Arnarstapi**. Walk the cliff path to Gatklettur.</li>
-                        <li><strong>Hidden Gem: Rauðfeldsgjá Gorge.</strong> A narrow "Indiana Jones" canyon crack in
-                            the mountain. Walk inside!</li>
-                        <li>Stop at **Búðakirkja** (Black Church) for the classic photo.</li>
-                        <li>Visit **Ytri-Tunga** to see seals hauling out on the rocks.</li>
+                        <li>Drive west to <strong>Skarðsvík Beach</strong> (golden sand) and <strong>Svörtuloft
+                                Lighthouse</strong> (orange tower against black cliffs)</li>
+                        <li>Stop at <strong>Djúpalónssandur</strong> - Try the "lifting stones"</li>
+                        <li>Visit <strong>Arnarstapi</strong> - Walk the cliff path to Gatklettur</li>
+                        <li><strong>💎 Hidden Gem: Rauðfeldsgjá Gorge</strong> - A narrow "Indiana Jones" canyon crack
+                            in the mountain. Walk inside!</li>
+                        <li>Stop at <strong>Búðakirkja</strong> (Black Church) for the classic photo</li>
+                        <li>Visit <strong>Ytri-Tunga</strong> to see seals hauling out on the rocks</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>Evening</h4>
                     <ul>
-                        <li>Return to <strong>Stykkishólmur</strong> for your second night. Photo sunset at Kirkjufell
-                            if you missed it yesterday.</li>
+                        <li>Return to <strong>Stykkishólmur</strong> for your second night</li>
+                        <li>Photo sunset at Kirkjufell if you missed it yesterday</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>🏨 Accommodation - BOOKED</h4>
-                    <div
-                        style="background: #dcfce7; border-left: 4px solid #10b981; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                    <div class="accommodation-booked">
                         <strong>✅ Stykkishólmur (Night 2)</strong><br>
-                        Location: Stykkishólmur<br>
+                        📍 Stykkishólmur, Iceland
                     </div>
                 </div>
-                <td><strong>Rural locations nearby</strong></td>
-                <td>Easier to find beautiful, private houses with 2+ bedrooms and good kitchens. Often
-                    quieter and more spacious.</td>
-                <td>You will need to drive for groceries or to get the classic photo of Kirkjufell with the
-                    waterfall.</td>
-                </tr>
-                </table>
+
+                <div class="day-section">
+                    <h4>📝 Notes</h4>
+                    <p>Today is about enjoying the dramatic northern coastline before the classic sunset shot at
+                        Kirkjufell. Last best chance for an aurora display away from city lights!</p>
+                </div>
             </div>
-            <div class="day-section">
-                <h4>📝 Notes</h4>
-                <p>Today is about enjoying the dramatic northern coastline before the classic sunset shot at
-                    Kirkjufell. It's your last best chance for an aurora display away from city lights!</p>
-            </div>
-        </div>
         </div>
 
-        <div class="day-card">
+        <!-- Day 9 -->
+        <div class="day-card" id="day-9">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
                     <span class="day-number">Day 9</span>
-                    <span class="day-name">April 16, 2026 - North Snæfellsnes & Blue Lagoon</span>
+                    <span class="day-name">April 16 - Reykjanes & Blue Lagoon</span>
                 </div>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="day-content">
-                <p><em>Sunrise: ~05:55 | Sunset: ~20:44</em></p>
-                <p style="text-align: center; margin: 15px 0;">
+                <div
+                    style="text-align: center; margin-bottom: 20px; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <img src="images/infographics/day_09_info.png" alt="Day 9 Infographic"
+                        style="width: 100%; height: auto; display: block;">
+                </div>
+                <p style="color: var(--golden-hour); font-style: italic; margin-bottom: 1rem;">☀️ Sunrise: ~05:55 | 🌙
+                    Sunset: ~20:44</p>
+
+                <p style="text-align: center;">
                     <a href="https://www.google.com/maps/dir/?api=1&origin=Grundarfj%C3%B6r%C3%B0ur&destination=Keflav%C3%ADk&waypoints=Berserkjahraun|Stykkish%C3%B3lmur|Blue+Lagoon"
-                        target="_blank" rel="noopener"
-                        style="color: #667eea; font-weight: 500; text-decoration: none; border: 2px solid #667eea; padding: 8px 16px; border-radius: 8px; display: inline-block; transition: all 0.3s ease;">
-                        🗺️ View Day 9 Route on Google Maps
-                    </a>
+                        target="_blank" class="map-link">🗺️ View Day 9 Route on Google Maps</a>
                 </p>
+
                 <div class="day-section">
                     <h4>Morning (09:00 - 12:00)</h4>
                     <ul>
-                        <li>Depart Stykkishólmur. Drive south to the Reykjanes Peninsula.</li>
+                        <li>Depart Stykkishólmur. Drive south to the Reykjanes Peninsula</li>
                         <li><strong>Geo-Route:</strong> Visit <strong>Kleifarvatn Lake</strong> (moody, black sand) and
-                            <strong>Seltún</strong> geothermal area (bubbling mud pots).
+                            <strong>Seltún</strong> geothermal area (bubbling mud pots)
                         </li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>Afternoon (12:00 - 17:30)</h4>
                     <ul>
-                        <li>Stop at <strong>Brimketill</strong> lava pool (viewing platform only - dangerous waves!) and
-                            <strong>Gunnuhver</strong> steam vents.
+                        <li>Stop at <strong>Brimketill</strong> lava pool (viewing platform only - dangerous waves!)
                         </li>
+                        <li>Visit <strong>Gunnuhver</strong> steam vents</li>
                         <li>Head to the <span class="pop-wrap">Blue Lagoon<span class="pop-card"><img
                                         src="https://live.staticflickr.com/4032/4546157856_caeecc83f0_b.jpg"
-                                        alt="Blue Lagoon"></span></span> for a pre-booked slot (aim for ~15:30-16:00) to
-                            relax for a few hours.</li>
+                                        alt="Blue Lagoon"></span></span> for a pre-booked slot (~15:30-16:00)</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>Evening (17:30 onwards)</h4>
                     <ul>
-                        <li>After your relaxing soak, make the short drive to your hotel in the Keflavík area. Return
-                            your rental car, check in, and have a final Icelandic dinner.</li>
+                        <li>After your soak, drive to your hotel in Keflavík area</li>
+                        <li>Return rental car, check in, and enjoy final Icelandic dinner</li>
                     </ul>
                 </div>
+
                 <div class="day-section">
                     <h4>🏨 Accommodation Areas: Keflavík</h4>
-                    <p>For the last night, convenience is key. An apartment or guesthouse in town is a good bet.</p>
                     <table>
                         <tr>
                             <th>Area</th>
@@ -767,106 +1147,97 @@
                             <th>Cons</th>
                         </tr>
                         <tr>
-                            <td><strong>Apartment/Guesthouse in Keflavík or Njarðvík</strong></td>
-                            <td>Relaxed, local feel for your last night. Plenty of two-bedroom options with kitchens.
-                                Walkable to good restaurants.</td>
-                            <td>Requires a short 5-10 minute taxi or pre-booked shuttle to get to the airport terminal
-                                after you've dropped off the car.</td>
+                            <td><strong>Keflavík or Njarðvík</strong></td>
+                            <td>Relaxed, local feel. Walkable to good restaurants</td>
+                            <td>Short taxi to airport terminal</td>
                         </tr>
                         <tr>
-                            <td><strong>Official Airport Hotel</strong></td>
-                            <td>Ultimate convenience for a very early flight; some are walkable to the terminal.</td>
-                            <td>These are standard hotels and will not have kitchens or two-bedroom suites. Less
-                                character and more expensive.</td>
+                            <td><strong>Airport Hotel</strong></td>
+                            <td>Ultimate convenience for early flight</td>
+                            <td>Standard hotels, no kitchens, more expensive</td>
                         </tr>
                     </table>
                 </div>
+
                 <div class="day-section">
                     <h4>📝 Notes</h4>
-                    <p>Ending the trip at the Blue Lagoon is a perfect way to unwind. Remember to book your time slot
-                        well in advance as it's very popular.</p>
+                    <p>Ending at the Blue Lagoon is perfect for unwinding. <strong>Book your time slot well in
+                            advance!</strong></p>
                 </div>
             </div>
         </div>
 
-        <!-- Departure Day -->
+        <!-- Departure -->
         <div class="region-header">
             <h2>🏁 Departure Day</h2>
         </div>
 
-        <div class="day-card">
+        <!-- Day 10 -->
+        <div class="day-card" id="day-10">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
                     <span class="day-number">Day 10</span>
-                    <span class="day-name">April 17, 2026 - Departure</span>
+                    <span class="day-name">April 17 - Departure</span>
                 </div>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="day-content">
-                <p><em>Sunrise: ~05:52 | Sunset: ~20:47</em></p>
-                <p style="text-align: center; margin: 15px 0;">
+                <div
+                    style="text-align: center; margin-bottom: 20px; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <img src="images/infographics/day_10_info.png" alt="Day 10 Infographic"
+                        style="width: 100%; height: auto; display: block;">
+                </div>
+                <p style="color: var(--golden-hour); font-style: italic; margin-bottom: 1rem;">☀️ Sunrise: ~05:52 | 🌙
+                    Sunset: ~20:47</p>
+
+                <p style="text-align: center;">
                     <a href="https://www.google.com/maps/dir/?api=1&destination=Keflavik+Airport" target="_blank"
-                        rel="noopener"
-                        style="color: #667eea; font-weight: 500; text-decoration: none; border: 2px solid #667eea; padding: 8px 16px; border-radius: 8px; display: inline-block; transition: all 0.3s ease;">
-                        🗺️ View Route to Keflavík Airport
-                    </a>
+                        class="map-link">🗺️ View Route to Keflavík Airport</a>
                 </p>
+
                 <div class="day-section">
                     <h4>Morning</h4>
                     <ul>
-                        <li>Have breakfast at your hotel, then take the short shuttle or walk to the airport for your
-                            07:55 AM flight. Arrive at the airport at least 2-3 hours before departure time.</li>
+                        <li>Breakfast at hotel, then shuttle to airport for <strong>07:55 AM flight</strong></li>
+                        <li>Arrive at airport at least 2-3 hours before departure</li>
                     </ul>
+                </div>
+
+                <div class="warning-box">
+                    <strong>⏰ Early Departure:</strong> For 07:55 AM flight, plan to arrive at Keflavík Airport by 5:00
+                    AM!
                 </div>
             </div>
         </div>
+
     </main>
 
+    <!-- Footer -->
     <footer>
         <p>Iceland Trip 2026 | Journey through Fire and Ice 🇮🇸</p>
+        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 8-17, 2026 • 7 Adults</p>
     </footer>
 
     <script>
         function toggleMobileMenu() {
-            const navMenu = document.getElementById('navMenu');
-            navMenu.classList.toggle('active');
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('mobile-open');
         }
 
         function toggleDay(header) {
             const dayCard = header.parentElement;
-            const content = dayCard.querySelector('.day-content');
-            const icon = header.querySelector('.toggle-icon');
-
             dayCard.classList.toggle('active');
-
-            if (dayCard.classList.contains('active')) {
-                content.style.maxHeight = content.scrollHeight + 'px';
-                icon.textContent = '▲';
-            } else {
-                content.style.maxHeight = '0';
-                icon.textContent = '▼';
-            }
         }
 
         function expandAll() {
-            const dayCards = document.querySelectorAll('.day-card');
-            dayCards.forEach(card => {
-                const content = card.querySelector('.day-content');
-                const icon = card.querySelector('.toggle-icon');
+            document.querySelectorAll('.day-card').forEach(card => {
                 card.classList.add('active');
-                content.style.maxHeight = content.scrollHeight + 'px';
-                icon.textContent = '▲';
             });
         }
 
         function collapseAll() {
-            const dayCards = document.querySelectorAll('.day-card');
-            dayCards.forEach(card => {
-                const content = card.querySelector('.day-content');
-                const icon = card.querySelector('.toggle-icon');
+            document.querySelectorAll('.day-card').forEach(card => {
                 card.classList.remove('active');
-                content.style.maxHeight = '0';
-                icon.textContent = '▼';
             });
         }
     </script>

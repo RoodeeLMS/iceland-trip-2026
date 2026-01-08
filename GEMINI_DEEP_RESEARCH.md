@@ -1,42 +1,48 @@
-# Gemini Deep Research Plan: Iceland Trip April 2026
+# Gemini Deep Research Plan: Iceland Trip April 2026 (Round 2)
 
 ## Context
-- **Who:** 7 Adults (2 Vehicles)
-- **When:** April 8–17, 2026 (10 Days)
-- **Route:** Reykjavík → Golden Circle → South Coast → Jökulsárlón → West Iceland (Snæfellsnes) → Blue Lagoon → Reykjavík.
-- **Vibe:** Adventure, Photography, Food, but with a comfortable pace (not rushing).
-- **Vehicle:** Rental Car.
+- **Who:** 7 Adults (Max group size).
+- **When:** April 8–17, 2026 (10 Days).
+- **Style:** Adventure, Photography, Comfortable Pace.
+- **Vehicles:** 2x 4WD or 1x 9-Seater Van.
 
-## Current Confirmed Plan
-- **Day 1:** Arrival, Reykjavík.
-- **Day 2:** Golden Circle (Thingvellir, Geysir, Gullfoss) + Lunch at **Friðheimar**. Stay: Hvolsvöllur.
-- **Day 3:** South Coast (Seljalandsfoss, Skógafoss, Dyrhólaey, Reynisfjara). Stay: Vík.
-- **Day 4:** Canyons & Glaciers (Fjaðrárgljúfur, Skaftafell, Jökulsárlón). Stay: Hali (near Lagoon).
-- **Day 5:** Buffer Day / Return West. Stay: Vík.
-- **Day 6:** Reykjadalur Hike + Lunch at **Ölverk**. Stay: Borgarnes.
-- **Day 7:** Snæfellsnes  Stay: Stykkisholmur.
-- **Day 8:** Snæfellsnes  Stay: Stykkisholmur.
-- **Day 9:** Reykjanes Peninsula + Blue Lagoon. Stay: Keflavík.
+## Objectives
+The itinerary is solid, but "last mile" details are missing. The focus of this research is **actionable logistics** and **enhancing specific days**.
 
 ## Research Tasks
 
-### 1. Culinary Deep Dive 🍽️
-*   **Friðheimar (Day 2):** Beyond the soup, are there other must-try items on the menu (e.g., tomato beer, desserts)? Do we need to book *months* in advance for April 2026?
-*   **Ölverk (Day 6):** What are their signature pizzas or brews that are unique to Iceland?
-*   **Bjargarsteinn (Day 8):** What is the "can't miss" dish here? (e.g., fish soup, lamb).
-*   **Vík & Borgarnes:** We need 1-2 solid dinner recommendations for these towns that aren't tourist traps.
+### 1. Dining Logistics for 7 People 🍽️
+*   **Hvolsvöllur Area (Days 2 & 5):** We are staying here twice (Spuni & Stora Mork).
+    *   Find 2-3 dinner options that can accommodate 7 people. (e.g., Valhalla Restaurant, Gamla Fjósið - are they open in April? Do they take bookings?)
+    *   *Self-Catering:* Where is the best grocery store specifically in Hvolsvöllur vs. Hella?
+*   **Vík (Day 3):**
+    *   Besides "Soup Company," what is a slightly upscale dinner option in Vík for a group celebration? (e.g., Black Crust Pizzeria vs. Berg Restaurant).
+*   **Stykkishólmur (Day 7):**
+    *   Verify if "Sjávarpakkhúsið" require reservations months in advance for groups.
 
-### 2. Hidden Gems & Photo Spots 📸
-*   **South Coast:** Are there any less crowded waterfalls or viewpoints between Skógafoss and Vík? (e.g., Kvernufoss - is it accessible in April?)
-*   **Snæfellsnes:** Any "secret" spots near Arnarstapi or Hellnar for sunset photography?
-*   **Route 1 Stops:** Interesting quick stops (abandoned houses, unique geological formations) to break up the longer drives on Days 4 and 5.
+### 2. Activity Specifics & Booking 🏔️
+*   **Glacier Hike (Day 3 - Sólheimajökull):**
+    *   Identify the top-rated operator for a "easy/moderate" glacier walk (2-3 hours).
+    *   What are the specific start times in April? (Need to fit itinerary: 12:00-15:00 window).
+*   **Blue Lagoon (Day 9):**
+    *   Verify the "Comfort" vs "Premium" package necessity. Does the premium line skip a significant queue in April?
 
-### 3. Practical Logistics 🛒
-*   **Supermarkets:** Map out the best *Bónus* or *Krónan* locations along our specific route for stocking up. (Specifically: where is the last big grocery store before heading east to Jökulsárlón?)
-*   **Parking:** Which of our stops require paid parking (via Parka app)? (e.g., Seljalandsfoss, Kirkjufell, Thingvellir).
+### 3. Trail & Road Conditions (April Realities) 🚶
+*   **Múlagljúfur Canyon (Day 4):**
+    *   Confirm the trailhead access. Is the gravel road passable for standard 4WD in April?
+    *   Trail stats: Length, elevation gain, expected mud conditions.
+*   **Rauðfeldsgjá Gorge (Day 8):**
+    *   Is the interior accessible in mid-April, or is it typically blocked by a snow wall?
+*   **F-Roads/Gravel:**
+    *   Verify status of the road to **Haifoss** (is it feasible to add to Day 5 return trip?). It's often closed/snowed in.
 
-### 4. Weather Backups 🌧️
-*   **South Coast (Days 3-5):** If the weather is terrible (horizontal rain/wind), what are the best *indoor* museums or activities in the Vík/Skógar area? (e.g., Lava Centre, Skógar Museum details).
+### 4. "Hidden Gems" to Add (The "Wow" Factor) ✨
+*   **Day 5 (Return Drive Vík -> Hvolsvöllur):**
+    *   This day is light. Find a stop between Vík and Hvolsvöllur that isn't Skógafoss/Seljalandsfoss.
+    *   *Ideas to check:* Keldur Turf Houses (open?), Nauthúsagil (accessible?).
+*   **Day 6 (Borgarnes Area):**
+    *   Find a "Visit" stop near Borgarnes before the hotel. (e.g., Settlement Center - is it worth it? Glanni Waterfall?)
 
-### 5. Aurora Hunting 💚
-*   **Specific Spots:** For our accommodation locations (Hvolsvöllur, Hali, Borgarnes), where are the specific dark spots or pull-offs within 10 minutes driving that offer good foregrounds for photos?
+### 5. Practical Fees 💰
+*   **Parking Map:** Create a list of which planned stops now have **mandatory paid parking** and if they require an app (Parka, Easypark).
+    *   List: Thingvellir, Seljalandsfoss, Skógafoss, Reynisfjara, Skaftafell, Kirkjufell.

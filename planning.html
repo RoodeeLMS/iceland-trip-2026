@@ -1,394 +1,1038 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Planning - Iceland Trip 2026</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-red: #E85A4F;
+            --moss-green: #52B788;
+            --text-dark: #2D2D2D;
+            --text-medium: #5A5A5A;
+            --golden-hour: #F4A261;
+            --urgent-red: #DC2626;
+            --pending-amber: #F59E0B;
+            --success-green: #10B981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .navbar-brand {
+            color: var(--aurora-green);
+            font-size: 1.3em;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 3px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .navbar-item {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: 0.3s;
+            font-size: 0.85em;
+            white-space: nowrap;
+        }
+
+        .navbar-item:hover {
+            background: rgba(0, 180, 216, 0.2);
+            color: var(--aurora-green);
+        }
+
+        .navbar-item.active {
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                gap: 0;
+                background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%);
+                padding: 10px 0;
+            }
+
+            .navbar-menu.mobile-open {
+                display: flex;
+            }
+
+            .navbar-item {
+                padding: 12px 20px;
+                border-radius: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .section-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--aurora-green) 100%);
+            color: white;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-header.urgent {
+            background: linear-gradient(135deg, var(--urgent-red) 0%, #B91C1C 100%);
+        }
+
+        .section-header h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .section-content {
+            padding: 1.5rem;
+        }
+
+        /* Booking Cards */
+        .booking-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 5px solid var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        .booking-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .booking-card:hover {
+            transform: translateX(5px);
+        }
+
+        .booking-card.urgent {
+            border-left-color: var(--urgent-red);
+            background: linear-gradient(135deg, #FEF2F2 0%, #FECACA 100%);
+        }
+
+        .booking-card.optional {
+            border-left-color: var(--aurora-green);
+            background: linear-gradient(135deg, #F0FDFA 0%, #CCFBF1 100%);
+        }
+
+        .booking-card h3 {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .booking-card p {
+            color: var(--text-medium);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .booking-card ul {
+            margin-left: 1.5rem;
+            color: var(--text-medium);
+            font-size: 0.9rem;
+        }
+
+        .booking-card li {
+            margin-bottom: 0.4rem;
+        }
+
+        .booking-card a {
+            color: var(--primary-blue);
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .booking-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Status Indicators */
+        .status-pending {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--pending-amber), #D97706);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-booked {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--success-green), #059669);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Info Cards Grid */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 12px;
+            padding: 1.25rem;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .info-card.highlight {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border-left-color: var(--golden-hour);
+        }
+
+        .info-card h3 {
+            color: var(--primary-blue);
+            font-size: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .info-card.highlight h3 {
+            color: #92400E;
+        }
+
+        .info-card p {
+            color: var(--text-medium);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Layer Cards */
+        .layer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .layer-card {
+            background: var(--ice-blue);
+            padding: 1rem;
+            border-radius: 12px;
+        }
+
+        .layer-card strong {
+            color: var(--primary-blue);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .layer-card ul {
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            margin-left: 1.25rem;
+            color: var(--text-medium);
+        }
+
+        .layer-card li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Photography Section */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .photo-card {
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--aurora-green);
+        }
+
+        .photo-card h4 {
+            color: var(--primary-blue);
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .photo-card ul {
+            font-size: 0.9rem;
+            margin-left: 1.25rem;
+            color: var(--text-medium);
+        }
+
+        .photo-card li {
+            margin-bottom: 0.3rem;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border-left: 4px solid var(--golden-hour);
+            padding: 1rem;
+            border-radius: 0 12px 12px 0;
+            margin-top: 1rem;
+            color: #92400E;
+        }
+
+        .warning-box strong {
+            color: #78350F;
+        }
+
+        .warning-box p {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Golden Hour Cards */
+        .golden-hour-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .golden-card {
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .golden-card.sunrise {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+        }
+
+        .golden-card.sunset {
+            background: linear-gradient(135deg, #fed7aa, #fdba74);
+        }
+
+        .golden-card.aurora {
+            background: linear-gradient(135deg, var(--deep-navy), #16213e);
+            color: white;
+        }
+
+        .golden-card strong {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .golden-card .time {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+
+        .golden-card.sunrise .time {
+            color: #b45309;
+        }
+
+        .golden-card.sunset .time {
+            color: #c2410c;
+        }
+
+        .golden-card.aurora .time {
+            color: var(--aurora-green);
+        }
+
+        .golden-card span {
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+
+        /* Checklist Section */
+        .checklist-category {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--moss-green);
+        }
+
+        .checklist-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .checklist-category h3 {
+            color: var(--moss-green);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #D1FAE5;
+        }
+
+        .checklist {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .checklist li {
+            background: white;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--text-medium);
+            border: 1px solid #E5E7EB;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .checklist li:hover {
+            background: #F0FDF4;
+            border-color: var(--moss-green);
+        }
+
+        /* Budget Table */
+        .budget-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .budget-table th {
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .budget-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #E5E7EB;
+            color: var(--text-medium);
+        }
+
+        .budget-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .budget-table tr:hover td {
+            background: var(--glacier-white);
+        }
+
+        .budget-table .total-row {
+            background: linear-gradient(135deg, var(--ice-blue), #E0F2FE);
+        }
+
+        .budget-table .total-row td {
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+        }
+
+        .budget-amount {
+            font-weight: 600;
+            color: var(--text-dark);
+            text-align: right;
+        }
+
+        /* Money Tips Box */
+        .tips-box {
+            background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+            border-left: 4px solid var(--moss-green);
+            padding: 1.25rem;
+            border-radius: 0 12px 12px 0;
+            margin-top: 1.5rem;
+        }
+
+        .tips-box h4 {
+            color: #065F46;
+            margin-bottom: 0.75rem;
+        }
+
+        .tips-box ul {
+            margin-left: 1.5rem;
+            color: #047857;
+            font-size: 0.9rem;
+        }
+
+        .tips-box li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-navy);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .section-content {
+                padding: 1rem;
+            }
+
+            .booking-card {
+                padding: 1rem;
+            }
+
+            .budget-table th,
+            .budget-table td {
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
+    <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">Iceland 2026 🇮🇸</div>
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="itinerary.html">Itinerary</a></li>
-                <li><a href="flights.html">Flights</a></li>
-                <li><a href="hotels.html">Hotels</a></li>
-                <li><a href="planning.html" class="active">Planning</a></li>
-                <li><a href="logistics.html">Logistics</a></li>
-                <li><a href="analysis.html">Analysis</a></li>
-            </ul>
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">&#9776;</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="index.html" class="navbar-item">Home</a>
+                <a href="itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="flights.html" class="navbar-item">Flights</a>
+                <a href="hotels.html" class="navbar-item">Hotels</a>
+                <a href="planning.html" class="navbar-item active">Planning</a>
+                <a href="logistics.html" class="navbar-item">Logistics</a>
+                <a href="analysis.html" class="navbar-item">Analysis</a>
+            </div>
         </div>
     </nav>
 
-    <main class="container">
-        <div class="page-header">
-            <h1>Planning & Bookings</h1>
-            <p>Essential bookings and strategic planning for Iceland 2026</p>
-        </div>
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Planning & Bookings</h1>
+        <p>Essential bookings and strategic planning for Iceland 2026</p>
+    </header>
 
-        <!-- Priority Bookings -->
-        <section class="planning-section priority">
-            <h2>🚨 Priority Bookings (Book ASAP)</h2>
+    <!-- Main Content -->
+    <main class="main-content">
 
-            <div class="booking-card urgent">
-                <h3>1. Blue Lagoon Entry</h3>
-                <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
-                <p><strong>Date:</strong> Day 9 (April 16) - Afternoon slot recommended (15:30-16:00)</p>
-                <p><strong>Why urgent:</strong> Books out weeks/months in advance, especially peak season</p>
-                <p><strong>Packages:</strong></p>
-                <ul>
-                    <li><strong>Comfort Package:</strong> Entry + towel + drink (~$80 USD)</li>
-                    <li><strong>Premium Package:</strong> Entry + robe + slippers + mask + drink (~$110 USD)</li>
-                </ul>
-                <p><strong>Booking:</strong> <a href="https://www.bluelagoon.com" target="_blank">bluelagoon.com</a></p>
-                <p><strong>Tip:</strong> Book at least 2-3 months in advance. Afternoon slot gives you time to drive from Snæfellsnes.</p>
+        <!-- Priority Bookings Section -->
+        <section class="section-card">
+            <div class="section-header urgent">
+                <h2>Priority Bookings (Book ASAP)</h2>
             </div>
+            <div class="section-content">
+                <div class="booking-card urgent">
+                    <h3>1. Blue Lagoon Entry</h3>
+                    <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
+                    <p><strong>Date:</strong> Day 9 (April 16) - Afternoon slot recommended (15:30-16:00)</p>
+                    <p><strong>Why urgent:</strong> Books out weeks/months in advance, especially peak season</p>
+                    <p><strong>Packages:</strong></p>
+                    <ul>
+                        <li><strong>Comfort Package:</strong> Entry + towel + drink (~$80 USD)</li>
+                        <li><strong>Premium Package:</strong> Entry + robe + slippers + mask + drink (~$110 USD)</li>
+                    </ul>
+                    <p><strong>Booking:</strong> <a href="https://www.bluelagoon.com" target="_blank">bluelagoon.com</a></p>
+                    <p><strong>Tip:</strong> Book at least 2-3 months in advance. Afternoon slot gives you time to drive from Snaefellsnes.</p>
+                </div>
 
-            <div class="booking-card urgent">
-                <h3>2. Rental Car</h3>
-                <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
-                <p><strong>Duration:</strong> 10 days (April 8-17, pickup/drop-off at Keflavík Airport)</p>
-                <p><strong>Vehicle Type:</strong> 2WD sufficient (all paved roads), but 4WD recommended for April weather</p>
-                <p><strong>Why urgent:</strong> Prices increase closer to trip date</p>
-                <p><strong>Recommended Companies:</strong></p>
-                <ul>
-                    <li>SADcars - Budget friendly, good reviews</li>
-                    <li>Blue Car Rental - Mid-range (mentioned in plan)</li>
-                    <li>Hertz/Budget - International chains</li>
-                </ul>
-                <p><strong>Insurance:</strong> Consider gravel protection & sand/ash damage coverage</p>
-            </div>
+                <div class="booking-card urgent">
+                    <h3>2. Rental Car</h3>
+                    <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
+                    <p><strong>Duration:</strong> 10 days (April 8-17, pickup/drop-off at Keflavik Airport)</p>
+                    <p><strong>Vehicle Type:</strong> 2WD sufficient (all paved roads), but 4WD recommended for April weather</p>
+                    <p><strong>Why urgent:</strong> Prices increase closer to trip date</p>
+                    <p><strong>Recommended Companies:</strong></p>
+                    <ul>
+                        <li>SADcars - Budget friendly, good reviews</li>
+                        <li>Blue Car Rental - Mid-range (mentioned in plan)</li>
+                        <li>Hertz/Budget - International chains</li>
+                    </ul>
+                    <p><strong>Insurance:</strong> Consider gravel protection & sand/ash damage coverage</p>
+                </div>
 
-            <div class="booking-card optional">
-                <h3>3. Optional: Glacier Hiking or Ice Cave Tour</h3>
-                <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
-                <p><strong>Date:</strong> Day 3 (April 10) - Sólheimajökull glacier hike option</p>
-                <p><strong>Duration:</strong> 3-5 hours</p>
-                <p><strong>Companies:</strong></p>
-                <ul>
-                    <li><strong>Guide to Iceland:</strong> Various tour operators</li>
-                    <li><strong>Local Guide:</strong> Glacier hiking specialists</li>
-                </ul>
-                <p><strong>Price:</strong> ~$100-150 USD per person</p>
-                <p><strong>Note:</strong> New plan doesn't include North Iceland/Húsavík, so whale watching tour not applicable</p>
+                <div class="booking-card optional">
+                    <h3>3. Optional: Glacier Hiking or Ice Cave Tour</h3>
+                    <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
+                    <p><strong>Date:</strong> Day 3 (April 10) - Solheimajokull glacier hike option</p>
+                    <p><strong>Duration:</strong> 3-5 hours</p>
+                    <p><strong>Companies:</strong></p>
+                    <ul>
+                        <li><strong>Guide to Iceland:</strong> Various tour operators</li>
+                        <li><strong>Local Guide:</strong> Glacier hiking specialists</li>
+                    </ul>
+                    <p><strong>Price:</strong> ~$100-150 USD per person</p>
+                    <p><strong>Note:</strong> New plan doesn't include North Iceland/Husavik, so whale watching tour not applicable</p>
+                </div>
             </div>
         </section>
 
-        <!-- Accommodation -->
-        <section class="planning-section">
-            <h2>🏨 Accommodation Strategy (9 Nights Total)</h2>
-
-            <div class="booking-card">
-                <h3>Night 1: Reykjavík (April 8)</h3>
-                <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
-                <p><strong>Area:</strong> City Center (101) or Vesturbær for walkability</p>
-                <p><strong>Type:</strong> 2-bedroom apartment or house rental</p>
-                <p><strong>Booking:</strong> Booking.com, Airbnb</p>
+        <!-- Accommodation Strategy Section -->
+        <section class="section-card">
+            <div class="section-header">
+                <h2>Accommodation Strategy (9 Nights Total)</h2>
             </div>
+            <div class="section-content">
+                <div class="booking-card">
+                    <h3>Night 1: Reykjavik (April 8)</h3>
+                    <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
+                    <p><strong>Area:</strong> City Center (101) or Vesturbær for walkability</p>
+                    <p><strong>Type:</strong> 2-bedroom apartment or house rental</p>
+                    <p><strong>Booking:</strong> Booking.com, Airbnb</p>
+                </div>
 
-            <div class="booking-card">
-                <h3>Night 2: Hvolsvöllur/Hella Area (April 9)</h3>
-                <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
-                <p><strong>Area:</strong> Rural countryside cabins off main road (best for Northern Lights)</p>
-                <p><strong>Type:</strong> Private cabin or cottage with kitchen</p>
-                <p><strong>Note:</strong> Positions you perfectly for South Coast waterfalls tomorrow</p>
-            </div>
+                <div class="booking-card">
+                    <h3>Night 2: Hvolsvollur/Hella Area (April 9)</h3>
+                    <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
+                    <p><strong>Area:</strong> Rural countryside cabins off main road (best for Northern Lights)</p>
+                    <p><strong>Type:</strong> Private cabin or cottage with kitchen</p>
+                    <p><strong>Note:</strong> Positions you perfectly for South Coast waterfalls tomorrow</p>
+                </div>
 
-            <div class="booking-card">
-                <h3>Night 3-4: Vík Area (April 10-11)</h3>
-                <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
-                <p><strong>Dates:</strong> 2 nights</p>
-                <p><strong>Area:</strong> Countryside around Vík (5-20 min drive from town)</p>
-                <p><strong>Type:</strong> Modern cottage with 2+ bedrooms and full kitchen</p>
-                <p><strong>Note:</strong> Must book early - popular properties</p>
-            </div>
+                <div class="booking-card">
+                    <h3>Night 3-4: Vik Area (April 10-11)</h3>
+                    <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
+                    <p><strong>Dates:</strong> 2 nights</p>
+                    <p><strong>Area:</strong> Countryside around Vik (5-20 min drive from town)</p>
+                    <p><strong>Type:</strong> Modern cottage with 2+ bedrooms and full kitchen</p>
+                    <p><strong>Note:</strong> Must book early - popular properties</p>
+                </div>
 
-            <div class="booking-card">
-                <h3>Night 5: Jökulsárlón/Höfn Area (April 12)</h3>
-                <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
-                <p><strong>Area:</strong> Countryside between Skaftafell & Höfn (closer to lagoons) OR Höfn town</p>
-                <p><strong>Type:</strong> Cottage or guesthouse</p>
-                <p><strong>Warning:</strong> Extremely limited supply - book 12+ months in advance!</p>
-            </div>
+                <div class="booking-card">
+                    <h3>Night 5: Jokulsarlon/Hofn Area (April 12)</h3>
+                    <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
+                    <p><strong>Area:</strong> Countryside between Skaftafell & Hofn (closer to lagoons) OR Hofn town</p>
+                    <p><strong>Type:</strong> Cottage or guesthouse</p>
+                    <div class="warning-box">
+                        <strong>Warning:</strong> Extremely limited supply - book 12+ months in advance!
+                    </div>
+                </div>
 
-            <div class="booking-card">
-                <h3>Night 6: Borgarnes Area (April 13)</h3>
-                <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
-                <p><strong>Area:</strong> Countryside outside Borgarnes with fjord views</p>
-                <p><strong>Type:</strong> Cottage with view</p>
-                <p><strong>Note:</strong> Gateway to Snæfellsnes Peninsula</p>
-            </div>
+                <div class="booking-card">
+                    <h3>Night 6: Borgarnes Area (April 13)</h3>
+                    <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
+                    <p><strong>Area:</strong> Countryside outside Borgarnes with fjord views</p>
+                    <p><strong>Type:</strong> Cottage with view</p>
+                    <p><strong>Note:</strong> Gateway to Snaefellsnes Peninsula</p>
+                </div>
 
-            <div class="booking-card">
-                <h3>Night 7: Arnarstapi/Hellnar (April 14)</h3>
-                <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
-                <p><strong>Area:</strong> Arnarstapi or Hellnar villages, or nearby Búðir area</p>
-                <p><strong>Type:</strong> Cottage with ocean view</p>
-                <p><strong>Warning:</strong> Very limited 2-bedroom houses - book a year or more in advance!</p>
-            </div>
+                <div class="booking-card">
+                    <h3>Night 7: Arnarstapi/Hellnar (April 14)</h3>
+                    <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
+                    <p><strong>Area:</strong> Arnarstapi or Hellnar villages, or nearby Budir area</p>
+                    <p><strong>Type:</strong> Cottage with ocean view</p>
+                    <div class="warning-box">
+                        <strong>Warning:</strong> Very limited 2-bedroom houses - book a year or more in advance!
+                    </div>
+                </div>
 
-            <div class="booking-card">
-                <h3>Night 8: Grundarfjörður (April 15)</h3>
-                <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
-                <p><strong>Area:</strong> In town facing Kirkjufell OR rural locations nearby</p>
-                <p><strong>Type:</strong> House with 2+ bedrooms and kitchen</p>
-                <p><strong>Note:</strong> Prime Kirkjufell view properties book out extremely far in advance</p>
-            </div>
+                <div class="booking-card">
+                    <h3>Night 8: Grundarfjordur (April 15)</h3>
+                    <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
+                    <p><strong>Area:</strong> In town facing Kirkjufell OR rural locations nearby</p>
+                    <p><strong>Type:</strong> House with 2+ bedrooms and kitchen</p>
+                    <p><strong>Note:</strong> Prime Kirkjufell view properties book out extremely far in advance</p>
+                </div>
 
-            <div class="booking-card">
-                <h3>Night 9: Keflavík Area (April 16)</h3>
-                <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
-                <p><strong>Area:</strong> Apartment/Guesthouse in Keflavík or Njarðvík</p>
-                <p><strong>Type:</strong> Convenient accommodation near airport</p>
-                <p><strong>Note:</strong> For 7:55 AM departure next morning - convenience is key</p>
+                <div class="booking-card">
+                    <h3>Night 9: Keflavik Area (April 16)</h3>
+                    <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
+                    <p><strong>Area:</strong> Apartment/Guesthouse in Keflavik or Njardvik</p>
+                    <p><strong>Type:</strong> Convenient accommodation near airport</p>
+                    <p><strong>Note:</strong> For 7:55 AM departure next morning - convenience is key</p>
+                </div>
             </div>
         </section>
 
-        <!-- Optional Tours -->
-        <section class="planning-section">
-            <h2>🎫 Optional Tours & Activities</h2>
-
-            <div class="booking-card optional">
-                <h3>Glacier Ice Cave Tour</h3>
-                <p><strong>Date:</strong> Day 4 (Vatnajökull area)</p>
-                <p><strong>Duration:</strong> 3-4 hours</p>
-                <p><strong>Season:</strong> Natural ice caves only Nov-March. Crystal ice cave year-round.</p>
-                <p><strong>Price:</strong> ~$150-200 USD</p>
-                <p><strong>Companies:</strong> Guide to Iceland, Local Guide, Glacier Guides</p>
+        <!-- Optional Tours Section -->
+        <section class="section-card">
+            <div class="section-header">
+                <h2>Optional Tours & Activities</h2>
             </div>
-
-            <div class="booking-card optional">
-                <h3>Glacier Hiking</h3>
-                <p><strong>Date:</strong> Day 4 (Skaftafell/Sólheimajökull)</p>
-                <p><strong>Duration:</strong> 3-5 hours</p>
-                <p><strong>Price:</strong> ~$100-150 USD</p>
-                <p><strong>Includes:</strong> Crampons, ice axes, guide</p>
-            </div>
-
-            <div class="booking-card optional">
-                <h3>Snowmobiling on Langjökull Glacier</h3>
-                <p><strong>Date:</strong> Day 2 (Golden Circle extension)</p>
-                <p><strong>Duration:</strong> Half day</p>
-                <p><strong>Price:</strong> ~$200-250 USD</p>
-            </div>
-
-            <div class="booking-card optional">
-                <h3>Northern Lights Tour</h3>
-                <p><strong>Season:</strong> Sep-Apr (not summer)</p>
-                <p><strong>Strategy:</strong> DIY with rental car for flexibility</p>
-                <p><strong>Apps:</strong> "Aurora Forecast" app for predictions</p>
-            </div>
-        </section>
-
-        <!-- Packing Guide -->
-        <section class="planning-section">
-            <h2>🎒 Packing Guide for April</h2>
-
-            <div class="info-card highlight">
-                <h3>April Weather Reality</h3>
-                <p><strong>Temperature:</strong> 0-5°C (32-41°F) with wind chill significantly below freezing</p>
-                <p><strong>Conditions:</strong> Mix of rain, sleet, occasional snow. "Horizontal rain" is real!</p>
-                <p><strong>Vegetation:</strong> Pre-green landscape - mossy lava fields still vibrant green</p>
-            </div>
-
-            <div class="info-card">
-                <h3>Essential Clothing (Layers System)</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-top: 15px;">
-                    <div style="background: #f0f9ff; padding: 15px; border-radius: 8px;">
-                        <strong style="color: #0077B6;">Base Layer</strong>
-                        <ul style="font-size: 0.9em; margin-top: 8px;">
-                            <li>Merino wool or synthetic thermal tops</li>
-                            <li>Thermal leggings</li>
-                            <li>Moisture-wicking socks (multiple pairs!)</li>
-                        </ul>
+            <div class="section-content">
+                <div class="info-grid">
+                    <div class="booking-card optional">
+                        <h3>Glacier Ice Cave Tour</h3>
+                        <p><strong>Date:</strong> Day 4 (Vatnajokull area)</p>
+                        <p><strong>Duration:</strong> 3-4 hours</p>
+                        <p><strong>Season:</strong> Natural ice caves only Nov-March. Crystal ice cave year-round.</p>
+                        <p><strong>Price:</strong> ~$150-200 USD</p>
+                        <p><strong>Companies:</strong> Guide to Iceland, Local Guide, Glacier Guides</p>
                     </div>
-                    <div style="background: #f0f9ff; padding: 15px; border-radius: 8px;">
-                        <strong style="color: #0077B6;">Mid Layer</strong>
-                        <ul style="font-size: 0.9em; margin-top: 8px;">
-                            <li>Fleece jacket or down vest</li>
-                            <li>Wool sweater (Icelandic lopapeysa!)</li>
-                            <li>Softshell hiking pants</li>
-                        </ul>
-                    </div>
-                    <div style="background: #f0f9ff; padding: 15px; border-radius: 8px;">
-                        <strong style="color: #0077B6;">Outer Layer</strong>
-                        <ul style="font-size: 0.9em; margin-top: 8px;">
-                            <li><strong>Waterproof shell jacket</strong> (CRITICAL!)</li>
-                            <li>Waterproof pants (for waterfalls)</li>
-                            <li>Warm hat, gloves, buff/scarf</li>
-                        </ul>
-                    </div>
-                    <div style="background: #f0f9ff; padding: 15px; border-radius: 8px;">
-                        <strong style="color: #0077B6;">Footwear</strong>
-                        <ul style="font-size: 0.9em; margin-top: 8px;">
-                            <li>Waterproof hiking boots (broken in!)</li>
-                            <li>Micro-spikes/crampons (for icy paths)</li>
-                            <li>Waterproof gaiters (optional)</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
 
-            <div class="info-card">
-                <h3>📷 Photography Gear (April Edition)</h3>
-                <p style="margin-bottom: 15px;">April light is crisp with extended golden hours. The sun doesn't rise high, creating long shadows perfect for textured landscapes.</p>
+                    <div class="booking-card optional">
+                        <h3>Glacier Hiking</h3>
+                        <p><strong>Date:</strong> Day 4 (Skaftafell/Solheimajokull)</p>
+                        <p><strong>Duration:</strong> 3-5 hours</p>
+                        <p><strong>Price:</strong> ~$100-150 USD</p>
+                        <p><strong>Includes:</strong> Crampons, ice axes, guide</p>
+                    </div>
 
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px;">
-                    <div>
-                        <h4 style="color: #0077B6;">Camera & Lenses</h4>
-                        <ul style="font-size: 0.9em;">
-                            <li><strong>Wide Angle (14-24mm)</strong> - Essential for waterfalls, ice caves</li>
-                            <li><strong>Telephoto (70-200mm)</strong> - Church/mountain compression, seals at Ytri-Tunga</li>
-                            <li>Weather-sealed camera body preferred</li>
-                        </ul>
+                    <div class="booking-card optional">
+                        <h3>Snowmobiling on Langjokull Glacier</h3>
+                        <p><strong>Date:</strong> Day 2 (Golden Circle extension)</p>
+                        <p><strong>Duration:</strong> Half day</p>
+                        <p><strong>Price:</strong> ~$200-250 USD</p>
                     </div>
-                    <div>
-                        <h4 style="color: #0077B6;">Filters & Accessories</h4>
-                        <ul style="font-size: 0.9em;">
-                            <li><strong>ND Filter (6-stop)</strong> - Essential for silky waterfall shots</li>
-                            <li><strong>Polarizer</strong> - Mandatory! Cuts wet rock glare, deepens blue ice/sky</li>
-                            <li>Sturdy tripod with hook (hang bag for wind stability)</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4 style="color: #0077B6;">Protection (Critical!)</h4>
-                        <ul style="font-size: 0.9em;">
-                            <li><strong>Many microfiber cloths</strong> - Waterfall spray is constant</li>
-                            <li>Rain cover for camera</li>
-                            <li>Extra batteries (cold drains them fast)</li>
-                            <li>Keep lens cap on until you shoot!</li>
-                        </ul>
-                    </div>
-                </div>
 
-                <div style="background: #fef3c7; padding: 15px; border-radius: 6px; margin-top: 15px; border-left: 4px solid #f59e0b;">
-                    <strong style="color: #92400e;">⚠️ Drone Rules</strong>
-                    <p style="font-size: 0.9em; margin-top: 5px;">Drones are <strong>BANNED</strong> in National Parks (Thingvellir, Snæfellsjökull, Vatnajökull) and at major tourist sites (Skógafoss, Gullfoss) without special permit.</p>
-                </div>
-            </div>
-
-            <div class="info-card">
-                <h3>Golden Hour Times (April 8-17)</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 10px;">
-                    <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); padding: 15px; border-radius: 8px; text-align: center;">
-                        <strong>Sunrise</strong>
-                        <div style="font-size: 1.5em; color: #b45309; margin: 5px 0;">~06:00-08:00</div>
-                        <span style="font-size: 0.85em;">Extended golden hour</span>
-                    </div>
-                    <div style="background: linear-gradient(135deg, #fed7aa, #fdba74); padding: 15px; border-radius: 8px; text-align: center;">
-                        <strong>Sunset</strong>
-                        <div style="font-size: 1.5em; color: #c2410c; margin: 5px 0;">~19:30-21:00</div>
-                        <span style="font-size: 0.85em;">Long blue hour follows</span>
-                    </div>
-                    <div style="background: linear-gradient(135deg, #1a1a2e, #16213e); padding: 15px; border-radius: 8px; text-align: center; color: white;">
-                        <strong>Aurora Window</strong>
-                        <div style="font-size: 1.5em; color: #00B4D8; margin: 5px 0;">23:00-01:00</div>
-                        <span style="font-size: 0.85em;">Kp > 3 needed, clear skies</span>
+                    <div class="booking-card optional">
+                        <h3>Northern Lights Tour</h3>
+                        <p><strong>Season:</strong> Sep-Apr (not summer)</p>
+                        <p><strong>Strategy:</strong> DIY with rental car for flexibility</p>
+                        <p><strong>Apps:</strong> "Aurora Forecast" app for predictions</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Practical Checklist -->
-        <section class="planning-section">
-            <h2>✅ Pre-Trip Checklist</h2>
-
-            <div class="checklist-category">
-                <h3>3 Months Before</h3>
-                <ul class="checklist">
-                    <li>☐ Book Blue Lagoon entry (Day 9, April 16)</li>
-                    <li>☐ Book rental car with insurance (April 8-17)</li>
-                    <li>☐ Research and book accommodations (all 9 nights)</li>
-                    <li>☐ Book optional glacier hiking tour if desired</li>
-                    <li>☐ Purchase travel insurance</li>
-                    <li>☐ Book Reykjadalur hot river hike slot if required</li>
-                </ul>
+        <!-- Packing Guide Section -->
+        <section class="section-card">
+            <div class="section-header">
+                <h2>Packing Guide for April</h2>
             </div>
+            <div class="section-content">
+                <div class="info-card highlight">
+                    <h3>April Weather Reality</h3>
+                    <p><strong>Temperature:</strong> 0-5C (32-41F) with wind chill significantly below freezing</p>
+                    <p><strong>Conditions:</strong> Mix of rain, sleet, occasional snow. "Horizontal rain" is real!</p>
+                    <p><strong>Vegetation:</strong> Pre-green landscape - mossy lava fields still vibrant green</p>
+                </div>
 
-            <div class="checklist-category">
-                <h3>1 Month Before</h3>
-                <ul class="checklist">
-                    <li>☐ Book optional glacier tours if desired</li>
-                    <li>☐ Download offline maps (maps.me or Google Maps)</li>
-                    <li>☐ Download Aurora forecast app</li>
-                    <li>☐ Create detailed day-by-day Google Maps with pins</li>
-                    <li>☐ Check weather patterns and pack accordingly</li>
-                </ul>
-            </div>
+                <div class="info-card" style="margin-top: 1.5rem;">
+                    <h3>Essential Clothing (Layers System)</h3>
+                    <div class="layer-grid">
+                        <div class="layer-card">
+                            <strong>Base Layer</strong>
+                            <ul>
+                                <li>Merino wool or synthetic thermal tops</li>
+                                <li>Thermal leggings</li>
+                                <li>Moisture-wicking socks (multiple pairs!)</li>
+                            </ul>
+                        </div>
+                        <div class="layer-card">
+                            <strong>Mid Layer</strong>
+                            <ul>
+                                <li>Fleece jacket or down vest</li>
+                                <li>Wool sweater (Icelandic lopapeysa!)</li>
+                                <li>Softshell hiking pants</li>
+                            </ul>
+                        </div>
+                        <div class="layer-card">
+                            <strong>Outer Layer</strong>
+                            <ul>
+                                <li><strong>Waterproof shell jacket</strong> (CRITICAL!)</li>
+                                <li>Waterproof pants (for waterfalls)</li>
+                                <li>Warm hat, gloves, buff/scarf</li>
+                            </ul>
+                        </div>
+                        <div class="layer-card">
+                            <strong>Footwear</strong>
+                            <ul>
+                                <li>Waterproof hiking boots (broken in!)</li>
+                                <li>Micro-spikes/crampons (for icy paths)</li>
+                                <li>Waterproof gaiters (optional)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="checklist-category">
-                <h3>1 Week Before</h3>
-                <ul class="checklist">
-                    <li>☐ Check all confirmation emails</li>
-                    <li>☐ Download offline maps for entire route</li>
-                    <li>☐ Print rental car voucher</li>
-                    <li>☐ Bring credit card for car rental deposit</li>
-                    <li>☐ Pack layers (waterproof, fleece, base layers)</li>
-                    <li>☐ Check Iceland road conditions website (road.is)</li>
-                </ul>
+                <div class="info-card" style="margin-top: 1.5rem;">
+                    <h3>Photography Gear (April Edition)</h3>
+                    <p style="margin-bottom: 1rem;">April light is crisp with extended golden hours. The sun doesn't rise high, creating long shadows perfect for textured landscapes.</p>
+
+                    <div class="photo-grid">
+                        <div class="photo-card">
+                            <h4>Camera & Lenses</h4>
+                            <ul>
+                                <li><strong>Wide Angle (14-24mm)</strong> - Essential for waterfalls, ice caves</li>
+                                <li><strong>Telephoto (70-200mm)</strong> - Church/mountain compression, seals at Ytri-Tunga</li>
+                                <li>Weather-sealed camera body preferred</li>
+                            </ul>
+                        </div>
+                        <div class="photo-card">
+                            <h4>Filters & Accessories</h4>
+                            <ul>
+                                <li><strong>ND Filter (6-stop)</strong> - Essential for silky waterfall shots</li>
+                                <li><strong>Polarizer</strong> - Mandatory! Cuts wet rock glare, deepens blue ice/sky</li>
+                                <li>Sturdy tripod with hook (hang bag for wind stability)</li>
+                            </ul>
+                        </div>
+                        <div class="photo-card">
+                            <h4>Protection (Critical!)</h4>
+                            <ul>
+                                <li><strong>Many microfiber cloths</strong> - Waterfall spray is constant</li>
+                                <li>Rain cover for camera</li>
+                                <li>Extra batteries (cold drains them fast)</li>
+                                <li>Keep lens cap on until you shoot!</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="warning-box">
+                        <strong>Drone Rules</strong>
+                        <p>Drones are <strong>BANNED</strong> in National Parks (Thingvellir, Snaefellsjokull, Vatnajokull) and at major tourist sites (Skogafoss, Gullfoss) without special permit.</p>
+                    </div>
+                </div>
+
+                <div class="info-card" style="margin-top: 1.5rem;">
+                    <h3>Golden Hour Times (April 8-17)</h3>
+                    <div class="golden-hour-grid">
+                        <div class="golden-card sunrise">
+                            <strong>Sunrise</strong>
+                            <div class="time">~06:00-08:00</div>
+                            <span>Extended golden hour</span>
+                        </div>
+                        <div class="golden-card sunset">
+                            <strong>Sunset</strong>
+                            <div class="time">~19:30-21:00</div>
+                            <span>Long blue hour follows</span>
+                        </div>
+                        <div class="golden-card aurora">
+                            <strong>Aurora Window</strong>
+                            <div class="time">23:00-01:00</div>
+                            <span>Kp > 3 needed, clear skies</span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Budget Overview -->
-        <section class="planning-section">
-            <h2>💰 Budget Estimate (Per Person)</h2>
-
-            <div class="budget-breakdown">
-                <div class="budget-item">
-                    <span class="budget-category">Rental Car (split 4 ways)</span>
-                    <span class="budget-amount">$600-800</span>
-                </div>
-                <div class="budget-item">
-                    <span class="budget-category">Accommodation (9 nights)</span>
-                    <span class="budget-amount">$900-1,500</span>
-                </div>
-                <div class="budget-item">
-                    <span class="budget-category">Food & Dining (10 days)</span>
-                    <span class="budget-amount">$650-1,100</span>
-                </div>
-                <div class="budget-item">
-                    <span class="budget-category">Blue Lagoon (Day 9)</span>
-                    <span class="budget-amount">$80-110</span>
-                </div>
-                <div class="budget-item">
-                    <span class="budget-category">Optional Glacier Tours</span>
-                    <span class="budget-amount">$100-300</span>
-                </div>
-                <div class="budget-item">
-                    <span class="budget-category">Gas/Fuel (~1,000km)</span>
-                    <span class="budget-amount">$250-350</span>
-                </div>
-                <div class="budget-item total">
-                    <span class="budget-category"><strong>Total (excluding flights)</strong></span>
-                    <span class="budget-amount"><strong>$2,580-4,160</strong></span>
-                </div>
+        <!-- Pre-Trip Checklist Section -->
+        <section class="section-card">
+            <div class="section-header">
+                <h2>Pre-Trip Checklist</h2>
             </div>
+            <div class="section-content">
+                <div class="checklist-category">
+                    <h3>3 Months Before</h3>
+                    <ul class="checklist">
+                        <li>Book Blue Lagoon entry (Day 9, April 16)</li>
+                        <li>Book rental car with insurance (April 8-17)</li>
+                        <li>Research and book accommodations (all 9 nights)</li>
+                        <li>Book optional glacier hiking tour if desired</li>
+                        <li>Purchase travel insurance</li>
+                        <li>Book Reykjadalur hot river hike slot if required</li>
+                    </ul>
+                </div>
 
-            <div class="budget-note">
-                <p><strong>Money-Saving Tips:</strong></p>
-                <ul>
-                    <li>Cook some meals (grocery shop at Bónus supermarkets)</li>
-                    <li>Fill up water bottles (Iceland tap water is pristine)</li>
-                    <li>Stay in guesthouses or hostels instead of hotels</li>
-                    <li>Visit free attractions (most nature sites have no entry fee)</li>
-                    <li>Pack snacks and lunch for driving days</li>
-                </ul>
+                <div class="checklist-category">
+                    <h3>1 Month Before</h3>
+                    <ul class="checklist">
+                        <li>Book optional glacier tours if desired</li>
+                        <li>Download offline maps (maps.me or Google Maps)</li>
+                        <li>Download Aurora forecast app</li>
+                        <li>Create detailed day-by-day Google Maps with pins</li>
+                        <li>Check weather patterns and pack accordingly</li>
+                    </ul>
+                </div>
+
+                <div class="checklist-category">
+                    <h3>1 Week Before</h3>
+                    <ul class="checklist">
+                        <li>Check all confirmation emails</li>
+                        <li>Download offline maps for entire route</li>
+                        <li>Print rental car voucher</li>
+                        <li>Bring credit card for car rental deposit</li>
+                        <li>Pack layers (waterproof, fleece, base layers)</li>
+                        <li>Check Iceland road conditions website (road.is)</li>
+                    </ul>
+                </div>
             </div>
         </section>
+
+        <!-- Budget Estimate Section -->
+        <section class="section-card">
+            <div class="section-header">
+                <h2>Budget Estimate (Per Person)</h2>
+            </div>
+            <div class="section-content">
+                <table class="budget-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th class="budget-amount">Amount (USD)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Rental Car (split 4 ways)</td>
+                            <td class="budget-amount">$600-800</td>
+                        </tr>
+                        <tr>
+                            <td>Accommodation (9 nights)</td>
+                            <td class="budget-amount">$900-1,500</td>
+                        </tr>
+                        <tr>
+                            <td>Food & Dining (10 days)</td>
+                            <td class="budget-amount">$650-1,100</td>
+                        </tr>
+                        <tr>
+                            <td>Blue Lagoon (Day 9)</td>
+                            <td class="budget-amount">$80-110</td>
+                        </tr>
+                        <tr>
+                            <td>Optional Glacier Tours</td>
+                            <td class="budget-amount">$100-300</td>
+                        </tr>
+                        <tr>
+                            <td>Gas/Fuel (~1,000km)</td>
+                            <td class="budget-amount">$250-350</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td><strong>Total (excluding flights)</strong></td>
+                            <td class="budget-amount"><strong>$2,580-4,160</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="tips-box">
+                    <h4>Money-Saving Tips</h4>
+                    <ul>
+                        <li>Cook some meals (grocery shop at Bonus supermarkets)</li>
+                        <li>Fill up water bottles (Iceland tap water is pristine)</li>
+                        <li>Stay in guesthouses or hostels instead of hotels</li>
+                        <li>Visit free attractions (most nature sites have no entry fee)</li>
+                        <li>Pack snacks and lunch for driving days</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
     </main>
 
+    <!-- Footer -->
     <footer>
         <p>Iceland Trip 2026 | Journey through Fire and Ice 🇮🇸</p>
+        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 8-17, 2026 • 7 Adults</p>
     </footer>
 
     <script>
         function toggleMobileMenu() {
             const navMenu = document.getElementById('navMenu');
-            navMenu.classList.toggle('active');
+            navMenu.classList.toggle('mobile-open');
         }
     </script>
 </body>
+
 </html>

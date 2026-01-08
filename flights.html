@@ -4,225 +4,665 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flight Details - Iceland Trip 2026</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Flights - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --flight-blue: #3B82F6;
+            --text-dark: #2D2D2D;
+            --text-medium: #5A5A5A;
+            --success-green: #10B981;
+            --warning-amber: #F59E0B;
+            --danger-red: #EF4444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .navbar-brand {
+            color: var(--aurora-green);
+            font-size: 1.3em;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 3px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .navbar-item {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: 0.3s;
+            font-size: 0.85em;
+            white-space: nowrap;
+        }
+
+        .navbar-item:hover {
+            background: rgba(0, 180, 216, 0.2);
+            color: var(--aurora-green);
+        }
+
+        .navbar-item.active {
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%);
+                padding: 10px 0;
+            }
+
+            .navbar-menu.mobile-open {
+                display: flex;
+            }
+
+            .navbar-item {
+                padding: 12px 20px;
+                border-radius: 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--flight-blue) 100%);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .booking-ref {
+            margin-top: 1rem;
+            background: rgba(255, 255, 255, 0.15);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Flight Direction Header */
+        .flight-direction-header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--aurora-green) 100%);
+            color: white;
+            padding: 1.25rem 1.5rem;
+            border-radius: 16px;
+            margin: 2rem 0 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
+        }
+
+        .flight-direction-header h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .flight-direction-header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Flight Cards */
+        .flight-card {
+            background: white;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .flight-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .flight-card.outbound {
+            border-left: 5px solid var(--flight-blue);
+        }
+
+        .flight-card.return {
+            border-left: 5px solid var(--danger-red);
+        }
+
+        .flight-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .flight-route {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .airport-code {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--flight-blue);
+        }
+
+        .flight-arrow {
+            font-size: 1.5rem;
+        }
+
+        .flight-airline {
+            color: var(--text-medium);
+            font-weight: 500;
+        }
+
+        .flight-details {
+            padding: 1.5rem;
+        }
+
+        .flight-detail-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-item {
+            padding: 1rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 12px;
+        }
+
+        .detail-label {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.25rem;
+        }
+
+        .detail-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .detail-subtext {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+            margin-top: 0.25rem;
+        }
+
+        /* Connection Info */
+        .connection-info {
+            padding: 1rem;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+            border-left: 4px solid var(--success-green);
+            margin-top: 1rem;
+        }
+
+        .connection-info.warning {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border-left-color: var(--warning-amber);
+        }
+
+        .connection-info.danger {
+            background: linear-gradient(135deg, #FEE2E2 0%, #FECACA 100%);
+            border-left-color: var(--danger-red);
+        }
+
+        .arrival-note {
+            padding: 1rem;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #E0F7FA 0%, var(--ice-blue) 100%);
+            border-left: 4px solid var(--aurora-green);
+            margin-top: 1rem;
+            color: var(--text-dark);
+        }
+
+        /* Section Cards */
+        .section-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .section-card h2 {
+            color: var(--primary-blue);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--ice-blue);
+        }
+
+        /* Passenger Grid */
+        .passenger-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .passenger-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            padding: 1rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .passenger-card h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .passenger-card p {
+            color: var(--text-medium);
+            font-size: 0.9rem;
+            margin: 0.25rem 0;
+        }
+
+        /* Baggage Section */
+        .baggage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .baggage-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-radius: 12px;
+        }
+
+        .baggage-icon {
+            font-size: 2rem;
+        }
+
+        .baggage-details h4 {
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .baggage-details p {
+            color: var(--text-medium);
+            font-size: 0.9rem;
+        }
+
+        .baggage-note {
+            font-size: 0.8rem;
+            color: var(--text-medium);
+            font-style: italic;
+        }
+
+        .baggage-warning {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            padding: 1rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--warning-amber);
+            color: #92400E;
+            margin-top: 1rem;
+        }
+
+        /* Reminders */
+        .reminders-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .reminders-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #eee;
+            color: var(--text-medium);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .reminders-list li:last-child {
+            border-bottom: none;
+        }
+
+        .reminders-list li::before {
+            content: "⚠️";
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-navy);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 1.75rem;
+            }
+
+            .main-content {
+                padding: 1rem;
+            }
+
+            .flight-detail-row {
+                grid-template-columns: 1fr;
+            }
+
+            .flight-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">Iceland 2026 🇮🇸</div>
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="itinerary.html">Itinerary</a></li>
-                <li><a href="flights.html" class="active">Flights</a></li>
-                <li><a href="hotels.html">Hotels</a></li>
-                <li><a href="planning.html">Planning</a></li>
-                <li><a href="logistics.html">Logistics</a></li>
-                <li><a href="analysis.html">Analysis</a></li>
-            </ul>
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="index.html" class="navbar-item">Home</a>
+                <a href="itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="flights.html" class="navbar-item active">Flights</a>
+                <a href="hotels.html" class="navbar-item">Hotels</a>
+                <a href="planning.html" class="navbar-item">Planning</a>
+                <a href="logistics.html" class="navbar-item">Logistics</a>
+                <a href="analysis.html" class="navbar-item">Analysis</a>
+            </div>
         </div>
     </nav>
 
-    <main class="container">
-        <div class="page-header">
-            <h1>✈️ Flight Information</h1>
-            <p>Complete flight details for Bangkok ⇄ Reykjavík</p>
-            <p style="margin-top: 10px;"><strong>Booking Reference:</strong> DAY3PQ | <strong>Booking No:</strong>
-                1658104854612575</p>
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>✈️ Flight Information</h1>
+        <p>Complete flight details for Bangkok ⇄ Reykjavík</p>
+        <div class="booking-ref">
+            <strong>Booking Reference:</strong> DAY3PQ | <strong>Booking No:</strong> 1658104854612575
         </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
 
         <!-- Outbound Flights -->
-        <section class="flight-section">
-            <div class="flight-direction-header">
-                <h2>🛫 Outbound: Bangkok → Reykjavík</h2>
-                <p class="travel-date">April 7-8, 2026 | Total Travel Time: ~14 hours</p>
-            </div>
+        <div class="flight-direction-header">
+            <h2>🛫 Outbound: Bangkok → Reykjavík</h2>
+            <p>April 7-8, 2026 | Total Travel Time: ~14 hours</p>
+        </div>
 
-            <div class="flight-card">
-                <div class="flight-header">
-                    <div class="flight-route">
-                        <div class="airport-code">BKK</div>
-                        <div class="flight-arrow">✈️</div>
-                        <div class="airport-code">DOH</div>
-                    </div>
-                    <div class="flight-airline">Qatar Airways QR835</div>
+        <div class="flight-card outbound">
+            <div class="flight-header">
+                <div class="flight-route">
+                    <span class="airport-code">BKK</span>
+                    <span class="flight-arrow">✈️</span>
+                    <span class="airport-code">DOH</span>
                 </div>
-                <div class="flight-details">
-                    <div class="flight-detail-row">
-                        <div class="detail-item">
-                            <div class="detail-label">Departure</div>
-                            <div class="detail-value">8:00 PM, April 7</div>
-                            <div class="detail-subtext">Suvarnabhumi Airport</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Arrival</div>
-                            <div class="detail-value">10:45 PM, April 7</div>
-                            <div class="detail-subtext">Hamad International Airport</div>
-                        </div>
+                <span class="flight-airline">Qatar Airways QR835</span>
+            </div>
+            <div class="flight-details">
+                <div class="flight-detail-row">
+                    <div class="detail-item">
+                        <div class="detail-label">Departure</div>
+                        <div class="detail-value">8:00 PM, April 7</div>
+                        <div class="detail-subtext">Suvarnabhumi Airport</div>
                     </div>
-                    <div class="connection-info">
-                        <strong>Transfer in Doha:</strong> 2 hours 40 minutes | <span style="color: #22c55e;">✓ Baggage
-                            checked through</span>
+                    <div class="detail-item">
+                        <div class="detail-label">Arrival</div>
+                        <div class="detail-value">10:45 PM, April 7</div>
+                        <div class="detail-subtext">Hamad International Airport</div>
                     </div>
+                </div>
+                <div class="connection-info">
+                    <strong>Transfer in Doha:</strong> 2 hours 40 minutes | <span style="color: var(--success-green);">✓ Baggage checked through</span>
                 </div>
             </div>
+        </div>
 
-            <div class="flight-card">
-                <div class="flight-header">
-                    <div class="flight-route">
-                        <div class="airport-code">DOH</div>
-                        <div class="flight-arrow">✈️</div>
-                        <div class="airport-code">OSL</div>
-                    </div>
-                    <div class="flight-airline">Qatar Airways QR179</div>
+        <div class="flight-card outbound">
+            <div class="flight-header">
+                <div class="flight-route">
+                    <span class="airport-code">DOH</span>
+                    <span class="flight-arrow">✈️</span>
+                    <span class="airport-code">OSL</span>
                 </div>
-                <div class="flight-details">
-                    <div class="flight-detail-row">
-                        <div class="detail-item">
-                            <div class="detail-label">Departure</div>
-                            <div class="detail-value">1:25 AM, April 8</div>
-                            <div class="detail-subtext">Hamad International Airport</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Arrival</div>
-                            <div class="detail-value">7:20 AM, April 8</div>
-                            <div class="detail-subtext">Oslo Airport</div>
-                        </div>
+                <span class="flight-airline">Qatar Airways QR179</span>
+            </div>
+            <div class="flight-details">
+                <div class="flight-detail-row">
+                    <div class="detail-item">
+                        <div class="detail-label">Departure</div>
+                        <div class="detail-value">1:25 AM, April 8</div>
+                        <div class="detail-subtext">Hamad International Airport</div>
                     </div>
-                    <div class="connection-info warning">
-                        <strong>Transfer in Oslo:</strong> 2 hours 5 minutes | <span style="color: #f59e0b;">⚠️ Baggage
-                            may not be checked through</span> - Check with airline at check-in
+                    <div class="detail-item">
+                        <div class="detail-label">Arrival</div>
+                        <div class="detail-value">7:20 AM, April 8</div>
+                        <div class="detail-subtext">Oslo Airport</div>
                     </div>
+                </div>
+                <div class="connection-info warning">
+                    <strong>Transfer in Oslo:</strong> 2 hours 5 minutes | <span style="color: var(--warning-amber);">⚠️ Baggage may not be checked through</span> - Check with airline at check-in
                 </div>
             </div>
+        </div>
 
-            <div class="flight-card">
-                <div class="flight-header">
-                    <div class="flight-route">
-                        <div class="airport-code">OSL</div>
-                        <div class="flight-arrow">✈️</div>
-                        <div class="airport-code">KEF</div>
-                    </div>
-                    <div class="flight-airline">Scandinavian Airlines SK4787</div>
+        <div class="flight-card outbound">
+            <div class="flight-header">
+                <div class="flight-route">
+                    <span class="airport-code">OSL</span>
+                    <span class="flight-arrow">✈️</span>
+                    <span class="airport-code">KEF</span>
                 </div>
-                <div class="flight-details">
-                    <div class="flight-detail-row">
-                        <div class="detail-item">
-                            <div class="detail-label">Departure</div>
-                            <div class="detail-value">9:25 AM, April 8</div>
-                            <div class="detail-subtext">Oslo Airport</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Arrival</div>
-                            <div class="detail-value">10:15 AM, April 8</div>
-                            <div class="detail-subtext">Keflavík International Airport</div>
-                        </div>
+                <span class="flight-airline">Scandinavian Airlines SK4787</span>
+            </div>
+            <div class="flight-details">
+                <div class="flight-detail-row">
+                    <div class="detail-item">
+                        <div class="detail-label">Departure</div>
+                        <div class="detail-value">9:25 AM, April 8</div>
+                        <div class="detail-subtext">Oslo Airport</div>
                     </div>
-                    <div class="arrival-note">
-                        <strong>🎉 Arrival in Iceland!</strong> Pick up rental car and begin your adventure
+                    <div class="detail-item">
+                        <div class="detail-label">Arrival</div>
+                        <div class="detail-value">10:15 AM, April 8</div>
+                        <div class="detail-subtext">Keflavík International Airport</div>
                     </div>
+                </div>
+                <div class="arrival-note">
+                    <strong>🎉 Arrival in Iceland!</strong> Pick up rental car and begin your adventure
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Return Flights -->
-        <section class="flight-section">
-            <div class="flight-direction-header">
-                <h2>🛬 Return: Reykjavík → Bangkok</h2>
-                <p class="travel-date">April 17-18, 2026 | Total Travel Time: ~17 hours</p>
-            </div>
+        <div class="flight-direction-header">
+            <h2>🛬 Return: Reykjavík → Bangkok</h2>
+            <p>April 17-18, 2026 | Total Travel Time: ~17 hours</p>
+        </div>
 
-            <div class="flight-card">
-                <div class="flight-header">
-                    <div class="flight-route">
-                        <div class="airport-code">KEF</div>
-                        <div class="flight-arrow">✈️</div>
-                        <div class="airport-code">OSL</div>
-                    </div>
-                    <div class="flight-airline">Scandinavian Airlines SK4788</div>
+        <div class="flight-card return">
+            <div class="flight-header">
+                <div class="flight-route">
+                    <span class="airport-code">KEF</span>
+                    <span class="flight-arrow">✈️</span>
+                    <span class="airport-code">OSL</span>
                 </div>
-                <div class="flight-details">
-                    <div class="flight-detail-row">
-                        <div class="detail-item">
-                            <div class="detail-label">Departure</div>
-                            <div class="detail-value">7:55 AM, April 17</div>
-                            <div class="detail-subtext">Keflavík International Airport</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Arrival</div>
-                            <div class="detail-value">12:35 PM, April 17</div>
-                            <div class="detail-subtext">Oslo Airport</div>
-                        </div>
+                <span class="flight-airline">Scandinavian Airlines SK4788</span>
+            </div>
+            <div class="flight-details">
+                <div class="flight-detail-row">
+                    <div class="detail-item">
+                        <div class="detail-label">Departure</div>
+                        <div class="detail-value">7:55 AM, April 17</div>
+                        <div class="detail-subtext">Keflavík International Airport</div>
                     </div>
-                    <div class="connection-info warning">
-                        <strong>Transfer in Oslo:</strong> 3 hours 30 minutes | <span style="color: #ef4444;">❌ Baggage
-                            NOT checked through</span> - Must collect and recheck bags
+                    <div class="detail-item">
+                        <div class="detail-label">Arrival</div>
+                        <div class="detail-value">12:35 PM, April 17</div>
+                        <div class="detail-subtext">Oslo Airport</div>
                     </div>
+                </div>
+                <div class="connection-info danger">
+                    <strong>Transfer in Oslo:</strong> 3 hours 30 minutes | <span style="color: var(--danger-red);">❌ Baggage NOT checked through</span> - Must collect and recheck bags
                 </div>
             </div>
+        </div>
 
-            <div class="flight-card">
-                <div class="flight-header">
-                    <div class="flight-route">
-                        <div class="airport-code">OSL</div>
-                        <div class="flight-arrow">✈️</div>
-                        <div class="airport-code">DOH</div>
-                    </div>
-                    <div class="flight-airline">Qatar Airways QR176</div>
+        <div class="flight-card return">
+            <div class="flight-header">
+                <div class="flight-route">
+                    <span class="airport-code">OSL</span>
+                    <span class="flight-arrow">✈️</span>
+                    <span class="airport-code">DOH</span>
                 </div>
-                <div class="flight-details">
-                    <div class="flight-detail-row">
-                        <div class="detail-item">
-                            <div class="detail-label">Departure</div>
-                            <div class="detail-value">4:05 PM, April 17</div>
-                            <div class="detail-subtext">Oslo Airport</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Arrival</div>
-                            <div class="detail-value">11:35 PM, April 17</div>
-                            <div class="detail-subtext">Hamad International Airport</div>
-                        </div>
+                <span class="flight-airline">Qatar Airways QR176</span>
+            </div>
+            <div class="flight-details">
+                <div class="flight-detail-row">
+                    <div class="detail-item">
+                        <div class="detail-label">Departure</div>
+                        <div class="detail-value">4:05 PM, April 17</div>
+                        <div class="detail-subtext">Oslo Airport</div>
                     </div>
-                    <div class="connection-info">
-                        <strong>Transfer in Doha:</strong> 2 hours 30 minutes | <span style="color: #f59e0b;">⚠️ Baggage
-                            may not be checked through</span> - Check with airline
+                    <div class="detail-item">
+                        <div class="detail-label">Arrival</div>
+                        <div class="detail-value">11:35 PM, April 17</div>
+                        <div class="detail-subtext">Hamad International Airport</div>
                     </div>
+                </div>
+                <div class="connection-info warning">
+                    <strong>Transfer in Doha:</strong> 2 hours 30 minutes | <span style="color: var(--warning-amber);">⚠️ Baggage may not be checked through</span> - Check with airline
                 </div>
             </div>
+        </div>
 
-            <div class="flight-card">
-                <div class="flight-header">
-                    <div class="flight-route">
-                        <div class="airport-code">DOH</div>
-                        <div class="flight-arrow">✈️</div>
-                        <div class="airport-code">BKK</div>
-                    </div>
-                    <div class="flight-airline">Qatar Airways QR834</div>
+        <div class="flight-card return">
+            <div class="flight-header">
+                <div class="flight-route">
+                    <span class="airport-code">DOH</span>
+                    <span class="flight-arrow">✈️</span>
+                    <span class="airport-code">BKK</span>
                 </div>
-                <div class="flight-details">
-                    <div class="flight-detail-row">
-                        <div class="detail-item">
-                            <div class="detail-label">Departure</div>
-                            <div class="detail-value">2:05 AM, April 18</div>
-                            <div class="detail-subtext">Hamad International Airport</div>
-                        </div>
-                        <div class="detail-item">
-                            <div class="detail-label">Arrival</div>
-                            <div class="detail-value">12:55 PM, April 18</div>
-                            <div class="detail-subtext">Suvarnabhumi Airport</div>
-                        </div>
+                <span class="flight-airline">Qatar Airways QR834</span>
+            </div>
+            <div class="flight-details">
+                <div class="flight-detail-row">
+                    <div class="detail-item">
+                        <div class="detail-label">Departure</div>
+                        <div class="detail-value">2:05 AM, April 18</div>
+                        <div class="detail-subtext">Hamad International Airport</div>
                     </div>
-                    <div class="arrival-note">
-                        <strong>🏠 Back Home!</strong> Welcome back to Bangkok
+                    <div class="detail-item">
+                        <div class="detail-label">Arrival</div>
+                        <div class="detail-value">12:55 PM, April 18</div>
+                        <div class="detail-subtext">Suvarnabhumi Airport</div>
                     </div>
+                </div>
+                <div class="arrival-note">
+                    <strong>🏠 Back Home!</strong> Welcome back to Bangkok
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Passenger Info -->
-        <section class="info-section">
+        <div class="section-card">
             <h2>👥 Passenger Information</h2>
             <div class="passenger-grid">
                 <div class="passenger-card">
@@ -245,7 +685,6 @@
                     <p><strong>E-ticket:</strong> 157-2817100250</p>
                     <p><strong>Class:</strong> Economy</p>
                 </div>
-                <!-- Additional Guests -->
                 <div class="passenger-card">
                     <h4>Guest 5 (TBD)</h4>
                     <p><strong>E-ticket:</strong> Pending</p>
@@ -262,75 +701,68 @@
                     <p><strong>Class:</strong> Economy</p>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Baggage Info -->
-        <section class="info-section">
+        <div class="section-card">
             <h2>🧳 Baggage Allowance</h2>
-            <div class="baggage-info-card">
-                <h3>Per Person (All Passengers)</h3>
-                <div class="baggage-breakdown">
-                    <div class="baggage-item">
-                        <div class="baggage-icon">👜</div>
-                        <div class="baggage-details">
-                            <h4>Personal Item</h4>
-                            <p>1 piece, max 2 kg</p>
-                            <p class="baggage-note">Must fit under seat</p>
-                        </div>
-                    </div>
-                    <div class="baggage-item">
-                        <div class="baggage-icon">💼</div>
-                        <div class="baggage-details">
-                            <h4>Carry-on Baggage</h4>
-                            <p>1 piece per person</p>
-                            <p class="baggage-note">Max dimensions: 50×37×25 cm</p>
-                        </div>
-                    </div>
-                    <div class="baggage-item">
-                        <div class="baggage-icon">🧳</div>
-                        <div class="baggage-details">
-                            <h4>Checked Baggage</h4>
-                            <p>25 kg per person</p>
-                            <p class="baggage-note">Max total dimensions: 300 cm (L+W+H)</p>
-                        </div>
+            <p style="color: var(--text-medium); margin-bottom: 1rem;"><strong>Per Person (All Passengers)</strong></p>
+            <div class="baggage-grid">
+                <div class="baggage-item">
+                    <span class="baggage-icon">👜</span>
+                    <div class="baggage-details">
+                        <h4>Personal Item</h4>
+                        <p>1 piece, max 2 kg</p>
+                        <p class="baggage-note">Must fit under seat</p>
                     </div>
                 </div>
-                <div class="baggage-warning">
-                    <strong>⚠️ Important:</strong> Total weight of personal item + carry-on cannot exceed 7 kg
+                <div class="baggage-item">
+                    <span class="baggage-icon">💼</span>
+                    <div class="baggage-details">
+                        <h4>Carry-on Baggage</h4>
+                        <p>1 piece per person</p>
+                        <p class="baggage-note">Max: 50×37×25 cm</p>
+                    </div>
+                </div>
+                <div class="baggage-item">
+                    <span class="baggage-icon">🧳</span>
+                    <div class="baggage-details">
+                        <h4>Checked Baggage</h4>
+                        <p>25 kg per person</p>
+                        <p class="baggage-note">Max total: 300 cm (L+W+H)</p>
+                    </div>
                 </div>
             </div>
-        </section>
+            <div class="baggage-warning">
+                <strong>⚠️ Important:</strong> Total weight of personal item + carry-on cannot exceed 7 kg
+            </div>
+        </div>
 
         <!-- Important Reminders -->
-        <section class="info-section">
+        <div class="section-card">
             <h2>⚠️ Important Reminders</h2>
-            <div class="reminders-card">
-                <ul class="reminders-list">
-                    <li><strong>Check-in Early:</strong> Arrive at airport at least 3 hours before departure for
-                        international flights</li>
-                    <li><strong>Valid ID Required:</strong> Bring passport used for booking to all airport procedures
-                    </li>
-                    <li><strong>Oslo Transfer Alert:</strong> On return flight, baggage is NOT checked through at Oslo -
-                        you must collect and recheck bags</li>
-                    <li><strong>Ticket Sequence:</strong> Tickets must be used in the order listed in the itinerary, or
-                        airlines may refuse carriage</li>
-                    <li><strong>Early Departure:</strong> April 17 departure is 7:55 AM - plan to arrive at Keflavík
-                        Airport by 5:00 AM</li>
-                    <li><strong>Rental Car Return:</strong> Return car before final check-in (allow 30-45 minutes for
-                        car return process)</li>
-                </ul>
-            </div>
-        </section>
+            <ul class="reminders-list">
+                <li><strong>Check-in Early:</strong> Arrive at airport at least 3 hours before departure for international flights</li>
+                <li><strong>Valid ID Required:</strong> Bring passport used for booking to all airport procedures</li>
+                <li><strong>Oslo Transfer Alert:</strong> On return flight, baggage is NOT checked through at Oslo - you must collect and recheck bags</li>
+                <li><strong>Ticket Sequence:</strong> Tickets must be used in the order listed in the itinerary, or airlines may refuse carriage</li>
+                <li><strong>Early Departure:</strong> April 17 departure is 7:55 AM - plan to arrive at Keflavík Airport by 5:00 AM</li>
+                <li><strong>Rental Car Return:</strong> Return car before final check-in (allow 30-45 minutes for car return process)</li>
+            </ul>
+        </div>
+
     </main>
 
+    <!-- Footer -->
     <footer>
         <p>Iceland Trip 2026 | Journey through Fire and Ice 🇮🇸</p>
+        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 8-17, 2026 • 7 Adults</p>
     </footer>
 
     <script>
         function toggleMobileMenu() {
-            const navMenu = document.getElementById('navMenu');
-            navMenu.classList.toggle('active');
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('mobile-open');
         }
     </script>
 </body>
