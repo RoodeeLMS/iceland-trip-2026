@@ -13,7 +13,7 @@
             --primary-blue: #0077B6;
             --aurora-green: #00B4D8;
             --deep-navy: #1a1a2e;
-            --glacier-white: #F8FAFC;
+            --glacier-white: #F0F9FF;
             --ice-blue: #CAF0F8;
             --volcanic-black: #2D3748;
             --sunset-gold: #F59E0B;
@@ -29,7 +29,7 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #F8FAFC 0%, #E0F2FE 50%, #F0F9FF 100%);
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
             min-height: 100vh;
             color: var(--volcanic-black);
         }
@@ -135,7 +135,7 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 2rem;
         }
 
         /* Page Header */
@@ -148,12 +148,14 @@
 
         .page-header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3em;
-            margin-bottom: 10px;
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .subtitle {
-            font-size: 1.2em;
+        .subtitle,
+        .page-header p {
+            font-size: 1.1rem;
             opacity: 0.9;
         }
 
@@ -167,9 +169,9 @@
 
         .card {
             background: white;
-            border-radius: 12px;
+            border-radius: 16px;
             padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
@@ -200,7 +202,7 @@
         }
 
         .countdown-container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
@@ -361,7 +363,7 @@
         /* Timeline Styles */
         .timeline-container {
             position: relative;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 40px 0;
         }
@@ -579,8 +581,7 @@
         /* Footer */
         footer {
             text-align: center;
-            color: #5A5A5A;
-            padding: 30px 20px;
+            padding: 2rem;
             background: var(--deep-navy);
             color: white;
         }
@@ -588,7 +589,7 @@
         footer p { margin: 5px 0; }
 
         @media (max-width: 768px) {
-            .page-header h1 { font-size: 2em; }
+            .page-header h1 { font-size: 1.75rem; }
             .grid { grid-template-columns: 1fr; }
             .card { padding: 20px; }
         }
