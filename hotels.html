@@ -414,6 +414,44 @@
                 gap: 0.5rem;
             }
         }
+
+        /* Gallery */
+        .hotel-gallery {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            scrollbar-width: thin;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .hotel-gallery::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .hotel-gallery::-webkit-scrollbar-thumb {
+            background-color: var(--hotel-amber);
+            border-radius: 3px;
+        }
+
+        .gallery-image {
+            height: 250px;
+            width: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-image:hover {
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 768px) {
+            .gallery-image {
+                height: 180px;
+            }
+        }
     </style>
 </head>
 
@@ -473,7 +511,7 @@
                 <div class="hotel-title">
                     <h3>🏨 Thingholt Hotel Apartments</h3>
                     <div class="hotel-meta">
-                        <span>📍 Reykjavík</span>
+                        <span>📍 Reykjavík (City Center)</span>
                         <span>📅 April 8-9, 2026</span>
                         <span>🌙 1 night</span>
                     </div>
@@ -484,6 +522,25 @@
                 <div class="itinerary-link">
                     <strong>🔗 Part of:</strong> Day 1 (April 8) - Arrival & Reykjavík Exploration
                 </div>
+
+                <div class="hotel-gallery">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/431997755.jpg?k=bac5673919510de5c3e72fb6a3044515f669e66f762f65281a9507821ad5ad36&o="
+                        alt="Thingholt Interior" class="gallery-image">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/486281347.jpg?k=e7891535046979ed8a75586ca4a880ac9348208b8070f8298c426d69b37b1be5&o="
+                        alt="Thingholt Room" class="gallery-image">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max500/486282289.jpg?k=0924c53095c5ce7009dc91536695fc9391cc0fa8dded1a1940a65054bbd2a52d&o="
+                        alt="Thingholt Detail" class="gallery-image">
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">✨ The Vibe</div>
+                    <p style="color: var(--text-medium); margin-bottom: 1rem;">
+                        A stylish, modern retreat in the heart of Reykjavík. Featuring sleek Scandinavian design, these
+                        apartments offer the perfect blend of hotel luxury and home comfort. Located just steps from
+                        Laugavegur shopping street.
+                    </p>
+                </div>
+
                 <div class="hotel-section">
                     <div class="section-title">📍 Location & Room</div>
                     <div class="info-grid">
@@ -501,6 +558,25 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">💎 Amenities</div>
+                    <div class="amenities-list">
+                        <span class="amenity-tag">🍳 Kitchenette</span>
+                        <span class="amenity-tag">📶 Free WiFi</span>
+                        <span class="amenity-tag">🏙️ City Center</span>
+                        <span class="amenity-tag">🧖 Spa Access (Fee)</span>
+                        <span class="amenity-tag">🧹 Daily Housekeeping</span>
+                    </div>
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">🌟 Guest Favorites</div>
+                    <div class="location-box" style="border-left-color: #F59E0B;">
+                        "The location is unbeatable - right in the action but quiet inside. The interior design is
+                        stunning and clean."
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -510,7 +586,7 @@
                 <div class="hotel-title">
                     <h3>🏡 Guesthouse Spuni Cozy Cottage 861</h3>
                     <div class="hotel-meta">
-                        <span>📍 Hvolsvöllur, South Iceland</span>
+                        <span>📍 Hvolsvöllur Area</span>
                         <span>📅 April 9-10, 2026</span>
                         <span>🌙 1 night</span>
                     </div>
@@ -521,69 +597,58 @@
                 <div class="itinerary-link">
                     <strong>🔗 Part of:</strong> Day 2 (April 9) - Golden Circle
                 </div>
-                <div class="hotel-section">
-                    <div class="section-title">📍 Location & Address</div>
-                    <div class="location-box">
-                        <p><strong>Full Address:</strong> Skeggjastaðir land 18 0101, Vestur-Landeyjahreppur, Hvolsvöllur, Iceland, 861</p>
-                    </div>
+
+                <div class="hotel-gallery">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/760075586.jpg?k=0ede388a01e038028720c83608206a40d62c5b6ab761597f1e2667065d1bdd7e&o="
+                        alt="Spuni Cottage Exterior" class="gallery-image">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max500/760075558.jpg?k=8c8cb6e23d5f43170aa676f865fa6a5f58b989453191aa4e03d24d97fa8cb99b&o="
+                        alt="Spuni Interior" class="gallery-image">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max500/760088718.jpg?k=08a692484724fa882a0ff5b249314d30e4e20dfcccffcccfc652b237e6d53708&o="
+                        alt="Spuni View" class="gallery-image">
                 </div>
+
                 <div class="hotel-section">
-                    <div class="section-title">🛏️ Room Details</div>
+                    <div class="section-title">✨ The Vibe</div>
+                    <p style="color: var(--text-medium); margin-bottom: 1rem;">
+                        A charming, simple wooden cottage in the vast Icelandic countryside. Perfect for a quiet night
+                        after the Golden Circle, offering privacy and direct access to nature.
+                    </p>
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">📍 Location & Room</div>
                     <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Hotel</div>
+                            <div class="info-value">Guesthouse Spuni</div>
+                        </div>
                         <div class="info-item">
                             <div class="info-label">Room Type</div>
                             <div class="info-value">Two-Bedroom House</div>
                         </div>
                         <div class="info-item">
-                            <div class="info-label">Capacity</div>
-                            <div class="info-value">4 adults</div>
+                            <div class="info-label">Guests</div>
+                            <div class="info-value">4 Adults (Core Group)</div>
                         </div>
                     </div>
                 </div>
+
                 <div class="hotel-section">
-                    <div class="section-title">👥 Guests</div>
-                    <div class="guest-list">
-                        <ul>
-                            <li>Thanakorn Athithanathaworn</li>
-                            <li>Arpaporn Chamnong</li>
-                            <li>Nick Chamnong</li>
-                            <li>Aekkalag Sonthilug</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="hotel-section">
-                    <div class="section-title">✨ Amenities</div>
+                    <div class="section-title">💎 Amenities</div>
                     <div class="amenities-list">
                         <span class="amenity-tag">☕ Coffee & Tea</span>
-                        <span class="amenity-tag">🚗 Parking</span>
+                        <span class="amenity-tag">🚗 Private Parking</span>
                         <span class="amenity-tag">📡 Free WiFi</span>
+                        <span class="amenity-tag">🌄 Garden View</span>
+                        <span class="amenity-tag">🍳 Kitchenette</span>
                     </div>
                 </div>
+
                 <div class="hotel-section">
-                    <div class="section-title">💳 Booking Details</div>
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <div class="info-label">Booking ID</div>
-                            <div class="info-value">1951993306</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Reference No</div>
-                            <div class="info-value">6460838197</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Booked Via</div>
-                            <div class="info-value">Agoda / Booking.com</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="hotel-section">
-                    <div class="cancellation-policy">
-                        <h4>📋 Cancellation Policy</h4>
-                        <ul>
-                            <li><strong>Free Cancellation:</strong> Before April 2, 2026</li>
-                            <li><strong>7 days before:</strong> 83% of booking value</li>
-                            <li><strong>No-show:</strong> 83% of booking value</li>
-                        </ul>
+                    <div class="section-title">🌟 Guest Favorites</div>
+                    <div class="location-box" style="border-left-color: #F59E0B;">
+                        "A cozy little cabin in the middle of nowhere. Very peaceful and perfect for a group of
+                        friends."
                     </div>
                 </div>
             </div>
@@ -595,7 +660,7 @@
                 <div class="hotel-title">
                     <h3>🏡 Hrifunes Nature Park</h3>
                     <div class="hotel-meta">
-                        <span>📍 Vík Area</span>
+                        <span>📍 Vík Area (Sanctuary)</span>
                         <span>📅 April 10-11, 2026</span>
                         <span>🌙 1 night</span>
                     </div>
@@ -606,6 +671,25 @@
                 <div class="itinerary-link">
                     <strong>🔗 Part of:</strong> Day 3 (April 10) - Waterfalls & Black Sand Beaches
                 </div>
+
+                <div class="hotel-gallery">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/120745591.jpg?k=88c1a5e353a3a8be37f8f7e8e2d604f2ce5547742f7860cd432c2c7a7126ae58&o="
+                        alt="Hrifunes Exterior" class="gallery-image">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max500/120745544.jpg?k=47edd73b797937dacf1d8b123e41de8a302bf1cd5caf99ce3178d427762833d6&o="
+                        alt="Hrifunes Cabin" class="gallery-image">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max500/120745571.jpg?k=fac9194054b067af95bd9246ec9a6917b86653b814540559e304677f7be3ede7&o="
+                        alt="Hrifunes View" class="gallery-image">
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">✨ The Vibe</div>
+                    <p style="color: var(--text-medium); margin-bottom: 1rem;">
+                        A hidden gem surrounded by Icelandic nature. These modern cabins offer seclusion and stunning
+                        panoramic views. The perfect place to unwind and watch for the Northern Lights away from city
+                        lights.
+                    </p>
+                </div>
+
                 <div class="hotel-section">
                     <div class="section-title">📍 Location & Room</div>
                     <div class="info-grid">
@@ -623,6 +707,24 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">💎 Amenities</div>
+                    <div class="amenities-list">
+                        <span class="amenity-tag">🧖 Sauna & Hot Tub</span>
+                        <span class="amenity-tag">🔥 Heating</span>
+                        <span class="amenity-tag">📶 Free WiFi</span>
+                        <span class="amenity-tag">🌄 Mountain Views</span>
+                        <span class="amenity-tag">🍳 Private Kitchen</span>
+                    </div>
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">🌟 Guest Favorites</div>
+                    <div class="location-box" style="border-left-color: #F59E0B;">
+                        "Peaceful, clean, and the hot tub under the stars was magical. A true nature retreat."
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -632,7 +734,7 @@
                 <div class="hotel-title">
                     <h3>🏡 Old Cottages</h3>
                     <div class="hotel-meta">
-                        <span>📍 Jökulsárlón Area</span>
+                        <span>📍 Jökulsárlón (Glacier Area)</span>
                         <span>📅 April 11-12, 2026</span>
                         <span>🌙 1 night</span>
                     </div>
@@ -643,6 +745,24 @@
                 <div class="itinerary-link">
                     <strong>🔗 Part of:</strong> Day 4 (April 11) - Canyons, Glaciers & Ice Lagoons
                 </div>
+
+                <div class="hotel-gallery">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/517959021.jpg?k=966283dc3afb1ccbb19f7a25d66e361bae67445007a6353508a7045c8e5ed269&o="
+                        alt="Old Cottages Exterior" class="gallery-image">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max500/614324210.jpg?k=459ef1f76d0aa3e7fef4a6fba65088d3a67820413928578328573dab3be23b7a&o="
+                        alt="Old Cottages Interior" class="gallery-image">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max500/517958996.jpg?k=c552fc2033925dffdcb38d6f8637440624aa581b16b2589fe7c132627764ee93&o="
+                        alt="Old Cottages View" class="gallery-image">
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">✨ The Vibe</div>
+                    <p style="color: var(--text-medium); margin-bottom: 1rem;">
+                        Charming, rustic cottages with unbeatable proximity to the Glacier Lagoon. Steeped in history
+                        and warmth, these cottages offer a cozy refuge right next to the ice caves and Diamond Beach.
+                    </p>
+                </div>
+
                 <div class="hotel-section">
                     <div class="section-title">📍 Location & Room</div>
                     <div class="info-grid">
@@ -651,9 +771,32 @@
                             <div class="info-value">Old Cottages</div>
                         </div>
                         <div class="info-item">
+                            <div class="info-label">Location</div>
+                            <div class="info-value">Near Jökulsárlón</div>
+                        </div>
+                        <div class="info-item">
                             <div class="info-label">Guests</div>
                             <div class="info-value">7 Adults</div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">💎 Amenities</div>
+                    <div class="amenities-list">
+                        <span class="amenity-tag">🏔️ Glacier Views</span>
+                        <span class="amenity-tag">🌲 Rustic Charm</span>
+                        <span class="amenity-tag">🍳 Kitchen Facilities</span>
+                        <span class="amenity-tag">🚗 Free Parking</span>
+                        <span class="amenity-tag">🌊 Waterfall on Property</span>
+                    </div>
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">🌟 Guest Favorites</div>
+                    <div class="location-box" style="border-left-color: #F59E0B;">
+                        "The location is absolutely incredible, just minutes from the ice lagoon. The cottage feels like
+                        a warm hug."
                     </div>
                     <p style="margin-top: 1rem; color: var(--text-medium); font-style: italic;">
                         See Booking PDF: 11_Old cottages_Agoda.pdf
@@ -668,7 +811,7 @@
                 <div class="hotel-title">
                     <h3>🏡 Stora Mork 3</h3>
                     <div class="hotel-meta">
-                        <span>📍 Hvolsvöllur Area</span>
+                        <span>📍 Hvolsvöllur Area (Farm Stay)</span>
                         <span>📅 April 12-13, 2026</span>
                         <span>🌙 1 night</span>
                     </div>
@@ -679,6 +822,24 @@
                 <div class="itinerary-link">
                     <strong>🔗 Part of:</strong> Day 5 (April 12) - Return West
                 </div>
+
+                <div class="hotel-gallery">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/69790097.jpg?k=d38a42e2e387506140e41922ba8a15f82072830640b7b80eb8e9c39e75aec86d&o="
+                        alt="Stora Mork Exterior" class="gallery-image">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max500/753055016.jpg?k=0e97bc8eaad97d0948dbcee06433923c04c8c281e0c399137b2a63c006d28428&o="
+                        alt="Stora Mork Room" class="gallery-image">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max500/69813156.jpg?k=8461bca14689203b8ff503bff2f71501754ab157457fb45ea4ac4a38e7f2d0d3&o="
+                        alt="Stora Mork View" class="gallery-image">
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">✨ The Vibe</div>
+                    <p style="color: var(--text-medium); margin-bottom: 1rem;">
+                        A peaceful countryside guesthouse on an active farm. Surrounded by green hills and grazing
+                        animals, it offers an authentic Icelandic rural experience with warm hospitality.
+                    </p>
+                </div>
+
                 <div class="hotel-section">
                     <div class="section-title">📍 Location & Room</div>
                     <div class="info-grid">
@@ -690,6 +851,25 @@
                             <div class="info-label">Guests</div>
                             <div class="info-value">7 Adults</div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">💎 Amenities</div>
+                    <div class="amenities-list">
+                        <span class="amenity-tag">🐑 Farm Animals</span>
+                        <span class="amenity-tag">🍳 Shared Kitchen</span>
+                        <span class="amenity-tag">📺 TV Lounge</span>
+                        <span class="amenity-tag">📶 Free WiFi</span>
+                        <span class="amenity-tag">🌄 Scenic Views</span>
+                    </div>
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">🌟 Guest Favorites</div>
+                    <div class="location-box" style="border-left-color: #F59E0B;">
+                        "Lovely host and a beautiful farm setting. Seeing the Northern Lights from the doorstep was a
+                        highlight."
                     </div>
                     <p style="margin-top: 1rem; color: var(--text-medium); font-style: italic;">
                         See Booking PDF: 12_Stora Mork 3_Agoda.pdf
@@ -704,7 +884,7 @@
                 <div class="hotel-title">
                     <h3>🏡 Hítarneskot Aurora Lodges</h3>
                     <div class="hotel-meta">
-                        <span>📍 Borgarnes Area</span>
+                        <span>📍 Borgarnes Area (Private Cabin)</span>
                         <span>📅 April 13-14, 2026</span>
                         <span>🌙 1 night</span>
                     </div>
@@ -715,6 +895,24 @@
                 <div class="itinerary-link">
                     <strong>🔗 Part of:</strong> Day 6 (April 13) - Hot River Hike & Journey North
                 </div>
+
+                <div class="hotel-gallery">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/774239337.jpg?k=319997cdaf0a01b5cd5903e47539d647a62d0edf3ddfc903ab3c32bd55ef8576&o="
+                        alt="Hitarneskot Exterior" class="gallery-image">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max500/312203095.jpg?k=cddb293d4c77ee4a36ba79b30f570659d81e05c1a6f342b280652ef52c12dabb&o="
+                        alt="Hitarneskot Hot Tub" class="gallery-image">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max500/725149198.jpg?k=237652a400cd523e18dbf41978bb5329c670d3c7acb0566ab97fb85b639ccee6&o="
+                        alt="Hitarneskot View" class="gallery-image">
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">✨ The Vibe</div>
+                    <p style="color: var(--text-medium); margin-bottom: 1rem;">
+                        Private, remote cottages designed for comfort and aurora viewing. The highlight is the private
+                        hot tub on the deck, offering unobstructed views of the night sky in total silence.
+                    </p>
+                </div>
+
                 <div class="hotel-section">
                     <div class="section-title">📍 Location & Room</div>
                     <div class="info-grid">
@@ -726,6 +924,25 @@
                             <div class="info-label">Guests</div>
                             <div class="info-value">7 Adults</div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">💎 Amenities</div>
+                    <div class="amenities-list">
+                        <span class="amenity-tag">🛁 Private Hot Tub</span>
+                        <span class="amenity-tag">🌌 Aurora Viewing</span>
+                        <span class="amenity-tag">🍖 BBQ Facilities</span>
+                        <span class="amenity-tag">🍳 Kitchen</span>
+                        <span class="amenity-tag">🏞️ Terrace</span>
+                    </div>
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">🌟 Guest Favorites</div>
+                    <div class="location-box" style="border-left-color: #F59E0B;">
+                        "The best place we stayed! Watching the Northern Lights from our own hot tub was an
+                        unforgettable experience."
                     </div>
                     <p style="margin-top: 1rem; color: var(--text-medium); font-style: italic;">
                         See Booking PDF: 13_Hítarneskot Aurora Lodges_Agoda.pdf
@@ -740,7 +957,7 @@
                 <div class="hotel-title">
                     <h3>🏡 Villa Stykkishólmur</h3>
                     <div class="hotel-meta">
-                        <span>📍 Stykkishólmur</span>
+                        <span>📍 Stykkishólmur (Luxury Villa)</span>
                         <span>📅 April 14-15, 2026</span>
                         <span>🌙 1 night</span>
                     </div>
@@ -751,6 +968,25 @@
                 <div class="itinerary-link">
                     <strong>🔗 Part of:</strong> Day 7 (April 14) - Snæfellsnes Peninsula South Coast
                 </div>
+
+                <div class="hotel-gallery">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/602684191.jpg?k=1f6c0b6d133c43632f7d4b89225ef02425eb8dbe3b189fb313e09a5fefce892f&o="
+                        alt="Villa Stykkisholmur Exterior" class="gallery-image">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max500/602684196.jpg?k=288a2dacd6bda5e069e702cd12e7d5a7a45ee34d3a7471a37a5cf1e6bd422dec&o="
+                        alt="Villa Stykkisholmur Interior" class="gallery-image">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max500/602695774.jpg?k=d571ae0cdf87e9f703cc13baca5c43a4d3ef044ab5a3470f0eedee076b86e667&o="
+                        alt="Villa Stykkisholmur View" class="gallery-image">
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">✨ The Vibe</div>
+                    <p style="color: var(--text-medium); margin-bottom: 1rem;">
+                        An exceptional, luxurious stand-alone villa with breathtaking views of the harbor and town.
+                        Spacious, beautifully designed, and equipped with high-end amenities, this is the premium stay
+                        of the trip.
+                    </p>
+                </div>
+
                 <div class="hotel-section">
                     <div class="section-title">📍 Location & Room</div>
                     <div class="info-grid">
@@ -759,9 +995,32 @@
                             <div class="info-value">Villa Stykkishólmur</div>
                         </div>
                         <div class="info-item">
+                            <div class="info-label">Type</div>
+                            <div class="info-value">Whole Villa (4 Bedrooms)</div>
+                        </div>
+                        <div class="info-item">
                             <div class="info-label">Guests</div>
                             <div class="info-value">7 Adults</div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">💎 Amenities</div>
+                    <div class="amenities-list">
+                        <span class="amenity-tag">🛁 Large Outdoor Hot Tub</span>
+                        <span class="amenity-tag">👨‍🍳 Chef's Kitchen</span>
+                        <span class="amenity-tag">🔥 Fireplace</span>
+                        <span class="amenity-tag">🌊 Harbor Views</span>
+                        <span class="amenity-tag">🧺 Washer & Dryer</span>
+                    </div>
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">🌟 Guest Favorites</div>
+                    <div class="location-box" style="border-left-color: #F59E0B;">
+                        "Simply amazing. The house is huge, the view is spectacular, and the hot tub fits everyone. A
+                        10/10 experience."
                     </div>
                     <p style="margin-top: 1rem; color: var(--text-medium); font-style: italic;">
                         See Booking PDF: 14-15_Villa Stykkisholmur_Booking.pdf
@@ -776,7 +1035,7 @@
                 <div class="hotel-title">
                     <h3>🏡 Sæbol / Ocean Lair</h3>
                     <div class="hotel-meta">
-                        <span>📍 Grundarfjörður, West Iceland</span>
+                        <span>📍 Grundarfjörður (Kirkjufell View)</span>
                         <span>📅 April 15-16, 2026</span>
                         <span>🌙 1 night</span>
                     </div>
@@ -787,6 +1046,25 @@
                 <div class="itinerary-link">
                     <strong>🔗 Part of:</strong> Day 8 (April 15) - Snæfellsnes Peninsula North Coast
                 </div>
+
+                <div class="hotel-gallery">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/166325695.jpg?k=ae4343f7bdc7009ab5aff44bf74b283380804ee4a9a4ddacbcb0966b11c56c48&o="
+                        alt="Saebol Exterior" class="gallery-image">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max500/175268860.jpg?k=f4c34e62e3542d2cc180101a65601ff2c5c7bb980fe6748276efc812d60de50c&o="
+                        alt="Saebol Interior" class="gallery-image">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max500/175268920.jpg?k=edbbf3ef4ab5aac12d091d2ee54fc72977efbc5f03ec89da6b3e8fa572a84cc1&o="
+                        alt="Saebol View" class="gallery-image">
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">✨ The Vibe</div>
+                    <p style="color: var(--text-medium); margin-bottom: 1rem;">
+                        Spacious, modern apartments located directly by the sea. Famous for their incredible views of
+                        Kirkjufell mountain, these units offer a front-row seat to one of Iceland's most iconic
+                        landscapes.
+                    </p>
+                </div>
+
                 <div class="hotel-section">
                     <div class="section-title">📍 Location & Room</div>
                     <div class="info-grid">
@@ -808,6 +1086,25 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">💎 Amenities</div>
+                    <div class="amenities-list">
+                        <span class="amenity-tag">🏔️ Kirkjufell View</span>
+                        <span class="amenity-tag">🌊 Sea View</span>
+                        <span class="amenity-tag">🍳 Full Kitchen</span>
+                        <span class="amenity-tag">🧺 Washing Machine</span>
+                        <span class="amenity-tag">📺 Flat-screen TV</span>
+                    </div>
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">🌟 Guest Favorites</div>
+                    <div class="location-box" style="border-left-color: #F59E0B;">
+                        "The view of Kirkjufell from the living room is breathtaking. The apartment is huge, clean, and
+                        has everything you need."
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -817,7 +1114,7 @@
                 <div class="hotel-title">
                     <h3>🏨 Garður Apartments</h3>
                     <div class="hotel-meta">
-                        <span>📍 Keflavík (Near Airport)</span>
+                        <span>📍 Garður (Near Airport)</span>
                         <span>📅 April 16-17, 2026</span>
                         <span>🌙 1 night</span>
                     </div>
@@ -828,6 +1125,25 @@
                 <div class="itinerary-link">
                     <strong>🔗 Part of:</strong> Day 9 (April 16) - Reykjanes & Blue Lagoon
                 </div>
+
+                <div class="hotel-gallery">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/410467925.jpg?k=ce2f2e732c8a5e39854d75eb15aa67b0884f7ca5454c00d89505ab753dfac433&o="
+                        alt="Gardur Exterior" class="gallery-image">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max500/410468114.jpg?k=6405f07e3efcfbd5da8e9172d6aa5e0342c93abdbfeac5c2806a47894e3219ea&o="
+                        alt="Gardur Interior" class="gallery-image">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max500/539673669.jpg?k=107267cc7374e0cb5ca4fe3d34222e1279ea2681856775990fbef2db02b628a7&o="
+                        alt="Gardur View" class="gallery-image">
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">✨ The Vibe</div>
+                    <p style="color: var(--text-medium); margin-bottom: 1rem;">
+                        Conveniently located near Keflavík Airport, yet offering a peaceful seaside setting. With views
+                        of the lighthouse and ocean, it's the perfect relaxing stop before your flight home. Clean,
+                        comfortable, and welcoming.
+                    </p>
+                </div>
+
                 <div class="hotel-section">
                     <div class="section-title">📍 Location & Room</div>
                     <div class="info-grid">
@@ -843,6 +1159,25 @@
                             <div class="info-label">Guests</div>
                             <div class="info-value">4 Adults (Core Group)</div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">💎 Amenities</div>
+                    <div class="amenities-list">
+                        <span class="amenity-tag">✈️ Near Airport</span>
+                        <span class="amenity-tag">🌊 Ocean Views</span>
+                        <span class="amenity-tag">💡 Lighthouse Nearby</span>
+                        <span class="amenity-tag">🍳 Kitchen Facilities</span>
+                        <span class="amenity-tag">🚗 Free Parking</span>
+                    </div>
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title">🌟 Guest Favorites</div>
+                    <div class="location-box" style="border-left-color: #F59E0B;">
+                        "Super convenient for the airport but feels world's away. The sunset by the lighthouse was
+                        beautiful."
                     </div>
                 </div>
             </div>
