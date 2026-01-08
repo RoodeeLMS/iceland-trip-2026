@@ -447,6 +447,25 @@
             transform: scale(1.02);
         }
 
+        /* Booking Link */
+        .booking-link-btn {
+            display: inline-block;
+            background-color: #003580;
+            /* Booking.com Blue */
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            transition: background-color 0.2s;
+        }
+
+        .booking-link-btn:hover {
+            background-color: #00224f;
+        }
+
         @media (max-width: 768px) {
             .gallery-image {
                 height: 180px;
@@ -499,7 +518,7 @@
                     <span>Adults</span>
                 </div>
                 <div class="summary-item">
-                    <strong>9</strong>
+                    <strong>8</strong>
                     <span>Locations</span>
                 </div>
             </div>
@@ -521,6 +540,9 @@
             <div class="hotel-content">
                 <div class="itinerary-link">
                     <strong>🔗 Part of:</strong> Day 1 (April 8) - Arrival & Reykjavík Exploration
+                    <br>
+                    <a href="https://www.booking.com/hotel/is/thingholt-apartments-from-center-hotels.html"
+                        target="_blank" class="booking-link-btn">View on Booking.com</a>
                 </div>
 
                 <div class="hotel-gallery">
@@ -596,6 +618,9 @@
             <div class="hotel-content">
                 <div class="itinerary-link">
                     <strong>🔗 Part of:</strong> Day 2 (April 9) - Golden Circle
+                    <br>
+                    <a href="https://www.booking.com/hotel/is/guesthouse-spuni-cozy-cottage-861-hvolsvollur.html"
+                        target="_blank" class="booking-link-btn">View on Booking.com</a>
                 </div>
 
                 <div class="hotel-gallery">
@@ -670,6 +695,9 @@
             <div class="hotel-content">
                 <div class="itinerary-link">
                     <strong>🔗 Part of:</strong> Day 3 (April 10) - Waterfalls & Black Sand Beaches
+                    <br>
+                    <a href="https://www.booking.com/hotel/is/hrifunes-park-cabins.en-gb.html" target="_blank"
+                        class="booking-link-btn">View on Booking.com</a>
                 </div>
 
                 <div class="hotel-gallery">
@@ -744,6 +772,9 @@
             <div class="hotel-content">
                 <div class="itinerary-link">
                     <strong>🔗 Part of:</strong> Day 4 (April 11) - Canyons, Glaciers & Ice Lagoons
+                    <br>
+                    <a href="https://www.booking.com/hotel/is/old-cottages.html" target="_blank"
+                        class="booking-link-btn">View on Booking.com</a>
                 </div>
 
                 <div class="hotel-gallery">
@@ -821,6 +852,9 @@
             <div class="hotel-content">
                 <div class="itinerary-link">
                     <strong>🔗 Part of:</strong> Day 5 (April 12) - Return West
+                    <br>
+                    <a href="https://www.booking.com/hotel/is/stora-mork-3.html" target="_blank"
+                        class="booking-link-btn">View on Booking.com</a>
                 </div>
 
                 <div class="hotel-gallery">
@@ -894,6 +928,9 @@
             <div class="hotel-content">
                 <div class="itinerary-link">
                     <strong>🔗 Part of:</strong> Day 6 (April 13) - Hot River Hike & Journey North
+                    <br>
+                    <a href="https://www.booking.com/hotel/is/hitarnesfjorur.html" target="_blank"
+                        class="booking-link-btn">View on Booking.com</a>
                 </div>
 
                 <div class="hotel-gallery">
@@ -958,15 +995,18 @@
                     <h3>🏡 Villa Stykkishólmur</h3>
                     <div class="hotel-meta">
                         <span>📍 Stykkishólmur (Luxury Villa)</span>
-                        <span>📅 April 14-15, 2026</span>
-                        <span>🌙 1 night</span>
+                        <span>📅 April 14-16, 2026</span>
+                        <span>🌙 2 nights</span>
                     </div>
                 </div>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="hotel-content">
                 <div class="itinerary-link">
-                    <strong>🔗 Part of:</strong> Day 7 (April 14) - Snæfellsnes Peninsula South Coast
+                    <strong>🔗 Part of:</strong> Day 7 & 8 (April 14-16) - Snæfellsnes Peninsula Exploration
+                    <br>
+                    <a href="https://www.booking.com/hotel/is/villa-stykkisholmur.html" target="_blank"
+                        class="booking-link-btn">View on Booking.com</a>
                 </div>
 
                 <div class="hotel-gallery">
@@ -1029,31 +1069,43 @@
             </div>
         </div>
 
-        <!-- Hotel 8: Grundarfjörður -->
-        <div id="grundarfjordur" class="hotel-card">
-            <div class="hotel-header" onclick="toggleHotel(this)">
+        <!-- Hotel 8: Grundarfjörður (BACKUP) -->
+        <!-- HIDDEN: OCEAN LAIR BACKUP (Kept for reference)
+        <div id="grundarfjordur" class="hotel-card" style="border: 2px dashed #94A3B8; opacity: 0.9;">
+            <div class="hotel-header" onclick="toggleHotel(this)"
+                style="background: linear-gradient(135deg, #64748B 0%, #475569 100%);">
                 <div class="hotel-title">
-                    <h3>🏡 Sæbol / Ocean Lair</h3>
+                    <h3>⚠️ BACKUP: Sæbol / Ocean Lair</h3>
                     <div class="hotel-meta">
-                        <span>📍 Grundarfjörður (Kirkjufell View)</span>
-                        <span>📅 April 15-16, 2026</span>
+                        <span>📍 Grundarfjörður</span>
+                        <span>📅 Backup Option</span>
                         <span>🌙 1 night</span>
                     </div>
                 </div>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="hotel-content">
-                <div class="itinerary-link">
-                    <strong>🔗 Part of:</strong> Day 8 (April 15) - Snæfellsnes Peninsula North Coast
+                <div class="itinerary-link" style="background: #F1F5F9; border-left-color: #64748B; color: #475569;">
+                    <strong>ℹ️ STATUS:</strong> Landscape Contingency Plan (For 4 Pax)
                 </div>
 
                 <div class="hotel-gallery">
                     <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/166325695.jpg?k=ae4343f7bdc7009ab5aff44bf74b283380804ee4a9a4ddacbcb0966b11c56c48&o="
-                        alt="Saebol Exterior" class="gallery-image">
+                        alt="Saebol Exterior" class="gallery-image" style="filter: grayscale(30%);">
                     <img src="https://cf.bstatic.com/xdata/images/hotel/max500/175268860.jpg?k=f4c34e62e3542d2cc180101a65601ff2c5c7bb980fe6748276efc812d60de50c&o="
-                        alt="Saebol Interior" class="gallery-image">
+                        alt="Saebol Interior" class="gallery-image" style="filter: grayscale(30%);">
                     <img src="https://cf.bstatic.com/xdata/images/hotel/max500/175268920.jpg?k=edbbf3ef4ab5aac12d091d2ee54fc72977efbc5f03ec89da6b3e8fa572a84cc1&o="
-                        alt="Saebol View" class="gallery-image">
+                        alt="Saebol View" class="gallery-image" style="filter: grayscale(30%);">
+                </div>
+
+                <div class="hotel-section">
+                    <div class="section-title" style="color: #475569; border-bottom-color: #CBD5E1;">⚠️ Backup Plan
+                        Details</div>
+                    <p style="color: var(--text-medium); margin-bottom: 1rem;">
+                        <strong>Note:</strong> This booking is held only as a backup option in case the group size
+                        reverts to 4 people or plans change. The primary stay for the full group (7 pax) is at Villa
+                        Stykkishólmur for these dates.
+                    </p>
                 </div>
 
                 <div class="hotel-section">
@@ -1107,6 +1159,7 @@
                 </div>
             </div>
         </div>
+        END HIDDEN: OCEAN LAIR BACKUP -->
 
         <!-- Hotel 9: Airport -->
         <div id="airport" class="hotel-card">
@@ -1124,6 +1177,9 @@
             <div class="hotel-content">
                 <div class="itinerary-link">
                     <strong>🔗 Part of:</strong> Day 9 (April 16) - Reykjanes & Blue Lagoon
+                    <br>
+                    <a href="https://www.booking.com/hotel/is/gistihaosiadeg-garadegur.html" target="_blank"
+                        class="booking-link-btn">View on Booking.com</a>
                 </div>
 
                 <div class="hotel-gallery">
