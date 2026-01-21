@@ -1,4 +1,8 @@
-# Hotel Booking: Sæbol/Ocean Lair
+# Hotel Booking: Sæbol/Ocean Lair (Day 8)
+
+**Status:** Confirmed (Visa Documentation)
+**Date:** April 15-16, 2026 (1 Night)
+**Location:** Grundarfjörður
 
 ## Booking Details
 - **Property**: Sæbol/Ocean Lair
@@ -37,18 +41,21 @@
 
 ## Payment Information
 - **Payment Method**: Visa
-- **Card Last 4**: XXXX-XXXX-XXXX-1568
+- **Card Last 4**: XXXX-1568
 - **Booked Through**: Agoda Company Pte, Ltd.
 
 ## Cancellation Policy
 - **Free Cancellation**: Before April 8, 2026
 - **Penalty (7 days before arrival)**: 100% of booking value
-- **Cancellation on check-in day**: 100% of booking value
 - **No-show**: 100% of booking value (hotel policy)
 
 ## Notes
 - All rooms are guaranteed on the day of arrival
-- In case of no-show, room will be released and cancellation/no-show policies apply
 - All special requests are subject to availability upon arrival
 - Present electronic or paper copy of booking confirmation upon check-in
 - Original Booking.com booking ID: 5264899058
+
+## Itinerary Context
+- **Day 8 Base**: Snæfellsnes Peninsula - North Coast
+- **Primary Activity**: Kirkjufell mountain views
+- **Logistics**: Spacious apartment with iconic mountain and sea views

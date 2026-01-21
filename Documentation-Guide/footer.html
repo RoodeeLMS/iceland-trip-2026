@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: 10pt;
+            color: #666;
+            margin: 0;
+            padding: 0;
+        }
+        .page-number {
+            text-align: right;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function subst() {
+            var vars = {};
+            var query_strings_from_url = document.location.search.substring(1).split('&');
+            for (var query_string in query_strings_from_url) {
+                if (query_strings_from_url.hasOwnProperty(query_string)) {
+                    var temp_var = query_strings_from_url[query_string].split('=', 2);
+                    vars[temp_var[0]] = decodeURI(temp_var[1]);
+                }
+            }
+            var page = parseInt(vars['page']);
+
+            // Hide page number on Cover (1), Version History (2), ToC (3)
+            // Content starts on page 4, show as page 1
+            if (page <= 3) {
+                document.getElementById('pageNum').style.display = 'none';
+            } else {
+                document.getElementById('pageNum').textContent = (page - 3);
+            }
+        }
+    </script>
+</head>
+<body onload="subst()">
+    <div class="page-number">
+        <span id="pageNum"></span>
+    </div>
+</body>
+</html>

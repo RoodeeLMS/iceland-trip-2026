@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH Finance Customer Data Request - Technical Specification</title>
+    <style>
+        /* ===== BASE STYLES ===== */
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* ===== COVER PAGE ===== */
+        .title-page {
+            page-break-after: always;
+            text-align: center;
+            padding-top: 3.5in;
+            height: 10in;
+            position: relative;
+        }
+        .title-page .logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 2in;
+        }
+        .title-page h1 {
+            font-size: 28pt;
+            color: #0066b3;
+            margin-bottom: 0.3in;
+            font-weight: 700;
+        }
+        .title-page .subtitle {
+            font-size: 18pt;
+            color: #333;
+            margin: 10px 0;
+        }
+        .title-page .version {
+            font-size: 14pt;
+            color: #666;
+            margin-top: 0.5in;
+        }
+        .prepared-section {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            text-align: left;
+            font-size: 11pt;
+            line-height: 1.8;
+        }
+        .prepared-section p { margin: 15px 0; }
+
+        /* ===== VERSION HISTORY PAGE ===== */
+        .version-page { page-break-after: always; }
+        .version-page h2 {
+            color: #0066b3;
+            border-bottom: 2px solid #0066b3;
+            padding-bottom: 10px;
+        }
+        .version-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+        }
+        .version-table th {
+            background-color: #0066b3;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        .version-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .version-table tr:nth-child(even) { background-color: #f9f9f9; }
+
+        /* ===== TABLE OF CONTENTS ===== */
+        .toc { page-break-after: always; }
+        .toc h2 {
+            color: #0066b3;
+            border-bottom: 2px solid #0066b3;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .toc-item {
+            display: table;
+            width: 100%;
+            margin: 8px 0;
+        }
+        .toc-item a {
+            display: table-cell;
+            text-decoration: none;
+            color: #333;
+            white-space: nowrap;
+        }
+        .toc-item .toc-dots {
+            display: table-cell;
+            width: 100%;
+            border-bottom: 1px dotted #999;
+            height: 0.9em;
+            margin: 0 8px;
+        }
+        .toc-item .toc-page {
+            display: table-cell;
+            text-align: right;
+            white-space: nowrap;
+            padding-left: 10px;
+            color: #333;
+        }
+        .toc-section { font-weight: bold; margin-top: 15px; }
+        .toc-subsection { padding-left: 20px; }
+
+        /* ===== HEADINGS ===== */
+        h1 {
+            color: #0066b3;
+            font-size: 18pt;
+            border-bottom: 2px solid #0066b3;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        h2 {
+            color: #004d99;
+            font-size: 14pt;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+        h3 {
+            color: #333;
+            font-size: 12pt;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        h4 {
+            color: #555;
+            font-size: 11pt;
+            margin-top: 12px;
+            margin-bottom: 8px;
+        }
+
+        /* ===== TABLES ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 10pt;
+        }
+        th {
+            background-color: #0066b3;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            vertical-align: top;
+        }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        tr { page-break-inside: avoid; }
+
+        /* ===== CODE ===== */
+        code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 9pt;
+        }
+        pre {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+            font-size: 9pt;
+            line-height: 1.4;
+            page-break-inside: avoid;
+        }
+        pre code { background: none; padding: 0; }
+
+        /* ===== FIGURES & DIAGRAMS ===== */
+        figure {
+            margin: 20px 0;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+        figcaption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 10pt;
+        }
+        .screenshot {
+            max-width: 100%;
+            max-height: 5in;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .arch-diagram {
+            height: auto;
+            max-width: 80%;
+            max-height: 7in;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* ===== LISTS ===== */
+        ul, ol { margin: 10px 0; padding-left: 25px; }
+        li { margin: 5px 0; line-height: 1.5; }
+
+        /* ===== CALLOUT BOXES ===== */
+        .note {
+            background-color: #e7f3ff;
+            border-left: 4px solid #0066b3;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .warning {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .tip {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        /* ===== PAGE BREAKS ===== */
+        .new-page { page-break-before: always; }
+        .keep-together { page-break-inside: avoid; }
+
+        @media print {
+            body { font-size: 11pt; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== COVER PAGE ==================== -->
+    <div class="title-page">
+        <img src="assets/vector-dynamics-logo.png" alt="Vector Dynamics" class="logo">
+
+        <h1>TH Finance Customer Data Request</h1>
+        <p class="subtitle">Technical Specification</p>
+
+        <div class="prepared-section">
+            <p>
+                <strong>Prepared for:</strong><br>
+                Nestle (Thailand) Ltd.<br>
+                Finance Department
+            </p>
+            <p>
+                <strong>Prepared by:</strong><br>
+                Vector Dynamics<br>
+                Nick Chamnong
+            </p>
+        </div>
+    </div>
+
+    <!-- ==================== VERSION HISTORY ==================== -->
+    <div class="version-page">
+        <h2>Version History</h2>
+        <table class="version-table">
+            <tr>
+                <th style="width: 15%">Version</th>
+                <th style="width: 20%">Date</th>
+                <th style="width: 25%">Author</th>
+                <th style="width: 40%">Description</th>
+            </tr>
+            <tr>
+                <td>1.0</td>
+                <td>December 17, 2025</td>
+                <td>Nick Chamnong</td>
+                <td>Initial release</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ==================== TABLE OF CONTENTS ==================== -->
+    <div class="toc">
+        <h2>Table of Contents</h2>
+
+        <div class="toc-item toc-section">
+            <a href="#section1">1. Executive Summary</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">1</span>
+        </div>
+
+        <div class="toc-item toc-section">
+            <a href="#section2">2. Introduction</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">2</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section2-1">2.1 Purpose</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">2</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section2-2">2.2 Scope</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">2</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section2-3">2.3 Definitions & Acronyms</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">3</span>
+        </div>
+
+        <div class="toc-item toc-section">
+            <a href="#section3">3. System Overview</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">4</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section3-1">3.1 System Architecture</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">4</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section3-2">3.2 Application Screens</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">5</span>
+        </div>
+
+        <div class="toc-item toc-section">
+            <a href="#section4">4. Functional Specifications</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">6</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section4-1">4.1 Request Form</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">6</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section4-2">4.2 Approval Workflow</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">8</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section4-3">4.3 Role Management</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">10</span>
+        </div>
+
+        <div class="toc-item toc-section">
+            <a href="#section5">5. Technical Details</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">11</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section5-1">5.1 Power Automate Flows</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">11</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section5-2">5.2 Data Schema</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">12</span>
+        </div>
+
+        <div class="toc-item toc-section">
+            <a href="#section6">6. Configuration</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">15</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section6-1">6.1 Environment Variables</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">15</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section6-2">6.2 Security Roles</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">15</span>
+        </div>
+
+        <div class="toc-item toc-section">
+            <a href="#section7">7. Appendices</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">16</span>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+
+    <!-- Section 1: Executive Summary -->
+    <h1 id="section1">1. Executive Summary</h1>
+
+    <p>The TH Finance Customer Data Request system is a Microsoft Power Platform solution that digitalizes Nestle Thailand's customer master data creation and approval process. The application enables Finance team members to submit, review, and approve customer data requests through a structured 7-stage workflow, ensuring data accuracy and compliance before integration with SAP.</p>
+
+    <p>Key deliverables include a comprehensive Canvas App with 7 screens, 7 Power Automate notification flows, integration with Microsoft Dataverse for data storage, and role-based access control supporting multiple approval levels. The solution is deployed to the FCL_PROD environment as version 1.0.0.34 (managed solution).</p>
+
+    <!-- Section 2: Introduction -->
+    <h1 id="section2" class="new-page">2. Introduction</h1>
+
+    <div class="keep-together">
+        <h2 id="section2-1">2.1 Purpose</h2>
+        <p>This Technical Specification document provides comprehensive technical details for IT administrators, developers, and support personnel responsible for maintaining and extending the TH Finance Customer Data Request system. It covers system architecture, data models, workflows, and configuration requirements.</p>
+    </div>
+
+    <div class="keep-together">
+        <h2 id="section2-2">2.2 Scope</h2>
+
+        <h3>In Scope</h3>
+        <ul>
+            <li>Customer data request creation and management</li>
+            <li>7-stage approval workflow with role-based permissions</li>
+            <li>Bilingual support (English/Thai) for address fields</li>
+            <li>L6 Segmentation management</li>
+            <li>Email notifications via Power Automate</li>
+            <li>Integration with SAP field specifications</li>
+            <li>Role and user management</li>
+        </ul>
+    </div>
+
+    <h3>Out of Scope</h3>
+    <ul>
+        <li>Direct SAP system integration (handled by separate process)</li>
+        <li>User authentication (managed by Microsoft Entra ID)</li>
+        <li>Document management beyond file attachments</li>
+    </ul>
+
+    <div class="keep-together">
+        <h2 id="section2-3">2.3 Definitions & Acronyms</h2>
+        <table>
+            <tr>
+                <th style="width: 25%">Term</th>
+                <th>Definition</th>
+            </tr>
+            <tr>
+                <td>AR</td>
+                <td>Accounts Receivable - Finance team responsible for customer payment management</td>
+            </tr>
+        <tr>
+            <td>BU</td>
+            <td>Business Unit - Organizational division within Nestle Thailand</td>
+        </tr>
+        <tr>
+            <td>CS</td>
+            <td>Team responsible for shipping and delivery data (Delivery Priority, Shipping Conditions, Incoterms, Transport Zone)</td>
+        </tr>
+        <tr>
+            <td>L6 Segmentation</td>
+            <td>Customer classification system with 6-level hierarchy for sales categorization</td>
+        </tr>
+        <tr>
+            <td>NBS</td>
+            <td>Nestle Business Services - Shared services center for final processing</td>
+        </tr>
+        <tr>
+            <td>RM</td>
+            <td>Regional Manager - Sales approver role</td>
+        </tr>
+        <tr>
+            <td>Sales Support</td>
+            <td>Per-request role responsible for Marketing Detail, Sales View, and L6 Segmentation data entry (may be same person as Requester)</td>
+        </tr>
+        <tr>
+            <td>SAP</td>
+            <td>Enterprise Resource Planning system for financial and operational data</td>
+        </tr>
+        </table>
+    </div>
+
+    <!-- Section 3: System Overview -->
+    <h1 id="section3" class="new-page">3. System Overview</h1>
+
+    <div class="keep-together">
+        <h2 id="section3-1">3.1 System Architecture</h2>
+        <p>The system is built on Microsoft Power Platform with the following components:</p>
+
+        <figure>
+            <img src="diagrams/fig-3-1-system-architecture.png" alt="System Architecture" class="arch-diagram">
+            <figcaption>Figure 3-1: System Architecture</figcaption>
+        </figure>
+    </div>
+
+    <h3>Component Architecture</h3>
+    <table>
+        <tr>
+            <th>Component</th>
+            <th>Technology</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>Frontend</td>
+            <td>Power Apps Canvas App (v3.25092.9)</td>
+            <td>User interface for request management</td>
+        </tr>
+        <tr>
+            <td>Backend</td>
+            <td>Microsoft Dataverse (v9.2.25084.163)</td>
+            <td>Data storage and business logic</td>
+        </tr>
+        <tr>
+            <td>Workflow</td>
+            <td>Power Automate Cloud Flows</td>
+            <td>Email notifications and automation</td>
+        </tr>
+        <tr>
+            <td>Authentication</td>
+            <td>Microsoft Entra ID</td>
+            <td>User authentication and authorization</td>
+        </tr>
+        <tr>
+            <td>File Storage</td>
+            <td>Dataverse File Column</td>
+            <td>Document attachments (10 MB limit per file)</td>
+        </tr>
+    </table>
+
+    <div class="keep-together">
+        <h2 id="section3-2">3.2 Application Screens</h2>
+        <table>
+            <tr>
+                <th>Screen</th>
+                <th>Purpose</th>
+                <th>Key Features</th>
+            </tr>
+            <tr>
+                <td>scnDashboard</td>
+                <td>Main landing page and request overview</td>
+                <td>KPIs, workflow stage counts, recent activity, request list</td>
+            </tr>
+        <tr>
+            <td>scnRequest</td>
+            <td>Customer data request form</td>
+            <td>Multi-section form, approval buttons, status tracking</td>
+        </tr>
+        <tr>
+            <td>scnRole</td>
+            <td>User role management</td>
+            <td>Add/Edit/Remove user role assignments</td>
+        </tr>
+        <tr>
+            <td>scnL6Segmentation</td>
+            <td>L6 classification management</td>
+            <td>View/Add/Edit L6 segmentation records (shared table)</td>
+        </tr>
+        <tr>
+            <td>scnSettings</td>
+            <td>Application settings</td>
+            <td>User preferences and configuration</td>
+        </tr>
+        <tr>
+            <td>loadingScreen</td>
+            <td>Initial loading</td>
+            <td>App initialization and data preload</td>
+        </tr>
+        <tr>
+            <td>scnUnauthorized</td>
+            <td>Access denied</td>
+            <td>Display for unauthorized access attempts</td>
+        </tr>
+        </table>
+    </div>
+
+    <figure>
+        <img src="assets/screenshots/07-navigation-menu.png" alt="Navigation Menu" class="screenshot">
+        <figcaption>Figure 3-2: Application Navigation Menu</figcaption>
+    </figure>
+
+    <!-- Section 4: Functional Specifications -->
+    <h1 id="section4" class="new-page">4. Functional Specifications</h1>
+
+    <div class="keep-together">
+        <h2 id="section4-1">4.1 Request Form</h2>
+
+        <h3>4.1.1 Purpose</h3>
+        <p>The Request Form (scnRequest) is the primary interface for creating and managing customer data requests. It collects all necessary information for SAP customer master data creation across multiple sections.</p>
+    </div>
+
+    <div class="keep-together">
+        <h3>4.1.2 Form Sections</h3>
+
+        <figure>
+            <img src="assets/screenshots/01-new-request-form.png" alt="New Request Form" class="screenshot">
+            <figcaption>Figure 4-1: New Customer Request Form</figcaption>
+        </figure>
+    </div>
+
+    <table>
+        <tr>
+            <th>Section</th>
+            <th>Fields</th>
+            <th>Responsible Role</th>
+        </tr>
+        <tr>
+            <td>Header</td>
+            <td>Request For, Account Group, BU, Controller, Sales Manager, Sales Support</td>
+            <td>Requester</td>
+        </tr>
+        <tr>
+            <td>Address Data</td>
+            <td>Legal Name (EN/TH), Branch, House No, Street, District, City, Province, Country, Postal Code, Tax ID</td>
+            <td>Requester</td>
+        </tr>
+        <tr>
+            <td>Sales Representative</td>
+            <td>Telephone, Fax, Email, Search fields</td>
+            <td>Requester</td>
+        </tr>
+        <tr>
+            <td>Marketing Detail</td>
+            <td>Vendor, Customer Class, Industry, Industry Code</td>
+            <td>Sales Support</td>
+        </tr>
+        <tr>
+            <td>Sales View</td>
+            <td>Sales Organization, Distribution Channel, Division, Sales District, Sales Office, Sales Group, Terms of Payment, L6 Segmentation</td>
+            <td>Sales Support</td>
+        </tr>
+        <tr>
+            <td>CS View</td>
+            <td>Delivery Priority, Shipping Conditions, Incoterms, Credit Control Area, Tax Classification, Transport Zone</td>
+            <td>CS Team</td>
+        </tr>
+        <tr>
+            <td>Company View</td>
+            <td>Company Code, Rec. Account, Cash Mgmt Group, Tolerance Group, Dunning, Withholding Tax</td>
+            <td>AR Team</td>
+        </tr>
+        <tr>
+            <td>Credit Management</td>
+            <td>Credit Limit, Risk Category, Credit Rep. Group, Customer Credit Group</td>
+            <td>AR Team</td>
+        </tr>
+        <tr>
+            <td>Attachments</td>
+            <td>File uploads (documents, images)</td>
+            <td>Requester</td>
+        </tr>
+    </table>
+
+    <div class="keep-together">
+        <h3>4.1.3 Required Field Validation</h3>
+        <p>The form enforces <strong>36 required fields</strong> (plus 3 AR conditional and 5 "Extend to" conditional) validated at different workflow stages. Fields are validated with red border styling when empty:</p>
+
+        <figure>
+            <img src="assets/screenshots/24-validation-error-banner.png" alt="Validation Error" class="screenshot">
+            <figcaption>Figure 4-2: Required Field Validation Error</figcaption>
+        </figure>
+    </div>
+
+    <h4>Validation by Workflow Stage</h4>
+    <table>
+        <tr><th>Stage</th><th>Fields Validated</th><th>Count</th></tr>
+        <tr>
+            <td><strong>Submit</strong></td>
+            <td>BU Controller, CS Manager, Sales Support, Attachment, Name1 (EN/TH**), Name3 (EN/TH**), Province, District, SubDistrict, PostalCode (EN/TH**), TaxID (EN/TH**), Country (EN/TH**), Telephone</td>
+            <td>18</td>
+        </tr>
+        <tr>
+            <td><strong>Sales Support Complete</strong></td>
+            <td>CustomerClass, Industry, IndustryCode, Sales Organization, Distribution Channel, Sales District, Sales Office, Terms of Payment, L6 Segmentation</td>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td><strong>CS Complete</strong></td>
+            <td>Delivery Priority, Shipping Conditions, Incoterms, Transport Zone</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td><strong>AR Complete</strong></td>
+            <td>Credit Limit, Risk Category, Credit Rep. Group, Customer Credit Group</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td><strong>AR Complete (Sold to only)*</strong></td>
+            <td>Rec. Account, Cash Mgmt Group, Tolerance Group</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td><strong>NBS Complete</strong></td>
+            <td>Customer No.</td>
+            <td>1</td>
+        </tr>
+    </table>
+
+    <div class="note">
+        <strong>Note:</strong> Validation is enforced at each workflow stage. Draft saves are permitted without validation to allow partial data entry.<br>
+        *Fields marked "Sold to only" are conditionally required when Account Group = "Sold to" (367420000).<br>
+        **Thai (TH) fields are optional when Request For = "Extend to" (367420002): Name1_th, Name3_th, PostalCode_th, TaxID_th, Country_th.</div>
+
+    <div class="keep-together">
+        <h2 id="section4-2">4.2 Approval Workflow</h2>
+
+        <h3>4.2.1 7-Stage Workflow</h3>
+        <p>The approval process follows a sequential 7-stage workflow:</p>
+
+        <figure>
+            <img src="diagrams/fig-4-1-approval-workflow.png" alt="Approval Workflow" class="arch-diagram">
+            <figcaption>Figure 4-2: 7-Stage Approval Workflow</figcaption>
+        </figure>
+    </div>
+
+    <table>
+        <tr>
+            <th>Stage</th>
+            <th>Status</th>
+            <th>Status Code</th>
+            <th>Action Required</th>
+        </tr>
+        <tr>
+            <td>1. Draft</td>
+            <td>Draft</td>
+            <td>367420000</td>
+            <td>Requester completes form and submits</td>
+        </tr>
+        <tr>
+            <td>2. Pending Approvals</td>
+            <td>Pending Approvals</td>
+            <td>367420002</td>
+            <td>RM reviews and approves/denies</td>
+        </tr>
+        <tr>
+            <td>3. Pending Controller</td>
+            <td>Pending Approvals</td>
+            <td>367420002</td>
+            <td>Controller reviews and approves/denies</td>
+        </tr>
+        <tr>
+            <td>4. Pending CS</td>
+            <td>Pending CS</td>
+            <td>367420004</td>
+            <td>CS team completes their section</td>
+        </tr>
+        <tr>
+            <td>5. Pending AR</td>
+            <td>Pending AR</td>
+            <td>676180001</td>
+            <td>AR team completes accounting data</td>
+        </tr>
+        <tr>
+            <td>6. Pending NBS</td>
+            <td>Pending NBS</td>
+            <td>676180002</td>
+            <td>NBS performs final review</td>
+        </tr>
+        <tr>
+            <td>7. Completed</td>
+            <td>Completed</td>
+            <td>676180003</td>
+            <td>Request ready for SAP processing</td>
+        </tr>
+    </table>
+
+    <div class="keep-together">
+        <h3>4.2.2 Approval Buttons</h3>
+        <figure>
+            <img src="assets/screenshots/11-approval-buttons-ar.png" alt="Approval Buttons" class="screenshot">
+            <figcaption>Figure 4-3: AR Approval Buttons</figcaption>
+        </figure>
+    </div>
+
+    <div class="keep-together">
+        <h3>4.2.3 Denial Workflow</h3>
+        <p>When any approver denies a request:</p>
+        <ul>
+            <li>Request status returns to <strong>Draft</strong> (367420000)</li>
+            <li>Comment dialog requires denial reason</li>
+            <li>Denial comment is appended to RequestComment field with timestamp</li>
+            <li>Original requester is notified via email</li>
+            <li>Requester can edit and resubmit</li>
+        </ul>
+
+        <figure>
+            <img src="assets/screenshots/12-comment-dialog.png" alt="Comment Dialog" class="screenshot">
+            <figcaption>Figure 4-4: Denial Comment Dialog</figcaption>
+        </figure>
+    </div>
+
+    <div class="keep-together">
+        <h2 id="section4-3">4.3 Role Management</h2>
+
+        <h3>4.3.1 Global Roles</h3>
+        <p>Global roles are assigned at the application level and determine system-wide permissions:</p>
+
+        <table>
+            <tr>
+                <th>Role</th>
+                <th>Permissions</th>
+            </tr>
+            <tr>
+                <td>Admin</td>
+                <td>Full access to all requests, can impersonate any role, manage users and L6 data</td>
+            </tr>
+            <tr>
+                <td>CS</td>
+                <td>View all requests, edit CS View section, approve CS stage</td>
+            </tr>
+            <tr>
+                <td>AR</td>
+                <td>View all requests, edit Company View and Credit Management, approve AR stage</td>
+            </tr>
+            <tr>
+                <td>NBS</td>
+                <td>View all requests, perform final approval, complete workflow</td>
+            </tr>
+        </table>
+
+        <figure>
+            <img src="assets/screenshots/08-role-screen.png" alt="Role Management Screen" class="screenshot">
+            <figcaption>Figure 4-5: Role Management Screen</figcaption>
+        </figure>
+    </div>
+
+    <div class="keep-together">
+        <h3>4.3.2 Record-Specific Roles</h3>
+        <p>These roles are determined per-request based on email assignments:</p>
+
+        <table>
+            <tr>
+                <th>Role</th>
+                <th>Field</th>
+                <th>Permissions</th>
+            </tr>
+            <tr>
+                <td>Requester</td>
+                <td>CreatedBy</td>
+                <td>Create requests, edit during Draft, resubmit after denial</td>
+            </tr>
+            <tr>
+                <td>Sales Support</td>
+                <td>SalesSupportEmail</td>
+                <td>Edit Marketing Detail, Sales View, L6 Segmentation</td>
+            </tr>
+            <tr>
+                <td>RM</td>
+                <td>SalesManagerEmail</td>
+                <td>Approve/Deny at RM stage</td>
+            </tr>
+            <tr>
+                <td>Controller</td>
+                <td>BUControllerEmail</td>
+                <td>Approve/Deny at Controller stage</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Section 5: Technical Details -->
+    <h1 id="section5" class="new-page">5. Technical Details</h1>
+
+    <div class="keep-together">
+        <h2 id="section5-1">5.1 Power Automate Flows</h2>
+        <p>The solution includes 7 notification flows that trigger on status changes:</p>
+    </div>
+
+    <table>
+        <tr>
+            <th>Flow Name</th>
+            <th>Trigger Condition</th>
+            <th>Purpose</th>
+            <th>Recipients</th>
+        </tr>
+        <tr>
+            <td>THFinanceCustomerDataSubmitNotification</td>
+            <td>cr76f_status eq 367420002</td>
+            <td>Notify stakeholders of new submission</td>
+            <td>Sales Support, RM, Controller</td>
+        </tr>
+        <tr>
+            <td>THFinanceCustomerDataControllerNotification</td>
+            <td>cr76f_status eq 367420004</td>
+            <td>Secondary CS notification (misnamed in solution)</td>
+            <td>CS Team</td>
+        </tr>
+        <tr>
+            <td>THFinanceCustomerDataCSNotification</td>
+            <td>cr76f_status eq 367420004</td>
+            <td>Notify CS team for data entry</td>
+            <td>CS Team</td>
+        </tr>
+        <tr>
+            <td>THFinanceCustomerDataARNotification</td>
+            <td>cr76f_status eq 676180001</td>
+            <td>Notify AR team for accounting data</td>
+            <td>AR Team</td>
+        </tr>
+        <tr>
+            <td>THFinanceCustomerDataNBSNotification</td>
+            <td>cr76f_status eq 676180002</td>
+            <td>Notify NBS for final processing</td>
+            <td>NBS Team</td>
+        </tr>
+        <tr>
+            <td>THFinanceCustomerDataCompleteNotification</td>
+            <td>cr76f_status eq 676180003</td>
+            <td>Notify all parties of completion</td>
+            <td>All stakeholders</td>
+        </tr>
+        <tr>
+            <td>THFinanceCustomerDataDeniedNotification</td>
+            <td>cr76f_status eq 367420000 AND contains(nc_requestcomment, 'DENIED')</td>
+            <td>Notify requester of denial</td>
+            <td>Requester</td>
+        </tr>
+    </table>
+
+    <h3>5.1.2 Flow Details</h3>
+    <p>All flows share common characteristics:</p>
+    <ul>
+        <li><strong>Trigger:</strong> Dataverse "When a row is added, modified or deleted" webhook</li>
+        <li><strong>Connections:</strong> Dataverse, Office 365 Outlook, Microsoft Teams</li>
+        <li><strong>Environment Mode:</strong> Production/Development switch via environment variable</li>
+        <li><strong>Email From:</strong> THARCustomerMasterData@TH.nestle.com</li>
+    </ul>
+
+    <h4>Environment Variables</h4>
+    <table>
+        <tr>
+            <th>Variable</th>
+            <th>Schema Name</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>Applink</td>
+            <td>nc_Applink</td>
+            <td>Deep link URL to open specific request in app</td>
+        </tr>
+        <tr>
+            <td>PA Test Notification Email</td>
+            <td>nc_PATestNotificationEmail</td>
+            <td>Redirect all emails to test address in Development mode</td>
+        </tr>
+        <tr>
+            <td>PA Current Environment Mode</td>
+            <td>nc_PACurrentEnvironmentMode</td>
+            <td>Production or Development mode switch</td>
+        </tr>
+    </table>
+
+    <h4>Flow Actions (Submit Notification Example)</h4>
+    <ol>
+        <li>Trigger: Status changes to 367420002 (Pending Approvals)</li>
+        <li>Get full record details from Dataverse</li>
+        <li>Check Environment Mode (Production/Development)</li>
+        <li>If Production:
+            <ul>
+                <li>Send email to Sales Support (cr7bb_salessupportemail)</li>
+                <li>Post Teams card to Sales Support</li>
+                <li>Send email to Controller (cr76f_bucontrolleremail)</li>
+                <li>Post Teams card to Controller</li>
+                <li>Send email to RM (cr76f_salesmanageremail)</li>
+                <li>Post Teams card to RM</li>
+            </ul>
+        </li>
+        <li>If Development: Send all emails to test address</li>
+    </ol>
+
+    <div class="keep-together">
+        <h2 id="section5-2">5.2 Data Schema</h2>
+
+        <h3>5.2.1 Core Entities</h3>
+
+        <h4>CustomerDataRequest Entity</h4>
+        <p><strong>Table Name:</strong> <code>cr76f_THFinanceCustomerDataCustomerDataRequest</code></p>
+        <p><strong>Purpose:</strong> Primary table storing all customer data request records</p>
+        <p><strong>Record Count:</strong> Active requests (production varies)</p>
+    </div>
+
+    <table>
+        <tr>
+            <th>Field Name</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>cr76f_RequestNo</td>
+            <td>nvarchar(100)</td>
+            <td>Auto</td>
+            <td>Auto-generated request number (R-XXXXX)</td>
+        </tr>
+        <tr>
+            <td>cr76f_Status</td>
+            <td>picklist</td>
+            <td>Yes</td>
+            <td>Current workflow status</td>
+        </tr>
+        <tr>
+            <td>cr76f_Name1_en</td>
+            <td>nvarchar(100)</td>
+            <td>Yes</td>
+            <td>Legal name (English)</td>
+        </tr>
+        <tr>
+            <td>cr76f_Name1_th</td>
+            <td>nvarchar(100)</td>
+            <td>Yes</td>
+            <td>Legal name (Thai)</td>
+        </tr>
+        <tr>
+            <td>cr76f_RequesterEmail</td>
+            <td>nvarchar(100)</td>
+            <td>Auto</td>
+            <td>Email of request creator</td>
+        </tr>
+        <tr>
+            <td>cr76f_BUControllerEmail</td>
+            <td>nvarchar(100)</td>
+            <td>Yes</td>
+            <td>Controller email for approval</td>
+        </tr>
+        <tr>
+            <td>cr76f_SalesManagerEmail</td>
+            <td>nvarchar(100)</td>
+            <td>Yes</td>
+            <td>RM email for approval</td>
+        </tr>
+        <tr>
+            <td>cr7bb_SalesSupportEmail</td>
+            <td>nvarchar(100)</td>
+            <td>Yes</td>
+            <td>Sales Support email</td>
+        </tr>
+        <tr>
+            <td>nc_L6Segmentation</td>
+            <td>lookup</td>
+            <td>Yes</td>
+            <td>Reference to L6 classification</td>
+        </tr>
+    </table>
+
+    <div class="note">
+        <strong>Note:</strong> The CustomerDataRequest entity contains 60+ additional fields for SAP integration. See DATABASE_SCHEMA.md for complete reference.
+    </div>
+
+    <h4>L6Segmentation Entity</h4>
+    <p><strong>Table Name:</strong> <code>nc_THFinanceCustomerDataL6Segmentation</code></p>
+    <p><strong>Purpose:</strong> Customer classification lookup table (shared across applications)</p>
+    <p><strong>Record Count:</strong> 118 records</p>
+
+    <figure>
+        <img src="assets/screenshots/09-l6-segmentation-screen.png" alt="L6 Segmentation" class="screenshot">
+        <figcaption>Figure 5-1: L6 Segmentation Management</figcaption>
+    </figure>
+
+    <table>
+        <tr>
+            <th>Field Name</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>nc_l6number</td>
+            <td>nvarchar(850)</td>
+            <td>Yes</td>
+            <td>L6 classification number (e.g., "912080")</td>
+        </tr>
+        <tr>
+            <td>nc_segmentationcode</td>
+            <td>nvarchar(100)</td>
+            <td>No</td>
+            <td>9-digit segmentation code (e.g., "200799650")</td>
+        </tr>
+        <tr>
+            <td>nc_description</td>
+            <td>nvarchar(100)</td>
+            <td>No</td>
+            <td>L6 classification description</td>
+        </tr>
+    </table>
+
+    <h4>Geographic Entities</h4>
+    <p>Thailand geographic hierarchy for address selection:</p>
+
+    <table>
+        <tr>
+            <th>Entity</th>
+            <th>Table Name</th>
+            <th>Fields</th>
+        </tr>
+        <tr>
+            <td>THProvince</td>
+            <td>cr76f_THProvince</td>
+            <td>ProvinceCode, Name_EN, Name_TH</td>
+        </tr>
+        <tr>
+            <td>THDistrict</td>
+            <td>cr76f_THDistrict</td>
+            <td>DistrictCode, Name_EN, Name_TH, Province (lookup)</td>
+        </tr>
+        <tr>
+            <td>THSubDistrict</td>
+            <td>cr76f_THSubDistrict</td>
+            <td>SubDistrictCode, Name_EN, Name_TH, Province, District (lookups)</td>
+        </tr>
+    </table>
+
+    <h3 class="new-page">5.2.2 Choice/Picklist Values</h3>
+    <p>All choice fields and their available options:</p>
+
+    <h4>Request Status (cr76f_requeststatus)</h4>
+    <table>
+        <tr><th>Code</th><th>Label</th></tr>
+        <tr><td>367420000</td><td>Draft</td></tr>
+        <tr><td>367420001</td><td>Submitted</td></tr>
+        <tr><td>367420002</td><td>Pending Approvals</td></tr>
+        <tr><td>367420003</td><td>Pending Sales Support</td></tr>
+        <tr><td>367420004</td><td>Pending CS</td></tr>
+        <tr><td>676180001</td><td>Pending AR</td></tr>
+        <tr><td>676180002</td><td>Pending NBS</td></tr>
+        <tr><td>676180003</td><td>Completed</td></tr>
+    </table>
+
+    <h4>Account Group</h4>
+    <table>
+        <tr><th>Code</th><th>Label</th></tr>
+        <tr><td>367420000</td><td>Sold to</td></tr>
+        <tr><td>367420001</td><td>Ship to</td></tr>
+        <tr><td>367420002</td><td>Ship to - Agent (WT)</td></tr>
+        <tr><td>367420003</td><td>Ship to - DC (WT)</td></tr>
+        <tr><td>367420004</td><td>Ship to - Customer (WT)</td></tr>
+    </table>
+
+    <h4>Sales Organization (cr7bb_salesorganization)</h4>
+    <table>
+        <tr><th>Code</th><th>Label</th></tr>
+        <tr><td>676180000</td><td>TH18 NTH</td></tr>
+        <tr><td>676180001</td><td>TH15 QCP</td></tr>
+    </table>
+
+    <h4>Distribution Channel (cr7bb_distributionchannelchoice)</h4>
+    <table>
+        <tr><th>Code</th><th>Label</th></tr>
+        <tr><td>676180000</td><td>01 Retail</td></tr>
+        <tr><td>676180001</td><td>02 Out of Home</td></tr>
+        <tr><td>676180002</td><td>04 Nestle Aff.</td></tr>
+        <tr><td>676180003</td><td>05 Export 3 Parties</td></tr>
+        <tr><td>676180004</td><td>01,02</td></tr>
+    </table>
+
+    <h4>Sales District (cr7bb_salesdistrictchoice)</h4>
+    <table>
+        <tr><th>Code</th><th>Label</th></tr>
+        <tr><td>676180000</td><td>TH0001 Bangkok DA</td></tr>
+        <tr><td>676180001</td><td>TH0002 Modern Trade</td></tr>
+        <tr><td>676180002</td><td>TH0003 Central East</td></tr>
+        <tr><td>676180003</td><td>TH0004 North East</td></tr>
+        <tr><td>676180004</td><td>TH0005 North</td></tr>
+        <tr><td>676180005</td><td>TH0006 South</td></tr>
+        <tr><td>676180006</td><td>TH0007 Central West</td></tr>
+        <tr><td>676180007</td><td>TH0008 CVS</td></tr>
+        <tr><td>676180008</td><td>TH0009 Export</td></tr>
+        <tr><td>676180009</td><td>TH0010 Other</td></tr>
+    </table>
+
+    <h4>Sales Office (cr7bb_salesofficechoice)</h4>
+    <table>
+        <tr><th>Code</th><th>Label</th></tr>
+        <tr><td>676180000</td><td>TH01 TH Srinakarin DC</td></tr>
+        <tr><td>676180001</td><td>TH03 TH On-nuch Office</td></tr>
+        <tr><td>676180002</td><td>TH04 TH Bangkok DA</td></tr>
+        <tr><td>676180003</td><td>TH05 TH Modern Trade</td></tr>
+        <tr><td>676180004</td><td>TH06 TH Central East</td></tr>
+        <tr><td>676180005</td><td>TH07 TH North East</td></tr>
+        <tr><td>676180006</td><td>TH08 TH North</td></tr>
+        <tr><td>676180007</td><td>TH09 TH South</td></tr>
+        <tr><td>676180008</td><td>TH10 TH Central West</td></tr>
+        <tr><td>676180009</td><td>TH11 TH CVS</td></tr>
+        <tr><td>676180010</td><td>TH12 TH Export</td></tr>
+        <tr><td>676180011</td><td>TH13 TH Amata</td></tr>
+        <tr><td>676180012</td><td>TH14 TH HOD</td></tr>
+        <tr><td>676180013</td><td>TH15 TH Wangnoi DC</td></tr>
+        <tr><td>676180014</td><td>TH16 TH Surat DC</td></tr>
+    </table>
+
+    <h4>Delivery Priority (cr7bb_deliveryprioritychoice)</h4>
+    <table>
+        <tr><th>Code</th><th>Label</th></tr>
+        <tr><td>676180000</td><td>3 CP + eCommerce</td></tr>
+        <tr><td>676180001</td><td>4 Makro + Lotus's + BigC + TOPS</td></tr>
+        <tr><td>676180002</td><td>5 TT (LTP Customers) ->NDP</td></tr>
+        <tr><td>676180003</td><td>6 Jiffy, Sun 108, CJ Express, Siam DCM</td></tr>
+        <tr><td>676180004</td><td>7 Other CVS and MT Supermarket</td></tr>
+        <tr><td>676180005</td><td>8 DKSH</td></tr>
+        <tr><td>676180006</td><td>9 Other TT/ Semi Wholesaler</td></tr>
+        <tr><td>676180007</td><td>99 Export, Others</td></tr>
+    </table>
+
+    <h4>Rec. Account (cr7bb_recaccountchoice)</h4>
+    <table>
+        <tr><th>Code</th><th>Label</th></tr>
+        <tr><td>676180000</td><td>1046000 Local Customers</td></tr>
+        <tr><td>676180001</td><td>1046020 Foreign Customers</td></tr>
+        <tr><td>676180002</td><td>1046050 Customer Down Payments</td></tr>
+        <tr><td>676180003</td><td>1048240 Other Receivables (AR)</td></tr>
+        <tr><td>676180004</td><td>1050000 Intra Group (Affiliate)</td></tr>
+    </table>
+
+    <h4>Tax Classification (cr7bb_taxcchoice)</h4>
+    <table>
+        <tr><th>Code</th><th>Label</th></tr>
+        <tr><td>676180000</td><td>1 = Vat 7%</td></tr>
+        <tr><td>676180001</td><td>0 = Vat 0% ตปท.</td></tr>
+    </table>
+
+    <h4>ALW in SAP (WT)</h4>
+    <table>
+        <tr><th>Code</th><th>Label</th></tr>
+        <tr><td>367420000</td><td>3.65</td></tr>
+        <tr><td>367420001</td><td>2</td></tr>
+    </table>
+
+    <h3>5.2.3 Complete Field Reference</h3>
+    <p>All CustomerDataRequest fields with validation requirements:</p>
+
+    <h4>Header Section Fields</h4>
+    <table>
+        <tr><th>Field</th><th>Schema Name</th><th>Type</th><th>Max Length</th><th>Required</th></tr>
+        <tr><td>Request For</td><td>cr76f_RequestFor</td><td>picklist</td><td>-</td><td>No</td></tr>
+        <tr><td>Account Group</td><td>cr76f_AccountGroup</td><td>picklist</td><td>-</td><td>No</td></tr>
+        <tr><td>BU</td><td>cr76f_BU</td><td>picklist</td><td>-</td><td>No</td></tr>
+        <tr><td>BU Controller</td><td>cr76f_BUControllerEmail</td><td>ComboBox</td><td>100</td><td>Submit</td></tr>
+        <tr><td>CS Manager</td><td>-</td><td>ComboBox</td><td>100</td><td>Submit</td></tr>
+        <tr><td>Sales Support</td><td>cr7bb_SalesSupportEmail</td><td>ComboBox</td><td>100</td><td>Submit</td></tr>
+        <tr><td>RM Email</td><td>cr76f_SalesManagerEmail</td><td>nvarchar</td><td>100</td><td>No</td></tr>
+    </table>
+
+    <h4>Address Fields (English)</h4>
+    <table>
+        <tr><th>Field</th><th>Schema Name</th><th>Type</th><th>Max Length</th><th>Required</th></tr>
+        <tr><td>Name 1</td><td>cr76f_Name1_en</td><td>nvarchar</td><td>35</td><td>Submit</td></tr>
+        <tr><td>Name 2</td><td>cr76f_Name2_en</td><td>nvarchar</td><td>35</td><td>No</td></tr>
+        <tr><td>Name 3</td><td>cr76f_Name3_en</td><td>nvarchar</td><td>35</td><td>Submit</td></tr>
+        <tr><td>Name 4</td><td>cr76f_Name4_en</td><td>nvarchar</td><td>35</td><td>No</td></tr>
+        <tr><td>House No</td><td>cr76f_HouseNo_en</td><td>nvarchar</td><td>10</td><td>No</td></tr>
+        <tr><td>Street</td><td>cr76f_Street_en</td><td>nvarchar</td><td>100</td><td>No</td></tr>
+        <tr><td>Street 2</td><td>cr76f_Street2_en</td><td>nvarchar</td><td>35</td><td>No</td></tr>
+        <tr><td>Street 3</td><td>cr76f_Street3_en</td><td>nvarchar</td><td>35</td><td>No</td></tr>
+        <tr><td>Street 4 (SubDistrict)</td><td>cr76f_Street4_en</td><td>nvarchar</td><td>35</td><td>Submit</td></tr>
+        <tr><td>Street 5</td><td>cr76f_Street5_en</td><td>nvarchar</td><td>35</td><td>No</td></tr>
+        <tr><td>District</td><td>cr76f_District_en</td><td>nvarchar</td><td>100</td><td>Submit</td></tr>
+        <tr><td>City (Province)</td><td>cr76f_City_en</td><td>nvarchar</td><td>100</td><td>Submit</td></tr>
+        <tr><td>Country</td><td>cr76f_Country_en</td><td>nvarchar</td><td>100</td><td>Submit</td></tr>
+        <tr><td>Postal Code</td><td>cr76f_PostalCode_en</td><td>nvarchar</td><td>100</td><td>Submit</td></tr>
+        <tr><td>Tax ID</td><td>cr76f_TaxID_en</td><td>nvarchar</td><td>13</td><td>Submit</td></tr>
+        <tr><td>Search 1</td><td>cr76f_Search1</td><td>nvarchar</td><td>10</td><td>No</td></tr>
+        <tr><td>Search 2</td><td>cr76f_Search2</td><td>nvarchar</td><td>10</td><td>No</td></tr>
+    </table>
+
+    <h4>Address Fields (Thai)</h4>
+    <div class="note"><strong>Note:</strong> Fields marked "Submit**" are optional when Request For = "Extend to".</div>
+    <table>
+        <tr><th>Field</th><th>Schema Name</th><th>Type</th><th>Max Length</th><th>Required</th></tr>
+        <tr><td>ชื่อ 1</td><td>cr76f_Name1_th</td><td>nvarchar</td><td>35</td><td>Submit**</td></tr>
+        <tr><td>ชื่อ 2</td><td>cr76f_Name2_th</td><td>nvarchar</td><td>35</td><td>No</td></tr>
+        <tr><td>ชื่อ 3</td><td>cr76f_Name3_th</td><td>nvarchar</td><td>35</td><td>Submit**</td></tr>
+        <tr><td>ชื่อ 4</td><td>cr76f_Name4_th</td><td>nvarchar</td><td>35</td><td>No</td></tr>
+        <tr><td>บ้านเลขที่</td><td>cr76f_HouseNo_th</td><td>nvarchar</td><td>10</td><td>No</td></tr>
+        <tr><td>ถนน</td><td>cr76f_Street_th</td><td>nvarchar</td><td>100</td><td>No</td></tr>
+        <tr><td>อาคาร/หมู่บ้าน/ซอย</td><td>cr76f_Street2_th</td><td>nvarchar</td><td>35</td><td>No</td></tr>
+        <tr><td>ตำบล/แขวง</td><td>cr76f_Street3_th</td><td>nvarchar</td><td>35</td><td>No</td></tr>
+        <tr><td>อำเภอ/เขต</td><td>cr76f_Street4_th</td><td>nvarchar</td><td>35</td><td>No</td></tr>
+        <tr><td>ประเทศ</td><td>cr76f_Country_th</td><td>nvarchar</td><td>35</td><td>Submit**</td></tr>
+        <tr><td>รหัสไปรษณีย์</td><td>cr76f_PostalCode_th</td><td>nvarchar</td><td>35</td><td>Submit**</td></tr>
+        <tr><td>เลขประจำตัวผู้เสียภาษี</td><td>cr76f_TaxID_th</td><td>nvarchar</td><td>13</td><td>Submit**</td></tr>
+        <tr><td>โทรศัพท์</td><td>cr76f_Telephone</td><td>nvarchar</td><td>100</td><td>Submit</td></tr>
+    </table>
+
+    <h4>Sales View Fields</h4>
+    <table>
+        <tr><th>Field</th><th>Schema Name</th><th>Type</th><th>Max Length</th><th>Required</th></tr>
+        <tr><td>Sales Organization</td><td>cr7bb_salesorganization</td><td>picklist</td><td>4</td><td>Sales Support</td></tr>
+        <tr><td>Distribution Channel</td><td>cr7bb_distributionchannel</td><td>picklist</td><td>5</td><td>Sales Support</td></tr>
+        <tr><td>Sales District</td><td>cr7bb_salesdistrict</td><td>picklist</td><td>6</td><td>Sales Support</td></tr>
+        <tr><td>Sales Office</td><td>cr7bb_salesoffice</td><td>picklist</td><td>4</td><td>Sales Support</td></tr>
+        <tr><td>Terms of Payment</td><td>-</td><td>ComboBox</td><td>-</td><td>Sales Support</td></tr>
+        <tr><td>L6 Segmentation</td><td>nc_L6Segmentation</td><td>lookup</td><td>-</td><td>Sales Support</td></tr>
+        <tr><td>Vendor</td><td>cr7bb_vendor</td><td>nvarchar</td><td>100</td><td>No</td></tr>
+        <tr><td>Customer Class</td><td>nc_CustomerClass</td><td>nvarchar</td><td>100</td><td>Sales Support</td></tr>
+        <tr><td>Industry</td><td>nc_Industry</td><td>nvarchar</td><td>100</td><td>Sales Support</td></tr>
+        <tr><td>Industry Code</td><td>nc_IndustryCode</td><td>nvarchar</td><td>100</td><td>Sales Support</td></tr>
+        <tr><td>Partner Function</td><td>cr7bb_partnerfunction</td><td>nvarchar</td><td>100</td><td>No</td></tr>
+        <tr><td>Partner Function Number</td><td>cr7bb_partnerfunctionnumber</td><td>nvarchar</td><td>100</td><td>No</td></tr>
+        <tr><td>Set Link to Sold</td><td>cr7bb_SetLinkToSold</td><td>nvarchar</td><td>100</td><td>No</td></tr>
+        <tr><td>Propose Target</td><td>cr7bb_ProposeTarget</td><td>nvarchar</td><td>100</td><td>No</td></tr>
+    </table>
+
+    <h4>CS View Fields</h4>
+    <table>
+        <tr><th>Field</th><th>Schema Name</th><th>Type</th><th>Max Length</th><th>Required</th></tr>
+        <tr><td>Delivery Priority</td><td>cr7bb_DeliveryPriority</td><td>picklist</td><td>-</td><td>CS Complete</td></tr>
+        <tr><td>Shipping Condition</td><td>cr7bb_ShippingCondition</td><td>picklist</td><td>-</td><td>CS Complete</td></tr>
+        <tr><td>Incoterms</td><td>cr7bb_Incoterms</td><td>nvarchar</td><td>100</td><td>CS Complete</td></tr>
+        <tr><td>Incoterms Location</td><td>cr7bb_Incoterms1</td><td>nvarchar</td><td>100</td><td>No</td></tr>
+        <tr><td>Transport Zone</td><td>-</td><td>nvarchar</td><td>100</td><td>CS Complete</td></tr>
+        <tr><td>Tax Classification</td><td>cr7bb_TaxC</td><td>picklist</td><td>-</td><td>No</td></tr>
+        <tr><td>Rebate</td><td>cr7bb_Rebate</td><td>picklist</td><td>-</td><td>No</td></tr>
+        <tr><td>Price Determin</td><td>cr7bb_PriceDetermin</td><td>picklist</td><td>-</td><td>No</td></tr>
+        <tr><td>Payment Condition</td><td>cr76f_PaymentCondition</td><td>nvarchar</td><td>100</td><td>No</td></tr>
+    </table>
+
+    <h4>Company View Fields (AR)</h4>
+    <div class="note">
+        <strong>Conditional Validation:</strong> Fields marked "AR (Sold to only)" are only validated when Account Group = "Sold to" (367420000). For other account groups, these fields are optional.
+    </div>
+    <table>
+        <tr><th>Field</th><th>Schema Name</th><th>Type</th><th>Max Length</th><th>Required</th></tr>
+        <tr><td>Company Code</td><td>-</td><td>nvarchar</td><td>4</td><td>Yes</td></tr>
+        <tr><td>Rec. Account</td><td>-</td><td>picklist</td><td>10</td><td>AR (Sold to only)</td></tr>
+        <tr><td>Cash Mgmt Group</td><td>-</td><td>nvarchar</td><td>10</td><td>AR (Sold to only)</td></tr>
+        <tr><td>Tolerance Group</td><td>-</td><td>nvarchar</td><td>4</td><td>AR (Sold to only)</td></tr>
+        <tr><td>Dunning Clerk</td><td>-</td><td>nvarchar</td><td>2</td><td>Yes</td></tr>
+        <tr><td>Acctg Clerk</td><td>-</td><td>nvarchar</td><td>3</td><td>Yes</td></tr>
+        <tr><td>Bank Statement</td><td>-</td><td>nvarchar</td><td>2</td><td>Yes</td></tr>
+        <tr><td>Clerk's Fax</td><td>-</td><td>nvarchar</td><td>3</td><td>Yes</td></tr>
+        <tr><td>Clerk's Interest</td><td>-</td><td>nvarchar</td><td>100</td><td>Yes</td></tr>
+        <tr><td>Billing Condition</td><td>cr76f_BillingCondition</td><td>nvarchar</td><td>100</td><td>No</td></tr>
+        <tr><td>Payment Method</td><td>cr76f_PaymentMethod</td><td>picklist</td><td>-</td><td>No</td></tr>
+    </table>
+
+    <h4>Credit Management Fields</h4>
+    <table>
+        <tr><th>Field</th><th>Schema Name</th><th>Type</th><th>Max Length</th><th>Required</th></tr>
+        <tr><td>Credit Limit</td><td>-</td><td>nvarchar</td><td>100</td><td>AR Complete</td></tr>
+        <tr><td>Risk Category</td><td>-</td><td>nvarchar</td><td>100</td><td>AR Complete</td></tr>
+        <tr><td>Credit Rep. Group</td><td>-</td><td>nvarchar</td><td>100</td><td>AR Complete</td></tr>
+        <tr><td>Customer Credit Group</td><td>-</td><td>nvarchar</td><td>100</td><td>AR Complete</td></tr>
+    </table>
+
+    <h4>NBS Fields</h4>
+    <table>
+        <tr><th>Field</th><th>Schema Name</th><th>Type</th><th>Max Length</th><th>Required</th></tr>
+        <tr><td>Customer No.</td><td>cr76f_CustomerNo</td><td>nvarchar</td><td>100</td><td>NBS Complete</td></tr>
+    </table>
+
+    <h4>Contact Fields</h4>
+    <table>
+        <tr><th>Field</th><th>Schema Name</th><th>Type</th><th>Max Length</th><th>Required</th></tr>
+        <tr><td>Telephone Ext</td><td>cr76f_TelephoneExt</td><td>nvarchar</td><td>100</td><td>No</td></tr>
+        <tr><td>Fax</td><td>cr76f_Fax</td><td>nvarchar</td><td>100</td><td>No</td></tr>
+        <tr><td>Requester Email</td><td>cr76f_RequesterEmail</td><td>nvarchar</td><td>100</td><td>Auto</td></tr>
+        <tr><td>Requester Telephone</td><td>cr76f_RequesterTelephone</td><td>nvarchar</td><td>100</td><td>No</td></tr>
+    </table>
+
+    <div class="note">
+        <strong>Validation Note:</strong> 36 required fields (plus 3 AR conditional and 5 "Extend to" conditional) are validated across workflow stages (Submit: 18, Sales Support: 9, CS: 4, AR: 4 + 3 conditional, NBS: 1). Draft saves are permitted without validation. Character limits are based on SAP field specifications.
+    </div>
+
+    <!-- Section 6: Configuration -->
+    <h1 id="section6" class="new-page">6. Configuration</h1>
+
+    <div class="keep-together">
+        <h2 id="section6-1">6.1 Environment Variables</h2>
+        <table>
+            <tr>
+                <th>Variable</th>
+                <th>Value</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>PA Current Environment Mode</td>
+                <td>Production / Development</td>
+                <td>Controls test vs production behavior</td>
+            </tr>
+            <tr>
+                <td>PA Test Notification Email</td>
+                <td>[test email address]</td>
+                <td>Redirect notifications in test mode</td>
+            </tr>
+            <tr>
+                <td>Applink (nc_Applink)</td>
+                <td>[production app URL]</td>
+                <td>App URL for email notification links</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="keep-together">
+        <h2 id="section6-2">6.2 Security Roles</h2>
+        <p>Dataverse security roles required for application access:</p>
+
+        <table>
+            <tr>
+                <th>Security Role</th>
+                <th>Target Users</th>
+                <th>Privileges</th>
+            </tr>
+            <tr>
+                <td>Finance User (Standard)</td>
+                <td>All Finance team members</td>
+                <td>Read/Write to CustomerDataRequest, Read to lookup tables</td>
+            </tr>
+            <tr>
+                <td>Finance Admin</td>
+                <td>System administrators</td>
+                <td>Full access to all entities including Role and RoleAssignment</td>
+            </tr>
+        </table>
+
+        <div class="warning">
+            <strong>Important:</strong> Users must have both a Dataverse security role AND an application role assignment to access full functionality.
+        </div>
+    </div>
+
+    <!-- Section 7: Appendices -->
+    <h1 id="section7" class="new-page">7. Appendices</h1>
+
+    <div class="keep-together">
+        <h2 id="section7-1">Appendix A: Status Codes Reference</h2>
+        <table>
+            <tr>
+                <th>Code</th>
+                <th>Status Name</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>367420000</td>
+                <td>Draft</td>
+                <td>Initial state, editable by requester</td>
+            </tr>
+            <tr>
+                <td>367420001</td>
+                <td>Submitted</td>
+                <td>Submitted, awaiting initial processing</td>
+            </tr>
+            <tr>
+                <td>367420002</td>
+                <td>Pending Approvals</td>
+                <td>Awaiting RM/Controller approval</td>
+            </tr>
+            <tr>
+                <td>367420003</td>
+                <td>Pending Sales Support</td>
+                <td>Reserved for future use</td>
+            </tr>
+            <tr>
+                <td>367420004</td>
+                <td>Pending CS</td>
+                <td>Awaiting CS team input</td>
+            </tr>
+            <tr>
+                <td>676180001</td>
+                <td>Pending AR</td>
+                <td>Awaiting AR team input</td>
+            </tr>
+            <tr>
+                <td>676180002</td>
+                <td>Pending NBS</td>
+                <td>Awaiting NBS final processing</td>
+            </tr>
+            <tr>
+                <td>676180003</td>
+                <td>Completed</td>
+                <td>Workflow complete, ready for SAP</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="keep-together">
+        <h2 id="section7-2">Appendix B: Solution Package Information</h2>
+        <table>
+            <tr>
+                <th>Property</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Solution Name</td>
+                <td>THFinanceCustomerDataRequest</td>
+            </tr>
+            <tr>
+                <td>Version</td>
+                <td>1.0.0.34</td>
+            </tr>
+            <tr>
+                <td>Type</td>
+                <td>Managed</td>
+            </tr>
+            <tr>
+                <td>Publisher</td>
+                <td>Nestle</td>
+            </tr>
+            <tr>
+                <td>Environment</td>
+                <td>FCL_PROD</td>
+            </tr>
+            <tr>
+                <td>Canvas App Version</td>
+                <td>v3.25092.9</td>
+            </tr>
+            <tr>
+                <td>Dataverse Version</td>
+                <td>v9.2.25084.163</td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>

@@ -1,4 +1,8 @@
-# Hotel Booking: Home Under a Waterfall 7 mins from Glacier Lagoon
+# Hotel Booking: Home Under a Waterfall 7 mins from Glacier Lagoon (Day 4)
+
+**Status:** Confirmed (Visa Documentation)
+**Date:** April 11-12, 2026 (1 Night)
+**Location:** Hali (Near Glacier Lagoon)
 
 ## Booking Details
 - **Property**: Home under a waterfall 7 mins from Glacier Lagoon
@@ -32,23 +36,26 @@
 
 ## Amenities & Benefits
 - Parking
-- Free WiFi (Wi-Fi)
+- Free WiFi
 - Coffee and tea
 
 ## Payment Information
 - **Payment Method**: MasterCard
-- **Card Last 4**: XXXX-XXXX-XXXX-5475
+- **Card Last 4**: XXXX-5475
 - **Booked Through**: Agoda Company Pte, Ltd.
 
 ## Cancellation Policy
 - **Free Cancellation**: Before April 6, 2026
 - **Penalty (5 days before arrival)**: 100% of booking value
-- **Cancellation on check-in day**: 100% of booking value
 - **No-show**: 100% of booking value (hotel policy)
 
 ## Notes
 - All special requests are subject to availability upon arrival
 - Rooms guaranteed on day of arrival
-- No-show will result in room release and full cancellation charges
 - Present electronic or paper copy of booking confirmation upon check-in
 - Original Booking.com booking ID: 5796514480
+
+## Itinerary Context
+- **Day 4 Base**: Canyons, Glaciers & Ice Lagoons
+- **Primary Activity**: Ice cave tours, Diamond Beach visit
+- **Logistics**: Just 7 minutes from Jökulsárlón Glacier Lagoon

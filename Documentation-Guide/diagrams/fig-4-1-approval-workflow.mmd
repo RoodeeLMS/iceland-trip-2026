@@ -1,0 +1,41 @@
+flowchart TD
+    A["1. Draft<br/>Requester creates request"]
+    B["2. Submit<br/>Requester submits"]
+    C["3. Pending Approvals<br/>RM Reviews"]
+    D{RM Approves?}
+    E["4. Pending Approvals<br/>Controller Reviews"]
+    F{Controller Approves?}
+    G["5. Pending CS<br/>CS Team completes data"]
+    H["6. Pending AR<br/>AR Team completes data"]
+    I["7. Pending NBS<br/>NBS Final Review"]
+    J{NBS Approves?}
+    K["8. Completed<br/>Ready for SAP"]
+    L["Return to Draft<br/>Requester notified"]
+
+    A --> B
+    B --> C
+    C --> D
+    D -->|Yes| E
+    D -->|No| L
+    E --> F
+    F -->|Yes| G
+    F -->|No| L
+    G --> H
+    H --> I
+    I --> J
+    J -->|Yes| K
+    J -->|No| L
+    L --> A
+
+    style A fill:#f5f5f5,stroke:#9e9e9e
+    style B fill:#e7f3ff,stroke:#0066b3,stroke-width:2px
+    style C fill:#fff3e0,stroke:#ff9800
+    style D fill:#fffde7,stroke:#ffc107
+    style E fill:#fff3e0,stroke:#ff9800
+    style F fill:#fffde7,stroke:#ffc107
+    style G fill:#fff3e0,stroke:#ff9800
+    style H fill:#fff3e0,stroke:#ff9800
+    style I fill:#fff3e0,stroke:#ff9800
+    style J fill:#fffde7,stroke:#ffc107
+    style K fill:#d4edda,stroke:#28a745,stroke-width:2px
+    style L fill:#ffebee,stroke:#f44336

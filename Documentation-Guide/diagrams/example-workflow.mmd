@@ -1,0 +1,21 @@
+flowchart TD
+    A["1. User Action<br/>Start the process"]
+    B["2. System Processing<br/>Validate input data"]
+    C{"3. Decision Point<br/>Is data valid?"}
+    D["4. Success Path<br/>Save to database"]
+    E["5. Error Path<br/>Show error message"]
+    F["6. Complete<br/>Show confirmation"]
+
+    A --> B
+    B --> C
+    C -->|Yes| D
+    C -->|No| E
+    D --> F
+    E --> A
+
+    style A fill:#e7f3ff,stroke:#0066b3,stroke-width:2px
+    style B fill:#fff3e0,stroke:#ff9800
+    style C fill:#fffde7,stroke:#ffc107
+    style D fill:#d4edda,stroke:#28a745
+    style E fill:#ffebee,stroke:#f44336
+    style F fill:#d4edda,stroke:#28a745

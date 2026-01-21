@@ -1,4 +1,8 @@
-# Hotel Booking: Guesthouse Spuni Cozy Cottage 861
+# Hotel Booking: Guesthouse Spuni Cozy Cottage 861 (Day 2)
+
+**Status:** Confirmed (Visa Documentation)
+**Date:** April 9-10, 2026 (1 Night)
+**Location:** Hvolsvöllur Area
 
 ## Booking Details
 - **Property**: Guesthouse Spuni Cozy cottage 861
@@ -33,11 +37,11 @@
 ## Amenities & Benefits
 - Coffee and tea
 - Parking
-- Free WiFi (Wi-Fi)
+- Free WiFi
 
 ## Payment Information
 - **Payment Method**: MasterCard
-- **Card Last 4**: XXXX-XXXX-XXXX-5475
+- **Card Last 4**: XXXX-5475
 - **Booked Through**: Agoda Company Pte, Ltd.
 
 ## Cancellation Policy
@@ -49,6 +53,10 @@
 ## Notes
 - All special requests are subject to availability upon arrival
 - Rooms guaranteed on day of arrival
-- No-show will result in room release and full cancellation charges
 - Present electronic or paper copy of booking confirmation upon check-in
 - Original Booking.com booking ID: 6460838197
+
+## Itinerary Context
+- **Day 2 Base**: After Golden Circle exploration
+- **Primary Activity**: Quiet countryside retreat
+- **Logistics**: Cozy cottage in vast Icelandic countryside

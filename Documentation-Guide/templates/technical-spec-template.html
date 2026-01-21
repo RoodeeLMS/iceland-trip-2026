@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[PROJECT NAME] Technical Specification</title>
+    <style>
+        /* ===== BASE STYLES ===== */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ===== COVER PAGE ===== */
+        .title-page {
+            page-break-after: always;
+            text-align: center;
+            padding-top: 3.5in;
+            height: 10in;
+            position: relative;
+        }
+
+        .title-page .logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 2in;
+        }
+
+        .title-page h1 {
+            font-size: 28pt;
+            color: #0066b3;
+            margin-bottom: 0.3in;
+            font-weight: 700;
+        }
+
+        .title-page .subtitle {
+            font-size: 18pt;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .title-page .version {
+            font-size: 14pt;
+            color: #666;
+            margin-top: 0.5in;
+        }
+
+        .prepared-section {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            text-align: left;
+            font-size: 11pt;
+            line-height: 1.8;
+        }
+
+        .prepared-section p {
+            margin: 15px 0;
+        }
+
+        /* ===== VERSION HISTORY PAGE ===== */
+        .version-page {
+            page-break-after: always;
+        }
+
+        .version-page h2 {
+            color: #0066b3;
+            border-bottom: 2px solid #0066b3;
+            padding-bottom: 10px;
+        }
+
+        .version-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+        }
+
+        .version-table th {
+            background-color: #0066b3;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .version-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        .version-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* ===== TABLE OF CONTENTS ===== */
+        .toc {
+            page-break-after: always;
+        }
+
+        .toc h2 {
+            color: #0066b3;
+            border-bottom: 2px solid #0066b3;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .toc-item {
+            display: table;
+            width: 100%;
+            margin: 8px 0;
+        }
+
+        .toc-item a {
+            display: table-cell;
+            text-decoration: none;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        .toc-item .toc-dots {
+            display: table-cell;
+            width: 100%;
+            border-bottom: 1px dotted #999;
+            height: 0.9em;
+            margin: 0 8px;
+        }
+
+        .toc-item .toc-page {
+            display: table-cell;
+            text-align: right;
+            white-space: nowrap;
+            padding-left: 10px;
+            color: #333;
+        }
+
+        .toc-section {
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        .toc-subsection {
+            padding-left: 20px;
+        }
+
+        /* ===== HEADINGS ===== */
+        h1 {
+            color: #0066b3;
+            font-size: 18pt;
+            border-bottom: 2px solid #0066b3;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: #004d99;
+            font-size: 14pt;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+
+        h3 {
+            color: #333;
+            font-size: 12pt;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            color: #555;
+            font-size: 11pt;
+            margin-top: 12px;
+            margin-bottom: 8px;
+        }
+
+        /* ===== TABLES ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 10pt;
+        }
+
+        th {
+            background-color: #0066b3;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr {
+            page-break-inside: avoid;
+        }
+
+        /* ===== CODE ===== */
+        code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background-color: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 9pt;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            overflow-x: auto;
+            font-size: 9pt;
+            line-height: 1.4;
+            page-break-inside: avoid;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        /* ===== FIGURES & DIAGRAMS ===== */
+        figure {
+            margin: 20px 0;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+
+        figcaption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 10pt;
+        }
+
+        .flow-diagram-long {
+            width: 100%;
+            max-height: 7.5in;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .flow-diagram-short {
+            width: 100%;
+            max-height: 4in;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .arch-diagram {
+            width: 100%;
+            max-height: 5in;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* ===== LISTS ===== */
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+
+        li {
+            margin: 5px 0;
+            line-height: 1.5;
+        }
+
+        /* ===== CALLOUT BOXES ===== */
+        .note {
+            background-color: #e7f3ff;
+            border-left: 4px solid #0066b3;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .warning {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .tip {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        /* ===== PAGE BREAKS ===== */
+        .new-page {
+            page-break-before: always;
+        }
+
+        .keep-together {
+            page-break-inside: avoid;
+        }
+
+        /* ===== PRINT MEDIA ===== */
+        @media print {
+            body {
+                font-size: 11pt;
+            }
+
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== COVER PAGE ==================== -->
+    <div class="title-page">
+        <img src="assets/[logo-filename].png" alt="[Company Name]" class="logo">
+
+        <h1>[PROJECT NAME]</h1>
+        <p class="subtitle">Technical Specification</p>
+        <!-- Note: Version and date are in Version History page, not cover -->
+
+        <div class="prepared-section">
+            <p>
+                <strong>Prepared for:</strong><br>
+                [Client Name]<br>
+                [Department/Division]
+            </p>
+            <p>
+                <strong>Prepared by:</strong><br>
+                [Your Company]<br>
+                [Author Name]
+            </p>
+        </div>
+    </div>
+
+    <!-- ==================== VERSION HISTORY ==================== -->
+    <div class="version-page">
+        <h2>Version History</h2>
+        <table class="version-table">
+            <tr>
+                <th style="width: 15%">Version</th>
+                <th style="width: 20%">Date</th>
+                <th style="width: 25%">Author</th>
+                <th style="width: 40%">Description</th>
+            </tr>
+            <tr>
+                <td>1.0</td>
+                <td>[Date]</td>
+                <td>[Author Name]</td>
+                <td>Initial release</td>
+            </tr>
+            <!-- Add more rows as needed -->
+        </table>
+    </div>
+
+    <!-- ==================== TABLE OF CONTENTS ==================== -->
+    <div class="toc">
+        <h2>Table of Contents</h2>
+
+        <div class="toc-item toc-section">
+            <a href="#section1">1. Executive Summary</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">1</span>
+        </div>
+
+        <div class="toc-item toc-section">
+            <a href="#section2">2. Introduction</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">1</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section2-1">2.1 Purpose</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">1</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section2-2">2.2 Scope</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">1</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section2-3">2.3 Definitions & Acronyms</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">2</span>
+        </div>
+
+        <div class="toc-item toc-section">
+            <a href="#section3">3. System Overview</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">3</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section3-1">3.1 System Architecture</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">3</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section3-2">3.2 Application Screens</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">4</span>
+        </div>
+
+        <!-- Add more ToC items as needed -->
+
+    </div>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+
+    <!-- Section 1: Executive Summary -->
+    <h1 id="section1">1. Executive Summary</h1>
+
+    <p>[Brief overview of the project - what was delivered, key functionality, and target users. Keep to 1-2 paragraphs.]</p>
+
+    <!-- Section 2: Introduction -->
+    <h1 id="section2" class="new-page">2. Introduction</h1>
+
+    <h2 id="section2-1">2.1 Purpose</h2>
+    <p>[State the purpose of this document - who it's for and what they'll learn from it.]</p>
+
+    <h2 id="section2-2">2.2 Scope</h2>
+    <p>[Define what is and isn't covered in this document and the system it describes.]</p>
+
+    <h3>In Scope</h3>
+    <ul>
+        <li>[Feature 1]</li>
+        <li>[Feature 2]</li>
+    </ul>
+
+    <h3>Out of Scope</h3>
+    <ul>
+        <li>[Excluded item 1]</li>
+        <li>[Excluded item 2]</li>
+    </ul>
+
+    <h2 id="section2-3">2.3 Definitions & Acronyms</h2>
+    <table>
+        <tr>
+            <th style="width: 25%">Term</th>
+            <th>Definition</th>
+        </tr>
+        <tr>
+            <td>[Term 1]</td>
+            <td>[Definition]</td>
+        </tr>
+        <tr>
+            <td>[Term 2]</td>
+            <td>[Definition]</td>
+        </tr>
+    </table>
+
+    <!-- Section 3: System Overview -->
+    <h1 id="section3" class="new-page">3. System Overview</h1>
+
+    <h2 id="section3-1">3.1 System Architecture</h2>
+    <p>[Description of the overall system architecture and components.]</p>
+
+    <figure>
+        <img src="diagrams/fig-1-1-system-architecture.png"
+             alt="System Architecture"
+             class="arch-diagram">
+        <figcaption>Figure 3-1: System Architecture</figcaption>
+    </figure>
+
+    <h3>Component Descriptions</h3>
+    <table>
+        <tr>
+            <th>Component</th>
+            <th>Technology</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>[Component 1]</td>
+            <td>[Technology]</td>
+            <td>[Purpose]</td>
+        </tr>
+    </table>
+
+    <h2 id="section3-2">3.2 Application Screens</h2>
+    <table>
+        <tr>
+            <th>Screen</th>
+            <th>Purpose</th>
+            <th>Key Features</th>
+        </tr>
+        <tr>
+            <td>[Screen Name]</td>
+            <td>[Purpose]</td>
+            <td>[Features]</td>
+        </tr>
+    </table>
+
+    <!-- Section 4: Functional Specifications -->
+    <h1 id="section4" class="new-page">4. Functional Specifications</h1>
+
+    <h2 id="section4-1">4.1 [Function Name]</h2>
+
+    <h3>4.1.1 Purpose</h3>
+    <p>[What this function does and why it exists.]</p>
+
+    <h3>4.1.2 User Interface</h3>
+    <p>[Description of the UI or screenshot.]</p>
+
+    <h3>4.1.3 Business Logic</h3>
+    <ul>
+        <li>[Rule 1]</li>
+        <li>[Rule 2]</li>
+    </ul>
+
+    <h3>4.1.4 Flow Diagram</h3>
+    <figure>
+        <img src="diagrams/fig-4-1-function-flow.png"
+             alt="Function Flow"
+             class="flow-diagram-long">
+        <figcaption>Figure 4-1: [Function Name] Flow</figcaption>
+    </figure>
+
+    <!-- Section 5: Technical Details -->
+    <h1 id="section5" class="new-page">5. Technical Details</h1>
+
+    <h2 id="section5-1">5.1 Power Automate Flows</h2>
+    <table>
+        <tr>
+            <th>Flow Name</th>
+            <th>Trigger</th>
+            <th>Purpose</th>
+            <th>Input</th>
+            <th>Output</th>
+        </tr>
+        <tr>
+            <td>[Flow Name]</td>
+            <td>[Trigger type]</td>
+            <td>[Purpose]</td>
+            <td>[Input params]</td>
+            <td>[Output]</td>
+        </tr>
+    </table>
+
+    <h2 id="section5-2">5.2 Data Schema</h2>
+
+    <h3>[Table/List Name]</h3>
+    <p><strong>Purpose:</strong> [What this table stores]</p>
+
+    <table>
+        <tr>
+            <th>Field Name</th>
+            <th>Type</th>
+            <th>Required</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>ID</td>
+            <td>Number</td>
+            <td>Auto</td>
+            <td>Primary key</td>
+        </tr>
+        <tr>
+            <td>[Field]</td>
+            <td>[Type]</td>
+            <td>[Yes/No]</td>
+            <td>[Description]</td>
+        </tr>
+    </table>
+
+    <!-- Section 6: Configuration -->
+    <h1 id="section6" class="new-page">6. Configuration</h1>
+
+    <h2 id="section6-1">6.1 Environment Variables</h2>
+    <table>
+        <tr>
+            <th>Variable</th>
+            <th>Value</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>[Variable]</td>
+            <td>[Value]</td>
+            <td>[Description]</td>
+        </tr>
+    </table>
+
+    <h2 id="section6-2">6.2 Connection References</h2>
+    <p>[List all connection references and their purposes.]</p>
+
+    <!-- Section 7: Appendices -->
+    <h1 id="section7" class="new-page">7. Appendices</h1>
+
+    <h2 id="section7-1">Appendix A: Complete Field Reference</h2>
+    <p>[Detailed field documentation if needed.]</p>
+
+    <h2 id="section7-2">Appendix B: Error Codes</h2>
+    <table>
+        <tr>
+            <th>Code</th>
+            <th>Message</th>
+            <th>Resolution</th>
+        </tr>
+        <tr>
+            <td>[Code]</td>
+            <td>[Message]</td>
+            <td>[Resolution]</td>
+        </tr>
+    </table>
+
+</body>
+</html>

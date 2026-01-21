@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TH Finance Customer Data Request - User Manual</title>
+    <style>
+        /* ===== BASE STYLES ===== */
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* ===== COVER PAGE ===== */
+        .title-page {
+            page-break-after: always;
+            text-align: center;
+            padding-top: 3.5in;
+            height: 10in;
+            position: relative;
+        }
+        .title-page .logo {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 2in;
+        }
+        .title-page h1 {
+            font-size: 28pt;
+            color: #0066b3;
+            margin-bottom: 0.3in;
+            font-weight: 700;
+        }
+        .title-page .subtitle {
+            font-size: 18pt;
+            color: #333;
+            margin: 10px 0;
+        }
+        .title-page .version {
+            font-size: 14pt;
+            color: #666;
+            margin-top: 0.5in;
+        }
+        .prepared-section {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            text-align: left;
+            font-size: 11pt;
+            line-height: 1.8;
+        }
+        .prepared-section p { margin: 15px 0; }
+
+        /* ===== VERSION HISTORY PAGE ===== */
+        .version-page { page-break-after: always; }
+        .version-page h2 {
+            color: #0066b3;
+            border-bottom: 2px solid #0066b3;
+            padding-bottom: 10px;
+        }
+        .version-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1em;
+        }
+        .version-table th {
+            background-color: #0066b3;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        .version-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .version-table tr:nth-child(even) { background-color: #f9f9f9; }
+
+        /* ===== TABLE OF CONTENTS ===== */
+        .toc { page-break-after: always; }
+        .toc h2 {
+            color: #0066b3;
+            border-bottom: 2px solid #0066b3;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .toc-item {
+            display: table;
+            width: 100%;
+            margin: 8px 0;
+        }
+        .toc-item a {
+            display: table-cell;
+            text-decoration: none;
+            color: #333;
+            white-space: nowrap;
+        }
+        .toc-item .toc-dots {
+            display: table-cell;
+            width: 100%;
+            border-bottom: 1px dotted #999;
+            height: 0.9em;
+            margin: 0 8px;
+        }
+        .toc-item .toc-page {
+            display: table-cell;
+            text-align: right;
+            white-space: nowrap;
+            padding-left: 10px;
+            color: #333;
+        }
+        .toc-section { font-weight: bold; margin-top: 15px; }
+        .toc-subsection { padding-left: 20px; }
+
+        /* ===== HEADINGS ===== */
+        h1 {
+            color: #0066b3;
+            font-size: 18pt;
+            border-bottom: 2px solid #0066b3;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        h2 {
+            color: #004d99;
+            font-size: 14pt;
+            margin-top: 20px;
+            margin-bottom: 12px;
+        }
+        h3 {
+            color: #333;
+            font-size: 12pt;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+        h4 {
+            color: #555;
+            font-size: 11pt;
+            margin-top: 12px;
+            margin-bottom: 8px;
+        }
+
+        /* ===== TABLES ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 10pt;
+        }
+        th {
+            background-color: #0066b3;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+        }
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            vertical-align: top;
+        }
+        tr:nth-child(even) { background-color: #f9f9f9; }
+        tr { page-break-inside: avoid; }
+
+        /* ===== FIGURES & SCREENSHOTS ===== */
+        figure {
+            margin: 20px 0;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+        figcaption {
+            font-style: italic;
+            color: #666;
+            margin-top: 10px;
+            font-size: 10pt;
+        }
+        .screenshot {
+            max-width: 100%;
+            max-height: 5in;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .screenshot-small {
+            max-width: 60%;
+            max-height: 3in;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* ===== LISTS ===== */
+        ul, ol { margin: 10px 0; padding-left: 25px; }
+        li { margin: 5px 0; line-height: 1.5; }
+
+        /* ===== STEP-BY-STEP INSTRUCTIONS ===== */
+        .steps {
+            counter-reset: step-counter;
+            list-style: none;
+            padding-left: 0;
+        }
+        .steps li {
+            counter-increment: step-counter;
+            margin: 15px 0;
+            padding-left: 40px;
+            position: relative;
+        }
+        .steps li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #0066b3;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 28px;
+            font-weight: bold;
+            font-size: 12pt;
+        }
+
+        /* ===== CALLOUT BOXES ===== */
+        .note {
+            background-color: #e7f3ff;
+            border-left: 4px solid #0066b3;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .warning {
+            background-color: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .tip {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        /* ===== PAGE BREAKS ===== */
+        .new-page { page-break-before: always; }
+        .keep-together { page-break-inside: avoid; }
+
+        @media print {
+            body { font-size: 11pt; }
+            .no-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== COVER PAGE ==================== -->
+    <div class="title-page">
+        <img src="assets/vector-dynamics-logo.png" alt="Vector Dynamics" class="logo">
+
+        <h1>TH Finance Customer Data Request</h1>
+        <p class="subtitle">User Manual</p>
+
+        <div class="prepared-section">
+            <p>
+                <strong>Prepared for:</strong><br>
+                Nestle (Thailand) Ltd.<br>
+                Finance Department
+            </p>
+            <p>
+                <strong>Prepared by:</strong><br>
+                Vector Dynamics<br>
+                Nick Chamnong
+            </p>
+        </div>
+    </div>
+
+    <!-- ==================== VERSION HISTORY ==================== -->
+    <div class="version-page">
+        <h2>Version History</h2>
+        <table class="version-table">
+            <tr>
+                <th style="width: 15%">Version</th>
+                <th style="width: 20%">Date</th>
+                <th style="width: 25%">Author</th>
+                <th style="width: 40%">Description</th>
+            </tr>
+            <tr>
+                <td>1.0</td>
+                <td>December 17, 2025</td>
+                <td>Nick Chamnong</td>
+                <td>Initial release</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ==================== TABLE OF CONTENTS ==================== -->
+    <div class="toc">
+        <h2>Table of Contents</h2>
+
+        <div class="toc-item toc-section">
+            <a href="#section1">1. Introduction</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">1</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section1-1">1.1 Purpose of This Manual</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">1</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section1-2">1.2 Who Should Read This Manual</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">1</span>
+        </div>
+
+        <div class="toc-item toc-section">
+            <a href="#section2">2. Getting Started</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">2</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section2-1">2.1 Accessing the Application</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">2</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section2-2">2.2 Navigation Overview</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">2</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section2-3">2.3 Understanding the Dashboard</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">3</span>
+        </div>
+
+        <div class="toc-item toc-section">
+            <a href="#section3">3. Creating a New Request</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">4</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section3-1">3.1 Starting a New Request</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">4</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section3-2">3.2 Completing the Form</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">5</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section3-3">3.3 Saving and Submitting</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">7</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section3-4">3.4 Field Requirements Reference</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">8</span>
+        </div>
+
+        <div class="toc-item toc-section">
+            <a href="#section4">4. Approval Workflow</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">8</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section4-1">4.1 Understanding the Workflow</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">8</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section4-2">4.2 Approving Requests (RM/Controller)</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">9</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section4-3">4.3 Processing Requests (CS/AR/NBS)</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">10</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section4-4">4.4 Handling Denials</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">11</span>
+        </div>
+
+        <div class="toc-item toc-section">
+            <a href="#section5">5. Admin Functions</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">12</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section5-1">5.1 Managing User Roles</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">12</span>
+        </div>
+        <div class="toc-item toc-subsection">
+            <a href="#section5-2">5.2 Managing L6 Segmentation</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">13</span>
+        </div>
+
+        <div class="toc-item toc-section">
+            <a href="#section6">6. Troubleshooting</a>
+            <span class="toc-dots"></span>
+            <span class="toc-page">14</span>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+
+    <!-- Section 1: Introduction -->
+    <h1 id="section1">1. Introduction</h1>
+
+    <div class="keep-together">
+        <h2 id="section1-1">1.1 Purpose of This Manual</h2>
+        <p>This manual provides step-by-step instructions for using the TH Finance Customer Data Request application. It covers all features and common workflows to help Finance team members create, review, and approve customer data requests efficiently.</p>
+    </div>
+
+    <div class="keep-together">
+        <h2 id="section1-2">1.2 Who Should Read This Manual</h2>
+        <p>This manual is intended for:</p>
+        <ul>
+            <li><strong>Requesters</strong> - Finance team members who create new customer data requests</li>
+            <li><strong>Sales Support</strong> - Staff who fill in marketing and sales area data</li>
+            <li><strong>Regional Managers (RM)</strong> - Approvers who review and approve sales-related requests</li>
+            <li><strong>Controllers</strong> - Financial approvers who verify business justification</li>
+            <li><strong>CS Team</strong> - Customer Service staff who complete delivery and shipping data</li>
+            <li><strong>AR Team</strong> - Accounts Receivable staff who complete accounting and credit data</li>
+            <li><strong>NBS Team</strong> - Nestle Business Services staff who perform final processing</li>
+            <li><strong>Administrators</strong> - Users who manage roles and L6 segmentation data</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <h2 id="section1-3">1.3 Getting Help</h2>
+        <p>If you encounter issues not covered in this manual:</p>
+        <ul>
+            <li>Contact your local IT support team</li>
+            <li>Refer to the Technical Specification document for detailed system information</li>
+        </ul>
+    </div>
+
+    <!-- Section 2: Getting Started -->
+    <h1 id="section2" class="new-page">2. Getting Started</h1>
+
+    <h2 id="section2-1">2.1 Accessing the Application</h2>
+
+    <div class="keep-together">
+        <h3>Web Access (Recommended)</h3>
+        <ol class="steps">
+            <li>
+                <strong>Open your web browser</strong><br>
+                Chrome, Edge, or Firefox are recommended for best performance
+            </li>
+            <li>
+                <strong>Navigate to the application URL</strong><br>
+                Use the link provided by your administrator or from the email notification
+            </li>
+            <li>
+                <strong>Sign in with your corporate credentials</strong><br>
+                Use your Nestle email address and password
+            </li>
+            <li>
+                <strong>Wait for the application to load</strong><br>
+                The Dashboard will appear after successful login
+            </li>
+        </ol>
+
+        <div class="tip">
+            <strong>Tip:</strong> Bookmark the application URL for quick access in the future.
+        </div>
+    </div>
+
+    <div class="keep-together">
+        <h3>Mobile Access</h3>
+        <ol class="steps">
+            <li>Download the <strong>Power Apps</strong> mobile app from your app store</li>
+            <li>Sign in with your corporate credentials</li>
+            <li>Find "TH Finance Customer Data Request" in your apps list</li>
+            <li>Tap to open</li>
+        </ol>
+    </div>
+
+    <div class="keep-together">
+        <h2 id="section2-2">2.2 Navigation Overview</h2>
+        <p>The application consists of the following main areas, accessible via the side navigation menu:</p>
+
+        <figure>
+            <img src="assets/screenshots/07-navigation-menu.png" alt="Navigation Menu" class="screenshot-small">
+            <figcaption>Figure 2-1: Navigation Menu</figcaption>
+        </figure>
+    </div>
+
+    <table>
+        <tr>
+            <th>Menu Item</th>
+            <th>Purpose</th>
+            <th>Who Uses It</th>
+        </tr>
+        <tr>
+            <td>Dashboard</td>
+            <td>View KPIs, request counts, and access request list</td>
+            <td>All users</td>
+        </tr>
+        <tr>
+            <td>Request</td>
+            <td>Create and edit customer data requests</td>
+            <td>All users</td>
+        </tr>
+        <tr>
+            <td>Role</td>
+            <td>Manage user role assignments</td>
+            <td>Administrators only</td>
+        </tr>
+        <tr>
+            <td>L6 Segmentation</td>
+            <td>Manage customer classification data</td>
+            <td>Administrators only</td>
+        </tr>
+        <tr>
+            <td>Settings</td>
+            <td>Application settings</td>
+            <td>All users</td>
+        </tr>
+    </table>
+
+    <div class="keep-together">
+        <h2 id="section2-3">2.3 Understanding the Dashboard</h2>
+
+        <figure>
+            <img src="assets/screenshots/06-dashboard-full.png" alt="Dashboard" class="screenshot">
+            <figcaption>Figure 2-2: Dashboard Overview</figcaption>
+        </figure>
+    </div>
+
+    <p>The Dashboard displays:</p>
+    <ul>
+        <li><strong>Welcome message</strong> - Shows your name and role</li>
+        <li><strong>KPI Cards</strong> - Total Requests, My Requests, Completed count</li>
+        <li><strong>Requests by Workflow Stage</strong> - Visual breakdown of requests at each stage</li>
+        <li><strong>Recent Activity</strong> - Latest submissions and completions</li>
+        <li><strong>Request List</strong> - Scrollable list of all requests you can access</li>
+    </ul>
+
+    <figure>
+        <img src="assets/screenshots/20-request-list-gallery.png" alt="Request List" class="screenshot">
+        <figcaption>Figure 2-3: Request List with Status Indicators</figcaption>
+    </figure>
+
+    <!-- Section 3: Creating a New Request -->
+    <h1 id="section3" class="new-page">3. Creating a New Request</h1>
+
+    <div class="keep-together">
+        <h2 id="section3-1">3.1 Starting a New Request</h2>
+
+        <ol class="steps">
+            <li>
+                <strong>Click the "+ Add" button</strong><br>
+                Located in the top right corner of the Request List
+            </li>
+            <li>
+                <strong>A new blank form will open</strong><br>
+                The form will show your name as the requester and today's date
+            </li>
+        </ol>
+
+        <figure>
+            <img src="assets/screenshots/01-new-request-form.png" alt="New Request Form" class="screenshot">
+            <figcaption>Figure 3-1: New Request Form (Empty)</figcaption>
+        </figure>
+    </div>
+
+    <div class="keep-together">
+        <h2 id="section3-2">3.2 Completing the Form</h2>
+        <p>The request form is divided into several sections. As a Requester, you need to complete the following sections:</p>
+    </div>
+
+    <div class="keep-together">
+        <h3>Header Section</h3>
+        <figure>
+            <img src="assets/screenshots/02-form-header-closeup.png" alt="Header Section" class="screenshot">
+            <figcaption>Figure 3-2: Header Section</figcaption>
+        </figure>
+    </div>
+
+    <table>
+        <tr>
+            <th>Field</th>
+            <th>Description</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>Request For</td>
+            <td>Select: Creation, Change, Extend to, or Add channel</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>Account Group</td>
+            <td>Select the customer account group</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>BU</td>
+            <td>Select your Business Unit</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>BU Controller</td>
+            <td>Select the controller who will approve</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>Sales Manager (RM)</td>
+            <td>Select the Regional Manager who will approve</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>Sales Support</td>
+            <td>Select the Sales Support person</td>
+            <td>Yes</td>
+        </tr>
+    </table>
+
+    <div class="keep-together">
+        <h3>Address Data Section</h3>
+        <figure>
+            <img src="assets/screenshots/03-form-address-full.png" alt="Address Section" class="screenshot">
+            <figcaption>Figure 3-3: Address Data Section</figcaption>
+        </figure>
+    </div>
+
+    <div class="note">
+        <strong>Note:</strong> Address fields must be entered in both English (left column) and Thai (right column). The system supports bilingual data for SAP integration.
+    </div>
+
+    <table>
+        <tr>
+            <th>Field</th>
+            <th>Max Length</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>Legal Name (Name1)</td>
+            <td>35 characters</td>
+            <td>Yes (both EN/TH)</td>
+        </tr>
+        <tr>
+            <td>Name2 (Branch)</td>
+            <td>35 characters</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>Branch No. (Name3)</td>
+            <td>35 characters</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>House No.</td>
+            <td>10 characters</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>Street</td>
+            <td>35 characters</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>District, City, Province</td>
+            <td>Select from dropdown</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>Tax ID</td>
+            <td>13 characters</td>
+            <td>No</td>
+        </tr>
+    </table>
+
+    <div class="keep-together">
+        <h3>Sales Representative Section</h3>
+        <figure>
+            <img src="assets/screenshots/05-form-sales-representative.png" alt="Sales Rep Section" class="screenshot">
+            <figcaption>Figure 3-4: Sales Representative Section</figcaption>
+        </figure>
+    </div>
+
+    <div class="keep-together">
+        <h3>Attachments Section</h3>
+        <figure>
+            <img src="assets/screenshots/04-form-attachments.png" alt="Attachments" class="screenshot">
+            <figcaption>Figure 3-5: Attachments Section</figcaption>
+        </figure>
+    </div>
+
+    <p>Upload supporting documents such as:</p>
+    <ul>
+        <li>Business registration certificate</li>
+        <li>Tax registration documents</li>
+        <li>Bank account information</li>
+    </ul>
+
+    <div class="keep-together">
+        <h2 id="section3-3">3.3 Saving and Submitting</h2>
+        <h3>Saving Your Work</h3>
+        <p>Click the <strong>Save</strong> button at any time to save your progress. You can return later to complete the form.</p>
+
+        <figure>
+            <img src="assets/screenshots/22-save-success-notification.png" alt="Save Success" class="screenshot-small">
+            <figcaption>Figure 3-6: Save Confirmation Message</figcaption>
+        </figure>
+
+        <div class="tip">
+            <strong>Tip:</strong> Save frequently to avoid losing your work. Draft requests can be edited until submitted.
+        </div>
+    </div>
+
+    <h3>Submitting the Request</h3>
+    <ol class="steps">
+        <li>
+            <strong>Complete all required fields</strong><br>
+            Required fields are marked with a red asterisk (*)
+        </li>
+        <li>
+            <strong>Attach required documents</strong><br>
+            At least one attachment is required
+        </li>
+        <li>
+            <strong>Click the Submit button</strong><br>
+            <figure>
+                <img src="assets/screenshots/23-submit-button.png" alt="Submit Button" class="screenshot-small">
+                <figcaption>Figure 3-7: Submit Button</figcaption>
+            </figure>
+        </li>
+        <li>
+            <strong>Review any validation errors</strong><br>
+            If there are errors, they will be displayed at the top of the form
+        </li>
+    </ol>
+
+    <div class="warning">
+        <strong>Important:</strong> If required fields are missing, you will see a validation error message listing all fields that need to be completed.
+    </div>
+
+    <figure>
+        <img src="assets/screenshots/24-validation-error-banner.png" alt="Validation Error" class="screenshot">
+        <figcaption>Figure 3-8: Validation Error Message</figcaption>
+    </figure>
+
+    <!-- Section 3.4: Field Requirements Reference -->
+    <h2 id="section3-4" class="new-page">3.4 Field Requirements Reference</h2>
+
+    <p>This section provides detailed information about required fields, character limits, and conditional validation rules.</p>
+
+    <div class="keep-together">
+        <h3>Validation by Workflow Stage</h3>
+        <p>Fields are validated at different stages of the workflow. You only need to complete fields relevant to your role:</p>
+
+        <table>
+            <tr>
+                <th>Stage</th>
+                <th>Role</th>
+                <th>Required Fields</th>
+                <th>Count</th>
+            </tr>
+            <tr>
+                <td>Submit</td>
+                <td>Requester</td>
+                <td>BU Controller, Sales Manager, Sales Support, Attachment, Name1 (EN/TH), Name3 (EN/TH), Province, District, SubDistrict, PostalCode (EN/TH), TaxID (EN/TH), Country (EN/TH), Telephone</td>
+                <td>18</td>
+            </tr>
+            <tr>
+                <td>Sales Support Complete</td>
+                <td>Sales Support</td>
+                <td>Customer Class, Industry, Industry Code, Sales Org, Distribution Channel, Sales District, Sales Office, Terms of Payment, L6 Segmentation</td>
+                <td>9</td>
+            </tr>
+            <tr>
+                <td>CS Complete</td>
+                <td>CS Team</td>
+                <td>Delivery Priority, Shipping Conditions, Incoterms, Transport Zone</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>AR Complete</td>
+                <td>AR Team</td>
+                <td>Credit Limit, Risk Category, Credit Rep. Group, Customer Credit Group</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>AR Complete</td>
+                <td>AR Team (Sold to only)</td>
+                <td>Rec. Account, Cash Mgmt Group, Tolerance Group</td>
+                <td>+3</td>
+            </tr>
+            <tr>
+                <td>NBS Complete</td>
+                <td>NBS Team</td>
+                <td>Customer No.</td>
+                <td>1</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="keep-together">
+        <h3>Conditional Field Requirements</h3>
+        <p>Some fields are only required under specific conditions:</p>
+    </div>
+
+    <div class="note">
+        <strong>Condition 1: "Sold to" Account Group</strong><br>
+        When Account Group = "Sold to" (367420000), the following additional fields become required at the AR Complete stage:
+        <ul>
+            <li>Rec. Account (Reconciliation Account)</li>
+            <li>Cash Mgmt Group (Cash Management Group)</li>
+            <li>Tolerance Group</li>
+        </ul>
+    </div>
+
+    <div class="note">
+        <strong>Condition 2: "Extend to" Request Type</strong><br>
+        When Request For = "Extend to" (367420002), the following Thai language fields become <em>optional</em> instead of required:
+        <ul>
+            <li>Name1 (Thai) - ชื่อผู้ประกอบการ</li>
+            <li>Name3 (Thai) - ชื่อสาขา</li>
+            <li>Postal Code (Thai) - รหัสไปรษณีย์</li>
+            <li>Tax ID (Thai) - เลขประจำตัวผู้เสียภาษี</li>
+            <li>Country (Thai) - ประเทศ</li>
+        </ul>
+        This is because "Extend to" requests use existing customer address data from another sales area.
+    </div>
+
+    <div class="keep-together">
+        <h3>Character Limits</h3>
+        <p>Many fields have character limits based on SAP field specifications. Exceeding these limits will prevent the data from being saved correctly.</p>
+    </div>
+
+    <table>
+        <tr>
+            <th>Field</th>
+            <th>Max Length</th>
+            <th>Required</th>
+            <th>Section</th>
+        </tr>
+        <tr>
+            <td>Name1 (Legal Name)</td>
+            <td>35 characters</td>
+            <td>Yes</td>
+            <td>Address Data</td>
+        </tr>
+        <tr>
+            <td>Name2 (Branch No.)</td>
+            <td>35 characters</td>
+            <td>No</td>
+            <td>Address Data</td>
+        </tr>
+        <tr>
+            <td>Name3</td>
+            <td>35 characters</td>
+            <td>Yes</td>
+            <td>Address Data</td>
+        </tr>
+        <tr>
+            <td>Name4</td>
+            <td>35 characters</td>
+            <td>No</td>
+            <td>Address Data</td>
+        </tr>
+        <tr>
+            <td>House No.</td>
+            <td>10 characters</td>
+            <td>No</td>
+            <td>Address Data</td>
+        </tr>
+        <tr>
+            <td>Street</td>
+            <td>35 characters</td>
+            <td>No</td>
+            <td>Address Data</td>
+        </tr>
+        <tr>
+            <td>Tax ID</td>
+            <td>13 characters</td>
+            <td>Yes</td>
+            <td>Address Data</td>
+        </tr>
+        <tr>
+            <td>Search 1</td>
+            <td>10 characters</td>
+            <td>No</td>
+            <td>Address Data</td>
+        </tr>
+        <tr>
+            <td>Search 2</td>
+            <td>10 characters</td>
+            <td>No</td>
+            <td>Address Data</td>
+        </tr>
+        <tr>
+            <td>Sales Organization</td>
+            <td>4 characters</td>
+            <td>Yes</td>
+            <td>Sales View</td>
+        </tr>
+        <tr>
+            <td>Distribution Channel</td>
+            <td>5 characters</td>
+            <td>Yes</td>
+            <td>Sales View</td>
+        </tr>
+        <tr>
+            <td>Sales District</td>
+            <td>6 characters</td>
+            <td>Yes</td>
+            <td>Sales View</td>
+        </tr>
+        <tr>
+            <td>Sales Office</td>
+            <td>4 characters</td>
+            <td>Yes</td>
+            <td>Sales View</td>
+        </tr>
+        <tr>
+            <td>Division</td>
+            <td>2 characters</td>
+            <td>Yes</td>
+            <td>Sales View</td>
+        </tr>
+        <tr>
+            <td>Sales Group</td>
+            <td>3 characters</td>
+            <td>Yes</td>
+            <td>Sales View</td>
+        </tr>
+        <tr>
+            <td>Terms of Payment</td>
+            <td>4 characters</td>
+            <td>Yes</td>
+            <td>Sales/CS/Company View</td>
+        </tr>
+        <tr>
+            <td>Company Code</td>
+            <td>4 characters</td>
+            <td>Yes</td>
+            <td>Company View</td>
+        </tr>
+        <tr>
+            <td>Rec. Account</td>
+            <td>10 characters</td>
+            <td>Conditional*</td>
+            <td>Company View</td>
+        </tr>
+        <tr>
+            <td>Cash Mgmt Group</td>
+            <td>10 characters</td>
+            <td>Conditional*</td>
+            <td>Company View</td>
+        </tr>
+        <tr>
+            <td>Tolerance Group</td>
+            <td>4 characters</td>
+            <td>Conditional*</td>
+            <td>Company View</td>
+        </tr>
+        <tr>
+            <td>Dunning Clerk</td>
+            <td>2 characters</td>
+            <td>Yes</td>
+            <td>Company View</td>
+        </tr>
+        <tr>
+            <td>Accounting Clerk</td>
+            <td>3 characters</td>
+            <td>Yes</td>
+            <td>Company View</td>
+        </tr>
+        <tr>
+            <td>Bank Statement</td>
+            <td>2 characters</td>
+            <td>Yes</td>
+            <td>Company View</td>
+        </tr>
+        <tr>
+            <td>Clerk's Fax</td>
+            <td>3 characters</td>
+            <td>Yes</td>
+            <td>Company View</td>
+        </tr>
+    </table>
+
+    <p><em>* Conditional fields are required only when Account Group = "Sold to"</em></p>
+
+    <div class="keep-together">
+        <h3>Bilingual Requirements</h3>
+        <p>Address fields must be entered in both English (International) and Thai (Local Language) for SAP integration:</p>
+    </div>
+
+    <table>
+        <tr>
+            <th>English Field</th>
+            <th>Thai Field</th>
+            <th>Max Length</th>
+        </tr>
+        <tr>
+            <td>Name1 (Legal Name)</td>
+            <td>ชื่อผู้ประกอบการ</td>
+            <td>35 characters each</td>
+        </tr>
+        <tr>
+            <td>Name3 (Branch)</td>
+            <td>ชื่อสาขา</td>
+            <td>35 characters each</td>
+        </tr>
+        <tr>
+            <td>House No.</td>
+            <td>หมู่บ้าน</td>
+            <td>10 characters each</td>
+        </tr>
+        <tr>
+            <td>Street</td>
+            <td>ถนน</td>
+            <td>35 characters each</td>
+        </tr>
+        <tr>
+            <td>Building/Moo/Soi</td>
+            <td>อาคาร, หมู่บ้าน, ซอย</td>
+            <td>35 characters each</td>
+        </tr>
+        <tr>
+            <td>SubDistrict</td>
+            <td>ตำบล / เขต</td>
+            <td>35 characters each</td>
+        </tr>
+        <tr>
+            <td>District</td>
+            <td>อำเภอ / เขต</td>
+            <td>35 characters each</td>
+        </tr>
+        <tr>
+            <td>Postal Code</td>
+            <td>รหัสไปรษณีย์</td>
+            <td>5 characters each</td>
+        </tr>
+        <tr>
+            <td>Tax ID</td>
+            <td>เลขประจำตัวผู้เสียภาษี</td>
+            <td>13 characters each</td>
+        </tr>
+    </table>
+
+    <div class="warning">
+        <strong>Important:</strong> When entering data:
+        <ul>
+            <li>The English and Thai fields should contain equivalent information (translated content)</li>
+            <li>Do not leave Thai fields empty if English fields are filled (except for "Extend to" requests)</li>
+            <li>Province, District, and SubDistrict are selected from dropdowns that automatically populate both languages</li>
+        </ul>
+    </div>
+
+    <div class="keep-together">
+        <h3>Validation Error Indicators</h3>
+        <p>When required fields are missing or character limits are exceeded:</p>
+        <ul>
+            <li><strong>Red border</strong> appears around the invalid field</li>
+            <li><strong>Error banner</strong> displays at the top of the form listing all missing fields</li>
+            <li><strong>Submit/Complete buttons</strong> are disabled until all validations pass</li>
+        </ul>
+    </div>
+
+    <div class="tip">
+        <strong>Tip:</strong> Save your work frequently. Draft saves are allowed without validation, so you can save partial data and complete the form later.
+    </div>
+
+    <!-- Section 4: Approval Workflow -->
+    <h1 id="section4" class="new-page">4. Approval Workflow</h1>
+
+    <div class="keep-together">
+        <h2 id="section4-1">4.1 Understanding the Workflow</h2>
+
+        <p>After submission, a request goes through a 7-stage approval workflow:</p>
+    </div>
+
+    <table>
+        <tr>
+            <th>Stage</th>
+            <th>Status</th>
+            <th>Who Acts</th>
+            <th>Action Required</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Draft</td>
+            <td>Requester</td>
+            <td>Complete form and submit</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Pending Approvals</td>
+            <td>RM (Sales Manager)</td>
+            <td>Review and Approve/Deny</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Pending Approvals</td>
+            <td>Controller</td>
+            <td>Review and Approve/Deny</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Pending CS</td>
+            <td>CS Team</td>
+            <td>Complete CS View section</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Pending AR</td>
+            <td>AR Team</td>
+            <td>Complete Company View and Credit Management</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Pending NBS</td>
+            <td>NBS Team</td>
+            <td>Final review and processing</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Completed</td>
+            <td>-</td>
+            <td>Request ready for SAP</td>
+        </tr>
+    </table>
+
+    <figure>
+        <img src="assets/screenshots/19-status-bar-pending-ar.png" alt="Status Bar" class="screenshot-small">
+        <figcaption>Figure 4-1: Status Bar Showing Current Stage</figcaption>
+    </figure>
+
+    <div class="keep-together">
+        <h2 id="section4-2">4.2 Approving Requests (RM/Controller)</h2>
+
+        <p>If you are assigned as RM or Controller for a request:</p>
+    </div>
+
+    <ol class="steps">
+        <li>
+            <strong>Open the request from your Dashboard</strong><br>
+            Requests pending your approval will be highlighted
+        </li>
+        <li>
+            <strong>Review all entered information</strong><br>
+            Check that customer data is accurate and complete
+        </li>
+        <li>
+            <strong>Click Approve or Deny</strong><br>
+            <figure>
+                <img src="assets/screenshots/11-approval-buttons-ar.png" alt="Approval Buttons" class="screenshot-small">
+                <figcaption>Figure 4-2: Approval Buttons</figcaption>
+            </figure>
+        </li>
+        <li>
+            <strong>If denying, enter a comment</strong><br>
+            Explain why the request is being denied so the requester can correct it
+        </li>
+    </ol>
+
+    <div class="keep-together">
+        <h2 id="section4-3">4.3 Processing Requests (CS/AR/NBS)</h2>
+        <h3>CS Team Processing</h3>
+        <p>Complete the CS View section with delivery and shipping information:</p>
+
+        <figure>
+            <img src="assets/screenshots/16-form-cs-view.png" alt="CS View" class="screenshot">
+            <figcaption>Figure 4-3: CS View Section</figcaption>
+        </figure>
+    </div>
+
+    <div class="keep-together">
+        <h3>AR Team Processing</h3>
+        <p>Complete the Company View and Credit Management sections:</p>
+    </div>
+
+    <figure>
+        <img src="assets/screenshots/17-form-company-view.png" alt="Company View" class="screenshot">
+        <figcaption>Figure 4-4: Company View Section</figcaption>
+    </figure>
+
+    <figure>
+        <img src="assets/screenshots/18-form-credit-management.png" alt="Credit Management" class="screenshot">
+        <figcaption>Figure 4-5: Credit Management Section</figcaption>
+    </figure>
+
+    <div class="keep-together">
+        <h3>NBS Final Processing</h3>
+        <p>Review all information and complete the workflow by clicking the NBS Complete button.</p>
+    </div>
+
+    <div class="keep-together">
+        <h2 id="section4-4">4.4 Handling Denials</h2>
+
+        <p>If your request is denied:</p>
+    </div>
+
+    <ol class="steps">
+        <li>
+            <strong>You will receive an email notification</strong><br>
+            The email includes the denial reason
+        </li>
+        <li>
+            <strong>Open the request from your Dashboard</strong><br>
+            The status will show "Draft"
+        </li>
+        <li>
+            <strong>Review the denial comments</strong><br>
+            Comments appear at the bottom of the form with timestamp
+        </li>
+        <li>
+            <strong>Make the required corrections</strong><br>
+            Edit the fields that need to be changed
+        </li>
+        <li>
+            <strong>Resubmit the request</strong><br>
+            Click Submit to restart the approval process
+        </li>
+    </ol>
+
+    <figure>
+        <img src="assets/screenshots/12-comment-dialog.png" alt="Comment Dialog" class="screenshot-small">
+        <figcaption>Figure 4-6: Comment Dialog (Required for Denials)</figcaption>
+    </figure>
+
+    <!-- Section 5: Admin Functions -->
+    <h1 id="section5" class="new-page">5. Admin Functions</h1>
+
+    <p>The following functions are available only to users with Administrator privileges.</p>
+
+    <div class="keep-together">
+        <h2 id="section5-1">5.1 Managing User Roles</h2>
+        <p>Navigate to the <strong>Role</strong> screen from the navigation menu:</p>
+
+        <figure>
+            <img src="assets/screenshots/08-role-screen.png" alt="Role Screen" class="screenshot">
+            <figcaption>Figure 5-1: Role Management Screen</figcaption>
+        </figure>
+    </div>
+
+    <div class="keep-together">
+        <h3>Adding a New User Role</h3>
+        <ol class="steps">
+            <li>Click the <strong>+ Add User</strong> button</li>
+            <li>Enter the user's name and email</li>
+            <li>Select the role (Admin, CS, AR, or NBS)</li>
+            <li>Click Save</li>
+        </ol>
+    </div>
+
+    <div class="keep-together">
+        <h3>Editing a User Role</h3>
+        <ol class="steps">
+            <li>Select the user from the list</li>
+            <li>Click the <strong>Edit</strong> button</li>
+            <li>Update the role assignment</li>
+            <li>Click Save</li>
+        </ol>
+    </div>
+
+    <div class="keep-together">
+        <h3>Removing a User Role</h3>
+        <ol class="steps">
+            <li>Select the user from the list</li>
+            <li>Click the <strong>Remove</strong> button</li>
+            <li>Confirm the removal</li>
+        </ol>
+    </div>
+
+    <div class="warning">
+        <strong>Important:</strong> Removing a user's role will prevent them from accessing role-specific functions. They will still be able to create requests as a Requester.
+    </div>
+
+    <div class="keep-together">
+        <h2 id="section5-2">5.2 Managing L6 Segmentation</h2>
+        <p>Navigate to the <strong>L6 Segmentation</strong> screen from the navigation menu:</p>
+
+        <figure>
+            <img src="assets/screenshots/09-l6-segmentation-screen.png" alt="L6 Segmentation" class="screenshot">
+            <figcaption>Figure 5-2: L6 Segmentation Management Screen</figcaption>
+        </figure>
+    </div>
+
+    <div class="note">
+        <strong>Note:</strong> The L6 Segmentation table is shared across multiple applications. Changes here will affect all applications using this data.
+    </div>
+
+    <div class="keep-together">
+        <h3>Adding a New L6 Record</h3>
+        <ol class="steps">
+            <li>Click the <strong>+ Add L6 Segmentation</strong> button</li>
+            <li>Enter the L6 Number (e.g., "912080")</li>
+            <li>Enter the Segmentation Code (9 digits)</li>
+            <li>Enter the Description</li>
+            <li>Click Save</li>
+        </ol>
+    </div>
+
+    <figure>
+        <img src="assets/screenshots/15-form-l6-segmentation-dropdown.png" alt="L6 Dropdown" class="screenshot">
+        <figcaption>Figure 5-3: L6 Segmentation Dropdown in Request Form</figcaption>
+    </figure>
+
+    <!-- Section 6: Troubleshooting -->
+    <h1 id="section6" class="new-page">6. Troubleshooting</h1>
+
+    <div class="keep-together">
+        <h2 id="section6-1">6.1 Common Problems</h2>
+        <h3>Problem: Cannot Submit Request</h3>
+        <p><strong>Symptoms:</strong> Submit button doesn't work or shows error message</p>
+        <p><strong>Solution:</strong></p>
+        <ol>
+            <li>Check that all required fields (marked with *) are completed</li>
+            <li>Ensure at least one attachment is uploaded</li>
+            <li>Verify BU Controller, Sales Manager, and Sales Support are selected</li>
+            <li>Look at the validation error banner for specific missing fields</li>
+        </ol>
+    </div>
+
+    <div class="keep-together">
+        <h3>Problem: Cannot See Approval Buttons</h3>
+        <p><strong>Symptoms:</strong> Request is open but Approve/Deny buttons are not visible</p>
+        <p><strong>Solution:</strong></p>
+        <ol>
+            <li>Verify you are assigned as the approver for this request</li>
+            <li>Check that the request is at the correct workflow stage for your role</li>
+            <li>Contact an administrator to verify your role assignment</li>
+        </ol>
+    </div>
+
+    <div class="keep-together">
+        <h3>Problem: Data Not Saving</h3>
+        <p><strong>Symptoms:</strong> Changes are lost after clicking Save</p>
+        <p><strong>Solution:</strong></p>
+        <ol>
+            <li>Check your internet connection</li>
+            <li>Wait for the "Record created successfully" message before closing</li>
+            <li>Try refreshing the page and re-entering the data</li>
+            <li>If problem persists, contact IT support</li>
+        </ol>
+    </div>
+
+    <div class="keep-together">
+        <h3>Problem: Cannot Access Role or L6 Segmentation Screens</h3>
+        <p><strong>Symptoms:</strong> Menu items are grayed out or show "Unauthorized"</p>
+        <p><strong>Solution:</strong></p>
+        <ol>
+            <li>These screens are restricted to Administrators only</li>
+            <li>Contact an existing Administrator to request access</li>
+        </ol>
+    </div>
+
+    <div class="keep-together">
+        <h2 id="section6-2">6.2 Frequently Asked Questions</h2>
+        <h4>Q: Can I edit a request after submitting it?</h4>
+        <p>A: No, once submitted, a request can only be edited if it is denied by an approver and returned to Draft status.</p>
+    </div>
+
+    <div class="keep-together">
+        <h4>Q: How long does the approval process take?</h4>
+        <p>A: This depends on the availability of approvers. Email notifications are sent at each stage to prompt action. Contact the assigned approver directly if urgent.</p>
+    </div>
+
+    <div class="keep-together">
+        <h4>Q: Can I see requests created by other users?</h4>
+        <p>A: Regular users can only see their own requests. Users with CS, AR, NBS, or Admin roles can see all requests at their respective stages.</p>
+    </div>
+
+    <div class="keep-together">
+        <h4>Q: What happens after a request is completed?</h4>
+        <p>A: Completed requests are ready for SAP processing. The data will be transferred to SAP to create the customer master record.</p>
+    </div>
+
+    <div class="keep-together">
+        <h2 id="section6-3">6.3 Contact Support</h2>
+        <p>If you cannot resolve your issue using this manual:</p>
+    </div>
+    <ul>
+        <li><strong>Internal IT Support:</strong> Contact your local IT helpdesk</li>
+        <li><strong>Application Support:</strong> Contact your Finance team lead</li>
+    </ul>
+
+    <div class="warning">
+        <strong>When contacting support, please include:</strong>
+        <ul>
+            <li>Your name and department</li>
+            <li>Request number (if applicable)</li>
+            <li>Description of the problem</li>
+            <li>Steps to reproduce the issue</li>
+            <li>Screenshots if applicable</li>
+        </ul>
+    </div>
+
+</body>
+</html>
