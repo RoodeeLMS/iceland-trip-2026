@@ -1,120 +1,110 @@
-# China Trip 2025 - Website Overview
+# Iceland Trip 2026 - Website Overview
 
-**Live Website:** https://rooodeelms.github.io/china-trip-2025/
+**Trip Dates:** April 8-17, 2026 (10 days)
+**Travelers:** 4 Adults
+**Route:** South Coast & Snaefellsnes Peninsula
 
-**Repository:** https://github.com/RoodeeLMS/china-trip-2025
+## Website Structure (11 Pages)
 
-## Website Overview
-
-**Purpose:** A multi-page responsive website to plan and manage a 23-day journey through China (Oct 14 - Nov 5, 2025), covering 9 destinations from Chongqing to Chengdu.
-
-## Structure (7 Pages)
+### Main Pages (7)
 
 1. **index.html - Homepage**
-   - Hero section with trip overview
-   - Stats cards (23 days, 9 destinations, 8 HSR journeys, 13 hotels)
-   - Trip highlights organized by category (Natural Wonders, Cultural Sites, Food)
-   - Photo gallery of destinations
-   - Route map placeholder
+   - Hero section with trip countdown timer
+   - Stats cards (10 days, 4 travelers, ~1000 km, 14-15h daylight)
+   - Day-by-day route timeline
+   - Trip highlights and quick navigation cards
 
 2. **itinerary.html - Daily Itinerary**
-   - 23-day accordion-style breakdown
-   - Each day card includes: Plan (bullet points), Focus, Transport, Hotels
-   - Color-coded sections with icons (📍🎯🚄🏨)
-   - Expand/Collapse functionality for easy navigation
-   - Grouped by destination regions with header images
+   - 10-day accordion-style breakdown (Apr 8-17)
+   - Each day: activities, accommodation, Google Maps route links
+   - Expand All / Collapse All functionality
+   - Infographic images per day
 
-3. **planning.html - Bookings & Checklist**
-   - Immediate booking priorities (remaining hotels, buses)
-   - Hotel booking details with confirmation numbers
-   - Strategic decisions and alternatives
-   - Park ticket recommendations with 7-10 day advance booking strategy
-   - Driver maximization tips
+3. **flights.html - Flight Information**
+   - Outbound: BKK → DOH → OSL → KEF (Apr 7-8, ~14h)
+   - Return: KEF → OSL → DOH → BKK (Apr 17-18, ~23h)
+   - 4 passenger details with e-ticket numbers
+   - Baggage information and transfer tips
 
-4. **logistics.html - Transport Analysis**
-   - HSR route viability analysis
-   - Private driver requirements
-   - Alternative transport options
+4. **hotels.html - Accommodations**
+   - 9 hotels/apartments (1 per night, Apr 8-17)
+   - Collapsible cards with booking details, gallery images, tips
+   - Booking links (Agoda, Booking.com)
 
-5. **analysis.html - Visual Intelligence Dashboard**
-   - **Crowd Intelligence:** 23-day timeline with color-coded crowd levels (🟢🟡🟠🔴)
-   - **Weather Intelligence:** Temperature zones and altitude warnings
-   - **Time Management:** Critical day alerts and time management tips
-   - **Packing Guide:** Layering system for different climates
+5. **planning.html - Bookings & Checklist**
+   - Budget breakdown and booking priorities
+   - Blue Lagoon pre-booking reminder
+   - Packing checklist and travel tips
 
-6. **gpt-comment.html - GPT Expert Review**
-   - Comprehensive analysis and cross-checks
-   - Detailed Nov 2 Leshan plan
-   - Emei summit weather playbook
-   - Quick action checklist
+6. **logistics.html - Transport & Logistics**
+   - Rental car recommendations and fuel strategy
+   - Driving tips for Iceland (weather, F-roads, daylight)
+   - Supermarket strategy for 4 adults
+   - Alternative transport analysis
 
-7. **grok-comment.html - Grok Expert Review**
-   - Strengths and risks analysis
-   - Recommendations and priorities
-   - Overall rating (9/10)
+7. **analysis.html - Visual Intelligence Dashboard**
+   - Seasonal analysis (spring conditions for April)
+   - Weather intelligence and packing guide
+   - Budget optimization tips
+   - Cost-saving recommendations
+
+### AI Review Pages (4)
+
+8. **sonnet_comment.html** - Claude Sonnet expert review
+9. **gemini_comment.html** - Gemini expert review
+10. **gpt_comment.html** - GPT expert review
+11. **grok_comment.html** - Grok expert review
+
+Each includes day-by-day expansion tips, alternative itinerary suggestions, and cross-AI commentary.
 
 ## Key Features
 
 **Design:**
-- Gradient color scheme (purple/blue theme)
-- Responsive mobile-first design
-- Hamburger menu for mobile (☰ Menu button)
-- Smooth CSS transitions and animations
-- Color-coded information sections
+- Iceland-themed color scheme (aurora green / deep navy / glacier white)
+- Responsive mobile-first design with hamburger menu
+- Sticky navigation with AI Reviews dropdown
+- Smooth CSS transitions and gradient cards
 
 **Interactive Elements:**
-- Accordion days (expand/collapse individual days)
-- Expand All/Collapse All buttons on itinerary
+- Accordion days (expand/collapse) on itinerary and hotels
+- Live countdown timer on homepage
 - Mobile navigation toggle
-- Sticky navigation (desktop)
+- AI Reviews dropdown menu
 
 **Technical Stack:**
 - Pure HTML/CSS/JavaScript (no frameworks)
-- Single shared styles.css file
+- Each page has self-contained inline styles
+- `styles.css` shared by AI review pages only
 - Mobile breakpoint at 768px
-- Accordion max-height: 5000px to accommodate long content
-
-## Problem-Solving Journey
-
-**Fixed Issues:**
-1. ✅ Multi-page architecture from single HTML
-2. ✅ Visual redesign (was "boring" text walls)
-3. ✅ Accordion for 23-day itinerary
-4. ✅ Mobile navigation (hamburger menu)
-5. ✅ Bullet points for readability
-6. ✅ Analysis page visual dashboard
-7. ✅ Accordion overflow (increased max-height)
-8. ✅ JavaScript function error (added toggleMobileMenu to all pages)
 
 ## File Structure
 
 ```
-china-trip-2025/
-├── index.html              # Homepage
-├── itinerary.html          # Daily breakdown
-├── planning.html           # Bookings checklist
-├── logistics.html          # Transport details
-├── analysis.html           # Visual dashboard
-├── gpt-comment.html        # GPT review
-├── grok-comment.html       # Grok review
-├── styles.css              # Shared stylesheet
-├── *.md                    # Planning documents
-├── *.png                   # Booking confirmations
+Iceland Trip 2026/
+├── index.html              # Homepage with countdown
+├── itinerary.html          # 10-day accordion itinerary
+├── flights.html            # Flight details (BKK ⇄ KEF)
+├── hotels.html             # 9 accommodation cards
+├── planning.html           # Bookings & checklist
+├── logistics.html          # Transport & driving tips
+├── analysis.html           # Weather/budget dashboard
+├── sonnet_comment.html     # Claude Sonnet review
+├── gemini_comment.html     # Gemini review
+├── gpt_comment.html        # GPT review
+├── grok_comment.html       # Grok review
+├── styles.css              # Shared CSS (AI review pages)
+├── images/                 # Trip images & infographics
+├── Plans/                  # Planning documents
+├── Visa Docs/              # Visa application documents
+├── Rental Cars Docs/       # Car rental documents
+├── Personal Travel Docs/   # Personal documents
 └── WEBSITE_OVERVIEW.md     # This file
 ```
 
-## How to Use This Template for Other Itineraries
-
-1. **Content Structure:** Use the 5-page + 2-review model
-2. **Accordion Pattern:** Great for multi-day itineraries
-3. **Visual Dashboard:** Color-code crowd/weather/time intelligence
-4. **Mobile-First:** Hamburger menu pattern for navigation
-5. **Color Coding:** Use consistent icons and color schemes for information hierarchy
-
 ## Deployment
 
-The website is deployed via GitHub Pages and can be updated by pushing changes to the main branch.
+Static HTML site - can be deployed via GitHub Pages or any static hosting.
 
 ---
 
-*Generated with Claude Code*
+*Updated: March 2026 | Generated with Claude Code*

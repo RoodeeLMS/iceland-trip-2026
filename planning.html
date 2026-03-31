@@ -99,6 +99,45 @@
             font-weight: bold;
         }
 
+        .navbar-dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--deep-navy);
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            min-width: 160px;
+            z-index: 1001;
+            overflow: hidden;
+        }
+
+        .navbar-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 10px 16px;
+            display: block;
+            text-decoration: none;
+            font-size: 0.85em;
+            transition: 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(0, 180, 216, 0.2);
+            color: var(--aurora-green);
+        }
+
+        .dropdown-toggle::after {
+            content: '';
+        }
+
         .menu-toggle {
             display: none;
             background: none;
@@ -134,6 +173,19 @@
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             }
 
+            .navbar-dropdown { width: 100%; }
+            .dropdown-content {
+                position: static;
+                display: none;
+                box-shadow: none;
+                background: rgba(0, 0, 0, 0.2);
+            }
+            .navbar-dropdown:hover .dropdown-content,
+            .navbar-dropdown.open .dropdown-content { display: block; }
+            .dropdown-content a {
+                padding: 10px 30px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
             .menu-toggle {
                 display: block;
             }
@@ -629,6 +681,15 @@
                 <a href="planning.html" class="navbar-item active">Planning</a>
                 <a href="logistics.html" class="navbar-item">Logistics</a>
                 <a href="analysis.html" class="navbar-item">Analysis</a>
+                <div class="navbar-dropdown">
+                    <a href="#" class="navbar-item dropdown-toggle">AI Reviews ▼</a>
+                    <div class="dropdown-content">
+                        <a href="gemini_comment.html">Gemini</a>
+                        <a href="gpt_comment.html">GPT</a>
+                        <a href="grok_comment.html">Grok</a>
+                        <a href="sonnet_comment.html">Sonnet</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -665,7 +726,7 @@
                 <div class="booking-card urgent">
                     <h3>2. Rental Car</h3>
                     <p><strong>Status:</strong> <span class="status-pending">NOT BOOKED</span></p>
-                    <p><strong>Duration:</strong> 10 days (April 8-17, pickup/drop-off at Keflavik Airport)</p>
+                    <p><strong>Duration:</strong> 9 days (April 9-17, pickup/drop-off at Keflavik Airport)</p>
                     <p><strong>Vehicle Type:</strong> 2WD sufficient (all paved roads), but 4WD recommended for April weather</p>
                     <p><strong>Why urgent:</strong> Prices increase closer to trip date</p>
                     <p><strong>Recommended Companies:</strong></p>
@@ -901,7 +962,7 @@
                 </div>
 
                 <div class="info-card" style="margin-top: 1.5rem;">
-                    <h3>Golden Hour Times (April 8-17)</h3>
+                    <h3>Golden Hour Times (April 9-17)</h3>
                     <div class="golden-hour-grid">
                         <div class="golden-card sunrise">
                             <strong>Sunrise</strong>
@@ -933,7 +994,7 @@
                     <h3>3 Months Before</h3>
                     <ul class="checklist">
                         <li>Book Blue Lagoon entry (Day 9, April 16)</li>
-                        <li>Book rental car with insurance (April 8-17)</li>
+                        <li>Book rental car with insurance (April 9-17)</li>
                         <li>Research and book accommodations (all 9 nights)</li>
                         <li>Book optional glacier hiking tour if desired</li>
                         <li>Purchase travel insurance</li>
@@ -989,7 +1050,7 @@
                             <td class="budget-amount">$900-1,500</td>
                         </tr>
                         <tr>
-                            <td>Food & Dining (10 days)</td>
+                            <td>Food & Dining (9 days)</td>
                             <td class="budget-amount">$650-1,100</td>
                         </tr>
                         <tr>
@@ -1029,7 +1090,7 @@
     <!-- Footer -->
     <footer>
         <p>Iceland Trip 2026 | Journey through Fire and Ice 🇮🇸</p>
-        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 8-17, 2026 • 7 Adults</p>
+        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 9-17, 2026 • 4 Adults</p>
     </footer>
 
     <script>

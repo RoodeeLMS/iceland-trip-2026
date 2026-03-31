@@ -7,7 +7,7 @@
     <title>Itinerary - Iceland Trip 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-blue: #0077B6;
@@ -96,6 +96,45 @@
             font-weight: bold;
         }
 
+        .navbar-dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--deep-navy);
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            min-width: 160px;
+            z-index: 1001;
+            overflow: hidden;
+        }
+
+        .navbar-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 10px 16px;
+            display: block;
+            text-decoration: none;
+            font-size: 0.85em;
+            transition: 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(0, 180, 216, 0.2);
+            color: var(--aurora-green);
+        }
+
+        .dropdown-toggle::after {
+            content: '';
+        }
+
         .menu-toggle {
             display: none;
             background: none;
@@ -131,6 +170,19 @@
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             }
 
+            .navbar-dropdown { width: 100%; }
+            .dropdown-content {
+                position: static;
+                display: none;
+                box-shadow: none;
+                background: rgba(0, 0, 0, 0.2);
+            }
+            .navbar-dropdown:hover .dropdown-content,
+            .navbar-dropdown.open .dropdown-content { display: block; }
+            .dropdown-content a {
+                padding: 10px 30px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
             .menu-toggle {
                 display: block;
             }
@@ -346,6 +398,19 @@
             text-decoration: underline;
         }
 
+        /* Bonus Day Card */
+        .day-card.bonus-day {
+            border-left: 5px solid #7C3AED;
+        }
+
+        .day-card.bonus-day .day-number {
+            background: linear-gradient(135deg, #7C3AED, #A78BFA);
+        }
+
+        .region-header.bonus-stops {
+            background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
+        }
+
         /* Google Maps Link */
         .map-link {
             display: inline-block;
@@ -457,14 +522,23 @@
                 <a href="planning.html" class="navbar-item">Planning</a>
                 <a href="logistics.html" class="navbar-item">Logistics</a>
                 <a href="analysis.html" class="navbar-item">Analysis</a>
+                <div class="navbar-dropdown">
+                    <a href="#" class="navbar-item dropdown-toggle">AI Reviews ▼</a>
+                    <div class="dropdown-content">
+                        <a href="gemini_comment.html">Gemini</a>
+                        <a href="gpt_comment.html">GPT</a>
+                        <a href="grok_comment.html">Grok</a>
+                        <a href="sonnet_comment.html">Sonnet</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- Page Header -->
     <header class="page-header">
-        <h1>📅 10-Day Iceland Itinerary</h1>
-        <p>Complete day-by-day breakdown of our Iceland adventure</p>
+        <h1>📅 Iceland Itinerary 2026</h1>
+        <p>9 days around Iceland + bonus stops in Copenhagen & Frankfurt</p>
         <div class="accordion-controls">
             <button onclick="expandAll()" class="control-btn">Expand All</button>
             <button onclick="collapseAll()" class="control-btn">Collapse All</button>
@@ -474,135 +548,112 @@
     <!-- Main Content -->
     <main class="main-content">
 
-        <!-- Reykjavík & Golden Circle -->
-        <div class="region-header">
-            <h2>🏙️ Reykjavík & Golden Circle (Days 1-2)</h2>
+        <!-- Bonus Stops -->
+        <div class="region-header bonus-stops">
+            <h2>✈️ Bonus Stop: Copenhagen</h2>
         </div>
 
-        <!-- Day 1 -->
+        <!-- Bonus Day: Copenhagen -->
+        <div class="day-card bonus-day" id="day-cph">
+            <div class="day-header" onclick="toggleDay(this)">
+                <div class="day-title">
+                    <span class="day-number">Bonus</span>
+                    <span class="day-name">April 8 - Copenhagen Layover</span>
+                </div>
+                <span class="toggle-icon">▼</span>
+            </div>
+            <div class="day-content">
+                <div class="day-section">
+                    <h4>Morning (08:50)</h4>
+                    <ul>
+                        <li>Arrive at Copenhagen Airport (CPH) at 08:50 from Doha</li>
+                        <li>Clear immigration, store luggage or check into hotel</li>
+                    </ul>
+                </div>
+
+                <div class="day-section">
+                    <h4>Daytime Highlights</h4>
+                    <ul>
+                        <li>Stroll along the colorful <strong>Nyhavn</strong> waterfront — Copenhagen's most iconic photo spot</li>
+                        <li>Visit <strong>Tivoli Gardens</strong> — the famous amusement park and gardens in the city center</li>
+                        <li>See <strong>The Little Mermaid</strong> statue at the harbor</li>
+                        <li>Walk down <strong>Str&oslash;get</strong> — one of Europe's longest pedestrian shopping streets</li>
+                        <li>Optional: <strong>Christiansborg Palace</strong> or <strong>Round Tower</strong> for panoramic city views</li>
+                    </ul>
+                </div>
+
+                <div class="day-section">
+                    <h4>Evening</h4>
+                    <ul>
+                        <li>Enjoy Danish cuisine — try <em>sm&oslash;rrebr&oslash;d</em> (open-faced sandwiches) or street food at <strong>Torvehallerne Market</strong></li>
+                        <li>Overnight in Copenhagen</li>
+                    </ul>
+                </div>
+
+                <div class="day-section">
+                    <h4>📝 Notes</h4>
+                    <p>A full day to enjoy the Danish capital before flying to Iceland tomorrow morning. Copenhagen is compact and walkable — most highlights are within 2-3 km of each other.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Arrival & Golden Circle -->
+        <div class="region-header">
+            <h2>🏙️ Arrival & Golden Circle (Day 1)</h2>
+        </div>
+
+        <!-- Day 1 (merged old Day 1 logistics + old Day 2 Golden Circle) -->
         <div class="day-card" id="day-1">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
                     <span class="day-number">Day 1</span>
-                    <span class="day-name">April 8 - Arrival & Reykjavík Exploration</span>
+                    <span class="day-name">April 9 - Arrival & Golden Circle</span>
                 </div>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="day-content">
                 <div
                     style="text-align: center; margin-bottom: 20px; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                    <img src="images/infographics/day_01_info.png" alt="Day 1 Infographic"
-                        style="width: 100%; height: auto; display: block;">
-                </div>
-                <p style="color: var(--golden-hour); font-style: italic; margin-bottom: 1rem;">☀️ Sunrise: ~06:25 | 🌙
-                    Sunset: ~20:20</p>
-
-                <p style="text-align: center;">
-                    <a href="https://www.google.com/maps/dir/?api=1&origin=Keflav%C3%ADk+International+Airport&destination=Reykjav%C3%ADk"
-                        target="_blank" class="map-link">🗺️ View Day 1 Route on Google Maps</a>
-                </p>
-
-                <div class="day-section">
-                    <h4>Morning (11:00 - 12:30)</h4>
-                    <ul>
-                        <li>Arrive at Keflavík (KEF), clear immigration, and pick up the rental car</li>
-                    </ul>
-                </div>
-
-                <div class="day-section">
-                    <h4>Afternoon (12:30 - 14:00)</h4>
-                    <ul>
-                        <li>Drive directly to Reykjavík (approx. 50 min drive) and check into your accommodation</li>
-                    </ul>
-                </div>
-
-                <div class="day-section">
-                    <h4>Late Afternoon (14:00 - 18:00)</h4>
-                    <ul>
-                        <li>Explore the city: Visit the iconic <span class="pop-wrap">Hallgrímskirkja<span
-                                    class="pop-card"><img
-                                        src="https://live.staticflickr.com/8800/17224599985_c557fdbe56_b.jpg"
-                                        alt="Hallgrímskirkja"></span></span> church, wander down Laugavegur shopping
-                            street, and see the <span class="pop-wrap">Sun Voyager<span class="pop-card"><img
-                                        src="https://live.staticflickr.com/4100/35588460982_23d447c657_b.jpg"
-                                        alt="Sun Voyager"></span></span> sculpture by the sea</li>
-                    </ul>
-                </div>
-
-                <div class="day-section">
-                    <h4>Evening (18:00 onwards)</h4>
-                    <ul>
-                        <li>Enjoy dinner at one of Reykjavík's excellent restaurants</li>
-                        <li><strong>Group Logistics:</strong> With 7 adults, ensure your rental is a 9-seater van or two
-                            4WDs</li>
-                    </ul>
-                </div>
-
-                <div class="day-section">
-                    <h4>🏨 Accommodation Areas: Reykjavík</h4>
-                    <table>
-                        <tr>
-                            <th>Area</th>
-                            <th>Pros</th>
-                            <th>Cons</th>
-                        </tr>
-                        <tr>
-                            <td><strong>City Center (101)</strong></td>
-                            <td>Heart of the action; walkable to sights and restaurants</td>
-                            <td>Parking difficult and expensive. Can be noisy on weekends</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Vesturbær (West Town)</strong></td>
-                            <td>Quieter, local feel. Easier parking. Larger houses available</td>
-                            <td>15-25 minute walk to center</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <!-- Day 2 -->
-        <div class="day-card" id="day-2">
-            <div class="day-header" onclick="toggleDay(this)">
-                <div class="day-title">
-                    <span class="day-number">Day 2</span>
-                    <span class="day-name">April 9 - The Golden Circle</span>
-                </div>
-                <span class="toggle-icon">▼</span>
-            </div>
-            <div class="day-content">
-                <div
-                    style="text-align: center; margin-bottom: 20px; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                    <img src="images/infographics/day_02_info.png" alt="Day 2 Infographic"
+                    <img src="images/infographics/day_02_info.png" alt="Day 1 Infographic"
                         style="width: 100%; height: auto; display: block;">
                 </div>
                 <p style="color: var(--golden-hour); font-style: italic; margin-bottom: 1rem;">☀️ Sunrise: ~06:22 | 🌙
                     Sunset: ~20:23</p>
 
                 <p style="text-align: center;">
-                    <a href="https://www.google.com/maps/dir/?api=1&origin=Reykjav%C3%ADk&destination=Hvolsv%C3%B6llur&waypoints=%C3%9Eingvellir+National+Park|Geysir|Gullfoss|Kerid+Crater"
-                        target="_blank" class="map-link">🗺️ View Day 2 Route on Google Maps</a>
+                    <a href="https://www.google.com/maps/dir/?api=1&origin=Keflav%C3%ADk+International+Airport&destination=Hvolsv%C3%B6llur&waypoints=Selfoss|%C3%9Eingvellir+National+Park|Geysir|Gullfoss|Kerid+Crater"
+                        target="_blank" class="map-link">🗺️ View Day 1 Route on Google Maps</a>
                 </p>
 
                 <div class="day-section">
-                    <h4>Morning (09:00 - 12:00)</h4>
+                    <h4>Morning (09:40 - 11:00)</h4>
                     <ul>
-                        <li>Drive to <span class="pop-wrap">Þingvellir National Park<span class="pop-card"><img
-                                        src="https://live.staticflickr.com/3271/2434865402_c8e3645d9b_b.jpg"
-                                        alt="Þingvellir"></span></span> (50 min). Walk between tectonic plates and see
-                            Öxarárfoss waterfall</li>
-                        <li><strong>💎 Hidden Gem:</strong> Detour to <strong>Brúarfoss</strong> (The Blue Waterfall).
-                            3km round trip walk from new parking lot. Stunning photography spot!</li>
+                        <li>Arrive at Keflav&iacute;k (KEF) at 09:40 via <strong>SAS SK595</strong> from Copenhagen</li>
+                        <li>Clear immigration and pick up rental car (~10:30)</li>
                     </ul>
                 </div>
 
                 <div class="day-section">
-                    <h4>Afternoon (12:00 - 16:00)</h4>
+                    <h4>Late Morning (11:00 - 12:00) — Selfoss Supply Stop</h4>
                     <ul>
+                        <li>Drive to <strong>Selfoss</strong> (~45 min) for essential supplies</li>
+                        <li><strong>Bonus/Kronan supermarket</strong> — stock up on groceries for the first few days</li>
+                        <li><strong>N1 gas station</strong> — pick up SIM cards (Siminn or Nova recommended)</li>
+                        <li><strong>V&iacute;nb&uacute;&eth;in</strong> — the state liquor store (only place to buy alcohol in Iceland)</li>
+                    </ul>
+                </div>
+
+                <div class="day-section">
+                    <h4>Afternoon (12:00 - 16:00) — Golden Circle</h4>
+                    <ul>
+                        <li>Drive to <span class="pop-wrap">&THORN;ingvellir National Park<span class="pop-card"><img
+                                        src="https://live.staticflickr.com/3271/2434865402_c8e3645d9b_b.jpg"
+                                        alt="Þingvellir"></span></span> (~30 min from Selfoss). Walk between tectonic plates and see
+                            &Ouml;xar&aacute;rfoss waterfall</li>
                         <li>Continue to <span class="pop-wrap">Geysir<span class="pop-card"><img
                                         src="https://live.staticflickr.com/2918/13648693873_6a84060be2_b.jpg"
                                         alt="Geysir"></span></span> geothermal area (1 hour drive)</li>
-                        <li><strong>🍅 Lunch Rec:</strong> <strong>Friðheimar Tomato Farm</strong> (booking essential) -
+                        <li><strong>🍅 Lunch Rec:</strong> <strong>Fri&eth;heimar Tomato Farm</strong> (booking essential) -
                             dine in a greenhouse with famous tomato soup</li>
                         <li>Visit magnificent <span class="pop-wrap">Gullfoss<span class="pop-card"><img
                                         src="https://live.staticflickr.com/8718/16460002824_2310b9963d_b.jpg"
@@ -613,7 +664,7 @@
                 <div class="day-section">
                     <h4>Late Afternoon (16:00 - 18:00)</h4>
                     <ul>
-                        <li>Final stop at <span class="pop-wrap">Kerið<span class="pop-card"><img
+                        <li>Final stop at <span class="pop-wrap">Keri&eth;<span class="pop-card"><img
                                         src="https://live.staticflickr.com/3106/2434825760_715623b45e_b.jpg"
                                         alt="Kerið"></span></span> crater (40 min drive) - striking volcanic colors</li>
                     </ul>
@@ -622,7 +673,7 @@
                 <div class="day-section">
                     <h4>Evening (18:00 onwards)</h4>
                     <ul>
-                        <li>Drive to accommodation in Hvolsvöllur/Hella area (1 hour drive)</li>
+                        <li>Drive to accommodation in Hvolsv&ouml;llur area (1 hour drive)</li>
                         <li><strong>Dinner Recommendations:</strong>
                             <ul>
                                 <li><em>Casual/Fun:</em> <strong>Midgard Base Camp</strong> (Great burgers & vibe)</li>
@@ -637,8 +688,8 @@
                     <h4>🏨 Accommodation - BOOKED</h4>
                     <div class="accommodation-booked">
                         <strong>✅ Guesthouse Spuni Cozy Cottage 861</strong><br>
-                        📍 Skeggjastaðir land 18 0101, Hvolsvöllur (861)<br>
-                        🛏️ Two-Bedroom House | 7 adults<br>
+                        📍 Skeggjastaðir land 18 0101, Hvolsv&ouml;llur (861)<br>
+                        🛏️ Two-Bedroom House | 4 adults<br>
                         <a href="hotels.html#hvolsvollur">View booking details →</a>
                     </div>
                 </div>
@@ -647,7 +698,8 @@
                     <h4>📝 Notes</h4>
                     <p><strong>Logistics Tip:</strong> Download the <strong>Parka App</strong> now. You'll need it for
                         parking fees at Thingvellir (P1/P2) and almost all major stops upcoming.</p>
-                    <p>Staying near Hella/Hvolsvöllur positions you perfectly for tomorrow's waterfalls. If sky is clear
+                    <p><strong>Late start note:</strong> Since you arrive at KEF at 09:40 and need to pick up the car and supplies, the Golden Circle tour starts around noon. Keep the pace brisk but you can still hit all the highlights.</p>
+                    <p>Staying near Hella/Hvolsv&ouml;llur positions you perfectly for tomorrow's waterfalls. If sky is clear
                         tonight, first good chance to spot the Northern Lights!</p>
                 </div>
             </div>
@@ -655,14 +707,14 @@
 
         <!-- South Coast -->
         <div class="region-header">
-            <h2>🌊 South Coast Adventure (Days 3-4)</h2>
+            <h2>🌊 South Coast Adventure (Days 2-3)</h2>
         </div>
 
-        <!-- Day 3 -->
-        <div class="day-card" id="day-3">
+        <!-- Day 2 -->
+        <div class="day-card" id="day-2">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
-                    <span class="day-number">Day 3</span>
+                    <span class="day-number">Day 2</span>
                     <span class="day-name">April 10 - Waterfalls & Black Sand Beaches</span>
                 </div>
                 <span class="toggle-icon">▼</span>
@@ -744,18 +796,28 @@
                 </div>
 
                 <div class="day-section">
+                    <h4>🏨 Accommodation - BOOKED</h4>
+                    <div class="accommodation-booked">
+                        <strong>✅ Hrifunes Nature Park</strong><br>
+                        📍 V&iacute;k, Iceland<br>
+                        🛏️ 4 adults<br>
+                        <a href="hotels.html#vik">View booking details →</a>
+                    </div>
+                </div>
+
+                <div class="day-section">
                     <h4>📝 Notes</h4>
-                    <p>Waterproof gear is your best friend today. Check tide times for coastal locations. Vík is another
+                    <p>Waterproof gear is your best friend today. Check tide times for coastal locations. V&iacute;k is another
                         great location to check the aurora forecast.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Day 4 -->
-        <div class="day-card" id="day-4">
+        <!-- Day 3 -->
+        <div class="day-card" id="day-3">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
-                    <span class="day-number">Day 4</span>
+                    <span class="day-number">Day 3</span>
                     <span class="day-name">April 11 - Canyons, Glaciers & Ice Lagoons</span>
                 </div>
                 <span class="toggle-icon">▼</span>
@@ -824,7 +886,7 @@
                     <div class="accommodation-booked">
                         <strong>✅ Home Under a Waterfall (7 mins from Glacier Lagoon)</strong><br>
                         📍 Reynivellir, Hali, Iceland (781)<br>
-                        🛏️ Three-Bedroom House | 7 adults<br>
+                        🛏️ Three-Bedroom House | 4 adults<br>
                         <a href="hotels.html#jokulsarlon">View booking details →</a>
                     </div>
                 </div>
@@ -833,15 +895,15 @@
 
         <!-- Return West & Snæfellsnes -->
         <div class="region-header">
-            <h2>🌋 Return West & Snæfellsnes Peninsula (Days 5-8)</h2>
+            <h2>🌋 Return West & Snæfellsnes Peninsula (Days 4-7)</h2>
         </div>
 
-        <!-- Day 5 -->
-        <div class="day-card" id="day-5">
+        <!-- Day 4 -->
+        <div class="day-card" id="day-4">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
-                    <span class="day-number">Day 5</span>
-                    <span class="day-name">April 12 - Ice, Ice & The Drive West</span>
+                    <span class="day-number">Day 4</span>
+                    <span class="day-name">April 12 - Ice & The Drive West</span>
                 </div>
                 <span class="toggle-icon">▼</span>
             </div>
@@ -882,6 +944,16 @@
                 </div>
 
                 <div class="day-section">
+                    <h4>🏨 Accommodation - BOOKED</h4>
+                    <div class="accommodation-booked">
+                        <strong>✅ Stora Mork 3</strong><br>
+                        📍 Hvolsv&ouml;llur area, Iceland<br>
+                        🛏️ 4 adults<br>
+                        <a href="hotels.html#storamork">View booking details →</a>
+                    </div>
+                </div>
+
+                <div class="day-section">
                     <h4>📝 Notes</h4>
                     <p>This day is intentionally lighter to provide flexibility and a buffer against unpredictable
                         weather. Another chance to spot the aurora tonight!</p>
@@ -889,11 +961,11 @@
             </div>
         </div>
 
-        <!-- Day 6 -->
-        <div class="day-card" id="day-6">
+        <!-- Day 5 -->
+        <div class="day-card" id="day-5">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
-                    <span class="day-number">Day 6</span>
+                    <span class="day-number">Day 5</span>
                     <span class="day-name">April 13 - Hot River Hike & Journey North</span>
                 </div>
                 <span class="toggle-icon">▼</span>
@@ -946,7 +1018,7 @@
                     <div class="accommodation-booked">
                         <strong>✅ Fossatun Sunset Cottage</strong><br>
                         📍 Fossatún, Borgarnes, Iceland (311)<br>
-                        🛏️ Two-Bedroom Cottage with Panoramic Valley View | 7 adults<br>
+                        🛏️ Two-Bedroom Cottage with Panoramic Valley View | 4 adults<br>
                         <a href="hotels.html#borgarnes">View booking details →</a>
                     </div>
                 </div>
@@ -959,12 +1031,12 @@
             </div>
         </div>
 
-        <!-- Day 7 -->
-        <div class="day-card" id="day-7">
+        <!-- Day 6 -->
+        <div class="day-card" id="day-6">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
-                    <span class="day-number">Day 7</span>
-                    <span class="day-name">April 14 - Snæfellsnes Peninsula - South Coast</span>
+                    <span class="day-number">Day 6</span>
+                    <span class="day-name">April 14 - Snæfellsnes South Coast</span>
                 </div>
                 <span class="toggle-icon">▼</span>
             </div>
@@ -1016,9 +1088,18 @@
                 <div class="day-section">
                     <h4>Late Afternoon (17:00 onwards)</h4>
                     <ul>
-                        <li>Cross the peninsula via Route 54/56 to <strong>Stykkishólmur</strong></li>
-                        <li>Check into accommodation for a 2-night stay</li>
+                        <li>Check into accommodation in Hellnar area</li>
                     </ul>
+                </div>
+
+                <div class="day-section">
+                    <h4>🏨 Accommodation - BOOKED</h4>
+                    <div class="accommodation-booked">
+                        <strong>✅ Sn&aelig;fellsj&ouml;kull Apartments</strong><br>
+                        📍 Hellnar, Sn&aelig;fellsnes, Iceland<br>
+                        🛏️ 4 adults<br>
+                        <a href="hotels.html#hellnar">View booking details →</a>
+                    </div>
                 </div>
 
                 <div class="day-section">
@@ -1029,12 +1110,12 @@
             </div>
         </div>
 
-        <!-- Day 8 -->
-        <div class="day-card" id="day-8">
+        <!-- Day 7 -->
+        <div class="day-card" id="day-7">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
-                    <span class="day-number">Day 8</span>
-                    <span class="day-name">April 15 - Snæfellsnes Peninsula - North Coast</span>
+                    <span class="day-number">Day 7</span>
+                    <span class="day-name">April 15 - Snæfellsnes North Coast</span>
                 </div>
                 <span class="toggle-icon">▼</span>
             </div>
@@ -1077,8 +1158,10 @@
                 <div class="day-section">
                     <h4>🏨 Accommodation - BOOKED</h4>
                     <div class="accommodation-booked">
-                        <strong>✅ Stykkishólmur (Night 2)</strong><br>
-                        📍 Stykkishólmur, Iceland
+                        <strong>✅ S&aelig;bol / Ocean Lair</strong><br>
+                        📍 Grundarfj&ouml;r&eth;ur, Iceland<br>
+                        🛏️ 4 adults<br>
+                        <a href="hotels.html#grundarfjordur">View booking details →</a>
                     </div>
                 </div>
 
@@ -1090,127 +1173,148 @@
             </div>
         </div>
 
-        <!-- Day 9 -->
-        <div class="day-card" id="day-9">
+        <!-- Return & Departure -->
+        <div class="region-header">
+            <h2>🏁 Return & Departure (Days 8-9)</h2>
+        </div>
+
+        <!-- Day 8 -->
+        <div class="day-card" id="day-8">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
-                    <span class="day-number">Day 9</span>
-                    <span class="day-name">April 16 - Reykjanes & Blue Lagoon</span>
+                    <span class="day-number">Day 8</span>
+                    <span class="day-name">April 16 - Reykjav&iacute;k, Reykjanes & Blue Lagoon</span>
                 </div>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="day-content">
                 <div
                     style="text-align: center; margin-bottom: 20px; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                    <img src="images/infographics/day_09_info.png" alt="Day 9 Infographic"
+                    <img src="images/infographics/day_09_info.png" alt="Day 8 Infographic"
                         style="width: 100%; height: auto; display: block;">
                 </div>
                 <p style="color: var(--golden-hour); font-style: italic; margin-bottom: 1rem;">☀️ Sunrise: ~05:55 | 🌙
                     Sunset: ~20:44</p>
 
                 <p style="text-align: center;">
-                    <a href="https://www.google.com/maps/dir/?api=1&origin=Grundarfj%C3%B6r%C3%B0ur&destination=Keflav%C3%ADk&waypoints=Berserkjahraun|Stykkish%C3%B3lmur|Blue+Lagoon"
-                        target="_blank" class="map-link">🗺️ View Day 9 Route on Google Maps</a>
+                    <a href="https://www.google.com/maps/dir/?api=1&origin=Grundarfj%C3%B6r%C3%B0ur&destination=Gar%C3%B0ur&waypoints=Reykjav%C3%ADk|Kleifarvatn|Selt%C3%BAn|Blue+Lagoon"
+                        target="_blank" class="map-link">🗺️ View Day 8 Route on Google Maps</a>
                 </p>
 
                 <div class="day-section">
-                    <h4>Morning (09:00 - 12:00)</h4>
+                    <h4>Morning (08:00 - 11:00)</h4>
                     <ul>
-                        <li>Depart Stykkishólmur. Drive south to the Reykjanes Peninsula</li>
-                        <li><strong>Geo-Route:</strong> Visit <strong>Kleifarvatn Lake</strong> (moody, black sand) and
-                            <strong>Seltún</strong> geothermal area (bubbling mud pots)
-                        </li>
+                        <li>Depart Grundarfj&ouml;r&eth;ur and drive toward Reykjav&iacute;k (~2.5 hours)</li>
                     </ul>
                 </div>
 
                 <div class="day-section">
-                    <h4>Afternoon (12:00 - 17:30)</h4>
+                    <h4>Late Morning (11:00 - 13:00) — Reykjav&iacute;k Highlights</h4>
                     <ul>
-                        <li>Stop at <strong>Brimketill</strong> lava pool (viewing platform only - dangerous waves!)
+                        <li>Visit the iconic <span class="pop-wrap">Hallgr&iacute;mskirkja<span class="pop-card"><img
+                                        src="https://live.staticflickr.com/8800/17224599985_c557fdbe56_b.jpg"
+                                        alt="Hallgrímskirkja"></span></span> church — take the elevator to the top for panoramic views</li>
+                        <li>Walk past <strong>Harpa Concert Hall</strong> along the harbor</li>
+                        <li>Quick downtown stroll along Laugavegur street</li>
+                        <li>Lunch in Reykjav&iacute;k</li>
+                    </ul>
+                </div>
+
+                <div class="day-section">
+                    <h4>Afternoon (13:00 - 17:00) — Reykjanes Peninsula</h4>
+                    <ul>
+                        <li>Drive to the Reykjanes Peninsula (~45 min)</li>
+                        <li><strong>Geo-Route:</strong> Visit <strong>Kleifarvatn Lake</strong> (moody, black sand) and
+                            <strong>Selt&uacute;n</strong> geothermal area (bubbling mud pots)
                         </li>
+                        <li>Stop at <strong>Brimketill</strong> lava pool (viewing platform only - dangerous waves!)</li>
                         <li>Visit <strong>Gunnuhver</strong> steam vents</li>
+                    </ul>
+                </div>
+
+                <div class="day-section">
+                    <h4>Evening (17:00 onwards) — Blue Lagoon</h4>
+                    <ul>
                         <li>Head to the <span class="pop-wrap">Blue Lagoon<span class="pop-card"><img
                                         src="https://live.staticflickr.com/4032/4546157856_caeecc83f0_b.jpg"
-                                        alt="Blue Lagoon"></span></span> for a pre-booked slot (~15:30-16:00)</li>
+                                        alt="Blue Lagoon"></span></span> for a pre-booked evening slot</li>
+                        <li>After your soak, drive to Gar&eth;ur area (~15 min) and check in</li>
+                        <li>Enjoy final Icelandic dinner</li>
                     </ul>
                 </div>
 
                 <div class="day-section">
-                    <h4>Evening (17:30 onwards)</h4>
-                    <ul>
-                        <li>After your soak, drive to your hotel in Keflavík area</li>
-                        <li>Return rental car, check in, and enjoy final Icelandic dinner</li>
-                    </ul>
-                </div>
-
-                <div class="day-section">
-                    <h4>🏨 Accommodation Areas: Keflavík</h4>
-                    <table>
-                        <tr>
-                            <th>Area</th>
-                            <th>Pros</th>
-                            <th>Cons</th>
-                        </tr>
-                        <tr>
-                            <td><strong>Keflavík or Njarðvík</strong></td>
-                            <td>Relaxed, local feel. Walkable to good restaurants</td>
-                            <td>Short taxi to airport terminal</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Airport Hotel</strong></td>
-                            <td>Ultimate convenience for early flight</td>
-                            <td>Standard hotels, no kitchens, more expensive</td>
-                        </tr>
-                    </table>
+                    <h4>🏨 Accommodation - BOOKED</h4>
+                    <div class="accommodation-booked">
+                        <strong>✅ Gar&eth;ur Apartments</strong><br>
+                        📍 Gar&eth;ur, Iceland (only ~12 km from KEF airport)<br>
+                        🛏️ 4 adults<br>
+                        <a href="hotels.html#gardur">View booking details →</a>
+                    </div>
                 </div>
 
                 <div class="day-section">
                     <h4>📝 Notes</h4>
                     <p>Ending at the Blue Lagoon is perfect for unwinding. <strong>Book your time slot well in
-                            advance!</strong></p>
+                            advance!</strong> Gar&eth;ur is extremely close to KEF airport, making tomorrow's early departure easy.</p>
                 </div>
             </div>
         </div>
 
-        <!-- Departure -->
-        <div class="region-header">
-            <h2>🏁 Departure Day</h2>
-        </div>
-
-        <!-- Day 10 -->
-        <div class="day-card" id="day-10">
+        <!-- Day 9 -->
+        <div class="day-card" id="day-9">
             <div class="day-header" onclick="toggleDay(this)">
                 <div class="day-title">
-                    <span class="day-number">Day 10</span>
-                    <span class="day-name">April 17 - Departure</span>
+                    <span class="day-number">Day 9</span>
+                    <span class="day-name">April 17 - Departure via Frankfurt</span>
                 </div>
                 <span class="toggle-icon">▼</span>
             </div>
             <div class="day-content">
                 <div
                     style="text-align: center; margin-bottom: 20px; overflow: hidden; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                    <img src="images/infographics/day_10_info.png" alt="Day 10 Infographic"
+                    <img src="images/infographics/day_10_info.png" alt="Day 9 Infographic"
                         style="width: 100%; height: auto; display: block;">
                 </div>
-                <p style="color: var(--golden-hour); font-style: italic; margin-bottom: 1rem;">☀️ Sunrise: ~05:52 | 🌙
-                    Sunset: ~20:47</p>
-
-                <p style="text-align: center;">
-                    <a href="https://www.google.com/maps/dir/?api=1&destination=Keflavik+Airport" target="_blank"
-                        class="map-link">🗺️ View Route to Keflavík Airport</a>
-                </p>
 
                 <div class="day-section">
-                    <h4>Morning</h4>
+                    <h4>Early Morning — Departure from Iceland</h4>
                     <ul>
-                        <li>Breakfast at hotel, then shuttle to airport for <strong>07:55 AM flight</strong></li>
-                        <li>Arrive at airport at least 2-3 hours before departure</li>
+                        <li>Drive from Gar&eth;ur to KEF airport (~12 km, 10 min drive)</li>
+                        <li>Return rental car and check in</li>
+                        <li>Depart KEF at <strong>07:20</strong> on <strong>Icelandair FI520</strong> to Frankfurt</li>
                     </ul>
                 </div>
 
                 <div class="warning-box">
-                    <strong>⏰ Early Departure:</strong> For 07:55 AM flight, plan to arrive at Keflavík Airport by 5:00
-                    AM!
+                    <strong>⏰ Early Departure:</strong> For 07:20 AM flight, plan to arrive at Keflav&iacute;k Airport by 05:00 AM. The short drive from Gar&eth;ur makes this manageable.
+                </div>
+
+                <div class="day-section">
+                    <h4>Afternoon (13:00 - 21:00) — Frankfurt Layover</h4>
+                    <ul>
+                        <li>Arrive Frankfurt (FRA) at 13:00</li>
+                        <li>Store luggage at the airport or Frankfurt Hauptbahnhof lockers</li>
+                        <li>Explore <strong>R&ouml;merberg</strong> — Frankfurt's picturesque medieval square</li>
+                        <li>Walk along the <strong>Main River</strong> promenade</li>
+                        <li>Visit <strong>Alte Oper</strong> (Old Opera House) square</li>
+                        <li>Shopping on <strong>Zeil</strong> — Frankfurt's main shopping boulevard</li>
+                        <li>Dinner near Hauptbahnhof before heading back to the airport</li>
+                    </ul>
+                </div>
+
+                <div class="day-section">
+                    <h4>Evening — Homeward Bound</h4>
+                    <ul>
+                        <li>Depart FRA at <strong>21:55</strong> on <strong>Qatar Airways QR72</strong> to Doha</li>
+                        <li>Connect to <strong>QR828</strong> Doha to Bangkok</li>
+                        <li>Arrive Bangkok <strong>April 18 at 18:20</strong></li>
+                    </ul>
+                </div>
+
+                <div class="day-section">
+                    <h4>📝 Notes</h4>
+                    <p>Frankfurt's city center is only ~15 minutes by train from the airport (S-Bahn S8/S9), giving you a solid 7+ hours to explore. The R&ouml;merberg area is compact and walkable.</p>
                 </div>
             </div>
         </div>
@@ -1220,7 +1324,7 @@
     <!-- Footer -->
     <footer>
         <p>Iceland Trip 2026 | Journey through Fire and Ice 🇮🇸</p>
-        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 8-17, 2026 • 4 Adults</p>
+        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 8-18, 2026 • 4 Adults</p>
     </footer>
 
     <script>

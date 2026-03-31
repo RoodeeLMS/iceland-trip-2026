@@ -8,7 +8,10 @@
       "Bash(gh repo delete:*)",
       "Bash(git remote remove:*)",
       "Bash(gh api:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(ls:*)",
+      "Bash(\"C:\\\\Program Files\\\\wkhtmltopdf\\\\bin\\\\wkhtmltopdf.exe\" --enable-local-file-access --print-media-type --javascript-delay 2000 --page-size A4 --margin-top 15 --margin-bottom 15 --margin-left 20 --margin-right 20 --title \"Travel Itinerary - Iceland Trip 2026\" \"Travel_Itinerary_Iceland_2026.html\" \"Travel_Itinerary_Iceland_2026.pdf\")",
+      "WebSearch"
     ],
     "deny": [],
     "ask": []

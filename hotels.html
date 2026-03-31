@@ -96,6 +96,45 @@
             font-weight: bold;
         }
 
+        .navbar-dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--deep-navy);
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            min-width: 160px;
+            z-index: 1001;
+            overflow: hidden;
+        }
+
+        .navbar-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 10px 16px;
+            display: block;
+            text-decoration: none;
+            font-size: 0.85em;
+            transition: 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(0, 180, 216, 0.2);
+            color: var(--aurora-green);
+        }
+
+        .dropdown-toggle::after {
+            content: '';
+        }
+
         .menu-toggle {
             display: none;
             background: none;
@@ -130,6 +169,19 @@
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             }
 
+            .navbar-dropdown { width: 100%; }
+            .dropdown-content {
+                position: static;
+                display: none;
+                box-shadow: none;
+                background: rgba(0, 0, 0, 0.2);
+            }
+            .navbar-dropdown:hover .dropdown-content,
+            .navbar-dropdown.open .dropdown-content { display: block; }
+            .dropdown-content a {
+                padding: 10px 30px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
             .menu-toggle {
                 display: block;
             }
@@ -488,6 +540,15 @@
                 <a href="planning.html" class="navbar-item">Planning</a>
                 <a href="logistics.html" class="navbar-item">Logistics</a>
                 <a href="analysis.html" class="navbar-item">Analysis</a>
+                <div class="navbar-dropdown">
+                    <a href="#" class="navbar-item dropdown-toggle">AI Reviews ▼</a>
+                    <div class="dropdown-content">
+                        <a href="gemini_comment.html">Gemini</a>
+                        <a href="gpt_comment.html">GPT</a>
+                        <a href="grok_comment.html">Grok</a>
+                        <a href="sonnet_comment.html">Sonnet</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -506,11 +567,11 @@
             <h2>Quick Summary</h2>
             <div class="summary-grid">
                 <div class="summary-item">
-                    <strong>9</strong>
+                    <strong>8</strong>
                     <span>Total Nights</span>
                 </div>
                 <div class="summary-item">
-                    <strong>Apr 8-17</strong>
+                    <strong>Apr 9-17</strong>
                     <span>2026</span>
                 </div>
                 <div class="summary-item">
@@ -518,91 +579,13 @@
                     <span>Adults</span>
                 </div>
                 <div class="summary-item">
-                    <strong>9</strong>
+                    <strong>8</strong>
                     <span>Locations</span>
                 </div>
             </div>
         </div>
 
-        <!-- Hotel 1: Reykjavík -->
-        <div id="reykjavik" class="hotel-card">
-            <div class="hotel-header" onclick="toggleHotel(this)">
-                <div class="hotel-title">
-                    <h3>🏨 Thingholt Hotel Apartments</h3>
-                    <div class="hotel-meta">
-                        <span>📍 Reykjavík (City Center)</span>
-                        <span>📅 April 8-9, 2026</span>
-                        <span>🌙 1 night</span>
-                    </div>
-                </div>
-                <span class="toggle-icon">▼</span>
-            </div>
-            <div class="hotel-content">
-                <div class="itinerary-link">
-                    <strong>🔗 Part of:</strong> Day 1 (April 8) - Arrival & Reykjavík Exploration
-                    <br>
-                    <a href="https://www.booking.com/hotel/is/thingholt-apartments-from-center-hotels.html"
-                        target="_blank" class="booking-link-btn">View on Booking.com</a>
-                </div>
-
-                <div class="hotel-gallery">
-                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/431997755.jpg?k=bac5673919510de5c3e72fb6a3044515f669e66f762f65281a9507821ad5ad36&o="
-                        alt="Thingholt Interior" class="gallery-image">
-                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/486281347.jpg?k=e7891535046979ed8a75586ca4a880ac9348208b8070f8298c426d69b37b1be5&o="
-                        alt="Thingholt Room" class="gallery-image">
-                    <img src="https://cf.bstatic.com/xdata/images/hotel/max500/486282289.jpg?k=0924c53095c5ce7009dc91536695fc9391cc0fa8dded1a1940a65054bbd2a52d&o="
-                        alt="Thingholt Detail" class="gallery-image">
-                </div>
-
-                <div class="hotel-section">
-                    <div class="section-title">✨ The Vibe</div>
-                    <p style="color: var(--text-medium); margin-bottom: 1rem;">
-                        A stylish, modern retreat in the heart of Reykjavík. Featuring sleek Scandinavian design, these
-                        apartments offer the perfect blend of hotel luxury and home comfort. Located just steps from
-                        Laugavegur shopping street.
-                    </p>
-                </div>
-
-                <div class="hotel-section">
-                    <div class="section-title">📍 Location & Room</div>
-                    <div class="info-grid">
-                        <div class="info-item">
-                            <div class="info-label">Hotel</div>
-                            <div class="info-value">Thingholt Hotel Apartments</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Room Type</div>
-                            <div class="info-value">Superior Apartment</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Guests</div>
-                            <div class="info-value">4 Adults (Core Group)</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="hotel-section">
-                    <div class="section-title">💎 Amenities</div>
-                    <div class="amenities-list">
-                        <span class="amenity-tag">🍳 Kitchenette</span>
-                        <span class="amenity-tag">📶 Free WiFi</span>
-                        <span class="amenity-tag">🏙️ City Center</span>
-                        <span class="amenity-tag">🧖 Spa Access (Fee)</span>
-                        <span class="amenity-tag">🧹 Daily Housekeeping</span>
-                    </div>
-                </div>
-
-                <div class="hotel-section">
-                    <div class="section-title">🌟 Guest Favorites</div>
-                    <div class="location-box" style="border-left-color: #F59E0B;">
-                        "The location is unbeatable - right in the action but quiet inside. The interior design is
-                        stunning and clean."
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Hotel 2: Hvolsvöllur -->
+        <!-- Hotel 1: Hvolsvöllur -->
         <div id="hvolsvollur" class="hotel-card">
             <div class="hotel-header" onclick="toggleHotel(this)">
                 <div class="hotel-title">
@@ -773,7 +756,7 @@
                 <div class="itinerary-link">
                     <strong>🔗 Part of:</strong> Day 4 (April 11) - Canyons, Glaciers & Ice Lagoons
                     <br>
-                    <a href="https://www.agoda.com" target="_blank" class="booking-link-btn">View on Agoda</a>
+                    <a href="https://www.agoda.com" target="_blank" class="booking-link-btn">Search on Agoda</a>
                 </div>
 
                 <div class="hotel-gallery">
@@ -1009,6 +992,10 @@
                         class="booking-link-btn">View on Booking.com</a>
                 </div>
 
+                    <div class="hotel-gallery">
+                        <p style="padding: 20px; text-align: center; color: var(--text-medium); font-style: italic;">Gallery images coming soon</p>
+                    </div>
+
                 <div class="hotel-section">
                     <div class="section-title">✨ The Vibe</div>
                     <p style="color: var(--text-medium); margin-bottom: 1rem;">
@@ -1231,7 +1218,7 @@
     <!-- Footer -->
     <footer>
         <p>Iceland Trip 2026 | Journey through Fire and Ice 🇮🇸</p>
-        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 8-17, 2026 • 4 Adults</p>
+        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 9-17, 2026 • 4 Adults</p>
     </footer>
 
     <script>

@@ -110,6 +110,45 @@
             font-weight: bold;
         }
 
+        .navbar-dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--deep-navy);
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            min-width: 160px;
+            z-index: 1001;
+            overflow: hidden;
+        }
+
+        .navbar-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 10px 16px;
+            display: block;
+            text-decoration: none;
+            font-size: 0.85em;
+            transition: 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(0, 180, 216, 0.2);
+            color: var(--aurora-green);
+        }
+
+        .dropdown-toggle::after {
+            content: '';
+        }
+
         .menu-toggle {
             display: none;
             background: none;
@@ -145,6 +184,19 @@
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             }
 
+            .navbar-dropdown { width: 100%; }
+            .dropdown-content {
+                position: static;
+                display: none;
+                box-shadow: none;
+                background: rgba(0, 0, 0, 0.2);
+            }
+            .navbar-dropdown:hover .dropdown-content,
+            .navbar-dropdown.open .dropdown-content { display: block; }
+            .dropdown-content a {
+                padding: 10px 30px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
             .menu-toggle {
                 display: block;
             }
@@ -912,6 +964,15 @@
                 <a href="planning.html" class="navbar-item">Planning</a>
                 <a href="logistics.html" class="navbar-item">Logistics</a>
                 <a href="analysis.html" class="navbar-item active">Analysis</a>
+                <div class="navbar-dropdown">
+                    <a href="#" class="navbar-item dropdown-toggle">AI Reviews ▼</a>
+                    <div class="dropdown-content">
+                        <a href="gemini_comment.html">Gemini</a>
+                        <a href="gpt_comment.html">GPT</a>
+                        <a href="grok_comment.html">Grok</a>
+                        <a href="sonnet_comment.html">Sonnet</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -959,7 +1020,7 @@
                     <div class="season-pros">
                         <h4>Advantages</h4>
                         <ul>
-                            <li><strong>Midnight Sun:</strong> Nearly 24-hour daylight (sunset ~midnight, sunrise ~3am)</li>
+                            <li><strong>Long Days:</strong> ~14-15 hours of daylight (sunrise ~6:30am, sunset ~9pm)</li>
                             <li><strong>Warmest temps:</strong> 10-15C (50-59F) average</li>
                             <li><strong>All roads open:</strong> Best accessibility including F-roads</li>
                             <li><strong>Lupine flowers:</strong> Purple fields across countryside (late June-July)</li>
@@ -1121,7 +1182,7 @@
             <h2>Crowd Intelligence</h2>
 
             <div class="dashboard-card">
-                <h3>10-Day Crowd Forecast (April 2026)</h3>
+                <h3>9-Day Crowd Forecast (April 2026)</h3>
                 <div class="crowd-timeline">
                     <div class="timeline-day crowd-medium">
                         <div class="day-label">Day 1</div>
@@ -1333,7 +1394,7 @@
                         <li>Gloves (even in summer for glaciers)</li>
                         <li>Sunglasses (very bright in summer)</li>
                         <li>Sunscreen (SPF 30+, strong sun reflection)</li>
-                        <li>Eye mask (for midnight sun)</li>
+                        <li>Eye mask (long daylight hours)</li>
                         <li>Reusable water bottle</li>
                         <li>Small backpack for day hikes</li>
                     </ul>
@@ -1411,7 +1472,7 @@
                         <li><strong>Free attractions:</strong> Most waterfalls, beaches, viewpoints are free</li>
                         <li><strong>DIY vs Tours:</strong> Self-drive almost always cheaper for multiple people</li>
                         <li><strong>Skip the overpriced:</strong> Some museums/attractions not worth the cost</li>
-                        <li><strong>Blue Lagoon alternatives:</strong> Myvatn Nature Baths ($50 vs $80), Secret Lagoon ($35)</li>
+                        <li><strong>Blue Lagoon alternatives:</strong> Secret Lagoon ($35), Sky Lagoon ($55)</li>
                     </ul>
                 </div>
 
@@ -1434,7 +1495,7 @@
                         <ul>
                             <li>Good rental car with insurance</li>
                             <li>Blue Lagoon (once-in-lifetime experience)</li>
-                            <li>Whale watching tour</li>
+                            <li>Glacier tour/ice cave experience</li>
                             <li>Quality waterproof jacket</li>
                             <li>Glacier tour/ice cave</li>
                             <li>Fresh Icelandic seafood (at least once)</li>
@@ -1458,7 +1519,7 @@
 
     <footer>
         <p>Iceland Trip 2026 | Journey through Fire and Ice 🇮🇸</p>
-        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 8-17, 2026 • 7 Adults</p>
+        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 9-17, 2026 • 4 Adults</p>
     </footer>
 
     <script>

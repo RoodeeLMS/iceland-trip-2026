@@ -94,6 +94,45 @@
             font-weight: bold;
         }
 
+        .navbar-dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--deep-navy);
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            min-width: 160px;
+            z-index: 1001;
+            overflow: hidden;
+        }
+
+        .navbar-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 10px 16px;
+            display: block;
+            text-decoration: none;
+            font-size: 0.85em;
+            transition: 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(0, 180, 216, 0.2);
+            color: var(--aurora-green);
+        }
+
+        .dropdown-toggle::after {
+            content: '';
+        }
+
         .menu-toggle {
             display: none;
             background: none;
@@ -128,6 +167,19 @@
                 border-radius: 0;
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
                 font-size: 0.95em;
+            }
+            .navbar-dropdown { width: 100%; }
+            .dropdown-content {
+                position: static;
+                display: none;
+                box-shadow: none;
+                background: rgba(0, 0, 0, 0.2);
+            }
+            .navbar-dropdown:hover .dropdown-content,
+            .navbar-dropdown.open .dropdown-content { display: block; }
+            .dropdown-content a {
+                padding: 10px 30px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             }
             .menu-toggle { display: block; }
         }
@@ -617,13 +669,22 @@
                 <a href="planning.html" class="navbar-item">Planning</a>
                 <a href="logistics.html" class="navbar-item">Logistics</a>
                 <a href="analysis.html" class="navbar-item">Analysis</a>
+                <div class="navbar-dropdown">
+                    <a href="#" class="navbar-item dropdown-toggle">AI Reviews ▼</a>
+                    <div class="dropdown-content">
+                        <a href="gemini_comment.html">Gemini</a>
+                        <a href="gpt_comment.html">GPT</a>
+                        <a href="grok_comment.html">Grok</a>
+                        <a href="sonnet_comment.html">Sonnet</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
 
     <div class="page-header">
         <h1>Iceland Adventure 2026</h1>
-        <p class="subtitle">Journey Through Fire & Ice | April 8-17, 2026</p>
+        <p class="subtitle">Journey Through Fire & Ice | April 7-18, 2026</p>
     </div>
 
     <!-- Countdown Section -->
@@ -631,16 +692,16 @@
         <div class="countdown-container">
             <div class="countdown-header">
                 <h2>Departure Countdown</h2>
-                <p class="subtitle">Bangkok to Reykjavik via Doha</p>
+                <p class="subtitle">Bangkok to Copenhagen via Doha</p>
             </div>
             <div class="countdown-card" id="countdownCard">
                 <div class="countdown-event">
                     <span class="event-type">Adventure Begins</span>
                     <div class="event-title">Flight to Iceland</div>
                     <div class="event-details">
-                        <div class="detail-row"><span>✈️</span><span>BKK → DOH → KEF (Qatar Airways)</span></div>
-                        <div class="detail-row"><span>📅</span><span>April 8, 2026 at 01:35 AM</span></div>
-                        <div class="detail-row"><span>👥</span><span>7 Travelers</span></div>
+                        <div class="detail-row"><span>✈️</span><span>BKK → DOH → CPH → KEF (Qatar Airways + PLAY)</span></div>
+                        <div class="detail-row"><span>📅</span><span>April 7, 2026 at 7:00 PM</span></div>
+                        <div class="detail-row"><span>👥</span><span>4 Travelers</span></div>
                     </div>
                 </div>
                 <div class="countdown-timer">
@@ -677,19 +738,19 @@
                     <!-- Quick Stats Row -->
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-bottom: 25px;">
                         <div style="background: linear-gradient(135deg, var(--primary-blue) 0%, var(--aurora-green) 100%); color: white; padding: 20px; border-radius: 8px; text-align: center;">
-                            <div style="font-size: 2em; font-weight: bold; margin-bottom: 5px;">10</div>
-                            <div style="font-size: 0.95em; opacity: 0.9;">Days Total</div>
-                            <div style="font-size: 0.8em; opacity: 0.8; margin-top: 5px;">Apr 8-17</div>
+                            <div style="font-size: 2em; font-weight: bold; margin-bottom: 5px;">9</div>
+                            <div style="font-size: 0.95em; opacity: 0.9;">Days in Iceland</div>
+                            <div style="font-size: 0.8em; opacity: 0.8; margin-top: 5px;">Apr 9-17</div>
                         </div>
                         <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; padding: 20px; border-radius: 8px; text-align: center;">
-                            <div style="font-size: 2em; font-weight: bold; margin-bottom: 5px;">7</div>
+                            <div style="font-size: 2em; font-weight: bold; margin-bottom: 5px;">4</div>
                             <div style="font-size: 0.95em; opacity: 0.9;">Travelers</div>
                             <div style="font-size: 0.8em; opacity: 0.8; margin-top: 5px;">Adventure crew</div>
                         </div>
                         <div style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white; padding: 20px; border-radius: 8px; text-align: center;">
                             <div style="font-size: 2em; font-weight: bold; margin-bottom: 5px;">~1000</div>
                             <div style="font-size: 0.95em; opacity: 0.9;">km Driving</div>
-                            <div style="font-size: 0.8em; opacity: 0.8; margin-top: 5px;">Ring Road route</div>
+                            <div style="font-size: 0.8em; opacity: 0.8; margin-top: 5px;">South Coast route</div>
                         </div>
                         <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); color: white; padding: 20px; border-radius: 8px; text-align: center;">
                             <div style="font-size: 2em; font-weight: bold; margin-bottom: 5px;">14-15h</div>
@@ -764,46 +825,46 @@
             </div>
         </div>
 
-        <!-- 10-Day Journey Timeline -->
+        <!-- 9-Day Journey Timeline -->
         <div style="margin-top: 50px;">
-            <h2 style="color: var(--primary-blue); font-size: 2em; margin-bottom: 10px; text-align: center; font-family: 'Playfair Display', serif;">Your 10-Day Journey</h2>
+            <h2 style="color: var(--primary-blue); font-size: 2em; margin-bottom: 10px; text-align: center; font-family: 'Playfair Display', serif;">Your 9-Day Iceland Journey</h2>
             <p style="text-align: center; color: #666; margin-bottom: 40px; font-size: 1.1em;">South Coast & Snaefellsnes Peninsula Adventure</p>
 
             <div class="timeline-container">
-                <!-- Day 1 -->
+                <!-- Bonus: Copenhagen -->
                 <div class="timeline-row timeline-left">
                     <div class="timeline-content">
-                        <span class="timeline-date">Apr 8</span>
-                        <h3 class="timeline-title">🛬 Arrival in Reykjavik</h3>
+                        <span class="timeline-date">Apr 8 — Bonus</span>
+                        <h3 class="timeline-title">🇩🇰 Copenhagen Stopover</h3>
                         <p class="timeline-body">
-                            • Arrive KEF 14:00<br>
-                            • Pick up rental (9-seater van)<br>
-                            • Explore Hallgrimskirkja & Harpa<br>
-                            • Grocery run at Bonus/Kronan
+                            • Arrive CPH from Doha<br>
+                            • Explore Nyhavn & city center<br>
+                            • Evening flight CPH → KEF (PLAY)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Day 1 -->
+                <div class="timeline-row timeline-right">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Apr 9 — Day 1</span>
+                        <h3 class="timeline-title">🛬 Arrival & Golden Circle</h3>
+                        <p class="timeline-body">
+                            • Pick up rental car at KEF<br>
+                            • Selfoss supplies at Kronan<br>
+                            • Thingvellir tectonic plates<br>
+                            • Bruarfoss (hidden gem!)<br>
+                            • Geysir & Strokkur eruptions<br>
+                            • Gullfoss waterfall
                         </p>
                     </div>
                 </div>
 
                 <!-- Day 2 -->
-                <div class="timeline-row timeline-right">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Apr 9</span>
-                        <h3 class="timeline-title">🌋 Golden Circle</h3>
-                        <p class="timeline-body">
-                            • Thingvellir tectonic plates<br>
-                            • Bruarfoss (hidden gem!)<br>
-                            • Geysir & Strokkur eruptions<br>
-                            • Gullfoss waterfall<br>
-                            • Kerid crater
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Day 3 -->
                 <div class="timeline-row timeline-left">
                     <div class="timeline-content">
-                        <span class="timeline-date">Apr 10</span>
-                        <h3 class="timeline-title">💧 South Coast Waterfalls</h3>
+                        <span class="timeline-date">Apr 10 — Day 2</span>
+                        <h3 class="timeline-title">💧 Waterfalls & Black Sand</h3>
                         <p class="timeline-body">
                             • Seljalandsfoss (walk behind it!)<br>
                             • Gljufrabui (hidden canyon fall)<br>
@@ -814,11 +875,11 @@
                     </div>
                 </div>
 
-                <!-- Day 4 -->
+                <!-- Day 3 -->
                 <div class="timeline-row timeline-right">
                     <div class="timeline-content">
-                        <span class="timeline-date">Apr 11</span>
-                        <h3 class="timeline-title">🧊 Glacier Realm</h3>
+                        <span class="timeline-date">Apr 11 — Day 3</span>
+                        <h3 class="timeline-title">🧊 Canyons, Glaciers & Ice Lagoons</h3>
                         <p class="timeline-body">
                             • Eldhraun lava field (no walking on moss!)<br>
                             • Mulagljufur Canyon hike<br>
@@ -829,11 +890,11 @@
                     </div>
                 </div>
 
-                <!-- Day 5 -->
+                <!-- Day 4 -->
                 <div class="timeline-row timeline-left">
                     <div class="timeline-content">
-                        <span class="timeline-date">Apr 12</span>
-                        <h3 class="timeline-title">🔄 Return West</h3>
+                        <span class="timeline-date">Apr 12 — Day 4</span>
+                        <h3 class="timeline-title">🔄 Drive West</h3>
                         <p class="timeline-body">
                             • Optional: Vestrahorn sunrise<br>
                             • Hofskirkja turf church<br>
@@ -844,11 +905,11 @@
                     </div>
                 </div>
 
-                <!-- Day 6 -->
+                <!-- Day 5 -->
                 <div class="timeline-row timeline-right">
                     <div class="timeline-content">
-                        <span class="timeline-date">Apr 13</span>
-                        <h3 class="timeline-title">♨️ Hot River Hike</h3>
+                        <span class="timeline-date">Apr 13 — Day 5</span>
+                        <h3 class="timeline-title">♨️ Hot River & Journey North</h3>
                         <p class="timeline-body">
                             • Reykjadalur hot river (3km hike)<br>
                             • Bathe in naturally heated river<br>
@@ -859,25 +920,10 @@
                     </div>
                 </div>
 
-                <!-- Day 7 -->
+                <!-- Day 6 -->
                 <div class="timeline-row timeline-left">
                     <div class="timeline-content">
-                        <span class="timeline-date">Apr 14</span>
-                        <h3 class="timeline-title">🏔️ Snaefellsnes North</h3>
-                        <p class="timeline-body">
-                            • Berserkjahraun lava field (4WD)<br>
-                            • Stykkisholmur harbor town<br>
-                            • Library of Water art installation<br>
-                            • Selvallafoss (walk behind it!)<br>
-                            • Kirkjufell sunset photo
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Day 8 -->
-                <div class="timeline-row timeline-right">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Apr 15</span>
+                        <span class="timeline-date">Apr 14 — Day 6</span>
                         <h3 class="timeline-title">⛰️ Snaefellsnes South</h3>
                         <p class="timeline-body">
                             • Svortuloft orange lighthouse<br>
@@ -890,12 +936,28 @@
                     </div>
                 </div>
 
-                <!-- Day 9 -->
+                <!-- Day 7 -->
+                <div class="timeline-row timeline-right">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Apr 15 — Day 7</span>
+                        <h3 class="timeline-title">🏔️ Snaefellsnes North</h3>
+                        <p class="timeline-body">
+                            • Berserkjahraun lava field (4WD)<br>
+                            • Stykkisholmur harbor town<br>
+                            • Library of Water art installation<br>
+                            • Selvallafoss (walk behind it!)<br>
+                            • Kirkjufell sunset photo
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Day 8 -->
                 <div class="timeline-row timeline-left">
                     <div class="timeline-content">
-                        <span class="timeline-date">Apr 16</span>
-                        <h3 class="timeline-title">🌊 Reykjanes & Blue Lagoon</h3>
+                        <span class="timeline-date">Apr 16 — Day 8</span>
+                        <h3 class="timeline-title">🌊 Reykjavik, Reykjanes & Blue Lagoon</h3>
                         <p class="timeline-body">
+                            • Morning in Reykjavik<br>
                             • Kleifarvatn moody lake<br>
                             • Seltun geothermal area<br>
                             • Brimketill & Gunnuhver<br>
@@ -905,15 +967,15 @@
                     </div>
                 </div>
 
-                <!-- Day 10 -->
+                <!-- Day 9 -->
                 <div class="timeline-row timeline-right">
                     <div class="timeline-content">
-                        <span class="timeline-date">Apr 17</span>
-                        <h3 class="timeline-title">✈️ Departure</h3>
+                        <span class="timeline-date">Apr 17 — Day 9</span>
+                        <h3 class="timeline-title">✈️ Departure via Frankfurt</h3>
                         <p class="timeline-body">
-                            • Early flight 07:55 AM<br>
-                            • Return rental car by 05:00<br>
-                            • KEF → OSL → DOH → BKK<br>
+                            • Early flight from KEF<br>
+                            • Return rental car<br>
+                            • KEF → FRA → DOH → BKK<br>
                             • Arrive Bangkok Apr 18
                         </p>
                     </div>
@@ -928,10 +990,9 @@
                 <div class="card-content">
                     <p style="margin-bottom: 15px; color: #dc2626; font-weight: 600;">Critical: Plan your grocery stops!</p>
                     <ul style="margin-left: 20px; color: #555; line-height: 2;">
-                        <li><strong>Reykjavik (Day 1)</strong> - Bonus/Kronan: Stock 80% of supplies</li>
-                        <li><strong>Selfoss (Day 2)</strong> - Last big variety before south</li>
-                        <li><strong>Vik (Day 3)</strong> - <span style="color: #dc2626;">CRITICAL!</span> Last major store for Days 4-5</li>
-                        <li><strong>Borgarnes (Day 6)</strong> - Restock before Snaefellsnes</li>
+                        <li><strong>Selfoss (Day 1)</strong> - Kronan: Stock up on arrival</li>
+                        <li><strong>Vik (Day 2)</strong> - <span style="color: #dc2626;">CRITICAL!</span> Last major store for Days 3-4</li>
+                        <li><strong>Borgarnes (Day 5)</strong> - Restock before Snaefellsnes</li>
                         <li><strong>Stykkisholmur (Day 7)</strong> - Rare Bonus in remote town</li>
                     </ul>
                     <p style="margin-top: 15px; font-size: 0.9em; color: #666;">Hours: Bonus 10:00-20:00 | Kronan 09:00-21:00</p>
@@ -1025,11 +1086,11 @@
             <h2 style="color: white; margin-bottom: 25px; font-family: 'Playfair Display', serif;">Trip Statistics</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px;">
                 <div>
-                    <div style="font-size: 2.5em; font-weight: bold; margin-bottom: 5px; color: var(--aurora-green);">10</div>
-                    <div style="opacity: 0.9;">Days Total</div>
+                    <div style="font-size: 2.5em; font-weight: bold; margin-bottom: 5px; color: var(--aurora-green);">9</div>
+                    <div style="opacity: 0.9;">Days in Iceland</div>
                 </div>
                 <div>
-                    <div style="font-size: 2.5em; font-weight: bold; margin-bottom: 5px; color: var(--aurora-green);">7</div>
+                    <div style="font-size: 2.5em; font-weight: bold; margin-bottom: 5px; color: var(--aurora-green);">4</div>
                     <div style="opacity: 0.9;">Travelers</div>
                 </div>
                 <div>
@@ -1037,7 +1098,7 @@
                     <div style="opacity: 0.9;">km Driving</div>
                 </div>
                 <div>
-                    <div style="font-size: 2.5em; font-weight: bold; margin-bottom: 5px; color: var(--aurora-green);">9</div>
+                    <div style="font-size: 2.5em; font-weight: bold; margin-bottom: 5px; color: var(--aurora-green);">8</div>
                     <div style="opacity: 0.9;">Unique Stays</div>
                 </div>
                 <div>
@@ -1050,7 +1111,7 @@
 
     <footer>
         <p>Iceland Trip 2026 | Journey through Fire and Ice 🇮🇸</p>
-        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 8-17, 2026 • 7 Adults</p>
+        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 7-18, 2026 • 4 Adults</p>
     </footer>
 
     <script>
@@ -1093,7 +1154,7 @@
 
         // Countdown Timer
         function updateCountdown() {
-            const tripDate = new Date('2026-04-08T01:35:00+07:00'); // Bangkok time
+            const tripDate = new Date('2026-04-07T19:00:00+07:00'); // Bangkok time
             const now = new Date();
             const diff = tripDate - now;
 

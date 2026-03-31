@@ -101,6 +101,45 @@
             font-weight: bold;
         }
 
+        .navbar-dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--deep-navy);
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            min-width: 160px;
+            z-index: 1001;
+            overflow: hidden;
+        }
+
+        .navbar-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 10px 16px;
+            display: block;
+            text-decoration: none;
+            font-size: 0.85em;
+            transition: 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background: rgba(0, 180, 216, 0.2);
+            color: var(--aurora-green);
+        }
+
+        .dropdown-toggle::after {
+            content: '';
+        }
+
         .menu-toggle {
             display: none;
             background: none;
@@ -136,6 +175,19 @@
                 border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             }
 
+            .navbar-dropdown { width: 100%; }
+            .dropdown-content {
+                position: static;
+                display: none;
+                box-shadow: none;
+                background: rgba(0, 0, 0, 0.2);
+            }
+            .navbar-dropdown:hover .dropdown-content,
+            .navbar-dropdown.open .dropdown-content { display: block; }
+            .dropdown-content a {
+                padding: 10px 30px;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
             .menu-toggle {
                 display: block;
             }
@@ -650,6 +702,15 @@
                 <a href="planning.html" class="navbar-item">Planning</a>
                 <a href="logistics.html" class="navbar-item active">Logistics</a>
                 <a href="analysis.html" class="navbar-item">Analysis</a>
+                <div class="navbar-dropdown">
+                    <a href="#" class="navbar-item dropdown-toggle">AI Reviews ▼</a>
+                    <div class="dropdown-content">
+                        <a href="gemini_comment.html">Gemini</a>
+                        <a href="gpt_comment.html">GPT</a>
+                        <a href="grok_comment.html">Grok</a>
+                        <a href="sonnet_comment.html">Sonnet</a>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>
@@ -665,7 +726,7 @@
             <h2>South Coast & West Route Overview</h2>
 
             <div class="info-card">
-                <h3>Our 10-Day Route</h3>
+                <h3>Our 9-Day Route</h3>
                 <p><strong>Total Distance:</strong> ~1,000 km (620 miles) total</p>
                 <p><strong>Route Type:</strong> South Coast to glaciers, return west via Reykjadalur, explore Snaefellsnes</p>
                 <p><strong>Road Quality:</strong> Entirely paved Route 1 and well-maintained roads</p>
@@ -786,7 +847,7 @@
                 <p><strong>Cost:</strong> ~$2.20-2.50 per liter (~$8.50-9.50/gallon)</p>
                 <p><strong>Tank Size:</strong> Typical SUV ~60L (16 gallons)</p>
                 <p><strong>Full Tank Cost:</strong> ~$130-150 USD</p>
-                <p><strong>Estimated Total:</strong> $250-350 for ~1,000km trip (less than full Ring Road)</p>
+                <p><strong>Estimated Total:</strong> $250-350 for ~1,000km South Coast & Snaefellsnes trip</p>
 
                 <h4>Gas Station Tips:</h4>
                 <ul>
@@ -918,11 +979,11 @@
 
         <!-- Supermarket Strategy -->
         <section class="logistics-section">
-            <h2>Supermarket Strategy (Critical for 7 Adults!)</h2>
+            <h2>Supermarket Strategy (Critical for 4 Adults!)</h2>
 
             <div class="info-card warning">
                 <h3>The "Food Desert" Warning</h3>
-                <p>For 7 adults, food is the largest variable cost. Relying on gas station burgers ($20 USD/ea) is unsustainable. <strong>Plan your grocery stops strategically!</strong></p>
+                <p>For 4 adults, food is the largest variable cost. Relying on gas station burgers ($20 USD/ea) is unsustainable. <strong>Plan your grocery stops strategically!</strong></p>
             </div>
 
             <div class="info-card">
@@ -1049,7 +1110,7 @@
             <div class="info-card">
                 <h3>Public Bus System</h3>
                 <p><strong>Company:</strong> Straeto (local buses)</p>
-                <p><strong>Reality:</strong> Very limited outside Reykjavik area, impractical for Ring Road</p>
+                <p><strong>Reality:</strong> Very limited outside Reykjavik area, impractical for this route</p>
                 <p><strong>Verdict:</strong> Not recommended for our itinerary</p>
             </div>
 
@@ -1060,7 +1121,7 @@
                     <li>Go at your own pace (no rushing for tour groups)</li>
                     <li>Access to remote areas and off-the-beaten-path locations</li>
                     <li>Can adjust plans based on weather</li>
-                    <li>More cost-effective for 10-day Ring Road circuit</li>
+                    <li>More cost-effective for 9-day South Coast & Snaefellsnes circuit</li>
                     <li>Privacy and comfort</li>
                 </ul>
             </div>
@@ -1069,7 +1130,7 @@
 
     <footer>
         <p>Iceland Trip 2026 | Journey through Fire and Ice 🇮🇸</p>
-        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 8-17, 2026 • 7 Adults</p>
+        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 9-17, 2026 • 4 Adults</p>
     </footer>
 
     <script>
