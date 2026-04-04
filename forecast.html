@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Forecast - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .navbar-brand {
+            color: var(--aurora-green);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3em;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; justify-content: flex-end; }
+
+        .navbar-item {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: 0.3s;
+            font-size: 0.85em;
+            white-space: nowrap;
+        }
+
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+
+        .navbar-dropdown { position: relative; }
+        .dropdown-content {
+            display: none; position: absolute; top: 100%; right: 0;
+            background: var(--deep-navy); border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); min-width: 160px; z-index: 1001; overflow: hidden;
+        }
+        .navbar-dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content a { color: white; padding: 10px 16px; display: block; text-decoration: none; font-size: 0.85em; transition: 0.3s; }
+        .dropdown-content a:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+
+        @media (max-width: 768px) {
+            .navbar-menu {
+                display: none; position: absolute; top: 100%; left: 0; right: 0;
+                flex-direction: column; gap: 0;
+                background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%);
+                padding: 10px 0; max-height: calc(100vh - 60px); overflow-y: auto;
+            }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.95em; }
+            .navbar-dropdown { width: 100%; }
+            .dropdown-content { position: static; display: none; box-shadow: none; background: rgba(0, 0, 0, 0.2); }
+            .navbar-dropdown:hover .dropdown-content, .navbar-dropdown.open .dropdown-content { display: block; }
+            .dropdown-content a { padding: 10px 30px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+            .menu-toggle { display: block; }
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            color: white;
+        }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 8px; }
+        .page-header p { opacity: 0.85; font-size: 1.1em; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+        .last-updated {
+            text-align: center; padding: 10px; font-size: 0.85em; color: #666;
+            background: #e8f5e9; border-radius: 8px; margin-bottom: 20px;
+        }
+        .last-updated strong { color: var(--moss-green); }
+
+        /* Weather Cards */
+        .weather-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .weather-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+        }
+        .weather-card:hover { transform: translateY(-3px); }
+
+        .weather-card-header {
+            padding: 15px 20px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .weather-card-header h3 { font-size: 1em; }
+        .weather-card-header .day-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+        }
+
+        .weather-card-body { padding: 20px; }
+
+        .weather-main {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .weather-icon { font-size: 2.8em; }
+
+        .weather-temp .high { font-size: 2em; font-weight: 700; color: var(--volcanic-black); }
+        .weather-temp .low { font-size: 1.2em; color: #888; margin-left: 5px; }
+        .weather-temp .desc { font-size: 0.85em; color: #666; margin-top: 2px; }
+
+        .weather-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .weather-detail {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85em;
+            color: #555;
+        }
+        .weather-detail .icon { font-size: 1.1em; }
+
+        .weather-alert {
+            margin-top: 12px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.82em;
+            font-weight: 500;
+        }
+        .alert-wind { background: #fef3c7; color: #92400e; border-left: 3px solid #f59e0b; }
+        .alert-rain { background: #dbeafe; color: #1e40af; border-left: 3px solid #3b82f6; }
+        .alert-good { background: #d1fae5; color: #065f46; border-left: 3px solid #10b981; }
+
+        /* Aurora Section */
+        .aurora-panel {
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            border-radius: 12px;
+            padding: 30px;
+            color: white;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        .aurora-panel::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00ff88, var(--aurora-green), #00ff88);
+            animation: aurora-wave 3s ease-in-out infinite;
+        }
+        @keyframes aurora-wave { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+
+        .aurora-panel h2 {
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .kp-display {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .kp-value {
+            font-size: 4em;
+            font-weight: 700;
+            line-height: 1;
+        }
+        .kp-low { color: #666; }
+        .kp-medium { color: #f59e0b; }
+        .kp-high { color: #10b981; }
+        .kp-storm { color: #ef4444; }
+
+        .kp-info h3 { font-size: 1.2em; margin-bottom: 5px; }
+        .kp-info p { opacity: 0.8; font-size: 0.9em; line-height: 1.5; }
+
+        .kp-forecast-bar {
+            display: flex;
+            gap: 4px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .kp-bar-item {
+            flex: 1;
+            min-width: 60px;
+            text-align: center;
+            padding: 8px 4px;
+            border-radius: 6px;
+            font-size: 0.75em;
+        }
+        .kp-bar-item .kp-num { font-size: 1.4em; font-weight: 700; display: block; margin-bottom: 2px; }
+        .kp-bar-item .kp-time { opacity: 0.7; }
+
+        .aurora-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .aurora-link {
+            background: rgba(255,255,255,0.1);
+            padding: 12px 15px;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: 0.3s;
+        }
+        .aurora-link:hover { background: rgba(255,255,255,0.2); }
+        .aurora-link strong { display: block; color: var(--aurora-green); margin-bottom: 3px; }
+
+        /* Useful Resources */
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        .resource-card h3 {
+            font-size: 1.1em;
+            color: var(--primary-blue);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--ice-blue);
+        }
+        .resource-card ul { list-style: none; }
+        .resource-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.9em;
+        }
+        .resource-card li:last-child { border-bottom: none; }
+        .resource-card a { color: var(--primary-blue); text-decoration: none; font-weight: 500; }
+        .resource-card a:hover { text-decoration: underline; }
+
+        /* Sun timeline */
+        .sun-timeline {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+        .sun-card {
+            min-width: 120px;
+            text-align: center;
+            background: white;
+            border-radius: 8px;
+            padding: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            font-size: 0.82em;
+        }
+        .sun-card .day-label { font-weight: 600; color: var(--primary-blue); margin-bottom: 6px; }
+        .sun-card .sun-rise { color: #f59e0b; }
+        .sun-card .sun-set { color: #6366f1; }
+        .sun-card .daylight { color: var(--moss-green); font-weight: 600; margin-top: 4px; }
+
+        /* Section headers */
+        .section-header {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary-blue);
+            font-size: 1.6em;
+            margin: 30px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--ice-blue);
+        }
+
+        .loading { text-align: center; padding: 40px; color: #888; font-size: 1.1em; }
+        .loading::after { content: ''; animation: dots 1.5s steps(3, end) infinite; }
+        @keyframes dots { 0% { content: '.'; } 33% { content: '..'; } 66% { content: '...'; } }
+
+        .error-msg {
+            background: #fef2f2; color: #991b1b; padding: 15px; border-radius: 8px;
+            border-left: 4px solid #ef4444; margin: 10px 0;
+        }
+
+        footer {
+            background: var(--deep-navy);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        /* Exchange rate */
+        .exchange-card {
+            background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #d1fae5;
+        }
+        .exchange-rates { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px; }
+        .rate-item { font-size: 1.1em; }
+        .rate-item strong { color: var(--primary-blue); }
+
+        /* Hourly breakdown */
+        .hourly-toggle {
+            background: var(--primary-blue); color: white; border: none;
+            padding: 6px 14px; border-radius: 4px; cursor: pointer;
+            font-size: 0.8em; margin-top: 10px; transition: 0.3s;
+        }
+        .hourly-toggle:hover { background: var(--aurora-green); }
+
+        .hourly-table {
+            display: none; width: 100%; margin-top: 10px;
+            border-collapse: collapse; font-size: 0.78em;
+        }
+        .hourly-table.visible { display: table; }
+        .hourly-table th {
+            background: var(--ice-blue); padding: 6px 8px;
+            text-align: left; font-weight: 600; color: var(--volcanic-black);
+        }
+        .hourly-table td {
+            padding: 5px 8px; border-bottom: 1px solid #f0f0f0;
+        }
+
+        /* Model comparison */
+        .model-compare {
+            margin-top: 10px; padding: 8px 12px;
+            background: #f8fafc; border-radius: 6px;
+            font-size: 0.8em; color: #555;
+            border-left: 3px solid #6366f1;
+        }
+        .model-compare strong { color: #6366f1; }
+
+        .model-selector {
+            padding: 8px 16px; border: 2px solid #e2e8f0; border-radius: 8px;
+            background: white; cursor: pointer; font-size: 0.85em;
+            color: #555; font-weight: 500; transition: 0.3s;
+        }
+        .model-selector:hover { border-color: var(--primary-blue); color: var(--primary-blue); }
+        .model-selector.active {
+            background: var(--primary-blue); color: white;
+            border-color: var(--primary-blue); font-weight: 600;
+        }
+
+        .model-toggle {
+            background: #6366f1; color: white; border: none;
+            padding: 6px 14px; border-radius: 4px; cursor: pointer;
+            font-size: 0.8em; margin-top: 10px; transition: 0.3s;
+        }
+        .model-toggle:hover { background: #4f46e5; }
+
+        .model-table {
+            display: none;
+            width: 100%; margin-top: 10px; border-collapse: collapse; font-size: 0.78em;
+            background: #f8fafc; border-radius: 6px; overflow: hidden;
+        }
+        .model-table.visible { display: table; }
+        .model-table th {
+            background: #eef2ff; padding: 6px 8px; text-align: left;
+            font-weight: 600; color: #4338ca; font-size: 0.95em;
+        }
+        .model-table td { padding: 5px 8px; border-bottom: 1px solid #e8e8e8; }
+        .model-table tr:last-child td { border-bottom: none; }
+        .model-name { font-weight: 600; white-space: nowrap; }
+        .model-primary { color: var(--primary-blue); }
+        .model-ecmwf { color: #7c3aed; }
+        .model-gfs { color: #0891b2; }
+        .model-gem { color: #c2410c; }
+
+        /* Cloud coverage bar */
+        .cloud-bar {
+            height: 6px; border-radius: 3px; background: #e2e8f0;
+            margin-top: 4px; overflow: hidden;
+        }
+        .cloud-bar-fill { height: 100%; border-radius: 3px; transition: width 0.5s; }
+
+        /* Aurora night cards */
+        .aurora-nights { display: flex; gap: 10px; overflow-x: auto; padding: 10px 0; margin: 15px 0; }
+        .aurora-night-card {
+            min-width: 130px; text-align: center; padding: 12px;
+            border-radius: 8px; font-size: 0.82em;
+        }
+        .aurora-night-card .night-label { font-weight: 600; margin-bottom: 6px; }
+        .aurora-good { background: rgba(16,185,129,0.2); border: 1px solid rgba(16,185,129,0.4); }
+        .aurora-maybe { background: rgba(245,158,11,0.2); border: 1px solid rgba(245,158,11,0.4); }
+        .aurora-poor { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); }
+        .aurora-unknown { background: rgba(100,100,100,0.1); border: 1px solid rgba(100,100,100,0.2); }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="index.html" class="navbar-item">Home</a>
+                <a href="itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="flights.html" class="navbar-item">Flights</a>
+                <a href="hotels.html" class="navbar-item">Hotels</a>
+                <a href="planning.html" class="navbar-item">Planning</a>
+                <a href="logistics.html" class="navbar-item">Logistics</a>
+                <a href="analysis.html" class="navbar-item">Analysis</a>
+                <a href="forecast.html" class="navbar-item active">Forecast</a>
+                <div class="navbar-dropdown">
+                    <a href="#" class="navbar-item dropdown-toggle">AI Reviews ▼</a>
+                    <div class="dropdown-content">
+                        <a href="gemini_comment.html">Gemini</a>
+                        <a href="gpt_comment.html">GPT</a>
+                        <a href="grok_comment.html">Grok</a>
+                        <a href="sonnet_comment.html">Sonnet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1>🌤️ Live Forecast & Conditions</h1>
+        <p>Real-time weather, aurora, and travel conditions for your trip</p>
+    </div>
+
+    <div class="container">
+        <div class="last-updated" id="lastUpdated">
+            <strong>⏳ Loading live data...</strong>
+        </div>
+
+        <!-- Aurora Section -->
+        <div class="aurora-panel" id="auroraPanel">
+            <h2>🌌 Aurora Borealis Forecast</h2>
+            <div id="auroraContent">
+                <div class="loading">Loading aurora forecast</div>
+            </div>
+            <h3 style="margin-top:20px;margin-bottom:10px;font-size:1.1em;">Nightly Aurora Viewing Conditions</h3>
+            <div class="aurora-nights" id="auroraNights"><div class="loading">Loading night conditions</div></div>
+            <div class="aurora-links">
+                <a href="https://en.vedur.is/weather/forecasts/aurora/" target="_blank" class="aurora-link">
+                    <strong>vedur.is/aurora</strong>
+                    Official Icelandic Met Office aurora + cloud cover
+                </a>
+                <a href="https://icelandatnight.is/" target="_blank" class="aurora-link">
+                    <strong>icelandatnight.is</strong>
+                    Combined aurora + cloud map for photographers
+                </a>
+                <a href="https://www.swpc.noaa.gov/products/3-day-forecast" target="_blank" class="aurora-link">
+                    <strong>NOAA 3-Day Forecast</strong>
+                    Official space weather Kp prediction
+                </a>
+                <a href="https://auroraforecast.is/" target="_blank" class="aurora-link">
+                    <strong>Aurora Forecast Iceland</strong>
+                    Real-time Kp + best viewing times
+                </a>
+            </div>
+        </div>
+
+        <!-- Sunrise/Sunset Timeline -->
+        <h2 class="section-header">🌅 Sunrise & Sunset Times</h2>
+        <div class="sun-timeline" id="sunTimeline">
+            <div class="loading">Loading sun data</div>
+        </div>
+
+        <!-- Weather Section -->
+        <h2 class="section-header">🌦️ Daily Weather Forecast</h2>
+        <p style="margin-bottom: 10px; color: #666; font-size: 0.9em;">Weather from <a href="https://open-meteo.com/" target="_blank" style="color: var(--primary-blue);">Open-Meteo</a> (free, no API key). Switch between <strong>4 weather models</strong> to compare forecasts. Each card also has hourly breakdown and per-card model comparison table.</p>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; align-items: center;">
+            <span style="font-weight: 600; font-size: 0.9em; color: #555;">View model:</span>
+            <button class="model-selector active" onclick="switchModel('best_match', this)" data-model="best_match">Best Match (Primary)</button>
+            <button class="model-selector" onclick="switchModel('ecmwf', this)" data-model="ecmwf">ECMWF (European)</button>
+            <button class="model-selector" onclick="switchModel('gfs', this)" data-model="gfs">GFS (American)</button>
+            <button class="model-selector" onclick="switchModel('gem', this)" data-model="gem">GEM (Canadian)</button>
+        </div>
+        <div style="background: linear-gradient(135deg, #1e3a5f, #0a1929); border-radius: 12px; padding: 20px; margin-bottom: 20px; color: white;">
+            <h3 style="margin-bottom: 12px; font-size: 1.1em;">🇮🇸 vedur.is — Official Icelandic Met Office (Most Accurate for Iceland)</h3>
+            <p style="font-size: 0.85em; opacity: 0.7; margin-bottom: 12px;">The Icelandic Met Office forecasts are the gold standard for Iceland weather. Their API doesn't support browser requests, so use these direct links for each location on your route:</p>
+            <p style="font-size: 0.82em; opacity: 0.6; margin-bottom: 8px;">Click a region to see station forecasts, or use the search box on vedur.is to find any station:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                <a href="https://en.vedur.is/weather/forecasts/areas/#group=702" target="_blank" style="background: rgba(255,255,255,0.1); color: var(--aurora-green); padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 0.85em; transition: 0.3s;">Reykjavik Area</a>
+                <a href="https://en.vedur.is/weather/forecasts/areas/#group=721" target="_blank" style="background: rgba(255,255,255,0.1); color: var(--aurora-green); padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 0.85em;">South (Selfoss/Hvolsvöllur)</a>
+                <a href="https://en.vedur.is/weather/forecasts/areas/#group=703" target="_blank" style="background: rgba(255,255,255,0.1); color: var(--aurora-green); padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 0.85em;">South East (Vik)</a>
+                <a href="https://en.vedur.is/weather/forecasts/areas/#group=712" target="_blank" style="background: rgba(255,255,255,0.1); color: var(--aurora-green); padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 0.85em;">East (Höfn/Jökulsárlón)</a>
+                <a href="https://en.vedur.is/weather/forecasts/areas/#group=704" target="_blank" style="background: rgba(255,255,255,0.1); color: var(--aurora-green); padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 0.85em;">West (Borgarnes)</a>
+                <a href="https://en.vedur.is/weather/forecasts/areas/#group=707" target="_blank" style="background: rgba(255,255,255,0.1); color: var(--aurora-green); padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 0.85em;">Snæfellsnes / NW</a>
+                <a href="https://en.vedur.is/weather/forecasts/areas/#group=700" target="_blank" style="background: rgba(255,255,255,0.1); color: var(--aurora-green); padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 0.85em;">Keflavík/Reykjanes</a>
+                <a href="https://en.vedur.is/weather/forecasts/elements/" target="_blank" style="background: rgba(255,255,255,0.15); color: #f59e0b; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 0.85em;">Wind/Temp Maps</a>
+                <a href="https://en.vedur.is/weather/forecasts/cloudcover/" target="_blank" style="background: rgba(255,255,255,0.15); color: #f59e0b; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 0.85em;">Cloud Cover</a>
+                <a href="https://en.vedur.is/weather/forecasts/areas/" target="_blank" style="background: rgba(0,180,216,0.3); color: white; padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 0.85em; font-weight: 600;">All Stations Map →</a>
+            </div>
+        </div>
+
+        <div class="weather-grid" id="weatherGrid">
+            <div class="loading">Loading weather forecast</div>
+        </div>
+
+        <!-- Useful Resources -->
+        <h2 class="section-header">🔗 Live Resources & Tools</h2>
+        <div class="resources-grid">
+            <div class="resource-card">
+                <h3>🛣️ Road Conditions</h3>
+                <ul>
+                    <li><a href="https://www.road.is/" target="_blank">road.is</a> — Live road map with conditions, closures, webcams</li>
+                    <li><a href="https://www.vegagerdin.is/en" target="_blank">Vegagerdin.is</a> — Road administration official status</li>
+                    <li><a href="https://safetravel.is/" target="_blank">SafeTravel.is</a> — Safety alerts, weather warnings, trail conditions</li>
+                    <li>Dial <strong>1777</strong> in Iceland for road conditions hotline</li>
+                </ul>
+            </div>
+            <div class="resource-card">
+                <h3>🌤️ Weather Resources</h3>
+                <ul>
+                    <li><a href="https://en.vedur.is/" target="_blank">vedur.is</a> — Icelandic Met Office (most accurate for Iceland)</li>
+                    <li><a href="https://en.vedur.is/weather/forecasts/elements/" target="_blank">vedur.is/elements</a> — Detailed wind, rain, temp maps</li>
+                    <li><a href="https://www.windy.com/?63.95,-19.02,7" target="_blank">Windy.com</a> — Visual wind & weather animation</li>
+                    <li>Wind over <strong>20 m/s</strong> = dangerous for driving, especially high-sided vehicles</li>
+                </ul>
+            </div>
+            <div class="resource-card">
+                <h3>📱 Essential Apps</h3>
+                <ul>
+                    <li><strong>Vedur</strong> — Official Icelandic weather app</li>
+                    <li><strong>112 Iceland</strong> — Emergency app (shares GPS location)</li>
+                    <li><strong>My Aurora Forecast</strong> — Kp alerts & notifications</li>
+                    <li><strong>Google Maps (Offline)</strong> — Download Iceland map before trip!</li>
+                    <li><strong>PhotoPills</strong> — Sun position for photography planning</li>
+                </ul>
+            </div>
+            <div class="resource-card">
+                <h3>🆘 Emergency Numbers</h3>
+                <ul>
+                    <li><strong>112</strong> — Emergency services (police, ambulance, fire)</li>
+                    <li><strong>1777</strong> — Road conditions & assistance</li>
+                    <li><strong>+354 511 1111</strong> — Roadside assistance (FIB)</li>
+                    <li><strong>+354 543 2600</strong> — Landspitali Hospital, Reykjavik</li>
+                    <li><strong>Royal Thai Embassy</strong> — Oslo (+47 2212 8600, covers Iceland)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Journey through Fire and Ice 🇮🇸</p>
+        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 7-18, 2026 • 4 Adults</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+
+        // Trip day locations with coordinates
+        const tripDays = [
+            { day: 'Day 1', date: '2026-04-09', label: 'Golden Circle', location: 'Thingvellir', lat: 64.26, lon: -21.13, color: '#0077B6' },
+            { day: 'Day 2', date: '2026-04-10', label: 'Waterfalls & Vik', location: 'Vik', lat: 63.42, lon: -19.01, color: '#0077B6' },
+            { day: 'Day 3', date: '2026-04-11', label: 'Glaciers & Lagoons', location: 'Jokulsarlon', lat: 64.08, lon: -16.18, color: '#0077B6' },
+            { day: 'Day 4', date: '2026-04-12', label: 'Drive West', location: 'Hvolsvollur', lat: 63.75, lon: -20.23, color: '#6366f1' },
+            { day: 'Day 5', date: '2026-04-13', label: 'Hot River & Borgarnes', location: 'Borgarnes', lat: 64.54, lon: -21.92, color: '#6366f1' },
+            { day: 'Day 6', date: '2026-04-14', label: 'Snaefellsnes South', location: 'Arnarstapi', lat: 64.77, lon: -23.63, color: '#8b5cf6' },
+            { day: 'Day 7', date: '2026-04-15', label: 'Snaefellsnes North', location: 'Grundarfjordur', lat: 64.92, lon: -23.25, color: '#8b5cf6' },
+            { day: 'Day 8', date: '2026-04-16', label: 'Reykjavik & Blue Lagoon', location: 'Reykjanes', lat: 63.88, lon: -22.45, color: '#10b981' },
+            { day: 'Day 9', date: '2026-04-17', label: 'Departure', location: 'Keflavik', lat: 63.98, lon: -22.62, color: '#ef4444' },
+        ];
+
+        // Weather code to description & icon
+        const weatherCodes = {
+            0: { desc: 'Clear sky', icon: '☀️' },
+            1: { desc: 'Mainly clear', icon: '🌤️' },
+            2: { desc: 'Partly cloudy', icon: '⛅' },
+            3: { desc: 'Overcast', icon: '☁️' },
+            45: { desc: 'Foggy', icon: '🌫️' },
+            48: { desc: 'Freezing fog', icon: '🌫️' },
+            51: { desc: 'Light drizzle', icon: '🌦️' },
+            53: { desc: 'Moderate drizzle', icon: '🌦️' },
+            55: { desc: 'Dense drizzle', icon: '🌧️' },
+            56: { desc: 'Freezing drizzle', icon: '🌧️' },
+            57: { desc: 'Heavy freezing drizzle', icon: '🌧️' },
+            61: { desc: 'Light rain', icon: '🌦️' },
+            63: { desc: 'Moderate rain', icon: '🌧️' },
+            65: { desc: 'Heavy rain', icon: '🌧️' },
+            66: { desc: 'Freezing rain', icon: '🌧️' },
+            67: { desc: 'Heavy freezing rain', icon: '🌧️' },
+            71: { desc: 'Light snow', icon: '🌨️' },
+            73: { desc: 'Moderate snow', icon: '🌨️' },
+            75: { desc: 'Heavy snow', icon: '❄️' },
+            77: { desc: 'Snow grains', icon: '🌨️' },
+            80: { desc: 'Light showers', icon: '🌦️' },
+            81: { desc: 'Moderate showers', icon: '🌧️' },
+            82: { desc: 'Violent showers', icon: '🌧️' },
+            85: { desc: 'Light snow showers', icon: '🌨️' },
+            86: { desc: 'Heavy snow showers', icon: '❄️' },
+            95: { desc: 'Thunderstorm', icon: '⛈️' },
+            96: { desc: 'Thunderstorm + hail', icon: '⛈️' },
+            99: { desc: 'Thunderstorm + heavy hail', icon: '⛈️' },
+        };
+
+        // Global store for all fetched weather data
+        let allWeatherData = [];
+        let currentModel = 'best_match';
+
+        function switchModel(model, btn) {
+            currentModel = model;
+            document.querySelectorAll('.model-selector').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderWeatherCards();
+        }
+
+        function getWeatherInfo(code) {
+            return weatherCodes[code] || { desc: 'Unknown', icon: '🌡️' };
+        }
+
+        function getWindAlert(maxWind) {
+            if (maxWind >= 20) return { class: 'alert-wind', text: `⚠️ Strong wind: ${maxWind} m/s — Dangerous for driving! Check road.is before heading out.` };
+            if (maxWind >= 15) return { class: 'alert-wind', text: `💨 Gusty: ${maxWind} m/s — Hold onto car doors, be careful near cliffs.` };
+            if (maxWind >= 10) return { class: 'alert-rain', text: `🌬️ Breezy: ${maxWind} m/s — Typical Iceland, dress in layers.` };
+            return { class: 'alert-good', text: `✅ Calm winds: ${maxWind} m/s — Great conditions!` };
+        }
+
+        function formatDate(dateStr) {
+            const d = new Date(dateStr + 'T12:00:00');
+            return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+        }
+
+        // Fetch weather for all locations (hourly from all 4 models)
+        async function fetchWeather() {
+            const grid = document.getElementById('weatherGrid');
+            try {
+                const hourlyParams = 'hourly=temperature_2m,precipitation,weather_code,cloud_cover,wind_speed_10m,wind_gusts_10m&timezone=Atlantic/Reykjavik';
+                const modelEndpoints = {
+                    best_match: 'https://api.open-meteo.com/v1/forecast',
+                    ecmwf: 'https://api.open-meteo.com/v1/ecmwf',
+                    gfs: 'https://api.open-meteo.com/v1/gfs',
+                    gem: 'https://api.open-meteo.com/v1/gem',
+                };
+
+                // Fetch all days in ONE call per model per location to avoid rate limiting
+                // Group by unique lat/lon (some days share locations)
+                const startDate = tripDays[0].date;
+                const endDate = tripDays[tripDays.length - 1].date;
+
+                // Fetch each model for each location, but use date range
+                const locationFetches = {};
+                for (const trip of tripDays) {
+                    const locKey = `${trip.lat},${trip.lon}`;
+                    if (locationFetches[locKey]) continue; // already fetching this location
+                    locationFetches[locKey] = {};
+                    for (const [modelKey, baseUrl] of Object.entries(modelEndpoints)) {
+                        const url = `${baseUrl}?latitude=${trip.lat}&longitude=${trip.lon}&${hourlyParams}&start_date=${trip.date}&end_date=${trip.date}`;
+                        locationFetches[locKey][modelKey] = fetch(url)
+                            .then(r => r.ok ? r.json() : null)
+                            .catch(() => null);
+                    }
+                }
+
+                // Await all fetches
+                for (const locKey of Object.keys(locationFetches)) {
+                    const modelKeys = Object.keys(locationFetches[locKey]);
+                    const results = await Promise.all(Object.values(locationFetches[locKey]));
+                    const resolved = {};
+                    modelKeys.forEach((k, i) => { resolved[k] = results[i]; });
+                    locationFetches[locKey] = resolved;
+                }
+
+                // Build allWeatherData by extracting hourly data per trip day
+                allWeatherData = tripDays.map(trip => {
+                    const locKey = `${trip.lat},${trip.lon}`;
+                    const locData = locationFetches[locKey];
+                    const models = {};
+                    for (const modelKey of Object.keys(modelEndpoints)) {
+                        const raw = locData[modelKey];
+                        if (raw && raw.hourly && raw.hourly.time) {
+                            models[modelKey] = raw.hourly;
+                        } else {
+                            models[modelKey] = null;
+                        }
+                    }
+                    return { trip, models };
+                });
+                renderWeatherCards();
+
+            } catch (err) {
+                grid.innerHTML = `<div class="error-msg">Failed to load weather: ${err.message}. Try refreshing the page.</div>`;
+            }
+        }
+
+        // Summarize hourly data into a daily summary object
+        function summarizeHourly(h) {
+            if (!h || !h.time || h.time.length === 0) return null;
+            const temps = h.temperature_2m.filter(v => v !== null);
+            if (temps.length === 0) return null;
+            const high = Math.round(Math.max(...temps));
+            const low = Math.round(Math.min(...temps));
+            const totalPrecip = h.precipitation ? h.precipitation.reduce((s, v) => s + (v || 0), 0) : 0;
+            const winds = h.wind_speed_10m ? h.wind_speed_10m.filter(v => v !== null) : [];
+            const maxWindKmh = winds.length > 0 ? Math.round(Math.max(...winds)) : 0;
+            const gusts = h.wind_gusts_10m ? h.wind_gusts_10m.filter(v => v !== null) : [];
+            const maxGustsKmh = gusts.length > 0 ? Math.round(Math.max(...gusts)) : 0;
+            const clouds = h.cloud_cover || [];
+            const avgCloud = clouds.length > 0 ? Math.round(clouds.reduce((s, v) => s + (v || 0), 0) / clouds.length) : 0;
+            const wind = Math.round(maxWindKmh * 10 / 36); // km/h to m/s approx
+
+            // Dominant weather code: most severe from daytime hours (6-21)
+            const codes = h.weather_code || [];
+            const daytimeCodes = codes.slice(6, 22).filter(v => v !== null);
+            const dominantCode = daytimeCodes.length > 0 ? Math.max(...daytimeCodes) : (codes[12] || 0);
+            const weather = getWeatherInfo(dominantCode);
+            const windAlert = getWindAlert(wind);
+
+            return { high, low, totalPrecip, maxWindKmh, maxGustsKmh, avgCloud, weather, windAlert, wind };
+        }
+
+        // Render all weather cards based on currentModel and allWeatherData
+        function renderWeatherCards() {
+            const grid = document.getElementById('weatherGrid');
+            const keyHours = [6, 9, 12, 15, 18, 21, 0];
+            grid.innerHTML = '';
+
+            allWeatherData.forEach(({ trip, models }) => {
+                // Get hourly data for current model, fall back to best_match
+                let h = models[currentModel] || models['best_match'];
+                if (!h || !h.time || h.time.length === 0) {
+                    grid.innerHTML += `<div class="error-msg">No data available for ${trip.day} yet — forecast may not extend to ${trip.date}.</div>`;
+                    return;
+                }
+
+                const summary = summarizeHourly(h);
+                if (!summary) {
+                    grid.innerHTML += `<div class="error-msg">No data available for ${trip.day} yet — forecast may not extend to ${trip.date}.</div>`;
+                    return;
+                }
+
+                const { high, low, totalPrecip, maxWindKmh, maxGustsKmh, avgCloud, weather, windAlert } = summary;
+
+                // Cloud cover color
+                let cloudColor = '#10b981'; // green = clear
+                if (avgCloud >= 70) cloudColor = '#6b7280';
+                else if (avgCloud >= 40) cloudColor = '#f59e0b';
+
+                // Multi-model comparison table (computed from each model's hourly data)
+                const modelDefs = [
+                    { key: 'best_match', name: 'Best Match', cls: 'model-primary', desc: 'Primary' },
+                    { key: 'ecmwf', name: 'ECMWF', cls: 'model-ecmwf', desc: 'European' },
+                    { key: 'gfs', name: 'GFS', cls: 'model-gfs', desc: 'American' },
+                    { key: 'gem', name: 'GEM', cls: 'model-gem', desc: 'Canadian' },
+                ];
+                let modelRows = '';
+                let hasAnyModel = false;
+                modelDefs.forEach(m => {
+                    const mHourly = models[m.key];
+                    const mSummary = summarizeHourly(mHourly);
+                    const isActive = m.key === currentModel;
+                    const highlight = isActive ? ' style="background:rgba(99,102,241,0.15);"' : '';
+                    if (mSummary) {
+                        hasAnyModel = true;
+                        modelRows += `<tr${highlight}>
+                            <td class="model-name ${m.cls}">${m.name} <span style="font-weight:400;color:#999;">(${m.desc})</span>${isActive ? ' ✓' : ''}</td>
+                            <td>${mSummary.weather.icon}</td>
+                            <td>${mSummary.high}° / ${mSummary.low}°C</td>
+                            <td>${mSummary.totalPrecip.toFixed(1)} mm</td>
+                            <td>${mSummary.maxWindKmh} km/h</td>
+                        </tr>`;
+                    } else {
+                        modelRows += `<tr${highlight}>
+                            <td class="model-name ${m.cls}">${m.name} <span style="font-weight:400;color:#999;">(${m.desc})</span>${isActive ? ' ✓' : ''}</td>
+                            <td>—</td><td>—</td><td>—</td><td>—</td>
+                        </tr>`;
+                    }
+                });
+                const modelId = `models-${trip.date}`;
+                let modelsHtml = '';
+                if (hasAnyModel) {
+                    modelsHtml = `<button class="model-toggle" onclick="toggleModels('${modelId}', this)">Compare 4 Models</button>
+                    <table class="model-table" id="${modelId}">
+                        <thead><tr><th>Model</th><th></th><th>Temp</th><th>Rain</th><th>Wind</th></tr></thead>
+                        <tbody>${modelRows}</tbody>
+                    </table>`;
+                }
+
+                // Hourly table rows for key hours
+                const cardId = `hourly-${trip.date}`;
+                let hourlyRows = '';
+                keyHours.forEach(hr => {
+                    const idx = (hr === 0) ? 23 : hr; // use hour 23 for the 00:00 slot if same day
+                    if (idx < h.time.length) {
+                        const t = h.temperature_2m[idx];
+                        const p = h.precipitation ? h.precipitation[idx] : 0;
+                        const wc = getWeatherInfo(h.weather_code ? h.weather_code[idx] : 0);
+                        const cl = h.cloud_cover ? h.cloud_cover[idx] : 0;
+                        const ws = h.wind_speed_10m ? Math.round(h.wind_speed_10m[idx]) : 0;
+                        const wg = h.wind_gusts_10m ? Math.round(h.wind_gusts_10m[idx]) : 0;
+                        const timeLabel = hr === 0 ? '00:00' : `${String(hr).padStart(2, '0')}:00`;
+                        let clColor = '#10b981';
+                        if (cl >= 70) clColor = '#6b7280';
+                        else if (cl >= 40) clColor = '#f59e0b';
+                        hourlyRows += `<tr>
+                            <td>${timeLabel}</td>
+                            <td>${Math.round(t)}°C</td>
+                            <td>${wc.icon} ${wc.desc}</td>
+                            <td><span style="color:${clColor};font-weight:600;">${cl}%</span></td>
+                            <td>${ws} <span style="color:#999;font-size:0.85em;">(${wg})</span></td>
+                            <td>${(p || 0).toFixed(1)}</td>
+                        </tr>`;
+                    }
+                });
+
+                const card = document.createElement('div');
+                card.className = 'weather-card';
+                card.innerHTML = `
+                    <div class="weather-card-header" style="background: linear-gradient(135deg, ${trip.color}, ${trip.color}cc);">
+                        <h3>${trip.label}</h3>
+                        <span class="day-badge">${trip.day} — ${formatDate(trip.date)}</span>
+                    </div>
+                    <div class="weather-card-body">
+                        <div class="weather-main">
+                            <div class="weather-icon">${weather.icon}</div>
+                            <div class="weather-temp">
+                                <div><span class="high">${high}°</span><span class="low">/ ${low}°C</span></div>
+                                <div class="desc">${weather.desc}</div>
+                            </div>
+                        </div>
+                        <div class="weather-details">
+                            <div class="weather-detail"><span class="icon">💧</span> Rain: ${totalPrecip.toFixed(1)} mm</div>
+                            <div class="weather-detail"><span class="icon">💨</span> Wind: ${maxWindKmh} km/h (gusts ${maxGustsKmh})</div>
+                            <div class="weather-detail"><span class="icon">☁️</span> Cloud: ${avgCloud}%
+                                <div class="cloud-bar" style="width:60px;display:inline-block;vertical-align:middle;margin-left:4px;">
+                                    <div class="cloud-bar-fill" style="width:${avgCloud}%;background:${cloudColor};"></div>
+                                </div>
+                            </div>
+                            <div class="weather-detail"><span class="icon">🌡️</span> Feels: ${low - 3}° to ${high}°C</div>
+                            <div class="weather-detail"><span class="icon">📍</span> ${trip.location}</div>
+                        </div>
+                        <div class="weather-alert ${windAlert.class}">${windAlert.text}</div>
+                        ${modelsHtml}
+                        <button class="hourly-toggle" onclick="toggleHourly('${cardId}', this)">Show Hourly Breakdown</button>
+                        <table class="hourly-table" id="${cardId}">
+                            <thead><tr><th>Time</th><th>Temp</th><th>Weather</th><th>Cloud</th><th>Wind km/h (gust)</th><th>Precip mm</th></tr></thead>
+                            <tbody>${hourlyRows}</tbody>
+                        </table>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function toggleHourly(id, btn) {
+            const table = document.getElementById(id);
+            table.classList.toggle('visible');
+            btn.textContent = table.classList.contains('visible') ? 'Hide Hourly Breakdown' : 'Show Hourly Breakdown';
+        }
+
+        function toggleModels(id, btn) {
+            const table = document.getElementById(id);
+            table.classList.toggle('visible');
+            btn.textContent = table.classList.contains('visible') ? 'Hide Model Comparison' : 'Compare 4 Models';
+        }
+
+        // Fetch sunrise/sunset for Reykjavik (representative for Iceland)
+        async function fetchSunData() {
+            const timeline = document.getElementById('sunTimeline');
+            try {
+                const dates = tripDays.map(d => d.date);
+                const url = `https://api.open-meteo.com/v1/forecast?latitude=64.15&longitude=-21.95&daily=sunrise,sunset,daylight_duration&timezone=Atlantic/Reykjavik&start_date=${dates[0]}&end_date=${dates[dates.length - 1]}`;
+                const res = await fetch(url);
+                const data = await res.json();
+                const d = data.daily;
+
+                timeline.innerHTML = '';
+                d.time.forEach((date, i) => {
+                    const rise = d.sunrise[i].split('T')[1];
+                    const set = d.sunset[i].split('T')[1];
+                    const daylight = (d.daylight_duration[i] / 3600).toFixed(1);
+                    const dayInfo = tripDays[i] || {};
+
+                    const card = document.createElement('div');
+                    card.className = 'sun-card';
+                    card.innerHTML = `
+                        <div class="day-label">${dayInfo.day || `Apr ${9 + i}`}</div>
+                        <div style="font-size:0.75em;color:#888;">${formatDate(date)}</div>
+                        <div style="margin:8px 0;">
+                            <div class="sun-rise">🌅 ${rise}</div>
+                            <div class="sun-set">🌇 ${set}</div>
+                        </div>
+                        <div class="daylight">☀️ ${daylight}h</div>
+                    `;
+                    timeline.appendChild(card);
+                });
+            } catch (err) {
+                timeline.innerHTML = `<div class="error-msg">Failed to load sun data: ${err.message}</div>`;
+            }
+        }
+
+        // Fetch aurora Kp index from NOAA
+        async function fetchAurora() {
+            const content = document.getElementById('auroraContent');
+            try {
+                // NOAA planetary Kp index - 3-day forecast
+                const res = await fetch('https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json');
+                const data = await res.json();
+
+                // data is array of [time_tag, Kp, observed/predicted, noaa_scale]
+                // Skip header row
+                const forecasts = data.slice(1).filter(row => row[2] === 'predicted').slice(0, 8);
+
+                if (forecasts.length === 0) {
+                    content.innerHTML = '<p>No predicted Kp data available right now. Check the links below for current conditions.</p>';
+                    return;
+                }
+
+                // Current/latest Kp
+                const observed = data.slice(1).filter(row => row[2] === 'observed');
+                const latestKp = observed.length > 0 ? parseFloat(observed[observed.length - 1][1]) : parseFloat(forecasts[0][1]);
+
+                let kpClass = 'kp-low';
+                let kpLabel = 'Quiet — Aurora unlikely';
+                let kpAdvice = 'Low geomagnetic activity. Aurora is unlikely to be visible.';
+
+                if (latestKp >= 7) {
+                    kpClass = 'kp-storm'; kpLabel = 'Major Storm! — Vivid aurora!';
+                    kpAdvice = 'Exceptional aurora conditions! Get outside NOW — visible even from Reykjavik. Look in all directions.';
+                } else if (latestKp >= 5) {
+                    kpClass = 'kp-high'; kpLabel = 'Storm — Great aurora!';
+                    kpAdvice = 'Strong aurora likely visible if skies are clear. Head away from city lights. Best viewing 23:00-02:00.';
+                } else if (latestKp >= 3) {
+                    kpClass = 'kp-medium'; kpLabel = 'Active — Aurora possible';
+                    kpAdvice = 'Moderate activity — faint aurora possible if skies are clear and dark. Check vedur.is cloud cover map.';
+                } else if (latestKp >= 2) {
+                    kpClass = 'kp-low'; kpLabel = 'Quiet — Slim chance';
+                    kpAdvice = 'Low activity. Very faint aurora might appear on the horizon in dark locations. Not worth a late night.';
+                }
+
+                // Build 3-hour forecast bar
+                let barHtml = '';
+                forecasts.forEach(f => {
+                    const kp = parseFloat(f[1]);
+                    const time = new Date(f[0]);
+                    const timeStr = time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+                    const dateStr = time.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                    let bg = 'rgba(255,255,255,0.05)';
+                    let col = '#666';
+                    if (kp >= 5) { bg = 'rgba(16,185,129,0.3)'; col = '#10b981'; }
+                    else if (kp >= 3) { bg = 'rgba(245,158,11,0.3)'; col = '#f59e0b'; }
+                    else if (kp >= 2) { bg = 'rgba(255,255,255,0.1)'; col = '#aaa'; }
+
+                    barHtml += `<div class="kp-bar-item" style="background:${bg};">
+                        <span class="kp-num" style="color:${col};">${kp.toFixed(1)}</span>
+                        <span class="kp-time">${dateStr}<br>${timeStr}</span>
+                    </div>`;
+                });
+
+                content.innerHTML = `
+                    <div class="kp-display">
+                        <div class="kp-value ${kpClass}">${latestKp.toFixed(1)}</div>
+                        <div class="kp-info">
+                            <h3>${kpLabel}</h3>
+                            <p>${kpAdvice}</p>
+                            <p style="margin-top:8px;opacity:0.6;font-size:0.85em;">Solar Cycle 25 is near its peak — elevated Kp activity expected through 2026.</p>
+                        </div>
+                    </div>
+                    <h4 style="margin-bottom:10px;opacity:0.8;">3-Hour Kp Forecast</h4>
+                    <div class="kp-forecast-bar">${barHtml}</div>
+                    <p style="font-size:0.8em;opacity:0.5;">Kp scale: 0-1 = quiet | 2-3 = unsettled | 4 = active | 5+ = storm (aurora!). April viewing window: ~23:00-02:00.</p>
+                `;
+            } catch (err) {
+                content.innerHTML = `<p style="opacity:0.8;">Could not load live Kp data (${err.message}). Check the forecast links below for current conditions.</p>`;
+            }
+        }
+
+        // Fetch nightly aurora viewing conditions
+        async function fetchAuroraNights() {
+            const container = document.getElementById('auroraNights');
+            try {
+                // Fetch hourly cloud cover for central Iceland (Highlands area)
+                const startDate = tripDays[0].date;
+                const endDate = tripDays[tripDays.length - 1].date;
+                const url = `https://api.open-meteo.com/v1/forecast?latitude=64.5&longitude=-20.0&hourly=cloud_cover&timezone=Atlantic/Reykjavik&start_date=${startDate}&end_date=${endDate}`;
+                const res = await fetch(url);
+                const data = await res.json();
+                const h = data.hourly;
+
+                // Also get latest Kp forecast from NOAA for overlay
+                let kpByDate = {};
+                try {
+                    const kpRes = await fetch('https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json');
+                    const kpData = await kpRes.json();
+                    kpData.slice(1).forEach(row => {
+                        const d = new Date(row[0]);
+                        const dateKey = d.toISOString().split('T')[0];
+                        const hour = d.getUTCHours();
+                        // Night hours: 22-02 UTC (roughly 22-02 Iceland time since UTC+0)
+                        if (hour >= 21 || hour <= 3) {
+                            if (!kpByDate[dateKey] || parseFloat(row[1]) > kpByDate[dateKey]) {
+                                kpByDate[dateKey] = parseFloat(row[1]);
+                            }
+                        }
+                    });
+                } catch (e) { /* Kp data optional */ }
+
+                container.innerHTML = '';
+                tripDays.forEach((trip, i) => {
+                    // Night hours for this date: 22:00, 23:00, 00:00, 01:00, 02:00
+                    // 22:00 and 23:00 are on trip.date, 00:00-02:00 are next day
+                    const nightClouds = [];
+                    if (h && h.time) {
+                        h.time.forEach((t, idx) => {
+                            const dt = new Date(t);
+                            const dateStr = dt.toISOString().split('T')[0];
+                            const hour = dt.getHours();
+                            // Same-day evening hours
+                            if (dateStr === trip.date && (hour >= 22)) {
+                                nightClouds.push(h.cloud_cover[idx]);
+                            }
+                            // Next day early morning hours
+                            const nextDate = new Date(trip.date + 'T12:00:00');
+                            nextDate.setDate(nextDate.getDate() + 1);
+                            const nextDateStr = nextDate.toISOString().split('T')[0];
+                            if (dateStr === nextDateStr && hour <= 2) {
+                                nightClouds.push(h.cloud_cover[idx]);
+                            }
+                        });
+                    }
+
+                    const avgNightCloud = nightClouds.length > 0
+                        ? Math.round(nightClouds.reduce((s, v) => s + (v || 0), 0) / nightClouds.length)
+                        : null;
+                    const nightKp = kpByDate[trip.date] || null;
+
+                    let rating, ratingClass, ratingIcon;
+                    if (avgNightCloud === null) {
+                        rating = 'No data yet';
+                        ratingClass = 'aurora-unknown';
+                        ratingIcon = '❓';
+                    } else if (avgNightCloud < 30 && nightKp !== null && nightKp >= 3) {
+                        rating = 'Good chance!';
+                        ratingClass = 'aurora-good';
+                        ratingIcon = '🌌';
+                    } else if (avgNightCloud < 30) {
+                        rating = 'Clear but low activity';
+                        ratingClass = 'aurora-maybe';
+                        ratingIcon = '🌙';
+                    } else if (avgNightCloud >= 60) {
+                        rating = 'Overcast — unlikely';
+                        ratingClass = 'aurora-poor';
+                        ratingIcon = '☁️';
+                    } else {
+                        rating = 'Partly cloudy — possible';
+                        ratingClass = 'aurora-maybe';
+                        ratingIcon = '⛅';
+                    }
+
+                    const card = document.createElement('div');
+                    card.className = `aurora-night-card ${ratingClass}`;
+                    card.innerHTML = `
+                        <div class="night-label">${trip.day}</div>
+                        <div style="font-size:1.6em;margin:4px 0;">${ratingIcon}</div>
+                        <div style="margin-bottom:4px;">${rating}</div>
+                        ${avgNightCloud !== null ? `<div style="opacity:0.7;font-size:0.85em;">Cloud: ${avgNightCloud}%</div>` : ''}
+                        ${nightKp !== null ? `<div style="opacity:0.7;font-size:0.85em;">Kp: ${nightKp.toFixed(1)}</div>` : ''}
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (err) {
+                container.innerHTML = `<div style="opacity:0.7;font-size:0.9em;">Could not load night conditions: ${err.message}</div>`;
+            }
+        }
+
+        // Load everything
+        async function loadAll() {
+            await Promise.all([fetchWeather(), fetchSunData(), fetchAurora(), fetchAuroraNights()]);
+            const now = new Date();
+            document.getElementById('lastUpdated').innerHTML = `<strong>✅ Data updated:</strong> ${now.toLocaleString()} — Weather from <a href="https://open-meteo.com/" target="_blank">Open-Meteo</a> | Aurora from <a href="https://www.swpc.noaa.gov/" target="_blank">NOAA SWPC</a>`;
+        }
+
+        loadAll();
+
+        // Auto-refresh every 30 minutes
+        setInterval(loadAll, 30 * 60 * 1000);
+    </script>
+</body>
+</html>
