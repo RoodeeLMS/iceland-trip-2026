@@ -596,8 +596,8 @@
         <p style="margin-bottom: 10px; color: #666; font-size: 0.9em;">Weather from <a href="https://open-meteo.com/" target="_blank" style="color: var(--primary-blue);">Open-Meteo</a> (free, no API key). Switch between <strong>4 weather models</strong> to compare forecasts. Each card also has hourly breakdown and per-card model comparison table.</p>
         <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; align-items: center;">
             <span style="font-weight: 600; font-size: 0.9em; color: #555;">View model:</span>
-            <button class="model-selector active" onclick="switchModel('best_match', this)" data-model="best_match">Best Match (Primary)</button>
-            <button class="model-selector" onclick="switchModel('ecmwf', this)" data-model="ecmwf">ECMWF (European)</button>
+            <button class="model-selector" onclick="switchModel('best_match', this)" data-model="best_match">Best Match</button>
+            <button class="model-selector active" onclick="switchModel('ecmwf', this)" data-model="ecmwf">ECMWF (European) ★</button>
             <button class="model-selector" onclick="switchModel('gfs', this)" data-model="gfs">GFS (American)</button>
             <button class="model-selector" onclick="switchModel('gem', this)" data-model="gem">GEM (Canadian)</button>
         </div>
@@ -724,7 +724,7 @@
 
         // Global store for all fetched weather data
         let allWeatherData = [];
-        let currentModel = 'best_match';
+        let currentModel = 'ecmwf';
 
         function switchModel(model, btn) {
             currentModel = model;
@@ -845,7 +845,7 @@
 
             allWeatherData.forEach(({ trip, models }) => {
                 // Get hourly data for current model, fall back to best_match
-                let h = models[currentModel] || models['best_match'];
+                let h = models[currentModel] || models['ecmwf'] || models['best_match'];
                 if (!h || !h.time || h.time.length === 0) {
                     grid.innerHTML += `<div class="error-msg">No data available for ${trip.day} yet — forecast may not extend to ${trip.date}.</div>`;
                     return;
@@ -866,8 +866,8 @@
 
                 // Multi-model comparison table (computed from each model's hourly data)
                 const modelDefs = [
-                    { key: 'best_match', name: 'Best Match', cls: 'model-primary', desc: 'Primary' },
-                    { key: 'ecmwf', name: 'ECMWF', cls: 'model-ecmwf', desc: 'European' },
+                    { key: 'ecmwf', name: 'ECMWF ★', cls: 'model-ecmwf', desc: 'European — used by vedur.is' },
+                    { key: 'best_match', name: 'Best Match', cls: 'model-primary', desc: 'Auto blend' },
                     { key: 'gfs', name: 'GFS', cls: 'model-gfs', desc: 'American' },
                     { key: 'gem', name: 'GEM', cls: 'model-gem', desc: 'Canadian' },
                 ];
