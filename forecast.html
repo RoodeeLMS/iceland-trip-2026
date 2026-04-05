@@ -495,6 +495,12 @@
             <strong>⏳ Loading live data...</strong>
         </div>
 
+        <!-- Storm / Weather Alert Banner -->
+        <div id="stormAlert" style="background: linear-gradient(135deg, #7f1d1d, #991b1b); border-radius: 12px; padding: 20px; color: white; margin-bottom: 20px; display: none;">
+            <h3 style="margin-bottom: 10px;">🌊 Storm Watch</h3>
+            <div id="stormContent"></div>
+        </div>
+
         <!-- Aurora Section -->
         <div class="aurora-panel" id="auroraPanel">
             <h2>🌌 Aurora Borealis Forecast</h2>
@@ -826,6 +832,12 @@
             const maxGustsKmh = gusts.length > 0 ? Math.round(Math.max(...gusts)) : 0;
             const clouds = h.cloud_cover || [];
             const avgCloud = clouds.length > 0 ? Math.round(clouds.reduce((s, v) => s + (v || 0), 0) / clouds.length) : 0;
+            // Daytime cloud cover (06:00-20:00) for driving/sightseeing
+            const dayClouds = clouds.slice(6, 21).filter(v => v !== null);
+            const avgDayCloud = dayClouds.length > 0 ? Math.round(dayClouds.reduce((s, v) => s + (v || 0), 0) / dayClouds.length) : avgCloud;
+            // Nighttime cloud cover (22:00-02:00) for aurora viewing
+            const nightClouds = [...clouds.slice(22, 24), ...(clouds.slice(0, 3))].filter(v => v !== null && v !== undefined);
+            const avgNightCloud = nightClouds.length > 0 ? Math.round(nightClouds.reduce((s, v) => s + (v || 0), 0) / nightClouds.length) : null;
             const wind = Math.round(maxWindKmh * 10 / 36); // km/h to m/s approx
 
             // Dominant weather code: most severe from daytime hours (6-21)
@@ -835,7 +847,7 @@
             const weather = getWeatherInfo(dominantCode);
             const windAlert = getWindAlert(wind);
 
-            return { high, low, totalPrecip, maxWindKmh, maxGustsKmh, avgCloud, weather, windAlert, wind };
+            return { high, low, totalPrecip, maxWindKmh, maxGustsKmh, avgCloud, avgDayCloud, avgNightCloud, weather, windAlert, wind };
         }
 
         // Render all weather cards based on currentModel and allWeatherData
@@ -858,12 +870,16 @@
                     return;
                 }
 
-                const { high, low, totalPrecip, maxWindKmh, maxGustsKmh, avgCloud, weather, windAlert } = summary;
+                const { high, low, totalPrecip, maxWindKmh, maxGustsKmh, avgCloud, avgDayCloud, avgNightCloud, weather, windAlert } = summary;
 
-                // Cloud cover color
-                let cloudColor = '#10b981'; // green = clear
-                if (avgCloud >= 70) cloudColor = '#6b7280';
-                else if (avgCloud >= 40) cloudColor = '#f59e0b';
+                // Cloud cover colors
+                let dayCloudColor = '#10b981';
+                if (avgDayCloud >= 70) dayCloudColor = '#6b7280';
+                else if (avgDayCloud >= 40) dayCloudColor = '#f59e0b';
+
+                let nightCloudColor = avgNightCloud !== null ? '#10b981' : '#999';
+                if (avgNightCloud >= 70) nightCloudColor = '#6b7280';
+                else if (avgNightCloud >= 40) nightCloudColor = '#f59e0b';
 
                 // Multi-model comparison table (computed from each model's hourly data)
                 const modelDefs = [
@@ -950,10 +966,13 @@
                         <div class="weather-details">
                             <div class="weather-detail"><span class="icon">💧</span> Rain: ${totalPrecip.toFixed(1)} mm</div>
                             <div class="weather-detail"><span class="icon">💨</span> Wind: ${maxWindKmh} km/h (gusts ${maxGustsKmh})</div>
-                            <div class="weather-detail"><span class="icon">☁️</span> Cloud: ${avgCloud}%
-                                <div class="cloud-bar" style="width:60px;display:inline-block;vertical-align:middle;margin-left:4px;">
-                                    <div class="cloud-bar-fill" style="width:${avgCloud}%;background:${cloudColor};"></div>
+                            <div class="weather-detail"><span class="icon">☀️</span> Day Cloud: ${avgDayCloud}%
+                                <div class="cloud-bar" style="width:50px;display:inline-block;vertical-align:middle;margin-left:4px;">
+                                    <div class="cloud-bar-fill" style="width:${avgDayCloud}%;background:${dayCloudColor};"></div>
                                 </div>
+                            </div>
+                            <div class="weather-detail"><span class="icon">🌙</span> Night: ${avgNightCloud !== null ? avgNightCloud + '%' : '—'}
+                                ${avgNightCloud !== null ? `<div class="cloud-bar" style="width:50px;display:inline-block;vertical-align:middle;margin-left:4px;"><div class="cloud-bar-fill" style="width:${avgNightCloud}%;background:${nightCloudColor};"></div></div>` : ''}
                             </div>
                             <div class="weather-detail"><span class="icon">🌡️</span> Feels: ${low - 3}° to ${high}°C</div>
                             <div class="weather-detail"><span class="icon">📍</span> ${trip.location}</div>
@@ -1193,8 +1212,47 @@
         }
 
         // Load everything
+        // Check for storm conditions and show alert banner
+        function checkStormAlert() {
+            const alertDiv = document.getElementById('stormAlert');
+            const contentDiv = document.getElementById('stormContent');
+            const stormDays = [];
+
+            allWeatherData.forEach(({ trip, models }) => {
+                const h = models['ecmwf'] || models['best_match'];
+                if (!h || !h.wind_speed_10m) return;
+                const maxWind = Math.max(...h.wind_speed_10m.filter(v => v !== null));
+                const maxGusts = h.wind_gusts_10m ? Math.max(...h.wind_gusts_10m.filter(v => v !== null)) : 0;
+                const windMs = Math.round(maxWind * 10 / 36);
+                if (windMs >= 15) {
+                    stormDays.push({ day: trip.day, date: trip.date, label: trip.label, windMs, maxGusts: Math.round(maxGusts), maxWind: Math.round(maxWind) });
+                }
+            });
+
+            if (stormDays.length > 0) {
+                alertDiv.style.display = 'block';
+                let html = '<p style="margin-bottom:10px;opacity:0.9;">Strong winds detected on your trip days. Take precautions:</p>';
+                html += '<div style="display:flex;flex-wrap:wrap;gap:10px;">';
+                stormDays.forEach(s => {
+                    const severity = s.windMs >= 20 ? '🔴 Dangerous' : '🟡 Gusty';
+                    const bgColor = s.windMs >= 20 ? 'rgba(239,68,68,0.3)' : 'rgba(245,158,11,0.3)';
+                    html += `<div style="background:${bgColor};padding:12px;border-radius:8px;min-width:200px;">
+                        <strong>${s.day}</strong> — ${s.label}<br>
+                        <span style="font-size:0.9em;">${severity}: ${s.windMs} m/s (gusts ${s.maxGusts} km/h)</span><br>
+                        <span style="font-size:0.8em;opacity:0.8;">${s.windMs >= 20 ? 'Check road.is before driving! Hold car doors firmly.' : 'Dress warm, hold car doors carefully.'}</span>
+                    </div>`;
+                });
+                html += '</div>';
+                html += '<p style="margin-top:10px;font-size:0.85em;opacity:0.7;">Check <a href="https://en.vedur.is/alerts" target="_blank" style="color:#fbbf24;">vedur.is/alerts</a> and <a href="https://www.road.is/" target="_blank" style="color:#fbbf24;">road.is</a> on storm days.</p>';
+                contentDiv.innerHTML = html;
+            } else {
+                alertDiv.style.display = 'none';
+            }
+        }
+
         async function loadAll() {
             await Promise.all([fetchWeather(), fetchSunData(), fetchAurora(), fetchAuroraNights()]);
+            checkStormAlert();
             const now = new Date();
             document.getElementById('lastUpdated').innerHTML = `<strong>✅ Data updated:</strong> ${now.toLocaleString()} — Weather from <a href="https://open-meteo.com/" target="_blank">Open-Meteo</a> | Aurora from <a href="https://www.swpc.noaa.gov/" target="_blank">NOAA SWPC</a>`;
         }
