@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Car & Driving Guide - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; position: relative; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; justify-content: flex-end; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .navbar-dropdown { position: relative; }
+        .dropdown-content { display: none; position: absolute; top: 100%; right: 0; background: var(--deep-navy); border-radius: 8px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); min-width: 160px; z-index: 1001; overflow: hidden; }
+        .navbar-dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content a { color: white; padding: 10px 16px; display: block; text-decoration: none; font-size: 0.85em; transition: 0.3s; }
+        .dropdown-content a:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; max-height: calc(100vh - 60px); overflow-y: auto; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.95em; }
+            .navbar-dropdown { width: 100%; }
+            .dropdown-content { position: static; display: none; box-shadow: none; background: rgba(0, 0, 0, 0.2); }
+            .navbar-dropdown:hover .dropdown-content, .navbar-dropdown.open .dropdown-content { display: block; }
+            .dropdown-content a { padding: 10px 30px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+            .menu-toggle { display: block; }
+        }
+
+        .page-header { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%); padding: 2.5rem 2rem; text-align: center; color: white; }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 8px; }
+        .page-header p { opacity: 0.85; font-size: 1.1em; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+
+        .section { margin-bottom: 30px; }
+        .section h2 { font-family: 'Playfair Display', serif; color: var(--primary-blue); font-size: 1.6em; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 3px solid var(--ice-blue); }
+
+        .card { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); margin-bottom: 20px; }
+        .card h3 { color: var(--primary-blue); margin-bottom: 12px; font-size: 1.15em; }
+
+        .booking-card { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; border-radius: 12px; padding: 30px; margin-bottom: 30px; }
+        .booking-card h2 { color: var(--aurora-green); font-family: 'Playfair Display', serif; margin-bottom: 20px; border-bottom: 2px solid rgba(0, 180, 216, 0.3); padding-bottom: 10px; }
+        .booking-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+        .booking-item { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 8px; }
+        .booking-item .label { font-size: 0.8em; opacity: 0.6; margin-bottom: 4px; }
+        .booking-item .value { font-size: 1.1em; font-weight: 600; }
+
+        .coverage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .covered { background: #d1fae5; border-left: 4px solid #10b981; padding: 15px; border-radius: 8px; }
+        .covered h4 { color: #065f46; margin-bottom: 8px; }
+        .covered ul { margin-left: 18px; color: #064e3b; font-size: 0.9em; line-height: 1.8; }
+        .not-covered { background: #fef2f2; border-left: 4px solid #ef4444; padding: 15px; border-radius: 8px; }
+        .not-covered h4 { color: #991b1b; margin-bottom: 8px; }
+        .not-covered ul { margin-left: 18px; color: #7f1d1d; font-size: 0.9em; line-height: 1.8; }
+
+        .warning-box { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 8px; margin: 15px 0; }
+        .warning-box strong { color: #92400e; }
+        .danger-box { background: #fef2f2; border-left: 4px solid #ef4444; padding: 15px; border-radius: 8px; margin: 15px 0; }
+        .danger-box strong { color: #991b1b; }
+        .tip-box { background: #d1fae5; border-left: 4px solid #10b981; padding: 15px; border-radius: 8px; margin: 15px 0; }
+        .tip-box strong { color: #065f46; }
+
+        .rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+        .rule-card { background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+        .rule-card h4 { margin-bottom: 10px; font-size: 1em; }
+        .rule-card ul { margin-left: 18px; font-size: 0.9em; line-height: 1.8; color: #555; }
+
+        .checklist { list-style: none; margin: 0; padding: 0; }
+        .checklist li { padding: 10px 0; border-bottom: 1px solid #f0f0f0; font-size: 0.95em; display: flex; align-items: flex-start; gap: 10px; }
+        .checklist li:last-child { border-bottom: none; }
+        .checklist .check { font-size: 1.2em; }
+
+        .fee-table { width: 100%; border-collapse: collapse; font-size: 0.9em; margin-top: 10px; }
+        .fee-table th { background: var(--ice-blue); padding: 10px 12px; text-align: left; font-weight: 600; }
+        .fee-table td { padding: 8px 12px; border-bottom: 1px solid #eee; }
+        .fee-table tr:last-child td { border-bottom: none; }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="index.html" class="navbar-item">Home</a>
+                <a href="itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="flights.html" class="navbar-item">Flights</a>
+                <a href="hotels.html" class="navbar-item">Hotels</a>
+                <a href="planning.html" class="navbar-item">Planning</a>
+                <a href="logistics.html" class="navbar-item">Logistics</a>
+                <a href="analysis.html" class="navbar-item">Analysis</a>
+                <a href="forecast.html" class="navbar-item">Forecast</a>
+                <div class="navbar-dropdown">
+                    <a href="#" class="navbar-item dropdown-toggle">AI Reviews ▼</a>
+                    <div class="dropdown-content">
+                        <a href="gemini_comment.html">Gemini</a>
+                        <a href="gpt_comment.html">GPT</a>
+                        <a href="grok_comment.html">Grok</a>
+                        <a href="sonnet_comment.html">Sonnet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1>🚗 Rental Car & Driving Guide</h1>
+        <p>Booking details, insurance coverage, and Iceland driving essentials</p>
+    </div>
+
+    <div class="container">
+
+        <!-- Booking Details -->
+        <div class="booking-card">
+            <h2>🔑 Rental Car Booking</h2>
+            <div class="booking-grid">
+                <div class="booking-item">
+                    <div class="label">Company</div>
+                    <div class="value">Icerental 4x4</div>
+                </div>
+                <div class="booking-item">
+                    <div class="label">Booking Reference</div>
+                    <div class="value">26-KEF-10012</div>
+                </div>
+                <div class="booking-item">
+                    <div class="label">Vehicle</div>
+                    <div class="value">Mitsubishi Eclipse Cross</div>
+                </div>
+                <div class="booking-item">
+                    <div class="label">Type</div>
+                    <div class="value">Compact SUV (4WD)</div>
+                </div>
+                <div class="booking-item">
+                    <div class="label">Pickup</div>
+                    <div class="value">Apr 8, 16:00 ⚠️</div>
+                </div>
+                <div class="booking-item">
+                    <div class="label">Drop-off</div>
+                    <div class="value">Apr 17, 05:30</div>
+                </div>
+                <div class="booking-item">
+                    <div class="label">Location</div>
+                    <div class="value">KEF Airport (shuttle)</div>
+                </div>
+                <div class="booking-item">
+                    <div class="label">Insurance</div>
+                    <div class="value" style="color: var(--aurora-green);">Platinum (€0 excess)</div>
+                </div>
+                <div class="booking-item">
+                    <div class="label">Additional Drivers</div>
+                    <div class="value">3 included (free)</div>
+                </div>
+                <div class="booking-item">
+                    <div class="label">Total Paid</div>
+                    <div class="value">€685.29 (~฿26,000)</div>
+                </div>
+                <div class="booking-item">
+                    <div class="label">Phone</div>
+                    <div class="value">+354 571-2266</div>
+                </div>
+                <div class="booking-item">
+                    <div class="label">Office Hours</div>
+                    <div class="value">04:00 - 22:00</div>
+                </div>
+            </div>
+            <div style="margin-top: 15px; padding: 12px; background: rgba(245,158,11,0.2); border-radius: 8px; font-size: 0.9em;">
+                <strong style="color: #f59e0b;">⚠️ Action Required:</strong> Original booking says Apr 7 pickup. Contact Icerental to change to <strong>Apr 8 at 16:00</strong> (flight arrives 15:50). Email: info@icerental4x4.is
+            </div>
+        </div>
+
+        <!-- Pickup Procedure -->
+        <div class="section">
+            <h2>🚐 Pickup Procedure</h2>
+            <div class="card">
+                <ol style="margin-left: 20px; line-height: 2.2; font-size: 0.95em;">
+                    <li>Land at KEF, clear immigration, collect baggage</li>
+                    <li>Follow signs to <strong>Car Rental Shuttle</strong> area outside arrivals</li>
+                    <li>Wait for <strong>Icerental 4x4 shuttle</strong> (runs regularly, may take 10-20 min)</li>
+                    <li>Shuttle takes you to office at <strong>Bogatröð 2, Reykjanesbær</strong> (~5 min ride)</li>
+                    <li>At counter: Show passport, driver's license, booking confirmation</li>
+                    <li><strong>⚡ CRITICAL: Before driving off — photograph the ENTIRE car!</strong></li>
+                    <li>Check fuel level (should be full), note any existing damage on the form</li>
+                    <li>Confirm fuel type (diesel or petrol) with staff</li>
+                    <li>Ask: <em>"What exactly is NOT covered by Platinum Protection?"</em></li>
+                    <li>Drive to Reykjavik (~45 min)</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Car Inspection Checklist -->
+        <div class="section">
+            <h2>📸 Car Inspection Checklist (CRITICAL)</h2>
+            <div class="danger-box">
+                <strong>⚠️ #1 tip from reviews:</strong> Multiple customers report being charged for pre-existing damage. Take timestamped photos of EVERYTHING before and after. This is your protection even with Platinum insurance.
+            </div>
+            <div class="card">
+                <h3>Before Driving Off — Photo/Video Checklist</h3>
+                <ul class="checklist">
+                    <li><span class="check">📷</span> <strong>All 4 sides</strong> of the car — zoom into any scratches, dents, chips</li>
+                    <li><span class="check">📷</span> <strong>All 4 wheels & tires</strong> — condition, tread depth, any curb damage</li>
+                    <li><span class="check">📷</span> <strong>Windshield</strong> — any chips or cracks, photograph from inside and outside</li>
+                    <li><span class="check">📷</span> <strong>Roof & hood</strong> — bird droppings, hail marks, paint chips</li>
+                    <li><span class="check">📷</span> <strong>Undercarriage</strong> — crouch down and photograph visible underside from front and rear</li>
+                    <li><span class="check">📷</span> <strong>Interior</strong> — seats, dashboard, any stains or tears</li>
+                    <li><span class="check">📷</span> <strong>Fuel gauge</strong> — confirm full tank</li>
+                    <li><span class="check">📷</span> <strong>Odometer reading</strong></li>
+                    <li><span class="check">📷</span> <strong>Damage report form</strong> — photograph the signed copy they give you</li>
+                    <li><span class="check">🎥</span> <strong>Walk-around video</strong> — 60-second video of entire car, narrate any existing damage</li>
+                </ul>
+                <div class="tip-box">
+                    <strong>Tip:</strong> Do the SAME process at drop-off (Apr 17, 05:30). It's early and dark — use your phone flashlight. Ask staff to confirm "no damage" in writing or on camera.
+                </div>
+            </div>
+        </div>
+
+        <!-- Insurance Coverage -->
+        <div class="section">
+            <h2>🛡️ Platinum Protection — What's Covered</h2>
+            <div class="coverage-grid">
+                <div class="covered">
+                    <h4>✅ Covered (€0 excess)</h4>
+                    <ul>
+                        <li>Collision damage (body, bumpers, panels)</li>
+                        <li>Gravel damage (windshield, headlights, front paint)</li>
+                        <li>Sand & ash storm damage</li>
+                        <li>Tire & wheel damage/replacement</li>
+                        <li>Animal collision (sheep, horses)</li>
+                        <li>Theft protection</li>
+                        <li>No security deposit required</li>
+                    </ul>
+                </div>
+                <div class="not-covered">
+                    <h4>❌ NOT Covered (even with Platinum)</h4>
+                    <ul>
+                        <li><strong>Undercarriage/chassis damage</strong> — transmission, driveshaft, suspension</li>
+                        <li><strong>Water damage</strong> — river crossings (can cost €10,000+!)</li>
+                        <li><strong>Wind damage to doors</strong> — hinges, frame from gusts</li>
+                        <li><strong>Towing/recovery costs</strong> — stuck in snow, sand, mud</li>
+                        <li><strong>Driving intoxicated</strong> — all insurance voided</li>
+                        <li><strong>F-road violations</strong> — fine 350,000 ISK</li>
+                        <li><strong>Closed road violations</strong> — fine 100,000 ISK</li>
+                        <li><strong>Wrong fuel</strong> — full repair cost</li>
+                        <li><strong>Lost keys/equipment</strong> — replacement cost</li>
+                        <li><strong>Personal belongings</strong> inside car</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fees & Charges -->
+        <div class="section">
+            <h2>💰 Fees & Charges to Know</h2>
+            <div class="card">
+                <table class="fee-table">
+                    <thead>
+                        <tr><th>Item</th><th>Cost</th><th>THB (approx)</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Road Tax (mandatory, new 2026)</td><td>1,550 ISK/day</td><td>~฿390/day (~฿3,900 total)</td></tr>
+                        <tr><td>Missing fuel at return</td><td>3,000 ISK + fuel cost</td><td>~฿750</td></tr>
+                        <tr><td>Late return (>1 hour)</td><td>1 full extra day rate</td><td>~฿2,600</td></tr>
+                        <tr><td>Excessive dirt cleaning</td><td>30,000 ISK</td><td>~฿7,500</td></tr>
+                        <tr><td>Smoking in car</td><td>50,000 ISK</td><td>~฿12,500</td></tr>
+                        <tr><td>Driving on closed road</td><td>100,000 ISK fine</td><td>~฿25,000</td></tr>
+                        <tr><td>F-road violation</td><td>350,000 ISK</td><td>~฿87,500</td></tr>
+                        <tr><td>Parking/speeding fines</td><td>Fine + 3,000 ISK admin</td><td>Varies + ฿750</td></tr>
+                        <tr><td>Towing (weekday)</td><td>25,000 ISK + 480 ISK/km</td><td>~฿6,250 + ฿120/km</td></tr>
+                        <tr><td>Towing (after hours/weekend)</td><td>40,000 ISK + 480 ISK/km</td><td>~฿10,000 + ฿120/km</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Drop-off Procedure -->
+        <div class="section">
+            <h2>🔄 Drop-off Procedure (Apr 17, 05:30)</h2>
+            <div class="card">
+                <ul class="checklist">
+                    <li><span class="check">⛽</span> <strong>Fill up fuel</strong> — N1 Keflavik is 24hr self-service. Fill tank night before to save time</li>
+                    <li><span class="check">📷</span> <strong>Photograph car again</strong> — all sides, wheels, undercarriage (use flashlight, it's dark)</li>
+                    <li><span class="check">🧹</span> <strong>Quick clean</strong> — remove trash, shake out floor mats. Avoid the ฿7,500 cleaning fee</li>
+                    <li><span class="check">🔑</span> <strong>Return keys</strong> at the Icerental office. Get a signed confirmation or receipt</li>
+                    <li><span class="check">🚐</span> <strong>Take shuttle</strong> to KEF terminal. Your flight FI520 departs at 07:20</li>
+                    <li><span class="check">⏰</span> <strong>Timeline:</strong> Leave Gardur ~04:45 → Icerental by 05:15 → Shuttle to KEF ~05:30 → Check in by 05:45</li>
+                </ul>
+                <div class="warning-box">
+                    <strong>⚠️ Don't be late:</strong> Drop-off is 05:30. More than 1 hour late = charged a full extra day. Office opens at 04:00, so early is fine.
+                </div>
+            </div>
+        </div>
+
+        <!-- Iceland Driving Rules -->
+        <div class="section">
+            <h2>🚗 Iceland Driving Rules & Tips</h2>
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <h4>📏 Basic Rules</h4>
+                    <ul>
+                        <li>Drive on the <strong>RIGHT</strong> side (same as Thailand)</li>
+                        <li>Speed limits: <strong>30-50 km/h</strong> (town), <strong>80 km/h</strong> (gravel), <strong>90 km/h</strong> (paved highway)</li>
+                        <li><strong>Headlights ON at all times</strong> — mandatory 24/7</li>
+                        <li>Seatbelts mandatory for all passengers</li>
+                        <li>Zero tolerance for phone use while driving</li>
+                        <li>Speed cameras are common and fines are steep</li>
+                    </ul>
+                </div>
+                <div class="rule-card">
+                    <h4>💨 Wind Safety (YOUR #1 RISK)</h4>
+                    <ul>
+                        <li><strong>Always hold car doors firmly</strong> when opening — wind can rip them off the hinges (NOT covered by insurance!)</li>
+                        <li>Park nose into the wind when possible</li>
+                        <li>Open doors on the sheltered side first</li>
+                        <li>If wind exceeds <strong>20 m/s (72 km/h)</strong> — consider staying put</li>
+                        <li>Check <a href="https://www.road.is/" target="_blank" style="color: var(--primary-blue);">road.is</a> and <a href="https://en.vedur.is/weather/forecasts/elements/" target="_blank" style="color: var(--primary-blue);">vedur.is wind map</a> every morning</li>
+                    </ul>
+                </div>
+                <div class="rule-card">
+                    <h4>🪨 Gravel Road Tips</h4>
+                    <ul>
+                        <li><strong>Slow to 60-70 km/h</strong> on gravel (limit is 80 but slower is safer)</li>
+                        <li>Reduce speed when meeting oncoming traffic — flying rocks!</li>
+                        <li>Keep distance from car ahead (rock spray)</li>
+                        <li>Don't brake suddenly on gravel — pump brakes gently</li>
+                        <li>Gravel-to-pavement transitions can be sudden — slow down</li>
+                    </ul>
+                </div>
+                <div class="rule-card">
+                    <h4>🌊 Water & River Crossings</h4>
+                    <ul>
+                        <li><strong>NEVER cross rivers</strong> — not covered by ANY insurance</li>
+                        <li>Water damage can cost <strong>€10,000+</strong></li>
+                        <li>F-roads with river crossings are closed in April anyway</li>
+                        <li>Even puddles on roads — drive slowly to avoid water splash into engine</li>
+                    </ul>
+                </div>
+                <div class="rule-card">
+                    <h4>🐑 Animals on Roads</h4>
+                    <ul>
+                        <li>Sheep are less common in April (released June-Sept)</li>
+                        <li>Icelandic horses may be near roads — slow down</li>
+                        <li>Animal collisions <strong>ARE covered</strong> by your Platinum Protection</li>
+                        <li>If you hit an animal: report to police + nearby farm</li>
+                    </ul>
+                </div>
+                <div class="rule-card">
+                    <h4>🅿️ Parking & Fuel</h4>
+                    <ul>
+                        <li>Most attractions have free parking (some charge ~ISK 750)</li>
+                        <li>Fuel: ~ISK 350/liter (~฿88/liter). Full tank ~ISK 21,000 (~฿5,250)</li>
+                        <li>Self-service pumps require <strong>chip+PIN credit card</strong></li>
+                        <li>N1, Orkan, OB, Olis — major chains everywhere on Route 1</li>
+                        <li>Fill up in towns — long stretches with no stations in remote areas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prohibited Actions -->
+        <div class="section">
+            <h2>🚫 Absolutely Prohibited (Insurance Voided)</h2>
+            <div class="danger-box">
+                <strong>Any of these actions void ALL insurance — you pay full damage cost:</strong>
+                <ul style="margin: 10px 0 0 20px; line-height: 2;">
+                    <li>Driving on <strong>F-roads</strong> (all closed in April anyway)</li>
+                    <li>Crossing any <strong>river or watercourse</strong></li>
+                    <li>Driving <strong>off-road</strong> (off marked roads/tracks)</li>
+                    <li>Driving on <strong>beaches or tidal areas</strong></li>
+                    <li>Driving on <strong>closed roads</strong> (check road.is daily!)</li>
+                    <li>Driving under the <strong>influence of alcohol/drugs</strong></li>
+                    <li>Allowing an <strong>unregistered driver</strong> to operate the car</li>
+                    <li>Driving on <strong>snow banks or ice</strong> outside the road</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Accident Protocol -->
+        <div class="section">
+            <h2>🆘 If Something Goes Wrong</h2>
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <h4>🚨 Accident/Damage Protocol</h4>
+                    <ul>
+                        <li><strong>Call police immediately: 112</strong></li>
+                        <li>Do NOT leave the scene until police arrive</li>
+                        <li>Take photos of everything — damage, scene, other vehicles</li>
+                        <li><strong>Report to Icerental within 12 hours</strong> — late = CDW voided!</li>
+                        <li>Phone: +354 571-2266</li>
+                        <li>Get a police report number</li>
+                    </ul>
+                </div>
+                <div class="rule-card">
+                    <h4>🛞 Flat Tire / Breakdown</h4>
+                    <ul>
+                        <li>Check if spare tire/repair kit is in the car at pickup</li>
+                        <li>Tire damage IS covered by Platinum Protection</li>
+                        <li>But towing/recovery is NOT covered</li>
+                        <li>Roadside assistance: +354 571-2266 (Icerental)</li>
+                        <li>General roadside: +354 511-1111 (FIB)</li>
+                    </ul>
+                </div>
+                <div class="rule-card">
+                    <h4>🌬️ Stuck in Snow/Sand</h4>
+                    <ul>
+                        <li>Towing costs: 25,000-40,000 ISK base + 480 ISK/km</li>
+                        <li>NOT covered by any insurance</li>
+                        <li>Prevention: Don't drive off marked roads, check conditions</li>
+                        <li>If stuck: Call Icerental first, then FIB</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daily Checklist -->
+        <div class="section">
+            <h2>📋 Daily Morning Checklist</h2>
+            <div class="card">
+                <ul class="checklist">
+                    <li><span class="check">🌤️</span> Check <a href="forecast.html" style="color: var(--primary-blue);"><strong>Forecast page</strong></a> for today's weather & wind</li>
+                    <li><span class="check">🛣️</span> Check <a href="https://www.road.is/" target="_blank" style="color: var(--primary-blue);"><strong>road.is</strong></a> for road conditions & closures</li>
+                    <li><span class="check">⚠️</span> Check <a href="https://en.vedur.is/alerts" target="_blank" style="color: var(--primary-blue);"><strong>vedur.is/alerts</strong></a> for weather warnings</li>
+                    <li><span class="check">🌋</span> Check <a href="https://en.vedur.is/volcanoes/fagradalsfjall-eruption/news-and-alerts/" target="_blank" style="color: var(--primary-blue);"><strong>IMO volcano alerts</strong></a> (especially Day 9 near Blue Lagoon)</li>
+                    <li><span class="check">⛽</span> Check fuel level — fill up if below half in remote areas</li>
+                    <li><span class="check">🔋</span> Charge all phones/cameras</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Useful Links -->
+        <div class="section">
+            <h2>🔗 Quick Links</h2>
+            <div class="rules-grid">
+                <div class="rule-card">
+                    <h4>🛣️ Road & Safety</h4>
+                    <ul style="list-style: none; margin: 0; padding: 0;">
+                        <li style="padding: 6px 0;"><a href="https://www.road.is/" target="_blank" style="color: var(--primary-blue);">road.is</a> — Live road conditions</li>
+                        <li style="padding: 6px 0;"><a href="https://safetravel.is/" target="_blank" style="color: var(--primary-blue);">safetravel.is</a> — Safety alerts</li>
+                        <li style="padding: 6px 0;"><a href="https://www.icerental4x4.is/en/terms-of-service/" target="_blank" style="color: var(--primary-blue);">Rental Terms</a> — Full T&C</li>
+                        <li style="padding: 6px 0;"><a href="https://www.icerental4x4.is/en/insurances/" target="_blank" style="color: var(--primary-blue);">Insurance Details</a> — Coverage info</li>
+                    </ul>
+                </div>
+                <div class="rule-card">
+                    <h4>📞 Emergency Numbers</h4>
+                    <ul style="list-style: none; margin: 0; padding: 0;">
+                        <li style="padding: 6px 0;"><strong>112</strong> — Emergency (police, ambulance, fire)</li>
+                        <li style="padding: 6px 0;"><strong>1777</strong> — Road conditions hotline</li>
+                        <li style="padding: 6px 0;"><strong>+354 571-2266</strong> — Icerental 4x4</li>
+                        <li style="padding: 6px 0;"><strong>+354 511-1111</strong> — Roadside assistance (FIB)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Journey through Fire and Ice 🇮🇸</p>
+        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 8-17, 2026 • 4 Adults</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>
