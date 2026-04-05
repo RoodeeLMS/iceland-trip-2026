@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Insurance - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; position: relative; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; justify-content: flex-end; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .navbar-dropdown { position: relative; }
+        .dropdown-content { display: none; position: absolute; top: 100%; right: 0; background: var(--deep-navy); border-radius: 8px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); min-width: 160px; z-index: 1001; overflow: hidden; }
+        .navbar-dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content a { color: white; padding: 10px 16px; display: block; text-decoration: none; font-size: 0.85em; transition: 0.3s; }
+        .dropdown-content a:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; max-height: calc(100vh - 60px); overflow-y: auto; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.95em; }
+            .navbar-dropdown { width: 100%; }
+            .dropdown-content { position: static; display: none; box-shadow: none; background: rgba(0, 0, 0, 0.2); }
+            .navbar-dropdown:hover .dropdown-content, .navbar-dropdown.open .dropdown-content { display: block; }
+            .dropdown-content a { padding: 10px 30px; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+            .menu-toggle { display: block; }
+        }
+
+        .page-header { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%); padding: 2.5rem 2rem; text-align: center; color: white; }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 8px; }
+        .page-header p { opacity: 0.85; font-size: 1.1em; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+
+        .section { margin-bottom: 30px; }
+        .section h2 { font-family: 'Playfair Display', serif; color: var(--primary-blue); font-size: 1.6em; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 3px solid var(--ice-blue); }
+
+        .card { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); margin-bottom: 20px; }
+        .card h3 { color: var(--primary-blue); margin-bottom: 12px; font-size: 1.15em; }
+
+        .booking-card { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: white; border-radius: 12px; padding: 30px; margin-bottom: 30px; }
+        .booking-card h2 { color: var(--aurora-green); font-family: 'Playfair Display', serif; margin-bottom: 20px; border-bottom: 2px solid rgba(0, 180, 216, 0.3); padding-bottom: 10px; }
+        .booking-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+        .booking-item { background: rgba(255,255,255,0.08); padding: 15px; border-radius: 8px; }
+        .booking-item .label { font-size: 0.8em; opacity: 0.6; margin-bottom: 4px; }
+        .booking-item .value { font-size: 1.1em; font-weight: 600; }
+
+        .coverage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .covered { background: #d1fae5; border-left: 4px solid #10b981; padding: 15px; border-radius: 8px; }
+        .covered h4 { color: #065f46; margin-bottom: 8px; }
+        .covered ul { margin-left: 18px; color: #064e3b; font-size: 0.9em; line-height: 1.8; }
+        .not-covered { background: #fef2f2; border-left: 4px solid #ef4444; padding: 15px; border-radius: 8px; }
+        .not-covered h4 { color: #991b1b; margin-bottom: 8px; }
+        .not-covered ul { margin-left: 18px; color: #7f1d1d; font-size: 0.9em; line-height: 1.8; }
+
+        .warning-box { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 15px; border-radius: 8px; margin: 15px 0; }
+        .warning-box strong { color: #92400e; }
+        .danger-box { background: #fef2f2; border-left: 4px solid #ef4444; padding: 15px; border-radius: 8px; margin: 15px 0; }
+        .danger-box strong { color: #991b1b; }
+        .tip-box { background: #d1fae5; border-left: 4px solid #10b981; padding: 15px; border-radius: 8px; margin: 15px 0; }
+        .tip-box strong { color: #065f46; }
+
+        .fee-table { width: 100%; border-collapse: collapse; font-size: 0.9em; margin-top: 10px; }
+        .fee-table th { background: var(--ice-blue); padding: 10px 12px; text-align: left; font-weight: 600; }
+        .fee-table td { padding: 8px 12px; border-bottom: 1px solid #eee; }
+        .fee-table tr:last-child td { border-bottom: none; }
+
+        .danger-section { background: #fef2f2; border: 2px solid #ef4444; border-radius: 12px; padding: 25px; margin-bottom: 20px; }
+        .danger-section h2 { color: #dc2626; border-bottom-color: #fca5a5; }
+        .danger-section h3 { color: #991b1b; margin-bottom: 10px; }
+        .danger-section ul { margin-left: 18px; line-height: 2; font-size: 0.95em; color: #7f1d1d; }
+
+        .persons-list { list-style: none; margin: 10px 0 0 0; padding: 0; }
+        .persons-list li { padding: 8px 12px; background: rgba(255,255,255,0.06); border-radius: 6px; margin-bottom: 6px; font-size: 0.95em; }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="index.html" class="navbar-item">Home</a>
+                <a href="itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="flights.html" class="navbar-item">Flights</a>
+                <a href="hotels.html" class="navbar-item">Hotels</a>
+                <a href="planning.html" class="navbar-item">Planning</a>
+                <a href="logistics.html" class="navbar-item">Logistics</a>
+                <a href="analysis.html" class="navbar-item">Analysis</a>
+                <a href="forecast.html" class="navbar-item">Forecast</a>
+                <a href="rental-car.html" class="navbar-item">Rental Car</a>
+                <a href="insurance.html" class="navbar-item active">Insurance</a>
+                <div class="navbar-dropdown">
+                    <a href="#" class="navbar-item dropdown-toggle">AI Reviews ▼</a>
+                    <div class="dropdown-content">
+                        <a href="gemini_comment.html">Gemini</a>
+                        <a href="gpt_comment.html">GPT</a>
+                        <a href="grok_comment.html">Grok</a>
+                        <a href="sonnet_comment.html">Sonnet</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1>🛡️ Travel Insurance</h1>
+        <p>Chubb / AMEX Platinum coverage, exclusions, and Iran conflict implications</p>
+    </div>
+
+    <div class="container">
+
+        <!-- 1. Policy Overview -->
+        <div class="booking-card">
+            <h2>📋 Policy Overview</h2>
+            <div class="booking-grid">
+                <div class="booking-item">
+                    <div class="label">Provider</div>
+                    <div class="value">Chubb Samaggi Insurance PCL</div>
+                </div>
+                <div class="booking-item">
+                    <div class="label">Via</div>
+                    <div class="value">AMEX Platinum Card</div>
+                </div>
+                <div class="booking-item">
+                    <div class="label">Policy Number</div>
+                    <div class="value">NAC0010011</div>
+                </div>
+                <div class="booking-item">
+                    <div class="label">Coverage Period</div>
+                    <div class="value">Apr 7-18, 2026</div>
+                </div>
+                <div class="booking-item">
+                    <div class="label">Territory</div>
+                    <div class="value">Worldwide</div>
+                </div>
+                <div class="booking-item">
+                    <div class="label">24hr Emergency Hotline</div>
+                    <div class="value" style="color: var(--lava-red);">+66 0 2039 5770</div>
+                </div>
+                <div class="booking-item">
+                    <div class="label">Customer Service</div>
+                    <div class="value">+66 0 2611 4242</div>
+                </div>
+                <div class="booking-item">
+                    <div class="label">Website</div>
+                    <div class="value"><a href="https://chubbtravelinsurance.co.th" target="_blank" style="color: var(--aurora-green);">chubbtravelinsurance.co.th</a></div>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px;">
+                <h3 style="color: var(--aurora-green); margin-bottom: 12px;">Covered Persons (3 Policies)</h3>
+                <ul class="persons-list">
+                    <li>👤 <strong>Arpaporn Chamnong</strong> — Certificate: PLAT20260409</li>
+                    <li>👤 <strong>Nick Chamnong</strong> — Certificate: PLAT20260410</li>
+                    <li>👤 <strong>Thanakorn Athithanathaworn</strong> — Certificate: PLAT20260470</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- WARNING: Aekkalag -->
+        <div class="danger-box" style="padding: 20px; border-width: 3px; font-size: 1.05em;">
+            <strong>⚠️ IMPORTANT: Aekkalag Sonthilug has NO insurance certificate.</strong><br>
+            Verify if covered as supplementary card member or arrange separate travel insurance <strong>IMMEDIATELY</strong>.
+        </div>
+
+        <!-- 2. Coverage Summary -->
+        <div class="section">
+            <h2>📊 Coverage Summary</h2>
+            <div class="card">
+                <table class="fee-table">
+                    <thead>
+                        <tr><th>Coverage</th><th>Amount</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Travel Accident (public transport)</td><td><strong>฿25,000,000</strong>/person</td></tr>
+                        <tr><td>Travel Accident (general)</td><td><strong>฿4,500,000</strong>/person</td></tr>
+                        <tr><td>Medical Expenses &amp; Evacuation</td><td><strong>฿4,500,000</strong>/person</td></tr>
+                        <tr><td>Missed Connecting Flight</td><td>฿14,000/insured + ฿14,000/covered person (max ฿28,000)</td></tr>
+                        <tr><td>Luggage Delay (&gt;6hrs)</td><td>฿35,000/insured + ฿35,000/covered (max ฿70,000)</td></tr>
+                        <tr><td>Extended Luggage Delay (&gt;48hrs)</td><td>฿35,000/insured + ฿35,000/covered (max ฿70,000)</td></tr>
+                        <tr><td>Trip Cancellation</td><td><strong>฿120,000</strong>/person</td></tr>
+                        <tr><td>Trip Curtailment</td><td><strong>฿120,000</strong>/person</td></tr>
+                        <tr><td>Personal Liability</td><td><strong>฿4,500,000</strong>/person</td></tr>
+                        <tr><td>Purchase Protection (30 days)</td><td>฿120,000/item (max ฿480,000)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 3. Iran Conflict — CRITICAL EXCLUSIONS -->
+        <div class="section">
+            <div class="danger-section">
+                <h2>🔴 War Exclusion &amp; Iran Conflict — READ THIS</h2>
+
+                <h3 style="margin-top: 15px;">Policy Exclusions That Apply</h3>
+                <ul>
+                    <li><strong>General Exclusion #2</strong> explicitly excludes: <em>"War, invasion, act of foreign enemies, warlike operations (whether declared or not), civil war, uprising, insurrection, riot, strike"</em></li>
+                    <li><strong>General Exclusion #3:</strong> <em>"Terrorism"</em> — also excluded</li>
+                    <li><strong>Trip Cancellation Exclusion #1:</strong> <em>"Carrier or Travel operator caused cancellations or interruptions"</em> — NOT covered</li>
+                    <li><strong>Trip Cancellation Exclusion #20:</strong> <em>"Trips in, or booked to, countries where a government agency has advised against traveling"</em> — Qatar (Doha) is currently <strong>Level 3 "Reconsider Travel"</strong></li>
+                </ul>
+
+                <h3 style="margin-top: 20px;">What This Means for Your Trip</h3>
+                <ul>
+                    <li>Your flights transit through <strong>Doha, Qatar</strong> (Level 3 advisory)</li>
+                    <li>If flights are cancelled/disrupted due to the Iran-US conflict → <strong>likely NOT covered</strong> under trip cancellation</li>
+                    <li>If the conflict causes a missed connection in Doha → <strong>war exclusion may apply</strong></li>
+                    <li>Medical/accident coverage should still apply in Iceland (no advisory against Iceland)</li>
+                    <li>The original routing was through Oslo, then rerouted to Copenhagen, then Berlin — all due to the Iran conflict. This shows the war is <strong>directly affecting your route</strong>.</li>
+                </ul>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 Recommendations:</strong>
+                <ul style="margin: 10px 0 0 18px; line-height: 2; font-size: 0.95em;">
+                    <li>Qatar Airways has already offered free rebooking for conflict-related disruptions — rely on the <strong>AIRLINE</strong>, not insurance, for flight disruption claims</li>
+                    <li>Keep all receipts for any emergency expenses charged to AMEX Platinum card (required for claims)</li>
+                    <li>Consider purchasing separate trip disruption insurance that covers "known events" if you want flight disruption coverage</li>
+                    <li>Iceland itself is safe — medical and accident coverage should work normally there</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 4. What's Covered — Trip Scenarios -->
+        <div class="section">
+            <h2>🎯 What's Covered — Trip Scenarios</h2>
+            <div class="coverage-grid">
+                <div class="covered">
+                    <h4>✅ Covered</h4>
+                    <ul>
+                        <li><strong>Medical emergency in Iceland</strong> (accident, illness) — ฿4,500,000</li>
+                        <li><strong>Car accident on Route 1</strong> — ฿4,500,000 medical + ฿4,500,000 liability</li>
+                        <li><strong>Slip/fall at waterfall hiking</strong> — medical expenses covered</li>
+                        <li><strong>Luggage delayed &gt;6 hours at KEF</strong> — ฿35,000 for essentials (must use AMEX card)</li>
+                        <li><strong>Missed connection due to late flight</strong> (not war-related) — ฿14,000 hotel/meals</li>
+                    </ul>
+                </div>
+                <div class="not-covered">
+                    <h4>❌ NOT Covered</h4>
+                    <ul>
+                        <li><strong>Flight cancellation due to Iran conflict/war</strong> — WAR EXCLUSION</li>
+                        <li><strong>Missed Doha connection due to airspace closure</strong> — WAR EXCLUSION</li>
+                        <li><strong>Trip cancellation because you change your mind</strong> — NOT covered</li>
+                        <li><strong>Pre-existing medical conditions</strong> — NOT covered</li>
+                        <li><strong>Motorcycle riding</strong> — NOT covered</li>
+                        <li><strong>Scuba diving with air tank</strong> — NOT covered</li>
+                        <li><strong>Electronic devices</strong> (phones, cameras, laptops) under Purchase Protection — NOT covered</li>
+                        <li><strong>Any claim if AMEX account is overdue</strong> — NOT covered</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. How to Make a Claim -->
+        <div class="section">
+            <h2>📝 How to Make a Claim</h2>
+            <div class="card">
+                <ul style="margin-left: 18px; line-height: 2.2; font-size: 0.95em;">
+                    <li>Submit within <strong>30 days</strong> of incident</li>
+                    <li><strong>Required documents:</strong> Claim form, passport copy, medical certificate, receipts</li>
+                    <li><strong>For missed connection:</strong> Evidence from airline of delay</li>
+                    <li><strong>For luggage delay:</strong> Property Irregularity Report from airline</li>
+                    <li>Emergency purchases <strong>MUST be charged to AMEX Platinum card</strong></li>
+                    <li><strong>Emergency hotline:</strong> <span style="color: var(--lava-red); font-weight: 600;">+66 0 2039 5770</span> (24hr)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 6. Important Notes -->
+        <div class="section">
+            <h2>📌 Important Notes</h2>
+            <div class="card">
+                <ul style="margin-left: 18px; line-height: 2.2; font-size: 0.95em;">
+                    <li>Coverage extends to <strong>"Covered Persons"</strong> = AMEX Platinum holder + legal spouse + dependent children under 23 + supplementary card members</li>
+                    <li>Trip must not exceed <strong>120 consecutive days</strong></li>
+                    <li>Coverage starts <strong>2 hours before departure</strong> from Thailand</li>
+                    <li>All medical costs must be <strong>pre-approved by Chubb's Senior Medical Officer</strong></li>
+                    <li>If hospitalized: Chubb will arrange <strong>evacuation back to Thailand</strong></li>
+                    <li>If you die abroad: Chubb pays for remains transport or <strong>฿25,000 for local burial</strong></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Journey through Fire and Ice 🇮🇸</p>
+        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 8-17, 2026 • 4 Adults</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>
