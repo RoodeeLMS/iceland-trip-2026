@@ -1634,17 +1634,18 @@
             'seljalandsfoss':'caution','gljufrabui':'caution','skogafoss':'caution','kvernufoss':'ok','skogar-museum':'ok','lava-centre':'caution',
             'reynisfjara':'no','dyrholaey':'caution','vik-church':'caution','lava-show':'caution','eldhraun':'caution','fjadrargljufur':'no',
             'hofskirkja':'ok','dverghamrar':'ok',
-            'skaftafell':'no','jokulsarlon':'no','diamond-beach':'no','fjallsarlon':'no','vestrahorn':'ok',
+            'skaftafell':'practical','jokulsarlon':'practical','diamond-beach':'practical','fjallsarlon':'practical','vestrahorn':'ok',
             'hraunfossar':'ok','barnafoss':'ok','deildartunguhver':'ok','glymur':'ok',
             'ytri-tunga':'caution','budakirkja':'ok','arnarstapi':'ok','raudfeldsgja':'caution',
-            'djupalonssandur':'no','londrangar':'no','saxholl':'no','kirkjufell':'ok','stykkisholmur':'caution',
+            'djupalonssandur':'practical','londrangar':'practical','saxholl':'practical','kirkjufell':'ok','stykkisholmur':'caution',
             'berserkjahraun':'ok','selvallafoss':'ok',
             'kleifarvatn':'ok','seltun':'caution','brimketill':'caution','gunnuhver':'caution','blue-lagoon':'no'
         };
         const droneLabels = {
-            ok:      { text:'🚁 Drone OK',      bg:'#d1fae5', color:'#065f46', title:'Recreational drone allowed (wind permitting). See Planning → Drone Usage.' },
-            caution: { text:'🚁 Drone caution', bg:'#fef3c7', color:'#92400e', title:'Wind, crowds, or partial restriction — verify before flying. See Planning → Drone Usage.' },
-            no:      { text:'🚁 No drone',      bg:'#fee2e2', color:'#991b1b', title:'Prohibited: national park permit required, on-site signage, or airport airspace.' }
+            ok:        { text:'🚁 Drone OK',       bg:'#d1fae5', color:'#065f46', title:'Recreational drone allowed (wind permitting). See Planning → Drone Usage.' },
+            caution:   { text:'🚁 Drone caution',  bg:'#fef3c7', color:'#92400e', title:'Wind, crowds, or partial restriction — verify before flying.' },
+            practical: { text:'🚁 Flown anyway',   bg:'#dbeafe', color:'#1e40af', title:'Legally restricted (national park permit required), but commonly flown in practice. Your risk — rangers may intervene.' },
+            no:        { text:'🚁 No drone',       bg:'#fee2e2', color:'#991b1b', title:'Prohibited: on-site signage, active enforcement, airport airspace, or owner ban.' }
         };
 
         function wireDetailLinks() {
