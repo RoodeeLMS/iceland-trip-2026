@@ -52,6 +52,15 @@
     { "slug": "seltun", "name": "Seltun Geothermal Area", "emoji": "♨️", "lat": 63.8978, "lon": -22.0525, "days": [9], "priority": "star", "region": "reykjanes" },
     { "slug": "brimketill", "name": "Brimketill Lava Pool", "emoji": "🌊", "lat": 63.8406, "lon": -22.6111, "days": [9], "priority": "normal", "region": "reykjanes" },
     { "slug": "gunnuhver", "name": "Gunnuhver", "emoji": "♨️", "lat": 63.8194, "lon": -22.6833, "days": [9], "priority": "normal", "region": "reykjanes" },
-    { "slug": "blue-lagoon", "name": "Blue Lagoon", "emoji": "♨️", "lat": 63.8804, "lon": -22.4495, "days": [9], "priority": "star", "region": "reykjanes" }
+    { "slug": "blue-lagoon", "name": "Blue Lagoon", "emoji": "♨️", "lat": 63.8804, "lon": -22.4495, "days": [9], "priority": "star", "region": "reykjanes" },
+    { "slug": "fagradalsfjall", "name": "Fagradalsfjall", "emoji": "🌋", "lat": 63.9050, "lon": -22.2725, "days": [9], "priority": "star", "region": "reykjanes" },
+    { "slug": "braud-og-co", "name": "Brauð & Co Bakery", "emoji": "🥐", "lat": 64.1453, "lon": -21.9269, "days": [1], "priority": "normal", "region": "reykjavik" },
+    { "slug": "foss-a-sidu", "name": "Foss á Síðu", "emoji": "💧", "lat": 63.7800, "lon": -17.9722, "days": [4], "priority": "normal", "region": "south-coast" },
+    { "slug": "stjornarfoss", "name": "Stjórnarfoss", "emoji": "💦", "lat": 63.7853, "lon": -18.0731, "days": [4], "priority": "normal", "region": "south-coast" },
+    { "slug": "gerduberg", "name": "Gerðuberg Basalt Columns", "emoji": "🗿", "lat": 64.7667, "lon": -22.3500, "days": [7], "priority": "normal", "region": "snaefellsnes" },
+    { "slug": "hellnar", "name": "Hellnar & Fjöruhúsið Café", "emoji": "🏘️", "lat": 64.7506, "lon": -23.6483, "days": [7], "priority": "star", "region": "snaefellsnes" },
+    { "slug": "bjarnarfoss", "name": "Bjarnarfoss", "emoji": "💧", "lat": 64.8125, "lon": -23.4047, "days": [7], "priority": "normal", "region": "snaefellsnes" },
+    { "slug": "valahnukamol", "name": "Valahnúkamöl & Reykjanesviti", "emoji": "🏔️", "lat": 63.8131, "lon": -22.7050, "days": [9], "priority": "star", "region": "reykjanes" },
+    { "slug": "bridge-between-continents", "name": "Bridge Between Continents", "emoji": "🌉", "lat": 63.8683, "lon": -22.6747, "days": [9], "priority": "normal", "region": "reykjanes" }
   ]
 }

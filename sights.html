@@ -1641,6 +1641,20 @@
             'berserkjahraun':'ok','selvallafoss':'ok',
             'kleifarvatn':'ok','seltun':'caution','brimketill':'caution','gunnuhver':'caution','blue-lagoon':'no'
         };
+        // Activities available AT or FROM a sight (tours depart from there)
+        const activityBadges = {
+            'vik-church':     [{ icon:'🧊', text:'Katla ice cave tours', title:'Super-jeep tours to Kötlujökull ice cave depart from Vík. ~฿5,000-6,250/pp, 3-4h. Book ahead — katlatrack.is or adventures.is' }],
+            'lava-show':      [{ icon:'🧊', text:'Katla ice cave tours', title:'Super-jeep tours to Kötlujökull ice cave depart from Vík. ~฿5,000-6,250/pp, 3-4h.' }],
+            'skogafoss':      [{ icon:'⛸️', text:'Sólheimajökull glacier walk nearby', title:'Guided glacier walks on Sólheimajökull start from a parking lot 10 min west of Skógafoss. ~฿3,000/pp, 3h.' }],
+            'skaftafell':     [{ icon:'⛸️', text:'Blue Ice glacier walk', title:'Svínafellsjökull "Blue Ice" guided walks depart from Skaftafell visitor center. ~฿3,750-5,000/pp, 3-3.5h. THE most dramatic glacier walk in Iceland. Book ahead.' }],
+            'jokulsarlon':    [{ icon:'⛸️', text:'Fjallsárlón boat tour nearby', title:'Jökulsárlón boat tours do NOT run in April — but nearby Fjallsárlón opens Apr 1. 45 min zodiac tour, ~฿2,825/pp.' }],
+            'fjallsarlon':    [{ icon:'🛥️', text:'Boat tours from Apr 1', title:'Zodiac boat tour to the glacier wall. ~฿2,825/pp, 45 min on water. Books 1 wk ahead.' }],
+            'stykkisholmur':  [{ icon:'🐋', text:'Whale watching (Olafsvik)', title:'Láki Tours runs whale watching from nearby Ólafsvík (sperm whales from mid-April) and Grundarfjörður (orca through early April). Email info@lakitours.com to confirm Apr 14-15 operations.' }],
+            'kirkjufell':     [{ icon:'🐋', text:'Whale watching (Grundarfjörður)', title:'Láki Tours orca expeditions from Grundarfjörður harbor run Feb-early April. Email info@lakitours.com to confirm Apr 14-15. ~฿2,975/pp, 3h.' }],
+            'sun-voyager':    [{ icon:'🐋', text:'Whale watching from Old Harbour', title:'Elding whale watching walks up fine in April from Reykjavík Old Harbour (5 min from Sun Voyager). ~฿3,000/pp, 3h.' }],
+            'harpa':          [{ icon:'🐋', text:'Whale watching from Old Harbour', title:'Elding whale watching departs from Reykjavík Old Harbour right next to Harpa. Walk-up OK in April. ~฿3,000/pp, 3h.' }]
+        };
+
         const droneLabels = {
             ok:        { text:'🚁 Drone OK',       bg:'#d1fae5', color:'#065f46', title:'Recreational drone allowed (wind permitting). See Planning → Drone Usage.' },
             caution:   { text:'🚁 Drone caution',  bg:'#fef3c7', color:'#92400e', title:'Wind, crowds, or partial restriction — verify before flying.' },
@@ -1665,18 +1679,29 @@
 
                 // Inject drone badge into the day-badge-row next to this title
                 const status = droneStatus[match.slug];
-                if (status && droneLabels[status]) {
-                    const header = h.closest('.stop-header');
-                    const row = header ? header.querySelector('.day-badge-row') : null;
-                    if (row && !row.querySelector('.drone-badge')) {
-                        const lbl = droneLabels[status];
+                const header = h.closest('.stop-header');
+                const row = header ? header.querySelector('.day-badge-row') : null;
+                if (status && droneLabels[status] && row && !row.querySelector('.drone-badge')) {
+                    const lbl = droneLabels[status];
+                    const span = document.createElement('span');
+                    span.className = 'drone-badge';
+                    span.title = lbl.title;
+                    span.textContent = lbl.text;
+                    span.style.cssText = `background:${lbl.bg};color:${lbl.color};padding:2px 9px;border-radius:10px;font-size:0.72em;font-weight:600;border:1px solid ${lbl.color}33;`;
+                    row.appendChild(span);
+                }
+
+                // Inject activity badges (whale watching, ice cave, glacier walk, boat tour)
+                const activities = activityBadges[match.slug];
+                if (activities && row && !row.querySelector('.activity-badge')) {
+                    activities.forEach(a => {
                         const span = document.createElement('span');
-                        span.className = 'drone-badge';
-                        span.title = lbl.title;
-                        span.textContent = lbl.text;
-                        span.style.cssText = `background:${lbl.bg};color:${lbl.color};padding:2px 9px;border-radius:10px;font-size:0.72em;font-weight:600;border:1px solid ${lbl.color}33;`;
+                        span.className = 'activity-badge';
+                        span.title = a.title;
+                        span.textContent = `${a.icon} ${a.text}`;
+                        span.style.cssText = 'background:#ede9fe;color:#5b21b6;padding:2px 9px;border-radius:10px;font-size:0.72em;font-weight:600;border:1px solid #8b5cf633;';
                         row.appendChild(span);
-                    }
+                    });
                 }
             });
         }
