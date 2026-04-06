@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fagradalsfjall Volcano - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+
+        /* Lightbox */
+        .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; padding: 20px; }
+        .lightbox.open { display: flex; }
+        .lightbox img { max-width: 95vw; max-height: 92vh; object-fit: contain; box-shadow: 0 10px 40px rgba(0,0,0,0.6); border-radius: 4px; }
+        .lightbox .lb-caption { position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; color: #fff; font-size: 0.9em; opacity: 0.85; padding: 0 20px; }
+        .lightbox .lb-close { position: absolute; top: 20px; right: 24px; color: #fff; font-size: 2em; font-weight: 300; cursor: pointer; line-height: 1; opacity: 0.8; }
+        .lightbox .lb-close:hover { opacity: 1; }
+        .gallery img { cursor: zoom-in; }
+        .hero-image { cursor: zoom-in; }
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../insurance.html" class="navbar-item">Insurance</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🌋</span>
+        <h1>Fagradalsfjall Volcano</h1>
+        <div class="day-badges"><span class="day-badge">Day 9</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Fagradalsfjall_194309.jpg/1200px-Fagradalsfjall_194309.jpg" alt="Fagradalsfjall volcano and lava field" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>63.9050, -22.2725</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 9</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-22.3025%2C63.8900%2C-22.2425%2C63.9200&amp;layer=mapnik&amp;marker=63.9050%2C-22.2725" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=63.9050,-22.2725" target="_blank" class="map-cta">📍 Open in Google Maps</a><a href="https://www.google.com/maps/dir/?api=1&destination=63.9050,-22.2725&travelmode=walking" target="_blank" class="map-cta" style="margin-left:8px;background:linear-gradient(135deg,#10b981,#059669);">🥾 Walking directions</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Fagradalsfjall is a tuya mountain on the Reykjanes peninsula about 40 km southwest of Reykjavik. After lying dormant for roughly 800 years, the broader Fagradalsfjall volcanic system erupted in <strong>March 2021</strong>, opening a fissure in Geldingadalir valley that produced a six-month tourist-friendly lava show. Smaller eruptions followed in <strong>2022 (Meradalir)</strong> and <strong>2023 (Litli-Hrutur)</strong>, and the wider Sundhnukur fissure system kept erupting through 2024-2025 closer to Grindavik. The result is a layered patchwork of fresh black lava you can walk a marked trail to and stand beside.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box" style="border-left-color: #10B981; background: #ecfdf5;">
+                <strong>🟢 No active eruption (as of research date)</strong> — Per <a href="https://safetravel.is/eruption-in-reykjanes/" target="_blank">safetravel.is</a>: there is no ongoing eruption on the Reykjanes peninsula. The Fagradalsfjall hiking trails (Path A, Path C/Langihryggur, Path E/Meradalir) are open. Grindavik town remains open to visitors.
+            </div>
+            <p><strong>Hazards still active:</strong> Walking on lava is forbidden — the crust may be thin over still-hot rock. SO₂ and other volcanic gases can pool in low areas on calm days; check live air quality at <a href="https://loftgaedi.is" target="_blank">loftgaedi.is</a> the morning of your visit. Stay on the marked path at all times — crevasses have opened across older trails near Grindavik.</p>
+            <p><strong>April 2026 conditions:</strong> Expect cold wind, mud, and patchy snow on the higher sections of the trails. Daylight is ~14 hours so timing is flexible. Verify with safetravel.is the morning of Day 9 — Reykjanes status can change quickly with new seismic activity.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+
+            <div class="visit-step">
+                <div class="visit-step-num">1</div>
+                <div class="visit-step-content">
+                    <strong>Park at the Route 427 trailhead lot</strong>
+                    From Route 41 turn south onto Route 427 (Sudurstrandarvegur) and follow signs to "Eldgos / Volcano Hike" parking. Two managed lots serve the Fagradalsfjall trails — the main P1 lot for Path A (Geldingadalir) and a secondary lot further east for Path C. Parking fee is ISK 1,000 (≈ <strong>฿250</strong>), pay via the on-site machine or Parka app. Use the toilets here — there are none on the trail.
+                    <div class="step-meta">⏱️ 5 min · 📍 P1 trailhead lot, Route 427</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">2</div>
+                <div class="visit-step-content">
+                    <strong>Read the SafeTravel info board and pick your path</strong>
+                    A large board at the lot shows the day's gas-pollution forecast, wind direction and recommended trail. <strong>Path A</strong> (Geldingadalir, 6-8 km round trip, 2-3 hrs) reaches the 2021 lava field — the easiest and most rewarding option for a day visit. <strong>Path C</strong> (Langihryggur ridge, ~4 km one-way) climbs higher and gives a panorama over all three eruption sites in one view. Path E to Meradalir is 18-20 km round trip and is overkill for this trip — skip.
+                    <div class="step-meta">⏱️ 5 min · 📍 Trailhead info board</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">3</div>
+                <div class="visit-step-content">
+                    <strong>Hike Path A across the moss heath</strong>
+                    The first 1.5 km climbs gently across Reykjanes moss and gravel — bleak, treeless and very Icelandic. The trail is marked with wooden stakes and rope where it crosses older lava. In April expect a slippery mix of mud, snow patches and frozen puddles — boots with grip are non-negotiable. Wind on this exposed slope is the main complaint in winter trip reports.
+                    <div class="step-meta">⏱️ 30-45 min · 📍 First 1.5 km of Path A</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">4</div>
+                <div class="visit-step-content">
+                    <strong>Reach the Geldingadalir viewpoint above the 2021 lava field</strong>
+                    Path A tops out on a low ridge looking down into Geldingadalir, the bowl that filled with lava in spring/summer 2021. From here you see a black, ropey pahoehoe field stretching to the cone of the original vent. The crust is hard and silver-black; in places you can see the collapsed lava tubes. This is the main payoff — sit, eat a snack, take it in for at least 15-20 minutes.
+                    <div class="step-meta">⏱️ 20 min · 📍 Geldingadalir overlook, ~3 km from lot</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">5</div>
+                <div class="visit-step-content">
+                    <strong>Walk the trail edge along the lava — but do NOT step on it</strong>
+                    A side trail traces the perimeter of the lava field for a few hundred meters. Walking right next to a 5-year-old basalt flow is the closest you'll get to "fresh Earth" anywhere on this trip. Crouch and feel the rough texture of the rope-coiled surface (it's still cold to touch in April). Stay off the lava itself — the crust above old lava tubes can give way, and per safetravel.is this is strictly prohibited.
+                    <div class="step-meta">⏱️ 15 min · 📍 Lava field edge</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">6</div>
+                <div class="visit-step-content">
+                    <strong>Return via the same trail (or detour up Langihryggur if energy allows)</strong>
+                    Total round trip on Path A is 2-3 hours at a steady pace. If the group still has energy and the weather holds, the spur up Langihryggur ridge adds ~45 minutes and gives a higher angle over the lava field plus a glimpse of the Meradalir and Litli-Hrutur fields to the east. Otherwise head back to the car and drive on to Seltun and Kleifarvatn.
+                    <div class="step-meta">⏱️ 60-90 min return · 📍 Path A back to P1</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+                <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Fagradalsfjall_194309.jpg/600px-Fagradalsfjall_194309.jpg" alt="Fagradalsfjall mountain" loading="lazy"><div class="gallery-caption">Fagradalsfjall mountain · Wikimedia Commons</div></div>
+                <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Fagradalsfjall_volcanic_eruption_-_2021.jpg/600px-Fagradalsfjall_volcanic_eruption_-_2021.jpg" alt="Fagradalsfjall 2021 eruption" loading="lazy"><div class="gallery-caption">2021 eruption · Wikimedia Commons</div></div>
+                <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Fagradalsfjall_-_DSC_0062.jpg/600px-Fagradalsfjall_-_DSC_0062.jpg" alt="Fagradalsfjall lava" loading="lazy"><div class="gallery-caption">Lava field · Wikimedia Commons</div></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p>
+            <ul>
+                <li><strong>Lava field from the Geldingadalir overlook:</strong> Use a <strong>16-24 mm wide</strong> at the rim of the bowl, person-in-frame for scale. The black, ropey texture reads best with low side-light — late morning or mid-afternoon in April.</li>
+                <li><strong>Cone compression shot:</strong> A <strong>70-200 mm tele</strong> from the Langihryggur spur compresses the 2021 cone against the surrounding ridges — the most "dramatic" Fagradalsfjall composition without an active eruption.</li>
+                <li><strong>Texture macro:</strong> Crouch at the lava edge with a 35-50 mm and shoot the pahoehoe ropes from 30 cm away. Cold side-light brings out the silver sheen on the basalt.</li>
+                <li><strong>Best time of day:</strong> April sun stays low all day — anytime 10:00-16:00 gives raking light. Avoid the flat overhead light of solar noon if you can.</li>
+            </ul>
+            <p><strong>🛸 Drone:</strong> No active TFR over Fagradalsfjall as of research date (the temporary flight restrictions were tied to active eruptions in 2021-2024 — see <a href="https://safetravel.is/eruption-in-reykjanes/" target="_blank">safetravel.is</a>). Drone flying is generally permitted at Fagradalsfjall when there is no eruption, subject to standard Open-category rules. <strong>If a new eruption starts before your visit, assume a TFR is reinstated and do not fly</strong> — the Civil Aviation Authority publishes NOTAMs immediately. Check the <a href="../planning.html#drone">Drone Usage section on the Planning page</a> for general Iceland rules.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Paved road the entire way. From Reykjavik take Route 41 (Reykjanesbraut) west, then Route 427 south. Total drive ≈ 45 minutes (~45 km). Any 2WD rental.</p>
+            <ul>
+                <li><strong>P1 (Path A trailhead):</strong> ISK 1,000 ≈ <strong>฿250</strong> per car, paid at the machine or Parka app.</li>
+                <li>From the lot to the Geldingadalir lava overlook: ~3 km / 60-90 min on foot one-way (200 m elevation gain).</li>
+                <li>No entrance fee beyond parking. Toilets at the lot only.</li>
+                <li>Bring water and snacks — there are no shops on Route 427.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>This is the centerpiece of Day 9 (Reykjanes loop on the way back from Snaefellsnes / before flying out). Allocate <strong>3-4 hours</strong> total: parking + Path A round trip + buffer for wind and photos.</p>
+            <ul>
+                <li><strong>Best slot:</strong> Mid-morning start (09:30-10:00) puts you at the lava field at 11:00 with side-light, leaves the rest of Day 9 for Seltun, Kleifarvatn and Blue Lagoon.</li>
+                <li><strong>Crowds:</strong> No active eruption = much lighter foot traffic than during 2021-2023. Tour buses still visit but mainly at midday.</li>
+                <li><strong>Combine with:</strong> Kleifarvatn (15 min east), Seltun geothermal area (20 min east), Brimketill / Gunnuhver (20 min west), Blue Lagoon (15 min north). Fagradalsfjall pairs naturally with all of them on a single Reykjanes day.</li>
+                <li><strong>Bail-out plan:</strong> If wind is over 15 m/s or gas pollution is elevated, skip the hike and view the cone from the Route 427 pull-offs — you still get the silhouette and a 30-minute leg-stretch.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Tripadvisor and Google reviews from 2024-2025 (post-active-eruption) are mixed in a useful way: visitors who came expecting flowing lava are disappointed; visitors who came to walk on a 5-year-old fresh basalt field describe it as "the most alien landscape we've ever seen." Average rating sits in the high 4s for the trail itself, lower for tour operators.</p>
+            <p><strong>Honest take — is it worth it without an active eruption?</strong> Yes, but with calibrated expectations. You're not seeing fire fountains. You ARE walking up to the youngest piece of land in Europe, on a marked trail through pristine moss-and-lava terrain, 45 minutes from the Blue Lagoon. For a group already doing Snaefellsnes lava fields and Eldhraun, the value is the <em>recency</em>: this rock cooled while you were alive. If the weather is bad and the group is tired, it's the most skippable Reykjanes stop. If the weather holds, it's the most memorable.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities needed for the hike itself. Guided tours (e.g. <a href="https://www.2goiceland.com/fagradalsfjall-volcano-hike-iceland" target="_blank">2GoIceland</a>, Viator operators) run from Reykjavik at roughly USD 150-200 per person (≈ ฿5,250-7,000) but are unnecessary with a rental car. Helicopter tours over the lava fields exist but are priced for active-eruption demand and not worth it dormant.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <p>Per <a href="https://safetravel.is/eruption-in-reykjanes/" target="_blank">safetravel.is</a>:</p>
+            <ul>
+                <li><strong>Do not walk on lava.</strong> Even years-old flows can have thin crust over hot or hollow tubes — collapse is the most common injury cause.</li>
+                <li><strong>Stay on marked paths.</strong> Crevasses have opened on older trails near Grindavik; the marked routes are checked by rescue teams.</li>
+                <li><strong>Gas pollution (SO₂, CO₂):</strong> Pools in low spots on calm days. Check <a href="https://loftgaedi.is" target="_blank">loftgaedi.is</a> the morning of the visit. If you smell sulfur strongly or feel a headache, retreat upwind immediately.</li>
+                <li><strong>Wind & cold:</strong> The exposed Reykjanes moorland gets violent gusts in April. Layers, windproof shell, gloves and a buff are essential. Trip reports flag wind as the #1 reason groups turn back early.</li>
+                <li><strong>New eruption monitoring:</strong> Reykjanes is in an active volcanic cycle. If seismic activity spikes in the days before Day 9, IMO will issue alerts and SafeTravel will close trails. Verify the morning of.</li>
+                <li><strong>No phone signal</strong> on parts of Path A — tell someone your plan or use the 112 Iceland app to log your hike.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+                <li><a href="https://safetravel.is/eruption-in-reykjanes/" target="_blank">SafeTravel.is — Reykjanes eruption page (live status)</a></li>
+                <li><a href="https://www.visitreykjanes.is/en/volcano-eruption/eruption-information-everything-you-need-to-know/hiking-and-parking" target="_blank">Visit Reykjanes — Hiking & parking info</a></li>
+                <li><a href="https://loftgaedi.is" target="_blank">loftgaedi.is — Live air quality / SO₂ map</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Fagradalsfjall" target="_blank">Wikipedia — Fagradalsfjall</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Fagradalsfjall+volcano+hike" target="_blank">Google Maps — Fagradalsfjall trailhead</a></li>
+                <li><a href="https://en.vedur.is/" target="_blank">Icelandic Met Office — Volcano & weather alerts</a></li>
+            </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <span class="lb-close">×</span>
+        <img id="lightboxImg" src="" alt="">
+        <div class="lb-caption" id="lightboxCaption"></div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+
+        // Lightbox: click hero or gallery images to zoom
+        (function initLightbox() {
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightboxImg');
+            const lbCap = document.getElementById('lightboxCaption');
+            function open(src, caption) {
+                lbImg.src = src;
+                lbCap.textContent = caption || '';
+                lb.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+            window.closeLightbox = function(e) {
+                if (e && e.target && e.target.tagName === 'IMG') return;
+                lb.classList.remove('open');
+                document.body.style.overflow = '';
+            };
+            document.querySelectorAll('.hero-image').forEach(img => {
+                img.addEventListener('click', () => open(img.src, img.alt));
+            });
+            document.querySelectorAll('.gallery img').forEach(img => {
+                img.addEventListener('click', e => {
+                    e.stopPropagation();
+                    const cap = img.parentElement.querySelector('.gallery-caption');
+                    open(img.src, cap ? cap.textContent : img.alt);
+                });
+            });
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+        })();
+    </script>
+</body>
+</html>
