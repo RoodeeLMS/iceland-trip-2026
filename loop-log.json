@@ -1,6 +1,24 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-06T11:21:34.104904+00:00",
+      "level": "suggestion",
+      "title": "Drone pre-flight check: register DJI Neo 2 in flydrone.is app",
+      "message": "Nick's operator ID (ISLmded1vbae2qq9-tuu) is valid, but before first flight in Iceland confirm the DJI Neo 2 is added to your aircraft list in the flydrone.is app and you have the A1 sub-250g category selected. Also pre-download the no-fly-zone map offline — mobile data in rural Iceland can be spotty around Snæfellsnes."
+    },
+    {
+      "timestamp": "2026-04-06T11:21:33.935498+00:00",
+      "level": "info",
+      "title": "vedur.is check: all quiet",
+      "message": "Warnings page returned 404 (likely temporary). Aurora outlook tonight poor (activity 2/9 + extensive cloud cover). Largest quakes M3.7-3.9 at Flatey/Grímsey in N. Iceland — far from Reykjanes, no volcanic implication."
+    },
+    {
+      "timestamp": "2026-04-06T11:20:38.521674+00:00",
+      "level": "info",
+      "title": "Loop heartbeat: all tasks checked, nothing notable",
+      "message": "Pins: no content change (22 active). Weather: skipped (pre-trip, Apr 6). Aurora: quiet, max Kp 2.67 next 48h. Flights: skipped (not a travel day). One-shots: none."
+    },
+    {
       "timestamp": "2026-04-06T07:19:19.966479+00:00",
       "level": "info",
       "title": "Loop run: pre-trip checks OK",
@@ -13,5 +31,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-06T07:19:19.966479+00:00"
+  "last_updated": "2026-04-06T11:21:34.104904+00:00"
 }
