@@ -1352,8 +1352,41 @@
 
         loadAll();
 
-        // Auto-refresh every 30 minutes
-        setInterval(loadAll, 30 * 60 * 1000);
+        // Auto-refresh every 60 min, but ONLY when the tab is visible.
+        // Prevents the disruptive full-grid rebuild from firing while you're
+        // looking at the page, and avoids the "flash on return" when a
+        // background setInterval catches up.
+        const REFRESH_INTERVAL_MS = 60 * 60 * 1000;
+        let lastRefresh = Date.now();
+        let refreshTimer = null;
+
+        function scheduleRefresh() {
+            if (refreshTimer) { clearTimeout(refreshTimer); refreshTimer = null; }
+            if (document.visibilityState !== 'visible') return;
+            const elapsed = Date.now() - lastRefresh;
+            const delay = Math.max(60 * 1000, REFRESH_INTERVAL_MS - elapsed);
+            refreshTimer = setTimeout(async () => {
+                if (document.visibilityState === 'visible') {
+                    await loadAll();
+                    lastRefresh = Date.now();
+                }
+                scheduleRefresh();
+            }, delay);
+        }
+
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                // Only refresh on return if data is >60 min stale
+                if (Date.now() - lastRefresh > REFRESH_INTERVAL_MS) {
+                    loadAll().then(() => { lastRefresh = Date.now(); });
+                }
+                scheduleRefresh();
+            } else {
+                if (refreshTimer) { clearTimeout(refreshTimer); refreshTimer = null; }
+            }
+        });
+
+        scheduleRefresh();
     </script>
     <script src="sight-links.js" defer></script>
 </body>
