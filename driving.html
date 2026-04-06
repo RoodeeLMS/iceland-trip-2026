@@ -877,7 +877,6 @@
                 { kw: 'gíghæð', days: 'Day 9', dayNums: [9], where: 'Grindavik road' },
                 { kw: 'festarfjall', days: 'Day 9', dayNums: [9], where: 'Reykjanes south' },
                 // Hringvegur (Route 1) — match specific sections, not entire ring road
-                { kw: 'hringvegur', days: 'Various', dayNums: [1, 2, 3, 4, 5, 6, 7, 8, 9], where: 'Ring Road section' },
             ];
 
             // Weather station name keywords near your route
@@ -954,12 +953,22 @@
                 // === Match cameras to days using same routeMap logic ===
                 // For cameras, we map camera location name to days based on which route segment they represent
                 const cameraDayMap = {
+                    // Day 1 & 10 — KEF ↔ Reykjavik (Reykjanesbraut)
+                    'strandarheiði': [1, 9, 10],
+                    'arnarneshæð': [1, 10],
+                    'vikurvegur': [1, 6, 9, 10],
+                    'arnarnesvegur': [1, 10],
+                    'kringlan': [1, 6, 9],
+                    'ártúnsbrekka': [1, 6, 9],
+                    'rósaselstorg': [1, 9, 10],
+                    // Day 2 onwards
                     'hellisheiði': [2, 3, 5, 6],
                     'kambar': [2, 3, 5, 6],
                     'litla kaffistofan': [2, 3, 5],
                     'sandskeið': [2, 6],
                     'gjábakki': [2],
                     'lyngdalsheiði': [2],
+                    'mosfellsheiði': [2],
                     'gullfoss': [2],
                     'kotströnd': [2, 3, 5],
                     'landvegamót': [2, 3, 5],
@@ -987,6 +996,7 @@
                     'festarfjall': [9],
                     'þyrill': [6],
                     'hveradalir': [9],
+                    'reykjanesviti': [9],
                     'grundartangi': [6]
                 };
 
@@ -1035,9 +1045,16 @@
                             else if (status === 'THUNGFAERT' || status === 'HALKA' || status === 'SNJOTHEKJA') { bg = '#fef3c7'; icon = '⚠️'; }
                             else if (status.startsWith('OFAERT')) { bg = '#fef2f2'; icon = '🚫'; }
                             else if (status === 'LOKAD_VETRARLOKUN') { bg = '#e0e7ff'; icon = '❄️'; }
+                            const fullName = m.road.FulltNafnButs || m.road.StuttNafnButs || '';
+                            const shortName = m.road.StuttNafnButs || '';
+                            // Build a Google Maps search link using the short name + "Iceland"
+                            const mapQuery = encodeURIComponent((shortName || fullName) + ' Iceland');
+                            const mapLink = `https://www.google.com/maps/search/?api=1&query=${mapQuery}`;
                             return `<div style="background:${bg};padding:6px 10px;border-radius:6px;font-size:0.8em;">
                                 <strong>${icon} ${m.where}</strong><br>
+                                <span style="color:#333;font-size:0.92em;font-weight:500;">${fullName}</span><br>
                                 <span style="color:#555;font-size:0.9em;">${desc}</span>
+                                <a href="${mapLink}" target="_blank" style="float:right;color:var(--primary-blue);text-decoration:none;font-size:0.88em;">📍 Map</a>
                             </div>`;
                         }).join('') + `</div>`;
                 });
