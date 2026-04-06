@@ -1,6 +1,24 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-06T21:26:36.434637+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. SafeTravel/Reynisfjara stable. Day 1 forecast worsened: gusts up to 75 km/h (was 65) — escalated to dangerous-wind warning. Kp quiet. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-06T21:26:36.268204+00:00",
+      "level": "suggestion",
+      "title": "Park into the wind at gas stations",
+      "message": "With 75 km/h gusts forecast for tomorrow, when stopping at any N1/Olis/etc, point the rental car NOSE into the wind before opening doors. Iceland's #1 rental insurance claim is wind-torn doors and it's never covered. Hold the door with both hands at all stops on Day 1."
+    },
+    {
+      "timestamp": "2026-04-06T21:26:36.122834+00:00",
+      "level": "warning",
+      "title": "Day 1 (Apr 8): wind upgraded to dangerous",
+      "message": "Forecast bumped: gusts now 75 km/h (~21 m/s), sustained 41 km/h (~11 m/s). 21 m/s crosses the dangerous threshold — car doors can be ripped off hinges (Iceland insurance excludes wind damage), and exposed cliff/coast walks (Grótta, Perlan deck) become risky. Plan indoor or sheltered urban Reykjavik for arrival afternoon."
+    },
+    {
       "timestamp": "2026-04-06T19:26:42.762072+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -109,5 +127,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-06T19:26:42.762072+00:00"
+  "last_updated": "2026-04-06T21:26:36.434637+00:00"
 }
