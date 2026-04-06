@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booked Activities - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            color: white;
+        }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 8px; }
+        .page-header p { opacity: 0.9; max-width: 720px; margin: 0 auto; }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 2rem; }
+
+        .legend {
+            background: white;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            font-size: 0.9em;
+        }
+        .legend strong { color: var(--deep-navy); }
+
+        .activity-card {
+            background: white;
+            border-radius: 14px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--primary-blue);
+            scroll-margin-top: 80px;
+        }
+        .activity-card.must { border-left-color: #dc2626; }
+        .activity-card.verify { border-left-color: #f59e0b; }
+        .activity-card.walkup { border-left-color: var(--moss-green); }
+
+        .activity-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        .activity-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5em;
+            color: var(--deep-navy);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .status-badge {
+            font-size: 0.72em;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .status-must { background: #fee2e2; color: #991b1b; }
+        .status-verify { background: #fef3c7; color: #92400e; }
+        .status-walkup { background: #d1fae5; color: #065f46; }
+
+        .activity-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin: 14px 0;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.85em;
+        }
+        .meta-item strong {
+            display: block;
+            font-size: 0.75em;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .activity-desc { color: #444; margin: 10px 0; }
+        .activity-card h3 { color: var(--deep-navy); font-size: 1em; margin: 14px 0 6px; }
+        .activity-card ul { margin-left: 20px; color: #555; font-size: 0.9em; }
+        .activity-card li { margin-bottom: 4px; }
+
+        .book-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 10px;
+            margin-right: 8px;
+        }
+        .book-cta:hover { opacity: 0.9; }
+        .book-cta.secondary {
+            background: none;
+            border: 1px solid var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .related-sights {
+            background: #f0f9ff;
+            padding: 10px 14px;
+            border-radius: 8px;
+            margin-top: 14px;
+            font-size: 0.85em;
+        }
+        .related-sights a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            border-bottom: 1px dashed var(--primary-blue);
+            margin-right: 8px;
+        }
+
+        .verdict {
+            background: #fffbeb;
+            border-left: 3px solid var(--sunset-gold);
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin-top: 14px;
+            font-size: 0.9em;
+            color: #78350f;
+        }
+        .verdict strong { color: #78350f; }
+
+        footer {
+            background: var(--deep-navy);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="index.html" class="navbar-item">Home</a>
+                <a href="itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="forecast.html" class="navbar-item">Forecast</a>
+                <a href="driving.html" class="navbar-item">Driving</a>
+                <a href="sights.html" class="navbar-item">Sights</a>
+                <a href="activities.html" class="navbar-item active">🎫 Activities</a>
+                <a href="hotels.html" class="navbar-item">Hotels</a>
+                <a href="loop.html" class="navbar-item">📬 Loop</a>
+                <a href="flights.html" class="navbar-item">Flights</a>
+                <a href="logistics.html" class="navbar-item">Logistics</a>
+                <a href="insurance.html" class="navbar-item">Insurance</a>
+                <a href="planning.html" class="navbar-item">Planning</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1>🎫 Bookable Activities</h1>
+        <p>Guided tours, ice caves, glacier walks, and whale watching that need reservations. All prices in THB for a group of 4 at ~฿35/USD, ฿0.25/ISK.</p>
+    </div>
+
+    <div class="container">
+
+        <div class="legend">
+            <strong>Status legend:</strong>
+            <span style="background:#fee2e2;color:#991b1b;padding:2px 10px;border-radius:10px;font-size:0.78em;font-weight:600;margin:0 4px;">🔴 BOOK NOW</span> required or fills fast ·
+            <span style="background:#fef3c7;color:#92400e;padding:2px 10px;border-radius:10px;font-size:0.78em;font-weight:600;margin:0 4px;">🟡 VERIFY FIRST</span> confirm ops before booking ·
+            <span style="background:#d1fae5;color:#065f46;padding:2px 10px;border-radius:10px;font-size:0.78em;font-weight:600;margin:0 4px;">🟢 WALK-UP OK</span> walk-up fine
+        </div>
+
+        <!-- KATLA ICE CAVE -->
+        <div class="activity-card must" id="katla-ice-cave">
+            <div class="activity-header">
+                <div class="activity-title">🧊 Katla Ice Cave Tour</div>
+                <span class="status-badge status-must">🔴 Book this week</span>
+            </div>
+            <p class="activity-desc">Natural ice cave inside Kötlujökull (an outlet of Mýrdalsjökull) — black volcanic ash layered into blue ice creates striking photo contrast. <strong>The only reliably-open natural ice cave in April</strong> — Vatnajökull's blue caves are typically closed by mid-March. Super-jeep transport from Vík, short walk inside the cave.</p>
+
+            <div class="activity-meta">
+                <div class="meta-item"><strong>📅 Day</strong>Day 3 (Apr 10)</div>
+                <div class="meta-item"><strong>📍 Meet at</strong>Vík village</div>
+                <div class="meta-item"><strong>⏱️ Duration</strong>3-4 hours total · ~1h in cave</div>
+                <div class="meta-item"><strong>💰 Per person</strong>~19,990-24,990 ISK (฿5,000-6,250)</div>
+                <div class="meta-item"><strong>👥 Group of 4</strong>~฿20-25k</div>
+                <div class="meta-item"><strong>🎯 Book by</strong>~1 week ahead</div>
+            </div>
+
+            <h3>Provider</h3>
+            <ul>
+                <li><strong>Katlatrack</strong> — katlatrack.is — local operator, super-jeep specialists</li>
+                <li><strong>Arctic Adventures</strong> — adventures.is — larger operator, more departure times</li>
+            </ul>
+
+            <h3>What's included</h3>
+            <ul>
+                <li>Super-jeep transport from Vík pickup point</li>
+                <li>Certified guide, helmet, headlamp</li>
+                <li>Crampons rented on-site if needed</li>
+            </ul>
+
+            <h3>April 2026 considerations</h3>
+            <ul>
+                <li>Katla cave is more stable than Vatnajökull caves (volcanic ash insulates the ice)</li>
+                <li>Still requires freezing temps — April mornings are best</li>
+                <li>Cancellation policy: usually 24-48h free cancel, check provider</li>
+                <li>Difficulty: Easy-moderate. Short walk on ice, some ducking inside the cave.</li>
+            </ul>
+
+            <a href="https://katlatrack.is/" target="_blank" class="book-cta">📅 Book via Katlatrack</a>
+            <a href="https://adventures.is/" target="_blank" class="book-cta secondary">📅 Arctic Adventures</a>
+
+            <div class="related-sights">
+                <strong>Related sights:</strong>
+                <a href="sights/vik-church.html">Vík Church</a>
+                <a href="sights/lava-show.html">Lava Show Vík</a>
+                <a href="sights/reynisfjara.html">Reynisfjara</a>
+            </div>
+
+            <div class="verdict">
+                <strong>Honest verdict:</strong> ⭐ Recommended. Best natural ice cave still open in April and fits Day 3 route perfectly. Authentic experience. If budget forces choices, prioritize this over Into the Glacier (Langjökull man-made tunnel).
+            </div>
+        </div>
+
+        <!-- SKAFTAFELL BLUE ICE -->
+        <div class="activity-card must" id="skaftafell-blue-ice">
+            <div class="activity-header">
+                <div class="activity-title">⛸️ Skaftafell Blue Ice Glacier Walk</div>
+                <span class="status-badge status-must">🔴 Book this week</span>
+            </div>
+            <p class="activity-desc">Guided walk on <strong>Svínafellsjökull</strong> — the "Game of Thrones / Interstellar" glacier. Most dramatic glacier walk in Iceland: bluer ice, deeper crevasses, towering seracs. Departs from Skaftafell visitor center right on your Day 4 route. <strong>Never walk on a glacier without a certified guide</strong> — invisible crevasses.</p>
+
+            <div class="activity-meta">
+                <div class="meta-item"><strong>📅 Day</strong>Day 4 (Apr 11)</div>
+                <div class="meta-item"><strong>📍 Meet at</strong>Skaftafell Visitor Center</div>
+                <div class="meta-item"><strong>⏱️ Duration</strong>3-3.5 hours · ~2h on ice</div>
+                <div class="meta-item"><strong>💰 Per person</strong>~14,990-19,990 ISK (฿3,750-5,000)</div>
+                <div class="meta-item"><strong>👥 Group of 4</strong>~฿15-20k</div>
+                <div class="meta-item"><strong>🎯 Book by</strong>1-2 weeks ahead</div>
+            </div>
+
+            <h3>Provider (both AIMG-certified)</h3>
+            <ul>
+                <li><strong>Icelandic Mountain Guides</strong> — mountainguides.is — "Blue Ice Experience" ~14,990 ISK</li>
+                <li><strong>Glacier Guides</strong> — glacierguides.is — similar format, competitive price</li>
+                <li><strong>Longer option:</strong> 5-hr "Glacier Explorer" ~19,990 ISK if group wants more time</li>
+            </ul>
+
+            <h3>What's included</h3>
+            <ul>
+                <li>All technical gear: crampons, helmet, ice axe, harness</li>
+                <li>Certified glacier guide</li>
+                <li>Safety briefing on arrival</li>
+            </ul>
+
+            <h3>Fitness + requirements</h3>
+            <ul>
+                <li>Easy-to-moderate. Anyone reasonably fit, age 10+.</li>
+                <li>No prior experience needed.</li>
+                <li>Bring: warm layers, waterproof jacket + pants, sturdy hiking boots (rentals available), gloves, sunglasses</li>
+            </ul>
+
+            <h3>April 2026 considerations</h3>
+            <ul>
+                <li>Excellent conditions — cold enough for stable ice, long daylight, fewer crowds than summer</li>
+                <li>Tours can cancel for high winds (>20 m/s) — have a flex plan</li>
+            </ul>
+
+            <a href="https://www.mountainguides.is/tour/blue-ice-glacier-walk" target="_blank" class="book-cta">📅 Book via IMG</a>
+            <a href="https://glacierguides.is/" target="_blank" class="book-cta secondary">📅 Glacier Guides</a>
+
+            <div class="related-sights">
+                <strong>Related sights:</strong>
+                <a href="sights/skaftafell.html">Skaftafell National Park</a>
+                <a href="sights/jokulsarlon.html">Jökulsárlón</a>
+            </div>
+
+            <div class="verdict">
+                <strong>Honest verdict:</strong> ⭐⭐ Must-do. Svínafellsjökull is more visually impressive than Sólheimajökull (bluer ice, deeper crevasses). Day 4 timing is perfect — you're already at Skaftafell en route to Jökulsárlón. This is the one activity research flagged as "don't skip".
+            </div>
+        </div>
+
+        <!-- SOLHEIMAJOKULL GLACIER WALK -->
+        <div class="activity-card" id="solheimajokull-glacier">
+            <div class="activity-header">
+                <div class="activity-title">⛸️ Sólheimajökull Glacier Walk</div>
+                <span class="status-badge status-walkup">🟢 Optional backup</span>
+            </div>
+            <p class="activity-desc">"Lite" glacier walk on Sólheimajökull, between Skógar and Vík. Easier logistics than Skaftafell — no super-jeep, just walk from the parking lot. Less dramatic ice (not as blue or crevassed as Svínafellsjökull), but closer to Day 3 route.</p>
+
+            <div class="activity-meta">
+                <div class="meta-item"><strong>📅 Day</strong>Day 3 (Apr 10) — only if Day 4 Skaftafell doesn't work</div>
+                <div class="meta-item"><strong>📍 Meet at</strong>Sólheimajökull parking lot</div>
+                <div class="meta-item"><strong>⏱️ Duration</strong>3 hours · ~1.5h on ice</div>
+                <div class="meta-item"><strong>💰 Per person</strong>~11,990-12,990 ISK (฿3,000-3,250)</div>
+                <div class="meta-item"><strong>👥 Group of 4</strong>~฿12-13k</div>
+                <div class="meta-item"><strong>🎯 Book by</strong>A few days ahead</div>
+            </div>
+
+            <h3>Provider</h3>
+            <ul>
+                <li><strong>Arctic Adventures</strong> — "Glacier Wonders" ~11,990 ISK</li>
+                <li><strong>Icelandic Mountain Guides</strong> — "Glacier Walk" ~12,990 ISK</li>
+            </ul>
+
+            <a href="https://adventures.is/iceland/day-tours/glacier-hiking/" target="_blank" class="book-cta">📅 Arctic Adventures</a>
+            <a href="https://www.mountainguides.is/" target="_blank" class="book-cta secondary">📅 IMG</a>
+
+            <div class="related-sights">
+                <strong>Related sights:</strong>
+                <a href="sights/skogafoss.html">Skógafoss</a>
+                <a href="sights/kvernufoss.html">Kvernufoss</a>
+            </div>
+
+            <div class="verdict">
+                <strong>Honest verdict:</strong> Skip if booking Skaftafell Blue Ice — don't double up on glacier walks. Only consider this as a fallback if Day 4 glacier walk can't happen, or if someone in the group wants an easier intro.
+            </div>
+        </div>
+
+        <!-- FJALLSARLON BOAT TOUR -->
+        <div class="activity-card verify" id="fjallsarlon-boat">
+            <div class="activity-header">
+                <div class="activity-title">🛥️ Fjallsárlón Glacier Lagoon Boat Tour</div>
+                <span class="status-badge status-verify">🟡 Verify season</span>
+            </div>
+            <p class="activity-desc">Zodiac boat tour at Fjallsárlón — the quieter, closer cousin of Jökulsárlón. Gets you right up to the glacier wall and iceberg calving. <strong>Important: Jökulsárlón's own boat tours do NOT run in April</strong> (season starts May). Fjallsárlón opens Apr 1.</p>
+
+            <div class="activity-meta">
+                <div class="meta-item"><strong>📅 Day</strong>Day 4 (Apr 11)</div>
+                <div class="meta-item"><strong>📍 Meet at</strong>Frost Restaurant / Fjallsárlón</div>
+                <div class="meta-item"><strong>⏱️ Duration</strong>1.5h total · ~45 min on water</div>
+                <div class="meta-item"><strong>💰 Per person</strong>~11,300 ISK (฿2,825)</div>
+                <div class="meta-item"><strong>👥 Group of 4</strong>~฿11,300</div>
+                <div class="meta-item"><strong>🅿️ Parking</strong>Free at Frost Restaurant</div>
+            </div>
+
+            <h3>Provider</h3>
+            <ul>
+                <li><strong>Fjallsárlón Iceberg Boat Tours</strong> — fjallsarlon.is</li>
+            </ul>
+
+            <h3>What's included</h3>
+            <ul>
+                <li>Flotation suit + life jacket (required — goes on over your clothes)</li>
+                <li>Guide + captain</li>
+                <li>Hot drinks at Frost café after</li>
+            </ul>
+
+            <h3>Verify before booking</h3>
+            <ul>
+                <li>Confirm season has opened on the fjallsarlon.is website</li>
+                <li>Weather-dependent — high wind or rough ice = cancellation</li>
+                <li>Reschedules to the next available slot or refund</li>
+            </ul>
+
+            <a href="https://fjallsarlon.is/iceberg-boat-tours/" target="_blank" class="book-cta">📅 Book via Fjallsárlón</a>
+
+            <div class="related-sights">
+                <strong>Related sights:</strong>
+                <a href="sights/fjallsarlon.html">Fjallsárlón</a>
+                <a href="sights/jokulsarlon.html">Jökulsárlón</a>
+                <a href="sights/diamond-beach.html">Diamond Beach</a>
+            </div>
+
+            <div class="verdict">
+                <strong>Honest verdict:</strong> ⭐ Worth it if the season is running. Closer-to-glacier experience than Jökulsárlón offers even in summer. Day 4 is already at both lagoons — this adds 1.5h to that day. Skip if schedule is tight.
+            </div>
+        </div>
+
+        <!-- LAKI WHALE WATCHING -->
+        <div class="activity-card verify" id="laki-whale-watching">
+            <div class="activity-header">
+                <div class="activity-title">🐋 Láki Tours Whale Watching — Grundarfjörður</div>
+                <span class="status-badge status-verify">🟡 Email first</span>
+            </div>
+            <p class="activity-desc"><strong>Potentially the single best whale option in Iceland.</strong> Láki runs <strong>orca-watching season</strong> out of Grundarfjörður Feb-early April, then switches to <strong>Ólafsvík</strong> (sperm whales) mid-April onwards. Your Day 7-8 falls in the awkward transition window. Must confirm April 14-15 operations directly.</p>
+
+            <div class="activity-meta">
+                <div class="meta-item"><strong>📅 Day</strong>Day 7-8 (Apr 14-15)</div>
+                <div class="meta-item"><strong>📍 Meet at</strong>Grundarfjörður OR Ólafsvík harbor</div>
+                <div class="meta-item"><strong>⏱️ Duration</strong>3 hours</div>
+                <div class="meta-item"><strong>💰 Per person</strong>~11,900 ISK (฿2,975)</div>
+                <div class="meta-item"><strong>👥 Group of 4</strong>~฿11,900</div>
+                <div class="meta-item"><strong>🎯 Action</strong>Email NOW to confirm</div>
+            </div>
+
+            <h3>Provider</h3>
+            <ul>
+                <li><strong>Láki Tours</strong> — lakitours.com · info@lakitours.com</li>
+            </ul>
+
+            <h3>What to ask in your email</h3>
+            <ul>
+                <li>"Are Grundarfjörður orca tours running on <strong>April 14-15, 2026</strong>?"</li>
+                <li>"If not, are Ólafsvík sperm whale tours running those dates?"</li>
+                <li>"Availability for 4 adults?"</li>
+                <li>"Cancellation policy for weather-related cancellations?"</li>
+            </ul>
+
+            <h3>Species in April</h3>
+            <ul>
+                <li><strong>Grundarfjörður (Feb-early April):</strong> orcas, white-beaked dolphins, harbor porpoises</li>
+                <li><strong>Ólafsvík (mid-April-Sep):</strong> sperm whales (resident males), sometimes orca</li>
+                <li>Sightings rate both locations ~80-90% in season</li>
+            </ul>
+
+            <a href="mailto:info@lakitours.com?subject=April%2014-15%202026%20whale%20watching%20availability&body=Hi%2C%0A%0AI%27m%20planning%20to%20visit%20Sn%C3%A6fellsnes%20on%20April%2014-15%2C%202026%20with%20a%20group%20of%204%20adults.%0A%0AAre%20your%20Grundarfj%C3%B6r%C3%B0ur%20orca%20tours%20still%20running%20on%20those%20dates%3F%20If%20not%2C%20are%20%C3%93lafsv%C3%ADk%20sperm%20whale%20tours%20operating%3F%0A%0ACould%20you%20confirm%20availability%20and%20your%20cancellation%20policy%3F%0A%0AThanks%21" class="book-cta">✉️ Email Láki Tours</a>
+            <a href="https://lakitours.com/" target="_blank" class="book-cta secondary">🌐 lakitours.com</a>
+
+            <div class="related-sights">
+                <strong>Related sights:</strong>
+                <a href="sights/kirkjufell.html">Kirkjufell</a>
+                <a href="sights/stykkisholmur.html">Stykkishólmur</a>
+            </div>
+
+            <div class="verdict">
+                <strong>Honest verdict:</strong> ⭐⭐ If Grundarfjörður orca tours are still running on Apr 14-15, <strong>take it</strong> — once-in-a-lifetime orca pod encounter in a sheltered fjord. If only Ólafsvík is running, sperm whales are still impressive but less rare. If neither, fall back to Elding from Reykjavík (below).
+            </div>
+        </div>
+
+        <!-- ELDING WHALE WATCHING -->
+        <div class="activity-card walkup" id="elding-whale-watching">
+            <div class="activity-header">
+                <div class="activity-title">🐋 Elding Whale Watching — Reykjavík</div>
+                <span class="status-badge status-walkup">🟢 Walk-up OK</span>
+            </div>
+            <p class="activity-desc">Reliable backup if Láki Tours isn't running. Classic 3-hour tour from Reykjavík Old Harbour into Faxaflói Bay. Mostly minke whales, harbor porpoises, white-beaked dolphins in April. Humpbacks possible but not guaranteed. Sightings rate ~80-90% in April.</p>
+
+            <div class="activity-meta">
+                <div class="meta-item"><strong>📅 Day</strong>Day 1 or Day 10 (fallback)</div>
+                <div class="meta-item"><strong>📍 Meet at</strong>Reykjavík Old Harbour</div>
+                <div class="meta-item"><strong>⏱️ Duration</strong>3 hours</div>
+                <div class="meta-item"><strong>💰 Per person</strong>~11,990 ISK (฿3,000)</div>
+                <div class="meta-item"><strong>👥 Group of 4</strong>~฿12,000</div>
+                <div class="meta-item"><strong>🎯 Book by</strong>2-3 days ahead (walk-up fine)</div>
+            </div>
+
+            <h3>Provider</h3>
+            <ul>
+                <li><strong>Elding</strong> — elding.is — classic 3hr tour, <strong>free re-trip if no whales sighted</strong></li>
+                <li><strong>Special Tours</strong> — specialtours.is — RIB tour ~21,990 ISK (faster, colder, not worth premium in April)</li>
+            </ul>
+
+            <h3>April 2026 considerations</h3>
+            <ul>
+                <li>Shoulder season — not peak quality vs summer, but decent sightings</li>
+                <li>Cold on the water — bring thermals, hat, gloves, waterproof layer</li>
+                <li>Departures 9am + 1pm daily</li>
+            </ul>
+
+            <a href="https://elding.is/" target="_blank" class="book-cta">📅 Book Elding</a>
+
+            <div class="related-sights">
+                <strong>Related sights:</strong>
+                <a href="sights/harpa.html">Harpa</a>
+                <a href="sights/sun-voyager.html">Sun Voyager</a>
+            </div>
+
+            <div class="verdict">
+                <strong>Honest verdict:</strong> Worth doing once if Láki Tours isn't available. Skip the RIB premium — standard boat is fine. April sightings are decent but not summer-quality.
+            </div>
+        </div>
+
+        <!-- Summary table -->
+        <div style="background: linear-gradient(135deg, var(--deep-navy), #16213e); color: white; padding: 20px 24px; border-radius: 12px; margin-top: 30px;">
+            <h2 style="color: var(--aurora-green); font-family: 'Playfair Display', serif; margin-bottom: 14px;">📋 Decision Summary</h2>
+            <table style="width: 100%; color: white; font-size: 0.88em;">
+                <thead>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.2);">
+                        <th style="text-align: left; padding: 8px 0;">Activity</th>
+                        <th style="text-align: left; padding: 8px 0;">Day</th>
+                        <th style="text-align: left; padding: 8px 0;">THB (x4)</th>
+                        <th style="text-align: left; padding: 8px 0;">Priority</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Katla Ice Cave</td><td>3</td><td>~20-25k</td><td>🔴 Book this week</td></tr>
+                    <tr><td>Skaftafell Blue Ice</td><td>4</td><td>~15-20k</td><td>🔴 Book this week (don't skip)</td></tr>
+                    <tr><td>Fjallsárlón boat</td><td>4</td><td>~11k</td><td>🟡 Verify season</td></tr>
+                    <tr><td>Láki whale watching</td><td>7/8</td><td>~12k</td><td>🟡 Email first</td></tr>
+                    <tr><td>Elding (backup)</td><td>1 or 10</td><td>~12k</td><td>🟢 Walk-up</td></tr>
+                    <tr><td>Sólheimajökull (skip if Skaftafell booked)</td><td>3</td><td>~12k</td><td>⚪ Optional</td></tr>
+                    <tr style="border-top: 1px solid rgba(255,255,255,0.3);"><td colspan="2" style="padding-top: 10px; font-weight: 700; color: var(--aurora-green);">Total recommended</td><td style="padding-top: 10px; font-weight: 700; color: var(--aurora-green);">~58-68k</td><td style="padding-top: 10px;"></td></tr>
+                </tbody>
+            </table>
+            <p style="font-size: 0.82em; opacity: 0.75; margin-top: 10px;">~฿14-17k per person across the full trip for all recommended activities.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Journey through Fire and Ice 🇮🇸</p>
+        <p style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">April 8-17, 2026 • 4 Adults</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>
