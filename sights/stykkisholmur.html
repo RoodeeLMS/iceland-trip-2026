@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stykkishólmur Harbor Town - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🏘️</span>
+        <h1>Stykkishólmur Harbor Town</h1>
+        <div class="day-badges"><span class="day-badge">Day 8</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://commons.wikimedia.org/wiki/Special:FilePath/Boats_in_Stykkish%C3%B3lmur%2C_Iceland_%287852290516%29.jpg?width=1000" alt="Stykkishólmur Harbor Town" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>65.0767, -22.7269</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 8</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-22.7569%2C65.0617%2C-22.6969%2C65.0917&amp;layer=mapnik&amp;marker=65.0767%2C-22.7269" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=65.0767,-22.7269" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p><strong>Stykkishólmur</strong> is a working fishing town of ~1,200 people on the north-east corner of the Snæfellsnes peninsula, with a colourful harbour, a basalt-island viewpoint (<strong>Súgandisey</strong>), a 19th-century Norwegian merchant's house museum, and the conceptual art installation <strong>Library of Water</strong> by Roni Horn. Movie buffs will recognise it as a key location from <em>The Secret Life of Walter Mitty</em> (2013). Björk filmed her early career music videos here. It is also the ferry port for <strong>Flatey island</strong> in Breiðafjörður bay (ferry runs to Brjánslækur in the Westfjords). For our trip it is mostly a 60-90 min lunch + walk + view stop on the Day 8 loop.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 All open year-round.</strong> Library of Water and Norwegian House have reduced winter hours (typically Tue-Sat afternoons in April — verify on the day). Ferry to Flatey runs daily but is impractical as a same-day visit.</div><p><strong>April 2026:</strong> Easter holidays may shift museum hours. Town is fully functional and open.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+            <div class="visit-step"><div class="visit-step-num">1</div><div class="visit-step-content"><strong>Park at the harbour lot</strong>Free public parking on the harbour-front by the ferry terminal. Multiple lots within 200 m of each other. Easy access from Route 58.<div class="step-meta">⏱️ 2 min · 📍 Harbour, 65.0767, -22.7269</div></div></div>
+<div class="visit-step"><div class="visit-step-num">2</div><div class="visit-step-content"><strong>Walk the harbour and photograph the colourful boats</strong>Stykkishólmur's working fishing harbour has the bright red, blue and green hulls that make every Snæfellsnes brochure cover. Walk the full length of the quay (~200 m). The Sæferðir ferry to Flatey docks at the far end.<div class="step-meta">⏱️ 15 min · 📍 Harbour quay</div></div></div>
+<div class="visit-step"><div class="visit-step-num">3</div><div class="visit-step-content"><strong>Climb Súgandisey for the panoramic view</strong>At the north end of the harbour, a wooden footbridge crosses to the small basalt island of <strong>Súgandisey</strong>. A short ~5 min walk up the path leads to a small orange lighthouse and a 360° view over the town, the harbour, the islands of Breiðafjörður, and (clear days) the mountains of the Westfjords across the bay. <strong>This is the headline view of Stykkishólmur</strong> — do not skip it.<div class="step-meta">⏱️ 20-25 min · 📍 Súgandisey, ~5 min walk + view time</div></div></div>
+<div class="visit-step"><div class="visit-step-num">4</div><div class="visit-step-content"><strong>Visit the Library of Water (Vatnasafn)</strong>5 min walk uphill from the harbour, the Library of Water is a former library building converted by American artist Roni Horn into an installation: 24 floor-to-ceiling glass columns each filled with water from a different Icelandic glacier. Quiet, contemplative, ~15 min visit. Small admission ~ISK 1,500 ≈ <strong>฿375</strong>. Verify hours.<div class="step-meta">⏱️ 20-25 min · 📍 Bókhlöðustígur, ~400 m from harbour</div></div></div>
+<div class="visit-step"><div class="visit-step-num">5</div><div class="visit-step-content"><strong>Walk the old town (Norska húsið)</strong>The 1832 Norwegian House (Norska húsið) is the oldest two-storey building in Iceland and now a regional folk museum (~ISK 1,500 ≈ ฿375). The streets around it have well-preserved 19th-century timber houses painted in saturated colours. Even if you skip the museum interior, the 10-minute walk around the block is worth it.<div class="step-meta">⏱️ 20-30 min · 📍 Old town, ~300 m from harbour</div></div></div>
+<div class="visit-step"><div class="visit-step-num">6</div><div class="visit-step-content"><strong>Lunch stop</strong>Several solid options: <strong>Sjávarpakkhúsið</strong> (harbour-front, seafood), <strong>Narfeyrarstofa</strong> (more upscale), <strong>Skúrinn</strong> (casual fish & chips). All in the harbour/old town area within 5 min walk.<div class="step-meta">⏱️ 60-90 min · 📍 Harbour area</div></div></div>
+<div class="visit-step"><div class="visit-step-num">7</div><div class="visit-step-content"><strong>Refuel groceries at Bonus or Krónan (optional)</strong>Stykkishólmur has a Bonus supermarket on the south edge of town (Route 58 in) — useful for stocking snacks/drinks for the rest of the Day 8 loop. Open daily 11:00-18:30 typical hours.<div class="step-meta">⏱️ 15 min · 📍 Bonus, edge of town</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Boats_in_Stykkish%C3%B3lmur%2C_Iceland_%287852290516%29.jpg?width=800" alt="Harbour and fishing boats"><div class="gallery-caption">Harbour and fishing boats · Wikimedia Commons</div></div>
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Stykkish%C3%B3lmur_%2C_view_from_the_Harbor_by_night%2C_mid_August_-_panoramio.jpg?width=800" alt="Harbour view"><div class="gallery-caption">Harbour view · Wikimedia Commons</div></div>
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Stykkish%C3%B3lmur_main_street_2012-07.JPG?width=800" alt="Old town main street"><div class="gallery-caption">Old town main street · Wikimedia Commons</div></div>
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Stykkish%C3%B3lmur_and_shipwreck.jpg?width=800" alt="Town from the bay"><div class="gallery-caption">Town from the bay · Wikimedia Commons</div></div>
+</div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <ul>
+        <li><strong>From Súgandisey:</strong> Wide 16-24 mm panorama looking south-west over the harbour and town with the mountains behind. The single best Stykkishólmur shot.</li>
+        <li><strong>Boat colour close-ups:</strong> 35-85 mm tight on red/blue/yellow hulls reflected in calm harbour water.</li>
+        <li><strong>Old town houses:</strong> 35-50 mm of the painted timber facades — best in soft overcast light.</li>
+        <li><strong>Best light:</strong> Late afternoon for the harbour (south-west facing), morning for Súgandisey.</li>
+    </ul>
+    <p><strong>🚁 Drone:</strong> Stykkishólmur is a town — keep clear of people and the harbour traffic. No formal town-wide ban that we found, but treat as urban airspace and fly only over open water/empty areas with caution. The Súgandisey lighthouse is a small protected area; do not buzz nesting birds in spring. See <a href="../planning.html#drone">Planning drone section</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Paved Route 58 directly into town. Any rental car. ~40 min east of Kirkjufell, ~1.5 hours from Reykjavik.</p><ul><li><strong>Parking:</strong> Free at the harbour. Multiple lots.</li><li><strong>Walk:</strong> Everything in the centre is within 5-10 min walk of the harbour.</li><li><strong>Fees:</strong> Library of Water and Norwegian House each ~฿375.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <ul>
+        <li><strong>Allocate:</strong> 90 min minimum (harbour + Súgandisey + lunch); 2-3 hours if doing Library of Water and Norwegian House too.</li>
+        <li><strong>Best time:</strong> Late morning to early afternoon for museum hours and lunch.</li>
+        <li><strong>Combine with:</strong> Berserkjahraun (15 min south on Route 56), Selvallafoss (25 min south-west), and Kirkjufell (40 min west) — the Day 8 loop.</li>
+        <li><strong>Skip the Flatey ferry:</strong> day-trip works in summer with multiple sailings; in April only one daily round trip and the schedule does not give enough island time. Skip for our trip.</li>
+    </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google Maps ~4.6 for the town as a whole. Praised as a charming, authentic working fishing town — not a tourist trap. Súgandisey viewpoint is universally rated as the highlight. Library of Water is "love it or shrug" depending on taste for conceptual art. <strong>Honest take:</strong> the most "real town" stop on Snæfellsnes. Not a bucket-list destination on its own but a legitimate 90-min stop with a great view, decent food, and a useful supermarket.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Mostly self-guided. Optional bookings:</p><ul><li><strong>Sæferðir / Seatours</strong> — Breiðafjörður island and bird-watching boat tours from the harbour. ~฿4,000-7,000 depending on tour. <a href="https://www.seatours.is" target="_blank">seatours.is</a>.</li><li><strong>Library of Water:</strong> walk-in, ~฿375.</li><li><strong>Norwegian House Museum:</strong> walk-in, ~฿375.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul><li>Súgandisey footbridge can be slippery in wet/icy conditions.</li><li>Working harbour — watch for vehicles, ropes, and ferry traffic.</li><li>Standard town safety; nothing unusual.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+        <li><a href="https://en.wikipedia.org/wiki/Stykkishólmur" target="_blank">Wikipedia — Stykkishólmur</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=Stykkishólmur" target="_blank">Google Maps — Stykkishólmur</a></li>
+        <li><a href="https://www.seatours.is" target="_blank">Sæferðir / Seatours (Flatey ferry & boat tours)</a></li>
+        <li><a href="https://www.libraryofwater.is" target="_blank">Library of Water (Vatnasafn)</a></li>
+    </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

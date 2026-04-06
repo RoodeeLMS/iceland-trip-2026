@@ -510,6 +510,10 @@
             <div id="auroraContent">
                 <div class="loading">Loading aurora forecast</div>
             </div>
+            <h3 style="margin-top:20px;margin-bottom:10px;font-size:1.1em;">⚡ Real-time Aurora Signal</h3>
+            <div id="auroraRealtime" style="background:rgba(0,0,0,0.2);border-radius:10px;padding:14px 18px;font-size:0.88em;">
+                <div class="loading">Loading solar wind + OVATION probability…</div>
+            </div>
             <h3 style="margin-top:20px;margin-bottom:10px;font-size:1.1em;">Nightly Aurora Viewing Conditions</h3>
             <div class="aurora-nights" id="auroraNights"><div class="loading">Loading night conditions</div></div>
             <div class="aurora-links">
@@ -1117,6 +1121,99 @@
             }
         }
 
+        // Fetch real-time aurora signal: OVATION probability + solar wind Bz/speed
+        async function fetchAuroraRealtime() {
+            const el = document.getElementById('auroraRealtime');
+            try {
+                const [ovRes, magRes, plasmaRes] = await Promise.all([
+                    fetch('https://services.swpc.noaa.gov/json/ovation_aurora_latest.json').catch(() => null),
+                    fetch('https://services.swpc.noaa.gov/products/solar-wind/mag-5-minute.json').catch(() => null),
+                    fetch('https://services.swpc.noaa.gov/products/solar-wind/plasma-5-minute.json').catch(() => null)
+                ]);
+
+                // OVATION: probability grid, find Iceland cell (~64°N, -19°E → lon 341)
+                let ovProb = null, ovTime = null;
+                if (ovRes && ovRes.ok) {
+                    const ov = await ovRes.json();
+                    ovTime = ov.Forecast_Time || ov.Observation_Time;
+                    // coordinates is array of [lon, lat, aurora_value] triples
+                    // Find closest to Iceland center (64.5°N, 341°E i.e. -19°)
+                    let best = null, bestD = 999;
+                    (ov.coordinates || []).forEach(c => {
+                        const [lon, lat, val] = c;
+                        if (lat >= 63 && lat <= 67 && (lon >= 337 && lon <= 346)) {
+                            const d = Math.abs(lat - 64.5) + Math.abs(lon - 341);
+                            if (d < bestD) { bestD = d; best = val; }
+                        }
+                    });
+                    ovProb = best;
+                }
+
+                // Solar wind mag: rows are [time, bx, by, bz, lon, lat, bt]
+                let bz = null, bt = null, magTime = null;
+                if (magRes && magRes.ok) {
+                    const mag = await magRes.json();
+                    const last = mag[mag.length - 1];
+                    if (last) {
+                        magTime = last[0];
+                        bz = parseFloat(last[3]);
+                        bt = parseFloat(last[6]);
+                    }
+                }
+
+                // Solar wind plasma: rows are [time, density, speed, temperature]
+                let speed = null, density = null;
+                if (plasmaRes && plasmaRes.ok) {
+                    const p = await plasmaRes.json();
+                    const last = p[p.length - 1];
+                    if (last) {
+                        density = parseFloat(last[1]);
+                        speed = parseFloat(last[2]);
+                    }
+                }
+
+                // Interpret Bz
+                let bzColor = '#aaa', bzLabel = '—';
+                if (bz !== null && !isNaN(bz)) {
+                    if (bz <= -10) { bzColor = '#10b981'; bzLabel = 'Strong southward — aurora firing!'; }
+                    else if (bz <= -5) { bzColor = '#f59e0b'; bzLabel = 'Southward — aurora building'; }
+                    else if (bz < 0) { bzColor = '#ddd'; bzLabel = 'Slightly southward'; }
+                    else { bzColor = '#888'; bzLabel = 'Northward — aurora suppressed'; }
+                }
+
+                let probColor = '#888', probLabel = 'Low';
+                if (ovProb !== null) {
+                    if (ovProb >= 50) { probColor = '#10b981'; probLabel = 'HIGH'; }
+                    else if (ovProb >= 20) { probColor = '#f59e0b'; probLabel = 'Moderate'; }
+                    else if (ovProb >= 5) { probColor = '#ddd'; probLabel = 'Low'; }
+                    else { probColor = '#666'; probLabel = 'Minimal'; }
+                }
+
+                el.innerHTML = `
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;">
+                        <div style="text-align:center;">
+                            <div style="font-size:0.72em;opacity:0.6;text-transform:uppercase;letter-spacing:1px;">OVATION Prob (Iceland)</div>
+                            <div style="font-size:1.8em;font-weight:700;color:${probColor};">${ovProb !== null ? ovProb + '%' : '—'}</div>
+                            <div style="font-size:0.75em;opacity:0.7;">${probLabel}</div>
+                        </div>
+                        <div style="text-align:center;">
+                            <div style="font-size:0.72em;opacity:0.6;text-transform:uppercase;letter-spacing:1px;">Bz (nT)</div>
+                            <div style="font-size:1.8em;font-weight:700;color:${bzColor};">${bz !== null && !isNaN(bz) ? bz.toFixed(1) : '—'}</div>
+                            <div style="font-size:0.75em;opacity:0.7;">${bzLabel}</div>
+                        </div>
+                        <div style="text-align:center;">
+                            <div style="font-size:0.72em;opacity:0.6;text-transform:uppercase;letter-spacing:1px;">Solar Wind</div>
+                            <div style="font-size:1.8em;font-weight:700;color:#ddd;">${speed !== null && !isNaN(speed) ? Math.round(speed) : '—'}</div>
+                            <div style="font-size:0.75em;opacity:0.7;">km/s ${density !== null && !isNaN(density) ? '· ' + density.toFixed(1) + ' p/cc' : ''}</div>
+                        </div>
+                    </div>
+                    <p style="font-size:0.72em;opacity:0.5;margin-top:10px;">OVATION = 30-90 min aurora oval probability. Bz southward (negative) = aurora active. Sources: NOAA SWPC OVATION + DSCOVR solar wind.</p>
+                `;
+            } catch (err) {
+                el.innerHTML = `<span style="opacity:0.6;font-size:0.85em;">Could not load real-time aurora signal.</span>`;
+            }
+        }
+
         // Fetch nightly aurora viewing conditions
         async function fetchAuroraNights() {
             const container = document.getElementById('auroraNights');
@@ -1256,7 +1353,7 @@
 
 
         async function loadAll() {
-            await Promise.all([fetchWeather(), fetchSunData(), fetchAurora(), fetchAuroraNights()]);
+            await Promise.all([fetchWeather(), fetchSunData(), fetchAurora(), fetchAuroraRealtime(), fetchAuroraNights()]);
             checkStormAlert();
             const now = new Date();
             document.getElementById('lastUpdated').innerHTML = `<strong>✅ Data updated:</strong> ${now.toLocaleString()} — Weather from <a href="https://open-meteo.com/" target="_blank">Open-Meteo</a> | Aurora from <a href="https://www.swpc.noaa.gov/" target="_blank">NOAA SWPC</a> | <a href="driving.html" style="color: var(--aurora-green);">Live road conditions →</a>`;

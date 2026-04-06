@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kleifarvatn Lake - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🏞️</span>
+        <h1>Kleifarvatn Lake</h1>
+        <div class="day-badges"><span class="day-badge">Day 9</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://commons.wikimedia.org/wiki/Special:FilePath/Kleifarvatn%20Aug.%202018%2001.jpg?width=1200" alt="Kleifarvatn lake on the Reykjanes peninsula" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>63.9294, -22.0175</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 9</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-22.0475%2C63.9144%2C-21.9875%2C63.9444&amp;layer=mapnik&amp;marker=63.9294%2C-22.0175" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=63.9294,-22.0175" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Kleifarvatn is the largest lake on the Reykjanes peninsula (9.1 km², up to ~97 m deep) and the third-largest in southern Iceland. It sits in a fissure of the Mid-Atlantic Ridge between black lava walls and ash slopes, with a small black-sand beach on the eastern shore. After the 2000 South Iceland earthquakes the lake drained partially through a new fissure and lost about 20% of its surface area before slowly refilling — it remains a quiet, slightly eerie spot, far less visited than the Golden Circle.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box" style="border-left-color: #F59E0B; background: #fff7ed;">
+                <strong>🟠 Reykjanes volcanic system on Heightened Unrest (Level 2)</strong> — Per the Icelandic Met Office (<a href="https://en.vedur.is" target="_blank">vedur.is</a>), no active eruption as of April 2026, but ~21 million m³ of magma has accumulated under nearby Svartsengi since the July 2025 Sundhnúkur eruption. Subsidence has been recorded in the Krýsuvík area immediately west of the lake. Check vedur.is and <a href="https://safetravel.is" target="_blank">safetravel.is</a> the morning of your visit.
+            </div>
+            <p>Road 42 (Krýsuvíkurvegur) along the eastern shore is open and paved. The lake itself is open access, no fees, no facilities. Spring conditions: ice has typically broken up by early April but the wind over open water at this elevation can still drop wind-chill below freezing — bring a windproof outer layer.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+
+            <div class="visit-step">
+                <div class="visit-step-num">1</div>
+                <div class="visit-step-content">
+                    <strong>Pull off at the northern viewpoint on Route 42</strong>
+                    Coming from Hafnarfjörður on Road 42, the road climbs over a ridge and the lake suddenly opens out below. There's an unmarked gravel pull-off at the first wide bend with the lake in full view — best orientation shot of the whole basin. Mountains on three sides, lava and ash on the fourth.
+                    <div class="step-meta">⏱️ 5 min · 📍 ~1 km north of the lake's north tip</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">2</div>
+                <div class="visit-step-content">
+                    <strong>Drive the eastern shore — keep windows down</strong>
+                    Route 42 hugs the east side for ~5 km. There's almost no traffic. You're driving on a thin tarmac strip between the water and a black ash slope; pull over wherever a wide shoulder appears. The colour contrast (deep blue water, jet-black sand, rust-red rhyolite slopes behind) is the whole point of the stop.
+                    <div class="step-meta">⏱️ 10 min slow drive · 📍 East shore</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">3</div>
+                <div class="visit-step-content">
+                    <strong>Walk the black-sand beach on the east shore</strong>
+                    About midway down the eastern shore there's a small parking pull-off and a short scramble down to a black sand beach maybe 100 m long. The sand is volcanic ash washed in from the slopes above. Grab a handful, photograph the pattern of waves on black grit. Almost always empty — this is the quietest "beach" experience you'll get in Iceland.
+                    <div class="step-meta">⏱️ 15-20 min · 📍 Mid east shore, ~63.93°N</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">4</div>
+                <div class="visit-step-content">
+                    <strong>Continue south to the Hverahlíð / Krýsuvík turn</strong>
+                    At the south end of the lake the road bends west toward Seltún. The bend itself has a small geothermal seep on the lake's southwestern shore — steam coming straight out of the ground next to the water. Quick photo stop, then push on to Seltún (5 minutes further).
+                    <div class="step-meta">⏱️ 5 min · 📍 South tip of lake</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">5</div>
+                <div class="visit-step-content">
+                    <strong>Optional: launch a drone (read the section below first)</strong>
+                    If conditions allow and there's no active TFR, the wide flat lake gives an unusually safe drone launch — no people, no infrastructure, no wildlife concerns. The bird's-eye angle showing the lake shape inside the fissure is the best image you'll get here. Skip if winds exceed your aircraft's rated limit (Reykjanes is windy).
+                    <div class="step-meta">⏱️ 15 min · 📍 East shore pull-off</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+                <div>
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kleifarvatn%20Aug.%202018%2001.jpg?width=800" alt="Kleifarvatn lake panorama">
+                    <div class="gallery-caption">Kleifarvatn from the eastern shore · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Lake%20Kleifarvatn%2C%20Iceland%20%2841495264840%29.jpg?width=800" alt="Lake Kleifarvatn shoreline">
+                    <div class="gallery-caption">Shoreline detail · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Shore%20of%20lake%20Kleifarvatn%20in%20Iceland%204.jpg?width=800" alt="Black sand shore of Kleifarvatn">
+                    <div class="gallery-caption">Black sand shore · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Iceland%2C%20Grindav%C3%ADkurb%C3%A6r%20%2803%29%2C%20Road%2042%2C%20Kleifarvatn.jpg?width=800" alt="Road 42 along Kleifarvatn">
+                    <div class="gallery-caption">Road 42 hugging the lake · Wikimedia Commons</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p>
+            <ul>
+                <li><strong>North overlook, wide:</strong> 16-24 mm from the first ridge pull-off captures the full basin shape — the lake as a clean ellipse inside dark slopes.</li>
+                <li><strong>Black sand foreground:</strong> Get low (50 cm above the sand) on the east beach with a wide lens, water and far shore in the upper third. Mid-morning side light brings out the grain.</li>
+                <li><strong>Reflections:</strong> The lake is surprisingly still in early morning before wind picks up. Shoot before 9:00 if you can — Reykjanes wind almost always builds by mid-morning.</li>
+                <li><strong>Tele compression:</strong> 100-200 mm from the east shore back across to the rust-red rhyolite slopes on the west side of the lake.</li>
+            </ul>
+            <p><strong>🚁 Drone — likely OK but check for TFRs first.</strong> No permanent restriction over Kleifarvatn itself (no national park, no airport overlap), but the entire Reykjanes peninsula is subject to <strong>temporary flight restrictions during volcanic events</strong>. Check the Icelandic Transport Authority NOTAM page (<a href="https://www.samgongustofa.is" target="_blank">samgongustofa.is</a>) and the Met Office before flying. If a TFR is active anywhere on the peninsula, do not fly. General Iceland drone rules (Open Category, registration, wind limits) are on the <a href="../planning.html#drone">Planning page</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Paved Route 42 (Krýsuvíkurvegur) from Hafnarfjörður south. About 25 minutes from Reykjavík, 35 minutes from KEF airport. Any 2WD rental.</p>
+            <ul>
+                <li><strong>Parking:</strong> Free, multiple unmarked pull-offs along the east shore.</li>
+                <li><strong>Walk to beach:</strong> Less than 1 minute from the mid-shore pull-off.</li>
+                <li><strong>Fees:</strong> None.</li>
+                <li><strong>Facilities:</strong> None — no toilets, no café, no signage. Use Hafnarfjörður before you set out.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>Quick stop on the Reykjanes loop. Pair it directly with <strong>Seltún</strong> (5 minutes south, same road) — the two are essentially one visit. If you're doing the full Reykjanes day, your sequence is: Kleifarvatn → Seltún → Grindavík → Brimketill → Gunnuhver → Blue Lagoon area.</p>
+            <ul>
+                <li><strong>Best light:</strong> Early morning for stillness; late afternoon for warm light on the western rhyolite slopes.</li>
+                <li><strong>Crowds:</strong> Almost none. Tour buses skip it.</li>
+                <li><strong>Allocate:</strong> 30-45 minutes including the beach walk and a few drive-by stops.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google Maps reviewers consistently call Kleifarvatn "underrated" and "the most peaceful spot on Reykjanes." Around 4.6/5. Common praise: solitude, dramatic colour contrast, no tourist infrastructure. Common complaint: "There's nothing to do" — which is exactly the point if you're tired of crowded waterfalls. It's a drive-through and a 10-minute walk, not a destination. Treat it as the calm 30 minutes between geothermal stops.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities needed. A few local Reykjavík tour operators include Kleifarfvatn as a brief stop on Reykjanes day tours, but with your own car there's no reason to book one.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul>
+                <li>The shore drops off steeply in places — Kleifarvatn is one of Iceland's deepest lakes. Don't wade.</li>
+                <li>Water is cold year-round; do not enter.</li>
+                <li>The whole peninsula has active volcanic monitoring. If a swarm or eruption begins on the day of your visit, leave immediately and follow safetravel.is alerts.</li>
+                <li>No mobile coverage in some shoreline pockets — let someone know your route.</li>
+                <li>Gusty crosswinds on Route 42 — keep both hands on the wheel.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+                <li><a href="https://www.visitreykjanes.is/en/place/kleifarvatn" target="_blank">Visit Reykjanes — Kleifarvatn</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Kleifarvatn" target="_blank">Wikipedia — Kleifarvatn</a></li>
+                <li><a href="https://en.vedur.is/volcanoes/krysuvik/" target="_blank">Icelandic Met Office — Krýsuvík volcanic system</a></li>
+                <li><a href="https://safetravel.is" target="_blank">SafeTravel.is — current alerts</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Kleifarvatn" target="_blank">Google Maps — Kleifarvatn</a></li>
+            </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

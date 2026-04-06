@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eldhraun Lava Field - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🟢</span>
+        <h1>Eldhraun Lava Field</h1>
+        <div class="day-badges"><span class="day-badge">Day 4</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Eldhraun%2C_summer_2024_05.jpg/960px-Eldhraun%2C_summer_2024_05.jpg" alt="Eldhraun Lava Field" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>63.7536, -17.9772</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 4</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-18.0072%2C63.7386%2C-17.9472%2C63.7686&amp;layer=mapnik&amp;marker=63.7536%2C-17.9772" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=63.7536,-17.9772" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Eldhraun is the largest lava flow on Earth from a single eruption in recorded history — 565 km² of lava produced by the catastrophic <strong>Laki fissure eruption of 1783-1784</strong>, which killed roughly a quarter of Iceland's population through famine and poisoning and lowered global temperatures for years. Today the field is blanketed in a thick, soft layer of <strong>woolly fringe moss</strong> (Racomitrium lanuginosum), a unique ecosystem that takes <strong>decades to centuries</strong> to recover from a single footstep. Route 1 cuts straight through it on the drive between Vik and Kirkjubaejarklaustur.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box" style="border-left-color: #EF4444; background: #fef2f2;"><strong>🚫 DO NOT WALK ON THE MOSS</strong><br>This is the most important rule on the south coast. The moss is extremely fragile — a single footprint can leave a visible scar for <strong>10-50+ years</strong>. The 2019 Justin Bieber music video shoot caused widespread damage to the moss here, and the site remains in recovery. <strong>Stay on the designated boardwalk and parking pull-off.</strong> Iceland actively fines visitors for off-trail walking on protected moss.</div><p><strong>April 2026 conditions:</strong> Snow patches may remain in shaded hollows. The moss is still recovering from winter — even more fragile than in summer. The boardwalk is open year-round.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+            <div class="visit-step"><div class="visit-step-num">1</div><div class="visit-step-content"><strong>Pull off at the designated rest area</strong>Driving Route 1 east from Vik (~50 km), watch for the signed pull-off and boardwalk entry near coordinates 63.7536, -17.9772. There are a couple of pull-offs in the area — the main one has a wooden boardwalk and information panels. Free parking.<div class="step-meta">⏱️ 2 min · 📍 Designated rest area, Route 1</div></div></div><div class="visit-step"><div class="visit-step-num">2</div><div class="visit-step-content"><strong>Walk the boardwalk only</strong><strong>Critical:</strong> Stay on the wooden boardwalk. Do not step onto the moss for any reason — not for a photo, not to &quot;just touch it.&quot; The boardwalk gives you a complete view of the moss-covered lava in every direction.<div class="step-meta">⏱️ 10 min · 📍 Boardwalk</div></div></div><div class="visit-step"><div class="visit-step-num">3</div><div class="visit-step-content"><strong>Read the information panels</strong>Information panels at the boardwalk explain the 1783 Laki eruption — the scale of destruction, the global climate impact, and why the moss is protected. Worth the 5 minutes; transforms the visit from &quot;green rocks&quot; to &quot;site of one of the most consequential eruptions in human history.&quot;<div class="step-meta">⏱️ 5 min · 📍 Info panels</div></div></div><div class="visit-step"><div class="visit-step-num">4</div><div class="visit-step-content"><strong>Photograph the moss landscape from the boardwalk</strong>From the boardwalk you have all the angles you need. Wide for the rolling sea of green; tight for the moss texture detail. Resist the urge to step off for a &quot;better angle&quot; — there isn't one worth the damage.<div class="step-meta">⏱️ 10 min · 📍 Boardwalk vantage points</div></div></div><div class="visit-step"><div class="visit-step-num">5</div><div class="visit-step-content"><strong>Continue driving — viewing from the road</strong>After leaving the rest area, the next ~20 km of Route 1 cuts directly through the lava field. You can see it from the windows for the entire stretch. Total stop: 20-30 minutes is plenty.<div class="step-meta">⏱️ Drive · 📍 Route 1 east</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery"><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Eldhraun%2C_summer_2024_05.jpg/800px-Eldhraun%2C_summer_2024_05.jpg" alt="Eldhraun moss field"><div class="gallery-caption">Moss field · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Eldhraun%2C_summer_2024_01.jpg/800px-Eldhraun%2C_summer_2024_01.jpg" alt="Eldhraun lava close-up"><div class="gallery-caption">Lava texture · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Eldhraun%2C_summer_2024_03.jpg/800px-Eldhraun%2C_summer_2024_03.jpg" alt="Eldhraun panorama"><div class="gallery-caption">Panorama · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Eldhraun%2C_summer_2024_02.jpg/800px-Eldhraun%2C_summer_2024_02.jpg" alt="Eldhraun field with mountains"><div class="gallery-caption">Field with ridges · Wikimedia Commons</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p><ul><li><strong>Wide moss-and-mountains:</strong> 24-35 mm from the boardwalk facing inland — moss field foreground, distant volcanic ridges background. Soft overcast light brings out the moss color best; harsh sun blows out the green.</li><li><strong>Texture detail:</strong> 50-85 mm tighter shots of moss-covered lava forms. Look for "lava bombs" wearing moss caps.</li><li><strong>Person on boardwalk for scale:</strong> Shows the boardwalk and human scale against the field.</li><li><strong>Best light:</strong> Overcast or golden hour. Midday harsh sun is the worst.</li><li><strong>🚫 Drone:</strong> Discouraged here — the area is environmentally sensitive and busy with traffic. Some operators say drones are technically permitted away from the road, but the responsible call is to skip drones at Eldhraun. If you must, do so far from the boardwalk and from any people. See <a href="../planning.html#drone">Planning page</a> for general rules.</li><li><strong>🚫 Absolutely do not step on the moss for any photo, ever.</strong></li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Direct on Route 1, ~50 km east of Vik and ~10 km west of Kirkjubaejarklaustur. The signed rest area with the boardwalk is the legitimate stop. Paved highway, any car.</p><ul><li><strong>Parking: free</strong> at the rest area pull-off.</li><li><strong>No entry fee.</strong></li><li><strong>No facilities</strong> at the pull-off — use Kirkjubaejarklaustur (10 km east).</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>Quick 20-30 min stop on Day 4 driving east toward Skaftafell/Vatnajokull. Pair with Fjadrargljufur (~15 min farther east), Dverghamrar (5 min east) and Kirkjubaejarklaustur (lunch/fuel).</p><ul><li><strong>Best light:</strong> Overcast or soft morning/evening light for the moss colors.</li><li><strong>Crowds:</strong> Light. Many tour buses drive through but don't stop.</li><li><strong>Combine with:</strong> Dverghamrar, Fjadrargljufur, Kirkjubaejarklaustur — all clustered within 15 km.</li><li><strong>Time budget:</strong> 20-30 min.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google rating ~4.6. Reviews focus on the unique alien-landscape feel and the historical significance once people learn about Laki. Common complaint: visitors who didn't know about the moss-protection rule and saw others walking off-trail.</p><p><strong>Honest take:</strong> A high-impact stop relative to the time required. The moss-covered lava field has no real visual equivalent anywhere else on Earth, and the Laki history makes it more than just "green rocks." Just be the people who stay on the boardwalk.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities. The Laki crater row itself (the source of the eruption) is up an F-road and only accessible to 4x4 vehicles in summer; not feasible on this trip.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul><li><strong>Stay on the boardwalk.</strong> The moss is the protected feature. Damage is illegal and visible for decades.</li><li>Watch for traffic at the highway pull-off — Route 1 traffic moves fast.</li><li>Loose lava rock at the boardwalk edge can roll under foot.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul><li><a href="https://en.wikipedia.org/wiki/Eldhraun" target="_blank">Wikipedia — Eldhraun</a></li><li><a href="https://en.wikipedia.org/wiki/Laki" target="_blank">Wikipedia — Laki eruption (1783)</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Eldhraun+lava+field" target="_blank">Google Maps — Eldhraun</a></li><li><a href="https://www.ust.is/the-environment-agency-of-iceland/" target="_blank">Environment Agency of Iceland — Protected areas</a></li></ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

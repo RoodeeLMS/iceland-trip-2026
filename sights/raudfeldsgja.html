@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rauðfeldsgjá Gorge - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🪨</span>
+        <h1>Rauðfeldsgjá Gorge</h1>
+        <div class="day-badges"><span class="day-badge">Day 7</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://commons.wikimedia.org/wiki/Special:FilePath/Rau%C3%B0feldargj%C3%A1_01.jpg?width=1000" alt="Rauðfeldsgjá Gorge" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.7858, -23.5517</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 7</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-23.5817%2C64.7708%2C-23.5217%2C64.8008&amp;layer=mapnik&amp;marker=64.7858%2C-23.5517" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=64.7858,-23.5517" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p><strong>Rauðfeldsgjá</strong> is a narrow vertical slot cut into the side of Botnsfjall mountain on the south flank of Snæfellsnes. From the trailhead you walk 15-20 minutes uphill to the gash in the cliff, then squeeze inside between two walls of rock with a shallow stream running down the middle. It is named after a saga character (Bárður's nephew Rauðfeldur, said to have been pushed into the gorge). It is short, atmospheric, and a little bit of an adventure — but it has a SafeTravel warning attached for a reason.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box" style="border-left-color:#F59E0B; background:#fff7ed;"><strong>🟠 SafeTravel pin:</strong> Cold meltwater stream, slippery rocks, risk of <strong>flash flooding</strong> after heavy rain or sudden snowmelt. Per safetravel.is, do not enter further than knee-high water and turn back at any sign of rising flow.</div><p><strong>April 2026:</strong> Snowmelt from the slopes above is highest in spring. Stream flow may be stronger than summer photos suggest. Approach trail can be icy/muddy. Going in deeper than the first 20-30 m is not appropriate for our group.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+            <div class="visit-step"><div class="visit-step-num">1</div><div class="visit-step-content"><strong>Park at the small Rauðfeldsgjá lot</strong>Signposted gravel turnoff from Route 574, ~10 min east of Arnarstapi. Free lot for ~15 cars. Toilet kiosk usually present.<div class="step-meta">⏱️ 2 min · 📍 64.7858, -23.5517</div></div></div>
+<div class="visit-step"><div class="visit-step-num">2</div><div class="visit-step-content"><strong>Walk the 600 m path uphill to the gorge entrance</strong>Marked path crosses a small stream and climbs gently up the scree slope toward the dark vertical slit in the cliff. ~15-20 min one way. Path is rocky and can be muddy/icy in April. The gorge entrance is invisible until you are nearly at it.<div class="step-meta">⏱️ 15-20 min · 📍 600 m, ~80 m elevation</div></div></div>
+<div class="visit-step"><div class="visit-step-num">3</div><div class="visit-step-content"><strong>Step inside the slot — first chamber only</strong>At the entrance the stream runs out of the gorge over a low rock lip. Step in carefully (your feet will get wet). The walls rise 30+ m on either side and the channel is barely 1-2 m wide. The first 10-15 m is the "wow" — light from above, dripping water, classic slot canyon feel.<div class="step-meta">⏱️ 5 min · 📍 Gorge mouth</div></div></div>
+<div class="visit-step"><div class="visit-step-num">4</div><div class="visit-step-content"><strong>STOP at knee-high water</strong>Per safetravel.is and our own no-risk policy, do not wade deeper than knee height and do not climb the slippery rock ledge to "go further in." There is a small waterfall ~50 m in that some visitors scramble up to — this is genuinely dangerous in spring melt and we are not doing it. The first 15 m is enough for the experience and the photo.<div class="step-meta">⏱️ — · 📍 First chamber</div></div></div>
+<div class="visit-step"><div class="visit-step-num">5</div><div class="visit-step-content"><strong>Walk back, look at the view</strong>Retrace the 600 m path. On the way down you get a wide-open view south over Hraunhafnarvík bay and the Atlantic — better light and angle than on the way up.<div class="step-meta">⏱️ 15 min · 📍 Back to lot</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rau%C3%B0feldargj%C3%A1_01.jpg?width=800" alt="Gorge entrance from the path"><div class="gallery-caption">Gorge entrance from the path · Wikimedia Commons</div></div>
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rau%C3%B0feldargj%C3%A1_02.jpg?width=800" alt="Inside the slot canyon"><div class="gallery-caption">Inside the slot canyon · Wikimedia Commons</div></div>
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rau%C3%B0feldargj%C3%A1_03.jpg?width=800" alt="Rock walls"><div class="gallery-caption">Rock walls · Wikimedia Commons</div></div>
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Raudfelgljukur_-_Iceland_-_panoramio.jpg?width=800" alt="Approach view"><div class="gallery-caption">Approach view · Wikimedia Commons</div></div>
+</div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <ul>
+        <li><strong>Inside the slot:</strong> 14-24 mm ultra-wide pointed up, expose for the rock walls and let the sky blow out. Bring a microfiber cloth — dripping water on the lens is constant.</li>
+        <li><strong>Entrance from outside:</strong> Stand 20 m back on the path with a 35-50 mm and frame a person at the entrance for scale — the slot looks tiny from a distance, dramatic only when you put a human in it.</li>
+        <li><strong>Approach view:</strong> On the walk down, 24-35 mm with the stream foreground, sea on the horizon.</li>
+        <li><strong>Best light:</strong> Midday — the sun briefly reaches the bottom of the slot for "beam of light" shots only around solar noon (ICE time).</li>
+    </ul>
+    <p><strong>🚫 Drone:</strong> Cannot physically fly inside the gorge. Outside, you are flying over a SafeTravel-flagged area with people in confined terrain — keep clear of the entrance. No formal local ban, but obvious safety/courtesy reasons. See <a href="../planning.html#drone">Planning drone section</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Paved Route 574 to the small signed turnoff, free gravel lot. Any rental car. ~10 min east of Arnarstapi.</p><ul><li><strong>Parking:</strong> Free, ~15 spaces.</li><li><strong>Walk:</strong> 600 m uphill, ~80 m elevation gain, 15-20 min one way. Rocky path.</li><li><strong>Fees:</strong> None.</li><li><strong>Footwear:</strong> Waterproof boots strongly recommended — your feet will get wet at the gorge entrance.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <ul><li><strong>Allocate:</strong> 45-60 min total including the walk up.</li><li><strong>Best time:</strong> Around midday for light reaching into the slot.</li><li><strong>Skip if:</strong> Recent heavy rain, active snowmelt flood warning, or anyone in the group does not have waterproof footwear.</li><li><strong>Combine with:</strong> Arnarstapi (10 min west) — natural pairing on the Day 7 loop.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google Maps ~4.5 (3,000+ reviews). Praised as "unique" and "adventurous" — the slot canyon experience is genuinely uncommon in Iceland. Common complaints: getting wet feet (this is unavoidable, not a complaint), and disappointment if visitors expected a longer cave (it is a slot, not a cave system). <strong>Honest take:</strong> worth the 45 min if you have waterproof footwear and are okay with a brief uphill scramble. Skip if either condition fails.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities needed.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <p>Per <a href="https://safetravel.is" target="_blank">safetravel.is</a> pin for Rauðfeldsgjá:</p><ul><li>Cold meltwater stream — wet feet are guaranteed.</li><li>Slippery rocks inside the gorge.</li><li><strong>Flash flood risk</strong> after heavy rain or rapid snowmelt — turn around immediately if water level rises while you are inside.</li><li>Do not climb the inner waterfall ledge — multiple injuries on record.</li><li>Loose scree on the approach path — sturdy boots.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul><li><a href="https://safetravel.is" target="_blank">SafeTravel.is</a></li><li><a href="https://en.wikipedia.org/wiki/Rauðfeldsgjá" target="_blank">Wikipedia — Rauðfeldsgjá</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Rauðfeldsgjá" target="_blank">Google Maps — Rauðfeldsgjá</a></li></ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

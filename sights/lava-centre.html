@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lava Centre Hvolsvollur - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🌋</span>
+        <h1>Lava Centre Hvolsvollur</h1>
+        <div class="day-badges"><span class="day-badge">Day 3</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/20190622_LavaCentre_8364_%2848461160247%29.jpg/960px-20190622_LavaCentre_8364_%2848461160247%29.jpg" alt="Lava Centre Hvolsvollur" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>63.7497, -20.2267</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 3</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-20.2567%2C63.7347%2C-20.1967%2C63.7647&amp;layer=mapnik&amp;marker=63.7497%2C-20.2267" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=63.7497,-20.2267" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>The Lava Centre in Hvolsvollur is a modern interactive exhibition on Icelandic volcanism, plate tectonics, and earthquakes. Opened in 2017 and significantly upgraded since, it covers Iceland's major volcanic systems with floor-to-ceiling video installations, an earthquake simulator, a 12-minute panoramic film, and a long corridor showing real-time volcanic data. Located right on Route 1 in Hvolsvollur, it's the most polished volcano museum on the south coast and a strong rainy-day option.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 Open year-round</strong> — Typically 09:00-19:00 in summer, 09:00-17:00 in shoulder seasons. Verify on <a href="https://lavacentre.is/" target="_blank">lavacentre.is</a> the morning of your visit.</div><p>Given Iceland's ongoing volcanic activity (2024-2026 Reykjanes/Sundhnukur eruption series), the live-data corridor and recent eruption coverage are likely to be the highlight currently.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+            <div class="visit-step"><div class="visit-step-num">1</div><div class="visit-step-content"><strong>Park & enter</strong>Large free parking lot directly off Route 1 in Hvolsvollur. Café and gift shop are accessible without a ticket; the exhibition itself requires a ticket from the reception.<div class="step-meta">⏱️ 3 min · 📍 Lot, Hvolsvollur</div></div></div><div class="visit-step"><div class="visit-step-num">2</div><div class="visit-step-content"><strong>Buy tickets</strong>Adult exhibition + film: ~ISK 5,400 ≈ <strong>฿1,350</strong>. Exhibition only (no film): ~ISK 3,900 ≈ <strong>฿975</strong>. The combined ticket is the recommended option. Check current price on the official site.<div class="step-meta">⏱️ 5 min · 📍 Reception</div></div></div><div class="visit-step"><div class="visit-step-num">3</div><div class="visit-step-content"><strong>Watch the panoramic film first</strong>The 12-minute film in the auditorium is the orientation — drone footage of major Icelandic volcanic systems and recent eruptions. Watch this before walking the exhibition for context.<div class="step-meta">⏱️ 12 min · 📍 Cinema</div></div></div><div class="visit-step"><div class="visit-step-num">4</div><div class="visit-step-content"><strong>Volcanic systems corridor</strong>The main exhibition hallway has stations for each major Icelandic volcano (Hekla, Katla, Eyjafjallajokull, Grimsvotn, etc.) with interactive video panels and physical lava samples. Take your time; the depth here is the value.<div class="step-meta">⏱️ 30-40 min · 📍 Main exhibition</div></div></div><div class="visit-step"><div class="visit-step-num">5</div><div class="visit-step-content"><strong>Earthquake & tectonic plate room</strong>Dedicated room with a floor that shakes to demonstrate magnitude scale, a model showing the Mid-Atlantic Ridge running through Iceland, and live seismic data from the Icelandic Met Office.<div class="step-meta">⏱️ 10-15 min · 📍 Earthquake room</div></div></div><div class="visit-step"><div class="visit-step-num">6</div><div class="visit-step-content"><strong>Live-data corridor</strong>Long darkened hall with screens showing real-time volcanic and seismic activity from across Iceland — current alert levels, recent earthquakes, deformation data. Especially interesting given the active Reykjanes eruption series.<div class="step-meta">⏱️ 10 min · 📍 Live-data corridor</div></div></div><div class="visit-step"><div class="visit-step-num">7</div><div class="visit-step-content"><strong>Café & exit</strong>The café/gift shop is accessible to anyone (no ticket needed) — a useful coffee stop even if you skip the exhibition.<div class="step-meta">⏱️ 15 min · 📍 Café</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery"><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d7/20190622_LavaCentre_8364_%2848461160247%29.jpg/800px-20190622_LavaCentre_8364_%2848461160247%29.jpg" alt="Lava Centre exterior"><div class="gallery-caption">Exterior · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/20190622_LavaCentre_8366_%2848460990886%29.jpg/800px-20190622_LavaCentre_8366_%2848460990886%29.jpg" alt="Lava Centre architecture"><div class="gallery-caption">Architecture · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Hvolsv%C3%B6llur-02-Vulkanmuseum-2018-gje.jpg/800px-Hvolsv%C3%B6llur-02-Vulkanmuseum-2018-gje.jpg" alt="Lava Centre Hvolsvollur"><div class="gallery-caption">Building · Wikimedia Commons</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Indoor museum — no specific landscape photography here.</strong> Phone snaps of exhibits are fine; large camera setups feel out of place. The exhibition is dark in places (intentional for the video installations) so prepare for high ISO. <strong>🚫 No drones</strong> — entirely indoor, no relevance.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Direct on Route 1 in the town of Hvolsvollur, ~100 km from Reykjavik (~1.5h drive), 30 min west of Seljalandsfoss. Free parking, large lot. Any car.</p><ul><li><strong>Exhibition + film:</strong> ~ISK 5,400 ≈ <strong>฿1,350</strong> adult.</li><li><strong>Exhibition only:</strong> ~ISK 3,900 ≈ <strong>฿975</strong> adult.</li><li><strong>Café/shop:</strong> free entry, no ticket needed.</li><li><strong>Hours:</strong> typically 09:00-17:00/19:00 — verify on official site.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>Indoor option for a rainy/windy first stop on Day 3, or a context-setting first stop before the waterfalls. Allow 90-120 minutes total including the film.</p><ul><li><strong>Best timing:</strong> Open early — a great first stop on Day 3 before the south coast bus crowds reach Seljalandsfoss.</li><li><strong>Crowds:</strong> Moderate; tour buses include this on rainy days.</li><li><strong>Combine with:</strong> Seljalandsfoss + Gljufrabui (~30 min east); useful "warmup" before driving deeper into the south coast.</li><li><strong>Time budget:</strong> 90-120 min including the film and café.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google rating ~4.4. Reviews are mixed-positive: praise for the production quality, the panoramic film, and the live data; criticism that for ฿1,350 the experience is on the short side (some feel an hour is enough) and that some interactive panels were broken on visit.</p><p><strong>Honest take:</strong> Worth it if (a) it's raining/windy and outdoor sights are a wash, (b) anyone in the group is interested in geology/volcanoes, or (c) you want context before visiting the volcanic landscapes farther east. If the weather is perfect, the cost-benefit tilts toward skipping it and using the time outdoors.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities. Audio guide included with ticket.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <p>No specific hazards. Indoor museum, fully accessible.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul><li><a href="https://lavacentre.is/" target="_blank">Lava Centre — Official site</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Lava+Centre+Hvolsvollur" target="_blank">Google Maps — Lava Centre</a></li><li><a href="https://en.vedur.is/" target="_blank">Icelandic Met Office — Live volcanic activity</a></li></ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fridheimar Tomato Farm - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-blue: #0077B6; --aurora-green: #00B4D8; --deep-navy: #1a1a2e; --glacier-white: #F0F9FF; --ice-blue: #CAF0F8; --volcanic-black: #2D3748; --sunset-gold: #F59E0B; --moss-green: #10B981; --lava-red: #EF4444; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%); min-height: 100vh; color: var(--volcanic-black); line-height: 1.6; }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) { .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; } .navbar-menu.mobile-open { display: flex; } .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); } .menu-toggle { display: block; } }
+        .sight-hero { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%); color: white; padding: 3rem 2rem 2rem; text-align: center; }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin: 0 3px; }
+        .sight-hero .back-link { display: inline-block; margin-bottom: 15px; color: var(--aurora-green); text-decoration: none; font-size: 0.9em; }
+        .sight-hero .back-link:hover { color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .section { background: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); }
+        .section h2 { font-family: 'Playfair Display', serif; color: var(--deep-navy); font-size: 1.4em; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+        .status-box { padding: 12px 16px; border-radius: 8px; border-left: 4px solid var(--aurora-green); background: #f0f9ff; margin-bottom: 10px; }
+        .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 16px; }
+        .meta-item { background: #f8fafc; padding: 10px 12px; border-radius: 8px; font-size: 0.88em; }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+        .map-cta { display: inline-block; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9em; margin-top: 8px; }
+        .map-cta:hover { opacity: 0.9; }
+        .hero-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 12px; }
+        .gallery img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: transform 0.2s; }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+        .map-embed { width: 100%; height: 320px; border: 0; border-radius: 10px; margin-bottom: 10px; }
+        .visit-step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9em; }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+        .researched-note { text-align: center; font-size: 0.78em; color: #888; margin-top: 20px; padding: 10px; }
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🍅</span>
+        <h1>Fridheimar Tomato Farm</h1>
+        <div class="day-badges"><span class="day-badge">Day 2</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Iceland_-_2017-02-22_-_Fri%C3%B0heimar_Greenhouse_-_3661.jpg" alt="Fridheimar greenhouse with tomato vines and dining tables" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.1339, -20.4167</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 2</div>
+                <div class="meta-item"><strong>💰 Tomato soup</strong>~฿650 / person</div>
+                <div class="meta-item"><strong>📅 Reservation</strong>REQUIRED — book ahead</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-20.4467%2C64.1189%2C-20.3867%2C64.1489&amp;layer=mapnik&amp;marker=64.1339%2C-20.4167" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=64.1339,-20.4167" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Fridheimar is a working geothermal-powered tomato greenhouse in the village of Reykholt that opened a sit-down restaurant inside one of its growing houses. You eat at long tables surrounded by tomato vines and pollinating bumblebees, with the centrepiece being an unlimited tomato soup + homemade bread buffet that has become a Golden Circle institution. The family also runs an Icelandic horse farm next door with a horse show. This is the standard lunch stop for Day 2.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 Open daily 11:30-16:00</strong> for the kitchen (closed Dec 24/25/31, Jan 1). <strong>Reservations are required</strong> — walk-ins are routinely turned away during the lunch peak.</div>
+            <p><strong>Booking:</strong> Reserve via <a href="https://fridheimar.is/food-experience-menu/" target="_blank">fridheimar.is/food-experience-menu</a>, by email <a href="mailto:fridheimar@fridheimar.is">fridheimar@fridheimar.is</a>, or by phone <strong>+354 486 8894</strong>. Multiple sources (Tripadvisor 2026, Travel Addicts, Caitlin's blog) report that walk-ins are often refused or face 1-2 hour waits in peak season. <strong>Book at least a few days ahead, ideally 1-2 weeks.</strong></p>
+            <p><strong>April 2026 conditions:</strong> Quieter than peak summer but still busy mid-day. The greenhouse interior is warm year-round (~22°C) — bring layers you can shed.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+
+            <div class="visit-step">
+                <div class="visit-step-num">1</div>
+                <div class="visit-step-content">
+                    <strong>Pre-trip: book your reservation online</strong>
+                    Lock this in <em>before</em> the trip via <a href="https://fridheimar.is/food-experience-menu/" target="_blank">fridheimar.is</a>. Specify number of guests and a 30-min arrival window. They'll confirm by email. The reservation system is the single most important thing about this stop — without it you may not get in.
+                    <div class="step-meta">⏱️ 5 min booking · 📍 Pre-trip from home</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">2</div>
+                <div class="visit-step-content">
+                    <strong>Arrive at Fridheimar — park in the gravel lot</strong>
+                    Easy turn off Route 35 onto Route 359, signposted "Fridheimar". Free gravel parking lot. The entrance is the wooden building with the big greenhouse attached. Toilets inside. Check in at the host stand and they'll seat you in the greenhouse dining room.
+                    <div class="step-meta">⏱️ 5 min · 📍 Fridheimar entry, 64.1339, -20.4167</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">3</div>
+                <div class="visit-step-content">
+                    <strong>Sit in the greenhouse, order the unlimited tomato soup</strong>
+                    The seating is at long communal tables among rows of tomato vines under grow lights. Order the <strong>tomato soup buffet</strong> (~฿650 / ISK 2,600 per adult) — comes with unlimited soup, fresh-baked bread, butter, sour cream, cucumber salsa, and basil you can clip yourself from the plant on the table. Tap water is included. This is the core experience and what most people come for.
+                    <div class="step-meta">⏱️ 30-45 min · 📍 Greenhouse dining room</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">4</div>
+                <div class="visit-step-content">
+                    <strong>Try the side menu add-ons (optional)</strong>
+                    Beyond the soup, the menu includes <strong>tomato pasta</strong>, the <strong>Fridheimar salad</strong> (~฿490 / ISK 1,950) made from on-site greenhouse vegetables, tomato cheesecake and apple pie for dessert, and Fridheimar's house-made tomato ketchup and chutney for sale. The salad is genuinely good if you want a green addition. Their ice cream is also tomato-based and surprisingly good.
+                    <div class="step-meta">⏱️ Add 10-15 min · 📍 Same table</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">5</div>
+                <div class="visit-step-content">
+                    <strong>Walk around the greenhouse and read the info displays</strong>
+                    Before or after eating, walk to the back of the greenhouse where info displays explain how the operation works: 100% geothermal heat and electricity, bumblebees imported from the Netherlands as pollinators, year-round Icelandic tomato production at ~370 tonnes/year. There's a bee box you can see the bumblebees coming and going from. Genuinely interesting — Iceland imports almost all its produce, so this place is a small agricultural anomaly.
+                    <div class="step-meta">⏱️ 10 min · 📍 Back of greenhouse</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">6</div>
+                <div class="visit-step-content">
+                    <strong>Optional: walk to the horse stable (no booking needed for the visit, paid for the show)</strong>
+                    Fridheimar also runs an Icelandic horse farm with daily 30-min horse shows demonstrating the famous five gaits of the breed. Show prices around ฿2,500-3,000/person, separate booking. If you're not booked for the show, you can usually still walk over and look at the horses in the paddock for free.
+                    <div class="step-meta">⏱️ 15 min walk-by, 30 min for show · 📍 Horse stable, 100m from greenhouse</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">7</div>
+                <div class="visit-step-content">
+                    <strong>Pay, browse the gift shop, drive on</strong>
+                    Settle the bill (card accepted, no need for ISK cash). The gift shop sells the house ketchup, salsa, tomato schnapps, and tomato-themed merchandise. From here it's ~10 min north to Geysir if you're doing the standard order (Thingvellir → Bruarfoss → lunch → Geysir → Gullfoss → Kerid).
+                    <div class="step-meta">⏱️ 10 min · 📍 Gift shop & onward to Geysir</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Iceland_-_2017-02-22_-_Fri%C3%B0heimar_Greenhouse_-_3661.jpg" alt="Fridheimar greenhouse interior with tomato vines">
+                    <div class="gallery-caption">Greenhouse dining · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/Fridheimar_Tomatoes.jpg" alt="Fridheimar tomatoes on the vine">
+                    <div class="gallery-caption">Vine tomatoes · Wikimedia Commons</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p>
+            <ul>
+                <li><strong>Wide shot down a row of vines:</strong> 24-35 mm at the end of a planting aisle, leading lines down the rows under the warm grow lights. Best with no people for symmetry.</li>
+                <li><strong>Soup bowl + vines background:</strong> Shoot the bright red bowl on the table with the tomato vines softly out of focus behind it. Phone macro mode handles this well.</li>
+                <li><strong>Lighting:</strong> The grow lights are warm/orange — set white balance manually (~3500K) or shoot RAW. Auto WB will go yellow.</li>
+                <li><strong>No drones inside the greenhouse</strong> — obviously. The bumblebees alone make it a no-go.</li>
+            </ul>
+            <p><strong>Drone:</strong> Outside, no special restrictions on the farm property, but it's a private working business — be polite, don't fly over horses or other guests, and ask staff if uncertain. General Iceland drone rules: <a href="../planning.html#drone">Planning page</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Paved Route 359 off Route 35, 100 m off the main Golden Circle road. Any 2WD rental car. No detour to speak of.</p>
+            <ul>
+                <li><strong>From Bruarfoss:</strong> ~15 min south on Route 37 → 35 → 359.</li>
+                <li><strong>From Geysir:</strong> ~15 min south on Route 35 → 359.</li>
+                <li><strong>From Reykjavik direct:</strong> ~1h30 / 95 km via Route 1 → 35 → 359.</li>
+                <li><strong>Parking:</strong> Free gravel lot at the entrance.</li>
+                <li><strong>Cost:</strong> Tomato soup buffet ~฿650 (ISK 2,600); salad ~฿490 (ISK 1,950); other dishes ฿500-900. Greenhouse visit only (no meal) ~฿250 (ISK 1,000) per person depending on group size.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>Lunch stop, ~60-75 minutes including the greenhouse walk. Slot it between morning and afternoon Golden Circle sights — typically <strong>after Bruarfoss, before Geysir</strong>. Aim for an 12:30 or 13:00 reservation to fit naturally between morning and afternoon stops.</p>
+            <ul>
+                <li><strong>Reservation timing:</strong> 11:30-12:00 = quietest; 12:30-13:30 = busiest; 14:00-15:00 = quieter again. Kitchen closes at 16:00 sharp.</li>
+                <li><strong>Combine with:</strong> Bruarfoss (15 min away), Geysir (15 min away), Gullfoss (25 min away). It's geographically central to all of Day 2's stops.</li>
+                <li>Group note: book a single reservation for all 4 of us at one time slot.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Tripadvisor: ~4.5 stars across 8,000+ reviews. Praised for the unique greenhouse-dining concept, the genuinely good soup, the bottomless refills, and friendly staff. Featured in major guidebooks (Lonely Planet, Rough Guide) and on Anthony Bourdain's <em>No Reservations</em>.</p>
+            <p><strong>Honest take:</strong> Slightly overpriced if you're judging by soup-and-bread alone — ฿650 is a lot for a bowl of tomato soup back home. But factor in the unlimited refills, the unique setting, the bread quality, and the fact that it's a working agricultural showcase, and the value gets reasonable. Reviewers who arrive expecting a fancy restaurant are disappointed; reviewers who arrive expecting a memorable lunch in a working greenhouse love it. Manage expectations and book ahead. Worth doing once.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <ul>
+                <li><strong>Tomato soup buffet:</strong> ~฿650 (ISK 2,600) per adult, all-you-can-eat with bread, butter, cucumber salsa. Booking required.</li>
+                <li><strong>Greenhouse-only visit</strong> (no meal): ~฿250 (ISK 1,000) / pp depending on group size.</li>
+                <li><strong>Horse show:</strong> ~฿2,500-3,000 per adult, ~30 min, separate booking.</li>
+                <li><strong>Combined greenhouse + stable visit</strong> for groups: special pricing — see <a href="https://fridheimar.is/tourist-services/" target="_blank">fridheimar.is/tourist-services</a>.</li>
+                <li>Booking: <a href="https://fridheimar.is/" target="_blank">fridheimar.is</a> · <a href="mailto:fridheimar@fridheimar.is">fridheimar@fridheimar.is</a> · +354 486 8894</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul>
+                <li><strong>Bumblebees in the greenhouse</strong> — they're docile pollinators and don't sting unless seriously provoked, but anyone with a severe bee allergy should mention it on booking and consider sitting near the entrance.</li>
+                <li><strong>Warm interior (~22°C)</strong> — be ready to shed jackets and outer layers.</li>
+                <li><strong>Slippery floor</strong> when wet boots track in snow/water — they have mats but watch your step.</li>
+                <li>No SafeTravel.is alerts active for this location.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+                <li><a href="https://fridheimar.is/" target="_blank">Fridheimar — official site</a></li>
+                <li><a href="https://fridheimar.is/food-experience-menu/" target="_blank">Fridheimar — food experience & menu (booking)</a></li>
+                <li><a href="https://fridheimar.is/tourist-services/" target="_blank">Fridheimar — tourist services & horse show</a></li>
+                <li><a href="https://www.tripadvisor.com/Restaurant_Review-g608882-d8413401-Reviews-Frioheimar_Tomato_Farm-Reykholt_South_Region.html" target="_blank">Tripadvisor — Fridheimar reviews</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Fridheimar+Tomato+Farm" target="_blank">Google Maps — Fridheimar</a></li>
+            </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer><p>Iceland Trip 2026 | Part of the Sights guide</p></footer>
+
+    <script>
+        function toggleMobileMenu() { document.getElementById('navMenu').classList.toggle('mobile-open'); }
+    </script>
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barnafoss (Children's Falls) - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">💦</span>
+        <h1>Barnafoss (Children's Falls)</h1>
+        <div class="day-badges"><span class="day-badge">Day 6</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://commons.wikimedia.org/wiki/Special:FilePath/Panorama%20Barnafossar%201%20copia.jpg?width=1200" alt="Barnafoss waterfall" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.7028, -20.9756</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 6 (West / Silver Circle)</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-21.0056%2C64.6878%2C-20.9456%2C64.7178&amp;layer=mapnik&amp;marker=64.7028%2C-20.9756" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=64.7028,-20.9756" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Barnafoss — "Children's Falls" — sits ~300 m upstream of Hraunfossar on the same Hvita river. Where Hraunfossar is wide and gentle, Barnafoss is the opposite: a violent, churning blue-white rapid forced through a narrow basalt cleft. Its name comes from a folk legend: two children from a nearby farm were said to have crossed a natural stone arch over the falls one Christmas and drowned. The grieving mother had the arch destroyed (some accounts say by curse) so no one would die there again. Visit it as the second half of the Hraunfossar stop — same parking lot, 5 minute walk.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box">
+                <strong>🟢 Open year-round, free, no closures</strong> — Path and footbridge from Hraunfossar are accessible all year. No active SafeTravel alert.
+            </div>
+            <p><strong>April 2026 conditions:</strong> Spring melt = peak flow and the falls look most dramatic. Spray on the footbridge can freeze overnight; the metal grating gets slick — micro-spikes recommended in early morning. The path from Hraunfossar is short and well-marked; no winter route closure has been reported.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+
+            <div class="visit-step">
+                <div class="visit-step-num">1</div>
+                <div class="visit-step-content">
+                    <strong>Start from the Hraunfossar parking lot</strong>
+                    Same lot, same restrooms (1,000 ISK / ~฿250 cash). If you've already done Hraunfossar, just continue east on the marked path along the river. Total walking from car to Barnafoss is ~5 min one way.
+                    <div class="step-meta">⏱️ 0 min · 📍 Shared lot, off Rd 518</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">2</div>
+                <div class="visit-step-content">
+                    <strong>Cross the footbridge over the Hvita gorge</strong>
+                    The metal-and-wood bridge spans the river between the two falls. Mid-bridge is the only spot you can look directly down into the narrow rapid below. Hold the rail — spray from peak spring flow makes the grating slick.
+                    <div class="step-meta">⏱️ 3 min · 📍 Footbridge between Hraunfossar & Barnafoss</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">3</div>
+                <div class="visit-step-content">
+                    <strong>Main viewpoint at the head of the rapid</strong>
+                    A short path leads to a fenced platform right above the narrow basalt cleft where the river compresses and explodes. This is where the natural stone arch is said to have stood. The blue-white colour and the violence of the water make it photographically very different from the gentle Hraunfossar curtain a minute back the way you came.
+                    <div class="step-meta">⏱️ 10 min · 📍 Barnafoss main platform</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">4</div>
+                <div class="visit-step-content">
+                    <strong>Walk back via the upstream side</strong>
+                    On the return, take the slightly higher path to see the Hraunfossar lava cliff from a different angle. Read the Barnafoss legend interpretive sign at the trailhead before you leave — the story is genuinely moody and the kind of context the photos don't carry on their own.
+                    <div class="step-meta">⏱️ 5 min · 📍 Return path to lot</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+                <div>
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Panorama%20Barnafossar%201%20copia.jpg?width=800" alt="Barnafoss panorama">
+                    <div class="gallery-caption">Panorama · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Barnafoss%2C%20Iceland%2C%2020230504%201518%204735.jpg?width=800" alt="Barnafoss rapids closeup">
+                    <div class="gallery-caption">Rapids closeup · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Barnafoss%20closeup%202014.JPG?width=800" alt="Barnafoss detail">
+                    <div class="gallery-caption">Detail of cleft · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hraunfossar%20%26%20Barnafoss%20%2832400961843%29.jpg?width=800" alt="Both falls together">
+                    <div class="gallery-caption">Hraunfossar & Barnafoss · Wikimedia Commons</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p>
+            <ul>
+                <li><strong>Top-down from the platform:</strong> 24-50 mm to fit the full curve of the rapid in frame. 1/250 sec or faster freezes the white-water texture; 1/4 sec turns it to silk — shoot both.</li>
+                <li><strong>From the footbridge looking upstream:</strong> Wide angle 16-24 mm captures the cleft and the basalt walls framing it.</li>
+                <li><strong>Best light:</strong> Overcast strongly preferred — direct sun blows out the white water and ruins the blue-green colour. April's typically grey sky here is an asset.</li>
+                <li><strong>Pair with Hraunfossar:</strong> Same visit, totally different visual style — use them as a contrast pair in the trip album.</li>
+            </ul>
+            <p><strong>🚁 Drone:</strong> No site-specific ban. Same notes as Hraunfossar — wind funnels through the gorge, launch from the parking-lot side, mind any visitors on the platforms. For general Iceland drone law see the <a href="../planning.html#drone">Drone section on the Planning page</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Same parking lot as Hraunfossar (off Route 518). Free, paved, 5 min flat walk to Barnafoss along marked path.</p>
+            <ul>
+                <li><strong>Parking:</strong> Free, shared with Hraunfossar.</li>
+                <li><strong>Restrooms:</strong> 1,000 ISK ≈ <strong>฿250</strong>, cash only.</li>
+                <li><strong>Walk:</strong> ~300 m one way, easy gravel path with footbridge.</li>
+                <li><strong>Entry:</strong> Free.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>Always combined with Hraunfossar — they share a lot and trail. Combined time: ~45 min for both. Don't try to "skip" Barnafoss to save time; it's literally on the path between the lot and the second half of the Hraunfossar viewpoints.</p>
+            <ul>
+                <li><strong>Best light:</strong> Overcast or early morning. Avoid harsh midday sun.</li>
+                <li><strong>Crowds:</strong> Even quieter than Hraunfossar — most visitors stop at the main deck and turn around. April will be empty.</li>
+                <li><strong>Combine with:</strong> Hraunfossar (mandatory), Deildartunguhver hot spring (~30 km south).</li>
+                <li>Allocate ~15 min for the Barnafoss portion after the main Hraunfossar viewing.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Tripadvisor rating ~4.5/5. Visitors usually describe it as the "darker, angrier" companion to Hraunfossar, and value it most for the legend and the contrasting visual character. Common note: photos undersell how loud and physical it is in person.</p>
+            <p><strong>Honest take:</strong> On its own, not a destination — just another short basalt rapid. As the second half of the Hraunfossar stop it's worth every minute. The legend genuinely changes how the spot reads, so read the sign before you stare.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities needed.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul>
+                <li>The platforms are well-fenced, but the path from the footbridge can be slick from spray and ice in April — micro-spikes recommended.</li>
+                <li>Do not step over the railing. The current is fatal and there is no recovery.</li>
+                <li>Hold children's hands at the footbridge and the main platform. The legend is not a metaphor — the river really did kill two kids here.</li>
+                <li>No active SafeTravel alert at time of research.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+                <li><a href="https://en.wikipedia.org/wiki/Barnafoss" target="_blank">Wikipedia — Barnafoss</a></li>
+                <li><a href="https://guidetoiceland.is/travel-iceland/drive/barnafoss" target="_blank">Guide to Iceland — Barnafoss travel guide</a></li>
+                <li><a href="https://www.west.is/en/place/barnafoss-childrens-falls" target="_blank">West.is — Barnafoss legend</a></li>
+                <li><a href="https://www.world-of-waterfalls.com/waterfalls/iceland-barnafoss/" target="_blank">World of Waterfalls — Barnafoss</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Barnafoss+Iceland" target="_blank">Google Maps — Barnafoss</a></li>
+            </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

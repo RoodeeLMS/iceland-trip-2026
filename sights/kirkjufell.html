@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirkjufell & Kirkjufellsfoss - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🏔️</span>
+        <h1>Kirkjufell & Kirkjufellsfoss</h1>
+        <div class="day-badges"><span class="day-badge">Day 8</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://commons.wikimedia.org/wiki/Special:FilePath/Kirkjufell_Mountain_in_Grundarfj%C3%B6r%C3%B0ur.jpg?width=1000" alt="Kirkjufell & Kirkjufellsfoss" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.9419, -23.3069</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 8</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-23.3369%2C64.9269%2C-23.2769%2C64.9569&amp;layer=mapnik&amp;marker=64.9419%2C-23.3069" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=64.9419,-23.3069" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p><strong>Kirkjufell</strong> ("Church Mountain") is a 463 m freestanding peak on the north coast of Snæfellsnes near the fishing town of Grundarfjörður. Its symmetrical, almost-conical profile and isolation from any neighbouring ridge make it the most photographed mountain in Iceland and one of the most photographed mountains in the world. The classic shot pairs it with the small three-tier waterfall <strong>Kirkjufellsfoss</strong>, which sits ~500 m to the west and frames the mountain perfectly when shot from the wooden viewing platform. <em>Game of Thrones</em> fans know it as "the mountain shaped like an arrowhead" north of the Wall (Seasons 6-7). Aurora photographers know it as the single most iconic foreground in the country.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 Open year-round, free.</strong> Small parking fee for the waterfall lot. Mountain hike is technical and not part of our plan; the photo viewpoint is fully accessible.</div><p><strong>April 2026:</strong> The waterfall path can have icy patches — wear sturdy shoes or microspikes. Snow on Kirkjufell's summit and upper slopes is normal in April and arguably <em>improves</em> the photo. Daylight is ~14 hours so both sunrise (~06:30) and sunset (~20:30) are humanly accessible. Aurora season is winding down but still possible on clear cold nights through mid-April.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+            <div class="visit-step"><div class="visit-step-num">1</div><div class="visit-step-content"><strong>Park at the Kirkjufellsfoss lot (paid)</strong>From Grundarfjörður drive ~3 km west on Route 54 to the obvious paved lot on the north side of the road, directly across from the waterfall and mountain. <strong>Paid parking</strong>: ISK 1,000 ≈ <strong>฿250</strong>, payable via the Parka app or on-site machine. Lot is well signed.<div class="step-meta">⏱️ 2 min · 📍 Lot, 64.9419, -23.3069</div></div></div>
+<div class="visit-step"><div class="visit-step-num">2</div><div class="visit-step-content"><strong>Walk through the gate to the waterfall path</strong>A pedestrian gate leads from the lot onto a graded gravel path. After ~50 m the path forks: left goes down to the lower viewing platform (riverside), right stays on the upper bench. Take left first.<div class="step-meta">⏱️ 2 min · 📍 ~50 m from lot</div></div></div>
+<div class="visit-step"><div class="visit-step-num">3</div><div class="visit-step-content"><strong>Lower platform: the iconic shot</strong>At the wooden lower platform, the small three-tier waterfall is in your immediate foreground and Kirkjufell rises directly behind it across the river. <strong>This is the shot</strong> — the same composition you have seen on every Iceland calendar, every postcard, and the Game of Thrones location reel. Stand on the platform, do not climb on the wet rocks beside it. Tripod legs fit between the wooden planks.<div class="step-meta">⏱️ 20-30 min · 📍 Lower viewing platform</div></div></div>
+<div class="visit-step"><div class="visit-step-num">4</div><div class="visit-step-content"><strong>Upper bench: side angle and mountain isolation</strong>Walk back up to the fork and continue ~100 m on the upper path. From here you get a side-on angle on the falls and a cleaner isolation of the mountain (waterfall out of frame). Useful as a second composition.<div class="step-meta">⏱️ 10 min · 📍 ~150 m from lot</div></div></div>
+<div class="visit-step"><div class="visit-step-num">5</div><div class="visit-step-content"><strong>Cross the road for a "no waterfall" mountain portrait</strong>Cross Route 54 carefully (fast traffic, blind crest both directions — really wait for clear gaps). On the south side a small gravel pull-off gives a clean unobstructed mountain portrait against the fjord. 35-50 mm works.<div class="step-meta">⏱️ 10 min · 📍 South side of Rt 54</div></div></div>
+<div class="visit-step"><div class="visit-step-num">6</div><div class="visit-step-content"><strong>Optional: drive 2 km west for the "mountain reflection" shot</strong>From the lot, continue ~2 km west on Route 54. The road skirts the bay and at low tide the wet sand reflects Kirkjufell — a very different image with no waterfall. Pull off on the shoulder safely. Best at dead-calm conditions and low tide.<div class="step-meta">⏱️ 15 min · 📍 ~2 km W of lot</div></div></div>
+<div class="visit-step"><div class="visit-step-num">7</div><div class="visit-step-content"><strong>Optional: detour into Grundarfjörður town (5 min)</strong>3 km east of the lot the small fishing town has a harbour, a Bonus supermarket (cheapest groceries on the peninsula), restrooms, and a coffee shop (Bjargarsteinn or Laki Tours café). A useful logistical stop more than a sight.<div class="step-meta">⏱️ 20-30 min · 📍 Grundarfjörður town</div></div></div>
+<div class="visit-step"><div class="visit-step-num">8</div><div class="visit-step-content"><strong>NOTE: Do NOT attempt to climb Kirkjufell</strong>The summit hike has fixed ropes, exposed scrambles and several fatalities on record. Per safetravel.is and local guide outfits, it is not a casual hike and is genuinely dangerous in wet/icy conditions. Photo from below — that is the only Kirkjufell experience our group is doing.<div class="step-meta">⏱️ — · 📍 N/A</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kirkjufell_Mountain_in_Grundarfj%C3%B6r%C3%B0ur.jpg?width=800" alt="Kirkjufell with the waterfall in front"><div class="gallery-caption">Kirkjufell with the waterfall in front · Wikimedia Commons</div></div>
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kirkjufell_and_its_reflection_%2850881971432%29.jpg?width=800" alt="Kirkjufell reflected"><div class="gallery-caption">Kirkjufell reflected · Wikimedia Commons</div></div>
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Kirkjufell_Panorama_-_Flickr_-_Simaron.jpg?width=800" alt="Wide panorama"><div class="gallery-caption">Wide panorama · Wikimedia Commons</div></div>
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Northern_Lights_over_Kirkjufell_seen_from_Grundarfj%C3%B6r%C3%B0ur.jpg?width=800" alt="Aurora over Kirkjufell"><div class="gallery-caption">Aurora over Kirkjufell · Wikimedia Commons</div></div>
+</div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>This is the highest-priority photo stop of the trip.</strong> Plan it like a real shoot, not a snapshot.</p>
+    <ul>
+        <li><strong>The iconic shot — lower platform:</strong> 16-24 mm ultra-wide. Tripod, f/11, focus 1/3 into the scene. Both Kirkjufellsfoss tiers in foreground, Kirkjufell vertical in background. Slow shutter (1/4 to 2 sec) to silk the falls — bring a circular polariser and a 3-stop ND if you have one.</li>
+        <li><strong>Side angle — upper bench:</strong> 24-35 mm. Cleaner separation of falls and mountain. Less crowded than the lower platform.</li>
+        <li><strong>Mountain alone:</strong> 50-85 mm portrait orientation from the south side of Route 54. Eliminates everything except the mountain and sky.</li>
+        <li><strong>Reflection shot:</strong> 24-35 mm from the bay 2 km west, low tide, dead calm only.</li>
+        <li><strong>Best light by month (April):</strong>
+            <ul>
+                <li>Sunrise (~06:30): warm light hits the east face of the mountain. Quietest crowds.</li>
+                <li>Sunset (~20:30): light wraps the south face, sky behind the mountain glows. Most popular slot.</li>
+                <li>Blue hour (~15-20 min after sunset): quietest of all, deeper colour, fewer visitors.</li>
+            </ul>
+        </li>
+        <li><strong>Aurora foreground:</strong> If forecast is active and sky is clear, this is the foreground in Iceland. Wide lens, ISO 1600-3200, 8-15 sec exposure, focus on the mountain edge then lock. April auroras are weaker than mid-winter but possible.</li>
+        <li><strong>Crowds:</strong> Tour buses arrive 11:00-15:00. April mornings are noticeably quieter than summer; even so, expect 5-15 other tripods at the lower platform at golden hour.</li>
+    </ul>
+    <p><strong>🚁 Drone:</strong> Kirkjufell is <em>outside</em> Snæfellsjökull National Park (the park is on the western tip), so the park permit rules do not apply here. However, the area is <strong>extremely popular</strong> with photographers and there have been complaints from locals and other shooters about drone noise ruining long-exposure shots and disturbing nesting birds on the mountain in spring/summer. Be courteous: ask other photographers, fly briefly and well off to the side, never directly over the waterfall platform with people on it. For general Iceland drone rules see <a href="../planning.html#drone">Planning drone section</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Paved Route 54 directly past the lot. Any rental car. ~3 km west of Grundarfjörður town.</p><ul><li><strong>Parking:</strong> Paid lot, ISK 1,000 ≈ <strong>฿250</strong> via Parka app or on-site machine. ~50 spaces. Fills up fast in summer; in April morning you will have it.</li><li><strong>Walk:</strong> 50-150 m flat gravel from lot to viewing platforms.</li><li><strong>Fees:</strong> Parking only. No fee for the falls or viewpoints themselves.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <ul>
+        <li><strong>Allocate:</strong> 60-90 min if you are serious about the photo (lower + upper + south side + maybe reflection). 30 min minimum if just passing.</li>
+        <li><strong>Best time of day:</strong> Sunrise (06:30) for quiet, sunset (20:30) for light, blue hour (20:45-21:00) for both. Avoid 11:00-15:00 unless you enjoy bus crowds.</li>
+        <li><strong>Combine with:</strong> Stykkishólmur (40 min east), Berserkjahraun lava field (30 min east on Route 54), Selvallafoss (45 min east). All four are the Day 8 north-coast loop.</li>
+        <li><strong>Hedge weather:</strong> If Day 8 morning is foggy, the mountain disappears entirely. Have a flexible itinerary so you can swap morning/afternoon.</li>
+    </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google Maps ~4.7 (15,000+ reviews) — one of the highest review counts in Iceland outside Reykjavik. Universally praised as a "must-stop" photo location. Honest complaints: paid parking (it is cheap), crowds in summer (avoidable with early/late timing), and the mountain occasionally being cloud-hidden. <strong>Honest take:</strong> meets the hype. The composition is genuinely as beautiful as the photos suggest, and unlike many over-photographed sights it loses nothing in person. The single highest-priority photo stop on the Snæfellsnes leg of the trip.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities needed. <strong>Do not</strong> book a "Kirkjufell summit hike" — it is dangerous in shoulder season and not what we are here for. Grundarfjörður town has Laki Tours running orca and seabird boat tours from the harbour (winter orca season runs through March-April), worth checking if interested: <a href="https://lakitours.com" target="_blank">lakitours.com</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul>
+        <li>Wet rocks and slippery wooden platform — sturdy shoes essential, microspikes if icy.</li>
+        <li><strong>Do not climb on the waterfall rocks</strong> — every year someone falls.</li>
+        <li>Crossing Route 54 — fast traffic both ways, blind crest. Wait for full clear gap.</li>
+        <li><strong>Do not attempt the summit hike</strong> — multiple deaths on record. Photo from below only.</li>
+        <li>Watch tripod placement on the platform — leaving gear unattended in a crowd is asking for it to be kicked.</li>
+    </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+        <li><a href="https://en.wikipedia.org/wiki/Kirkjufell" target="_blank">Wikipedia — Kirkjufell</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=Kirkjufell" target="_blank">Google Maps — Kirkjufell</a></li>
+        <li><a href="https://lakitours.com" target="_blank">Laki Tours (Grundarfjörður — boat tours)</a></li>
+        <li><a href="https://safetravel.is" target="_blank">SafeTravel.is — summit hike warnings</a></li>
+    </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

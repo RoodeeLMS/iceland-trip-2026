@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ytri-Tunga Seal Beach - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-blue:#0077B6; --aurora-green:#00B4D8; --deep-navy:#1a1a2e; --glacier-white:#F0F9FF; --ice-blue:#CAF0F8; --volcanic-black:#2D3748; --sunset-gold:#F59E0B; --moss-green:#10B981; --lava-red:#EF4444; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:linear-gradient(135deg,#F0F9FF 0%,#E0F7FA 50%,#F0F9FF 100%); min-height:100vh; color:var(--volcanic-black); line-height:1.6; }
+        .navbar { background:linear-gradient(135deg,var(--deep-navy) 0%,#16213e 100%); padding:15px 20px; position:sticky; top:0; z-index:1000; box-shadow:0 4px 20px rgba(0,0,0,0.3); }
+        .navbar-container { max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; }
+        .navbar-brand { color:var(--aurora-green); font-family:'Playfair Display',serif; font-size:1.3em; font-weight:700; text-decoration:none; }
+        .navbar-menu { display:flex; gap:3px; flex-wrap:wrap; }
+        .navbar-item { color:white; text-decoration:none; padding:8px 12px; border-radius:4px; transition:0.3s; font-size:0.85em; white-space:nowrap; }
+        .navbar-item:hover { background:rgba(0,180,216,0.2); color:var(--aurora-green); }
+        .navbar-item.active { background:linear-gradient(135deg,var(--primary-blue),var(--aurora-green)); color:white; font-weight:bold; }
+        .menu-toggle { display:none; background:none; border:none; color:white; font-size:1.5em; cursor:pointer; padding:5px; }
+        @media (max-width:768px){.navbar-menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:linear-gradient(135deg,var(--deep-navy) 0%,#16213e 100%);padding:10px 0;}.navbar-menu.mobile-open{display:flex;}.navbar-item{padding:12px 20px;border-radius:0;border-bottom:1px solid rgba(255,255,255,0.1);}.menu-toggle{display:block;}}
+        .sight-hero { background:linear-gradient(135deg,var(--deep-navy) 0%,#16213e 50%,var(--primary-blue) 100%); color:white; padding:3rem 2rem 2rem; text-align:center; }
+        .sight-hero .emoji { font-size:3em; display:block; margin-bottom:8px; }
+        .sight-hero h1 { font-family:'Playfair Display',serif; font-size:2.2em; margin-bottom:10px; }
+        .sight-hero .day-badges { margin-top:10px; }
+        .sight-hero .day-badge { display:inline-block; background:rgba(255,255,255,0.2); padding:4px 12px; border-radius:12px; font-size:0.85em; margin:0 3px; }
+        .sight-hero .back-link { display:inline-block; margin-bottom:15px; color:var(--aurora-green); text-decoration:none; font-size:0.9em; }
+        .sight-hero .back-link:hover { color:white; }
+        .container { max-width:900px; margin:0 auto; padding:2rem; }
+        .section { background:white; border-radius:12px; padding:24px 28px; margin-bottom:20px; box-shadow:0 4px 15px rgba(0,0,0,0.06); }
+        .section h2 { font-family:'Playfair Display',serif; color:var(--deep-navy); font-size:1.4em; margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+        .section h2 .icon { font-size:1.1em; }
+        .section p { margin-bottom:10px; color:#444; }
+        .section ul { margin:8px 0 8px 24px; }
+        .section ul li { margin-bottom:6px; color:#444; }
+        .section a { color:var(--primary-blue); text-decoration:none; }
+        .section a:hover { text-decoration:underline; }
+        .status-box { padding:12px 16px; border-radius:8px; border-left:4px solid var(--aurora-green); background:#f0f9ff; margin-bottom:10px; }
+        .meta-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:10px; margin-bottom:16px; }
+        .meta-item { background:#f8fafc; padding:10px 12px; border-radius:8px; font-size:0.88em; }
+        .meta-item strong { color:var(--deep-navy); display:block; font-size:0.8em; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:3px; }
+        .map-cta { display:inline-block; background:linear-gradient(135deg,var(--primary-blue),var(--aurora-green)); color:white; padding:10px 20px; border-radius:8px; text-decoration:none; font-weight:600; font-size:0.9em; margin-top:8px; }
+        .map-cta:hover { opacity:0.9; }
+        .hero-image { width:100%; max-height:400px; object-fit:cover; border-radius:12px; margin-bottom:20px; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
+        .gallery { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin-top:12px; }
+        .gallery img { width:100%; height:140px; object-fit:cover; border-radius:8px; cursor:pointer; transition:transform 0.2s; }
+        .gallery img:hover { transform:scale(1.03); }
+        .gallery-caption { font-size:0.75em; color:#888; text-align:center; margin-top:4px; }
+        .map-embed { width:100%; height:320px; border:0; border-radius:10px; margin-bottom:10px; }
+        .visit-step { display:flex; gap:14px; padding:14px 0; border-bottom:1px solid #f0f0f0; }
+        .visit-step:last-child { border-bottom:none; }
+        .visit-step-num { flex-shrink:0; width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,var(--primary-blue),var(--aurora-green)); color:white; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:0.9em; }
+        .visit-step-content { flex:1; }
+        .visit-step-content strong { color:var(--deep-navy); display:block; margin-bottom:4px; }
+        .visit-step-content .step-meta { font-size:0.78em; color:#888; margin-top:4px; }
+        .researched-note { text-align:center; font-size:0.78em; color:#888; margin-top:20px; padding:10px; }
+        footer { background:var(--deep-navy); color:white; text-align:center; padding:1.5rem; margin-top:3rem; font-size:0.85em; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🦭</span>
+        <h1>Ytri-Tunga Seal Beach</h1>
+        <div class="day-badges"><span class="day-badge">Day 7</span></div>
+    </div>
+
+    <div class="container">
+        <img class="hero-image" src="https://commons.wikimedia.org/wiki/Special:FilePath/20%20-%20Seehunde%20am%20Strand%20bei%20Ytri-Tunga.jpg?width=1000" alt="Harbor seals on rocks at Ytri-Tunga beach" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.7961, -23.0789</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 7</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-23.1089%2C64.7811%2C-23.0489%2C64.8111&amp;layer=mapnik&amp;marker=64.7961%2C-23.0789" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=64.7961,-23.0789" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Ytri-Tunga is a low, golden-sand beach on the south side of the Snæfellsnes peninsula and the most reliable place on the entire west coast to see <strong>harbor seals</strong> hauled out on offshore rocks. There's no cliff, no hike, and no entry fee — you walk 100 m from a small farm parking lot, follow the marked path to the rocky point, and look for seal-shaped lumps on the kelp-covered skerries 50-100 m offshore.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 Open year-round, free.</strong> Private farmland — please use the marked path only and do not approach the seals.</div>
+            <p><strong>April 2026:</strong> Pupping season begins late May, so April is pre-pup adults — fewer seals than peak summer but still routinely visible. Wind off Faxaflói bay can be biting; the beach is fully exposed. No reported closures.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+            <div class="visit-step"><div class="visit-step-num">1</div><div class="visit-step-content"><strong>Park at the Ytri-Tunga farm lot</strong>Turn off Route 54 at the small brown sign for "Selir / Seals." A short gravel track ends at a free dirt lot for ~15 cars right behind the farmhouse. There's a portable toilet and a small information board with a seal-spotting tip sheet.<div class="step-meta">⏱️ 2 min · 📍 Farm lot, 64.7961, -23.0789</div></div></div>
+            <div class="visit-step"><div class="visit-step-num">2</div><div class="visit-step-content"><strong>Check the tide before you walk down</strong>Low tide exposes more skerries and concentrates the seals on the closest rocks; high tide hides the haul-outs and pushes seals offshore. If you can, time the visit for the 2-hour window around low tide (check tide-forecast.com for "Búðir"). At high tide you may still see heads bobbing in the water but it's much harder.<div class="step-meta">⏱️ 1 min · 📍 At the lot</div></div></div>
+            <div class="visit-step"><div class="visit-step-num">3</div><div class="visit-step-content"><strong>Walk the marked path to the rocky point</strong>Follow the wooden posts ~100 m past the farm onto the beach. Stay on the path — the surrounding meadow is private grazing land. The path ends at a low rocky promontory; this is the seal-viewing spot.<div class="step-meta">⏱️ 3 min · 📍 ~100m from lot</div></div></div>
+            <div class="visit-step"><div class="visit-step-num">4</div><div class="visit-step-content"><strong>Scan the offshore skerries with binoculars</strong>The seals lie on the dark kelp-covered rocks 50-100 m out. They look like grey-brown lumps until you see one move. Bring binoculars or a telephoto — naked-eye works but is far less rewarding. Be patient: scan slowly across all the rocks left to right twice before deciding "no seals."<div class="step-meta">⏱️ 15-25 min · 📍 Rocky point</div></div></div>
+            <div class="visit-step"><div class="visit-step-num">5</div><div class="visit-step-content"><strong>Stay 50 m back, talk quietly</strong>Per the farm's posted signage and Icelandic Seal Center guidance, do not wade out toward the rocks and do not throw stones, shout, or run on the beach. Stressed seals abandon haul-outs and may not return for the rest of the day — bad for you, worse for the next visitors and the seals.<div class="step-meta">⏱️ — · 📍 Whole visit</div></div></div>
+            <div class="visit-step"><div class="visit-step-num">6</div><div class="visit-step-content"><strong>Walk the small beach for shells and birds</strong>Unusually for Snæfellsnes the sand here is pale yellow, not black — a thin shell layer over basalt. Eider ducks, oystercatchers and purple sandpipers feed along the wrack line. Five minutes of beachcombing rounds out the stop.<div class="step-meta">⏱️ 5-10 min · 📍 Along the sand</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+                <div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/20%20-%20Seehunde%20am%20Strand%20bei%20Ytri-Tunga.jpg?width=800" alt="Harbor seals on rocks"><div class="gallery-caption">Seals on the skerries · Wikimedia Commons</div></div>
+                <div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/19%20-%20am%20Strand%20bei%20Ytri-Tunga.jpg?width=800" alt="Beach view"><div class="gallery-caption">Ytri-Tunga beach · Wikimedia Commons</div></div>
+                <div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/17%20-%20Auf%20Snæfellsnes,%20Ytri%20Tunga.jpg?width=800" alt="Coastal view"><div class="gallery-caption">Snæfellsnes coast · Wikimedia Commons</div></div>
+                <div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Haematopus%20ostralegus,%20Ytri%20Tunga%20Beach,%20Iceland,%2020230505%200926%204985.jpg?width=800" alt="Oystercatcher at Ytri-Tunga"><div class="gallery-caption">Oystercatcher · Wikimedia Commons</div></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <ul>
+                <li><strong>Tele compression for seals:</strong> 300-400 mm equivalent minimum. Anything wider and the seals are lentil-sized in the frame. Crouch low to flatten the angle.</li>
+                <li><strong>Best light:</strong> Morning (sun behind you to the east) — afternoon backlights the rocks against the bay.</li>
+                <li><strong>Wide environment shot:</strong> 24-35 mm of the yellow beach with Snæfellsjökull on the horizon (north-west) makes a good "place" image without the seals.</li>
+            </ul>
+            <p><strong>🚫 Drone:</strong> Do not fly here. The whole point of the site is wildlife viewing, and drone noise scatters seal haul-outs (per Icelandic Seal Center field guidance). Ytri-Tunga is also private farmland — owners can refuse drone use. For general Iceland drone rules see the <a href="../planning.html#drone">Planning page drone section</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Paved Route 54, then a short gravel track. Any rental car. ~15 minutes east of Búðir / Búðakirkja.</p>
+            <ul>
+                <li><strong>Parking:</strong> Free farm lot, ~15 spaces. Can fill in summer; in April you'll have it.</li>
+                <li><strong>Walk:</strong> 100 m flat path from car to viewing point.</li>
+                <li><strong>Fees:</strong> None. A small donation box at the info board supports path upkeep.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <ul>
+                <li><strong>Allocate:</strong> 30-40 min total including the walk. Don't budget more — seals or no seals, you'll be done.</li>
+                <li><strong>Best time:</strong> Around low tide, morning light. Check tide tables for Búðir.</li>
+                <li><strong>Combine with:</strong> First stop on the Day 7 Snæfellsnes loop heading west — Búðakirkja (15 min west) is the natural next stop, then Arnarstapi.</li>
+                <li><strong>Skip if:</strong> High tide and rough seas, or if you have less than 5 hours total for the peninsula.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google Maps rating ~4.4 (3,000+ reviews). Praised as the easiest, no-fuss seal viewing in Iceland; complaints almost always boil down to "no seals when we visited" — which means the visitor came at high tide, in a storm, or did not bring binoculars. <strong>Honest take:</strong> set expectations to "scan rocks 100 m offshore for grey lumps," not "swim with seals." With binoculars and decent tide it's a guaranteed quick win; without, it can feel anticlimactic.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities needed.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul>
+                <li>Slippery seaweed on the rocks — sturdy shoes, watch your footing.</li>
+                <li>Do not wade out toward the seals — cold water, hidden channels, and you'll empty the haul-out.</li>
+                <li>Strong wind off the bay — wind layers essential even on a "calm" day.</li>
+                <li>Private farmland; respect fences and the marked path.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Ytri+Tunga+Seal+Beach+Iceland" target="_blank">Google Maps — Ytri-Tunga</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Snæfellsnes" target="_blank">Wikipedia — Snæfellsnes peninsula</a></li>
+                <li><a href="https://www.tide-forecast.com/locations/Budir-Iceland/tides/latest" target="_blank">Tide forecast — Búðir (nearest station)</a></li>
+                <li><a href="https://selasetur.is/en/" target="_blank">Icelandic Seal Center — viewing guidelines</a></li>
+            </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer><p>Iceland Trip 2026 | Part of the Sights guide</p></footer>
+    <script>function toggleMobileMenu(){document.getElementById('navMenu').classList.toggle('mobile-open');}</script>
+</body>
+</html>

@@ -32,7 +32,7 @@ level = sys.argv[1].lower()
 title = sys.argv[2]
 message = sys.argv[3] if len(sys.argv) > 3 else ''
 
-valid_levels = {'info', 'success', 'warning', 'error', 'update'}
+valid_levels = {'info', 'success', 'warning', 'error', 'update', 'suggestion'}
 if level not in valid_levels:
     print(f'Invalid level: {level}. Must be one of: {", ".join(sorted(valid_levels))}', file=sys.stderr)
     sys.exit(2)

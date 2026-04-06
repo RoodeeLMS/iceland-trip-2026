@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arnarstapi & Gatklettur Arch - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🪨</span>
+        <h1>Arnarstapi & Gatklettur Arch</h1>
+        <div class="day-badges"><span class="day-badge">Day 7</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://commons.wikimedia.org/wiki/Special:FilePath/Natural_Arch_at_Arnarstapi.jpg?width=1000" alt="Arnarstapi & Gatklettur Arch" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.7697, -23.6286</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 7</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-23.6586%2C64.7547%2C-23.5986%2C64.7847&amp;layer=mapnik&amp;marker=64.7697%2C-23.6286" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=64.7697,-23.6286" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p><strong>Arnarstapi</strong> is a tiny fishing hamlet at the south foot of Snæfellsjökull and the trailhead for one of the best short coastal walks in Iceland: a 2.5 km cliff path to the neighbouring village of <strong>Hellnar</strong>. Along the way you pass three named features — the columnar basalt arch <strong>Gatklettur</strong>, the deep blowhole <strong>Hundagjá</strong>, and the natural rock pillar <strong>Miðklettur</strong> — plus a huge stone statue of the saga giant <strong>Bárður Snæfellsás</strong>. The arches and stacks are a protected nature reserve and a major nesting site for kittiwakes and fulmars (loud and busy from May).</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 Coastal path open year-round, free.</strong> Bárðar statue and the arch viewpoints are accessible directly from the harbour parking lot — no hike required if you only want the highlights.</div><p><strong>April 2026:</strong> Bird nesting has not yet started in earnest (kittiwakes return late April / early May), so the cliffs are quieter and the path less smelly than peak summer. Trail can be muddy and wind-exposed; clifftop sections have no railings beyond a low rope. Do not approach the edge in strong wind.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+            <div class="visit-step"><div class="visit-step-num">1</div><div class="visit-step-content"><strong>Park at the harbour lot, find Bárður</strong>Free gravel lot above the small Arnarstapi harbour, signposted off Route 574. The 5 m basalt-block statue of <strong>Bárður Snæfellsás</strong> by sculptor Ragnar Kjartansson stands ~80 m south of the lot — unmissable, and the easiest "arrival" photo.<div class="step-meta">⏱️ 5 min · 📍 Harbour lot, 64.7697, -23.6286</div></div></div>
+<div class="visit-step"><div class="visit-step-num">2</div><div class="visit-step-content"><strong>Walk to the Gatklettur arch viewpoint</strong>From Bárður, follow the marked clifftop path west (right as you face the sea). Within ~250 m you reach a fenced viewpoint over <strong>Gatklettur</strong> — a perfect circular hole punched through a slab of columnar basalt by the surf. Look down into the cove below: the columns are textbook hexagonal.<div class="step-meta">⏱️ 10 min · 📍 250 m W of lot</div></div></div>
+<div class="visit-step"><div class="visit-step-num">3</div><div class="visit-step-content"><strong>Continue to Hundagjá blowhole</strong>Another 150 m west the path runs along a deep slot in the cliff where waves rush in and out with a hollow thump. On a swelly day spray reaches the path. Stay behind the rope.<div class="step-meta">⏱️ 5 min · 📍 ~400 m W of lot</div></div></div>
+<div class="visit-step"><div class="visit-step-num">4</div><div class="visit-step-content"><strong>Decide: turn back, or commit to Hellnar (2.5 km)</strong>At this point you have seen the three main arches/blowholes. From here it is a further 2 km on undulating clifftop path to Hellnar village (~45 min one way, mostly flat with some mud and rocky steps). The reward at the end is the basalt sea cave <strong>Baðstofa</strong> and a small café (<a href="https://www.fjoruhusid.is/" target="_blank">Fjöruhúsið</a>). Round trip from Arnarstapi to Hellnar and back is 5 km, ~1.5-2 hours total.<div class="step-meta">⏱️ Decision point · 📍 ~400 m W</div></div></div>
+<div class="visit-step"><div class="visit-step-num">5</div><div class="visit-step-content"><strong>Option A — Quick visit: turn back at the blowhole</strong>If short on time, retrace to the lot. Total visit ~25-30 min, you have seen the headline features.<div class="step-meta">⏱️ 30 min total · 📍 Back to lot</div></div></div>
+<div class="visit-step"><div class="visit-step-num">6</div><div class="visit-step-content"><strong>Option B — Walk one-way to Hellnar, drive back</strong>Most efficient long version: walk Arnarstapi → Hellnar (45 min), have a coffee at Fjöruhúsið, then take a taxi or pre-drop a second car. With one car, the practical play is to walk halfway (~1 km past the blowhole, where the cliffs are most dramatic) and turn around. Round trip ~1 hour.<div class="step-meta">⏱️ 60 min · 📍 Halfway and back</div></div></div>
+<div class="visit-step"><div class="visit-step-num">7</div><div class="visit-step-content"><strong>Photograph the harbour itself on return</strong>Back at Arnarstapi the small harbour with red and blue fishing boats below the basalt cliff is worth 5 minutes — a classic Snæfellsnes "village" frame. Public toilets at the harbour shed (small fee).<div class="step-meta">⏱️ 5-10 min · 📍 Harbour</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Natural_Arch_at_Arnarstapi.jpg?width=800" alt="Gatklettur arch"><div class="gallery-caption">Gatklettur arch · Wikimedia Commons</div></div>
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Basalt_Arch_near_Arnarstapi.jpg?width=800" alt="Basalt arch near Arnarstapi"><div class="gallery-caption">Basalt arch near Arnarstapi · Wikimedia Commons</div></div>
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Basalt_cliffs_in_Arnarstapi.jpg?width=800" alt="Sea cliffs at Arnarstapi"><div class="gallery-caption">Sea cliffs at Arnarstapi · Wikimedia Commons</div></div>
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Natural_Arch_-_Flickr_-_puliarf.jpg?width=800" alt="Natural arch in the cliffs"><div class="gallery-caption">Natural arch in the cliffs · Wikimedia Commons</div></div>
+</div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <ul>
+        <li><strong>Gatklettur arch:</strong> 16-24 mm wide from the fenced viewpoint, shoot down at an angle so the arch frames the surf below. Best at low-to-mid tide when the arch is fully visible.</li>
+        <li><strong>Bárður statue:</strong> Low angle, looking up against the sky. Late afternoon light from the south-west rakes the basalt blocks.</li>
+        <li><strong>Cliff compression:</strong> 70-200 mm tele from a few hundred metres along the path back toward Arnarstapi captures stacked sea stacks and pillars layered against each other.</li>
+        <li><strong>Best light:</strong> Late afternoon (cliffs face south-west). Morning is backlit and contrasty.</li>
+    </ul>
+    <p><strong>🚫 Drone:</strong> Arnarstapi to Hellnar is a designated <strong>protected nature reserve</strong> (Búðahraun / Stapafell area) and a major seabird nesting site. Drones disturb cliff-nesting birds and are discouraged from May onward; year-round, fly only with care and never directly over the cliffs. Per Environment Agency of Iceland (Umhverfisstofnun) reserve guidance. See <a href="../planning.html#drone">Planning drone section</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Paved Route 574, free harbour parking lot. Any rental car. ~25 min west of Búðakirkja.</p><ul><li><strong>Parking:</strong> Free, ~30 spaces at the harbour lot. Overflow on the road shoulder if full.</li><li><strong>Walk to first arch:</strong> ~250 m flat gravel/grass.</li><li><strong>Walk to Hellnar:</strong> 2.5 km one way, undulating, can be muddy. Hiking shoes recommended.</li><li><strong>Fees:</strong> None. Public toilet at harbour shed: ~฿100.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <ul><li><strong>Allocate:</strong> 30-45 min for the highlights only; 1.5-2 hours if you walk a chunk of the Hellnar path.</li><li><strong>Best light:</strong> Late afternoon for the cliffs.</li><li><strong>Crowds:</strong> Manageable in April; tour buses peak in summer 11:00-15:00.</li><li><strong>Combine with:</strong> Raudfeldsgja (10 min east), Hellnar café, and the Day 7 western tip loop (Djúpalónssandur, Lóndrangar, Saxhóll).</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google Maps ~4.7 (8,000+ reviews). Consistently in the top 3 free Snæfellsnes stops. Praised for the cliff scenery, the easy access from the parking lot, and the Bárður statue. Common complaint: wind. Genuine downside: in peak summer the bird-cliff smell is strong (April is fine). <strong>Honest take:</strong> if you only do one walk on the peninsula, do this one.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities needed. Snjófell guesthouse / Hotel Arnarstapi run snowmobile tours up Snæfellsjökull from here in winter (not relevant for our April plan).</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul><li>Cliff edges have low ropes only — stay behind them, especially in wind.</li><li>Path is muddy and uneven in places; sturdy shoes.</li><li>Wave spray on Hundagjá blowhole section in big swell.</li><li>Bird-strike risk if you go very near nesting birds (May+); not an issue in early April.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul><li><a href="https://en.wikipedia.org/wiki/Arnarstapi" target="_blank">Wikipedia — Arnarstapi</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Arnarstapi+Iceland" target="_blank">Google Maps — Arnarstapi</a></li><li><a href="https://www.fjoruhusid.is/" target="_blank">Fjöruhúsið café (Hellnar end)</a></li><li><a href="https://ust.is/" target="_blank">Umhverfisstofnun — protected reserve info</a></li></ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

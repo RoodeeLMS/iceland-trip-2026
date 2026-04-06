@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reynisfjara Black Sand Beach - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">⚫</span>
+        <h1>Reynisfjara Black Sand Beach</h1>
+        <div class="day-badges"><span class="day-badge">Day 3</span><span class="day-badge">Day 5</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Reynisfjara_and_Reynisdrangar%2C_Iceland.jpg/960px-Reynisfjara_and_Reynisdrangar%2C_Iceland.jpg" alt="Reynisfjara Black Sand Beach with Reynisdrangar sea stacks" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>63.4034, -19.0441</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 3 · Day 5</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-19.0741%2C63.3884%2C-19.0141%2C63.4184&amp;layer=mapnik&amp;marker=63.4034%2C-19.0441" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=63.4034,-19.0441" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Reynisfjara is a black volcanic sand beach on Iceland's south coast, 180 km east of Reykjavik and 10 minutes west of Vik. Its draw is the stack of hexagonal basalt columns at <strong>Gardar</strong>, the sea cave <strong>Halsanefshellir</strong>, and the <strong>Reynisdrangar</strong> sea stacks rising offshore. It is also the single most dangerous tourist beach in Iceland — sneaker waves have killed multiple visitors and the beach is frequently restricted to a viewpoint only.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box" style="border-left-color: #F59E0B; background: #fff7ed;">
+                <strong>🟠 ORANGE alert (as of research date)</strong> — Per <a href="https://safetravel.is/travel-conditions/blackbeach-safety/" target="_blank">safetravel.is</a>: "the beach is only accessible from the viewpoint." Stormy weather and high waves. Stay at least <strong>25 m (82 ft)</strong> from the water.
+            </div>
+            <p>SafeTravel runs three alert levels at this beach: yellow (caution), orange (stay 25 m back), red (beach closed, viewing area only). The level can shift within a day. Check the page the morning of your visit — a live status widget also appears on the main sights page.</p>
+            <p><strong>April 2026 conditions:</strong> Wind and swell are at their spring peak; expect cold spray and slippery pebbles near the column stack. Daylight is ~14 hours so timing is flexible. No construction or access closures reported beyond the wave-driven restrictions.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+
+            <div class="visit-step">
+                <div class="visit-step-num">1</div>
+                <div class="visit-step-content">
+                    <strong>Arrive & park — pick lower or upper lot</strong>
+                    Turn off Route 1 onto Route 215 and drive 8 km of flat tarmac. The <strong>lower lot</strong> (฿250 / 3hrs) puts you ~2 min from the basalt columns; the <strong>upper lot</strong> (฿190) is cheaper but adds a 5-minute walk down a slope. In stormy April winds, lower lot is worth the extra ฿60. Pay via the Parka app — you have 24 hours afterward to settle.
+                    <div class="step-meta">⏱️ 5 min · 📍 Parking lots, 63.4034, -19.0441</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">2</div>
+                <div class="visit-step-content">
+                    <strong>Stop at the elevated viewpoint first — read the wave pattern</strong>
+                    Before stepping onto sand, walk to the wooden viewing platform by the café and watch the surf for a full <strong>3-5 minutes</strong>. Note the highest wash line on the sand — that's your minimum safe distance, then double it. Check the SafeTravel light pole here: green/yellow/orange/red dictates how far back you must stay (orange = 25 m). If it's red, this viewpoint is your entire visit.
+                    <div class="step-meta">⏱️ 5 min · 📍 Viewing platform by café, ~30m from lower lot</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">3</div>
+                <div class="visit-step-content">
+                    <strong>Walk to the Gardar basalt columns</strong>
+                    Head west (right as you face the sea) along the back of the beach — stay on the dry pebble band, never the dark wet sand. After ~150 m you reach the stacked hexagonal pillars climbing the cliff face. This is the iconic Game of Thrones / National Geographic shot. Climb the lower steps for a seated photo, but do not turn your back to the sea.
+                    <div class="step-meta">⏱️ 10-15 min · 📍 Gardar columns, ~150m west of lower lot</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">4</div>
+                <div class="visit-step-content">
+                    <strong>Peek into Halsanefshellir sea cave — but do NOT enter at orange/red</strong>
+                    Just past the columns the cliff opens into a tall basalt grotto. At yellow alert you can step a few meters in for a framed shot of the sea stacks through the arch. At <strong>orange or red, stay outside</strong> — the cave fills fast and falling rock from the cliff above is a documented hazard (safetravel.is). Two minutes is enough.
+                    <div class="step-meta">⏱️ 5 min · 📍 Halsanefshellir cave, ~50m past columns</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">5</div>
+                <div class="visit-step-content">
+                    <strong>Turn east for the Reynisdrangar sea stacks view</strong>
+                    Walk back past the lot and continue east along the dry sand. Within 200 m the crowds thin out sharply (per Tripadvisor regulars) and the three 66 m basalt spires of Reynisdrangar dominate the offshore view. This is the best wide composition — beach in the foreground, stacks framed against open ocean.
+                    <div class="step-meta">⏱️ 10-15 min · 📍 East end of accessible beach, ~250m east of lot</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">6</div>
+                <div class="visit-step-content">
+                    <strong>Look west toward Dyrholaey</strong>
+                    From the same eastern stretch, turn around. On a clear day the Dyrholaey arch and lighthouse promontory are visible 5 km to the west — useful preview of your next stop. If light is low and clouds are dramatic, this is a better wide shot than the columns themselves.
+                    <div class="step-meta">⏱️ 5 min · 📍 Same spot, looking west</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">7</div>
+                <div class="visit-step-content">
+                    <strong>Optional: drive Reynisfjall for the top-down view</strong>
+                    If you have a 4x4 (we don't on this trip — skip), the F-road up Reynisfjall mountain gives a bird's-eye angle over the beach and stacks. With our 2WD rental, the equivalent is the Dyrholaey upper viewpoint 10 minutes west, which delivers the same panorama legally and safely.
+                    <div class="step-meta">⏱️ Skip — drive to Dyrholaey instead (10 min)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Reynisfjara_and_Reynisdrangar%2C_Iceland.jpg/800px-Reynisfjara_and_Reynisdrangar%2C_Iceland.jpg" alt="Reynisfjara beach and Reynisdrangar sea stacks">
+                    <div class="gallery-caption">Reynisdrangar sea stacks · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Mountain_and_grotto_at_Reynisfjara_Beach_in_July%2C_2019.jpg/800px-Mountain_and_grotto_at_Reynisfjara_Beach_in_July%2C_2019.jpg" alt="Halsanefshellir grotto and basalt cliff">
+                    <div class="gallery-caption">Halsanefshellir grotto · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Reynisfjara%2C_Iceland%2C_20230501_1641_4049.jpg/800px-Reynisfjara%2C_Iceland%2C_20230501_1641_4049.jpg" alt="Reynisfjara basalt columns at Gardar">
+                    <div class="gallery-caption">Gardar basalt columns · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Reynisfjara%2C_Iceland%2C_20230501_1646_4053.jpg/800px-Reynisfjara%2C_Iceland%2C_20230501_1646_4053.jpg" alt="Black sand beach with surf">
+                    <div class="gallery-caption">Black sand & surf · Wikimedia Commons</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p>
+            <ul>
+                <li><strong>Gardar columns, low angle:</strong> Crouch at the base of the column stack with a <strong>16-24 mm wide</strong> and tilt up — the hexagons foreshorten dramatically. Best between 9:00-11:00 in April when the east light rakes across the column faces.</li>
+                <li><strong>Reynisdrangar stacks, compression shot:</strong> Walk 200 m east and use a <strong>70-200 mm tele</strong> at ~135 mm to compress the stacks against the surf. Late afternoon (16:00-18:00) puts the sun behind you and the stacks in warm side-light.</li>
+                <li><strong>Sneaker-wave foreground:</strong> Tripod at the dry/wet sand line, <strong>1/4 to 1/2 sec</strong> shutter, capture the receding wash as silver streaks across black sand. Stay 25 m back even for this — telephoto, not wide.</li>
+                <li><strong>Blue hour:</strong> ~30 min after sunset (around 21:00 in early April), the wet sand turns mirror-blue under residual sky light. Bring a headlamp for the walk back.</li>
+            </ul>
+            <p><strong>🚫 Drone: DO NOT FLY HERE.</strong> Reynisfjara has on-site "No Drones" signage (seabird protection + crowd safety per Guide to Iceland and Iceland Photo Tours, 2026). Treat the entire beach as no-fly. For general Iceland drone rules (registration, wind limits for DJI Neo 2, Dyrholaey seasonal closure, etc.) see the <a href="../planning.html#drone">Drone Usage section on the Planning page</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Paved road (Route 215) off the Ring Road, 8 km of flat tarmac. Any rental car, no 4x4 needed.</p>
+            <ul>
+                <li><strong>Lower lot</strong> (closer to beach): ISK 1,000 ≈ <strong>฿250</strong>, flat up to 3 hours.</li>
+                <li><strong>Upper lot</strong>: ISK 750 ≈ <strong>฿190</strong>, same 3-hour window.</li>
+                <li>Payment via the <strong>Parka app</strong> — you can pay up to 24 hours after leaving (<a href="https://reynisfjarabeach.org/parking/" target="_blank">reynisfjarabeach.org/parking</a>).</li>
+                <li>Walk from lot to basalt columns: ~3-5 min on flat sand.</li>
+                <li>No entrance fee to the beach itself.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>Priority ★ sight — visiting twice (Day 3 westbound and Day 5 return). Use the two visits to hedge weather: if Day 3 is storm-bound and the beach is closed, Day 5's clear forecast gives a second shot.</p>
+            <ul>
+                <li><strong>Best light:</strong> Late afternoon in April — the low sun rakes the basalt columns and throws long shadows off Reynisdrangar. Morning works too but columns face west.</li>
+                <li><strong>Crowds:</strong> Tour buses from Reykjavik arrive 11:00-14:00. Before 10:00 or after 16:00 is noticeably quieter.</li>
+                <li><strong>Combine with:</strong> Dyrholaey arch (5 km away, free parking) and Vik village. A tight Reynisfjara + Dyrholaey pair takes ~2-2.5 hours.</li>
+                <li>Given two visits, allocate 45 min on Day 3 and a longer 60-75 min stop on Day 5 if conditions cooperate.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Tripadvisor and Google reviewers consistently call it one of Iceland's most photogenic spots, with the basalt columns and sea stacks doing most of the heavy lifting. National Geographic has listed it among the world's most beautiful non-tropical beaches.</p>
+            <p><strong>Honest take:</strong> The "overrated" complaints on Tripadvisor are really about <em>crowds near the parking lot</em>, not the beach itself. If you walk 200 m east you're mostly alone. The bigger legitimate gripe is that bad weather can reduce the visit to a 10-minute stare from the viewpoint. Not overrated — just heavily dependent on wave conditions and how willing you are to walk away from the bus crowd.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities needed. Reynisfjara is a standard stop on south coast bus tours from Reykjavik, but with our rental car there's no reason to book one.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <p>Per <a href="https://safetravel.is/travel-conditions/blackbeach-safety/" target="_blank">safetravel.is</a>, verbatim:</p>
+            <ul>
+                <li>"Stay well back from the water's edge" — minimum 25 m at orange alert.</li>
+                <li>"Never turn your back" to the sea.</li>
+                <li>"Sneaker waves occur with zero warning" and can strike after long periods of small waves.</li>
+                <li>Falling rocks from the cliff above Halsanefshellir cave are an additional hazard.</li>
+                <li>Supervise anyone in the group closely — adults have been swept out in seconds.</li>
+                <li>If the beach is at red alert, it is <strong>closed</strong>; use the designated viewing platform only.</li>
+            </ul>
+            <p>"Respect nature, lives have been lost here." — safetravel.is</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+                <li><a href="https://safetravel.is/travel-conditions/blackbeach-safety/" target="_blank">SafeTravel.is — Black Beach Safety (live alert level)</a></li>
+                <li><a href="https://reynisfjarabeach.org/parking/" target="_blank">Reynisfjarabeach.org — Parking info & Parka app</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Reynisfjara" target="_blank">Wikipedia — Reynisfjara</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Reynisfjara+Black+Sand+Beach" target="_blank">Google Maps — Reynisfjara</a></li>
+                <li><a href="https://guidetoiceland.is/travel-info/flying-drones-in-iceland" target="_blank">Guide to Iceland — Drone rules & no-fly zones</a></li>
+                <li><a href="https://island.is/en/open-category" target="_blank">Ísland.is — Drone Open Category regulations (Samgöngustofa)</a></li>
+                <li><a href="https://guidetoiceland.is/travel-iceland/drive/reynisfjara" target="_blank">Guide to Iceland — Reynisfjara travel guide</a></li>
+            </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

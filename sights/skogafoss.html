@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skogafoss - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">💦</span>
+        <h1>Skogafoss</h1>
+        <div class="day-badges"><span class="day-badge">Day 3</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Sk%C3%B3gafoss%2C_Iceland%2C_20230501_1445_3970.jpg/960px-Sk%C3%B3gafoss%2C_Iceland%2C_20230501_1445_3970.jpg" alt="Skogafoss" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>63.5321, -19.5117</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 3</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-19.5417%2C63.5171%2C-19.4817%2C63.5471&amp;layer=mapnik&amp;marker=63.5321%2C-19.5117" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=63.5321,-19.5117" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Skogafoss is a 60 m, 25 m wide curtain waterfall on the Skoga river, dropping over the former coastline cliff at the village of Skogar. It is one of the most photographed waterfalls in Iceland and is famous for the perfectly rectangular sheet of water, the rainbow that forms in afternoon spray, and the <strong>527-step staircase</strong> on the east side that climbs to a top-down viewpoint and the start of the <strong>Fimmvorduhals</strong> hiking trail.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 Open year-round</strong> — No closures reported as of April 2026. The 527 staircase is open but can be icy in spots in early spring; handrails the entire way.</div><p><strong>April 2026 conditions:</strong> Spring snowmelt feeds extra volume — the falls are at near-peak flow, with proportionally heavy spray. Stairs may have slick patches; take it slow on the descent. Daylight ~14 hours.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+            <div class="visit-step"><div class="visit-step-num">1</div><div class="visit-step-content"><strong>Park at the main lot</strong>Turn off Route 1 at Skogar village; the lot is signed and ~300 m from the falls. Parking is <strong>free</strong> (one of the few free major-attraction lots on the south coast). Toilets and a small café/shop in the building near the lot.<div class="step-meta">⏱️ 3 min · 📍 Main lot, 63.5321, -19.5117</div></div></div><div class="visit-step"><div class="visit-step-num">2</div><div class="visit-step-content"><strong>Walk to the base of the falls</strong>Flat gravel/dirt path, ~300 m, 5 minutes. The path takes you right to the spray zone — close enough to feel the impact wind. Wear a rain shell; in April with heavy flow you'll get soaked within 30 m of the base.<div class="step-meta">⏱️ 5 min · 📍 Base of falls</div></div></div><div class="visit-step"><div class="visit-step-num">3</div><div class="visit-step-content"><strong>Approach the rainbow line — but not the rocks at the base</strong>On a sunny afternoon a near-permanent rainbow forms in the spray ~40-60 m out from the base. Walk into it slowly, shoot from behind it for the classic shot. The rocks immediately under the falls are slippery and the impact wind can knock you backward — don't push past the obvious safe line.<div class="step-meta">⏱️ 10 min · 📍 Spray zone, ~50m from base</div></div></div><div class="visit-step"><div class="visit-step-num">4</div><div class="visit-step-content"><strong>Climb the 527 steps on the east side</strong>On the right (east) side of the falls, a metal staircase climbs the cliff. <strong>Pace yourself</strong> — it's steep and unrelenting. Halfway up there are landings to catch your breath and shoot side-on profile views of the falls. Allow 15-20 minutes one way.<div class="step-meta">⏱️ 15-20 min up · 📍 East-side staircase</div></div></div><div class="visit-step"><div class="visit-step-num">5</div><div class="visit-step-content"><strong>Top viewpoint platform</strong>At the top there's a fenced platform directly over the lip of the falls. The view is straight down the curtain to the river plain below. On a clear day you can see the coast and the Westman Islands. Watch your phone — people drop them off this platform regularly.<div class="step-meta">⏱️ 10 min · 📍 Top platform</div></div></div><div class="visit-step"><div class="visit-step-num">6</div><div class="visit-step-content"><strong>Optional: walk a short stretch of the Fimmvorduhals trail</strong>From the top platform the famous Fimmvorduhals trail begins, leading 25 km north past dozens of waterfalls along the upper Skoga river to Thorsmork. The full hike is a multi-day commitment, but a 30-60 min out-and-back will reach the next 2-3 waterfalls upstream — quieter, scenic. Turn around whenever you've had enough.<div class="step-meta">⏱️ 30-60 min optional · 📍 Skoga river trail</div></div></div><div class="visit-step"><div class="visit-step-num">7</div><div class="visit-step-content"><strong>Descend & dry off</strong>Same staircase down — slower than going up, watch for ice. Back at the base, stop at the café in the lot for coffee. Total visit: 60-90 minutes including the climb.<div class="step-meta">⏱️ 15 min down · 📍 Return to lot</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery"><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Sk%C3%B3gafoss%2C_Iceland%2C_20230501_1445_3970.jpg/800px-Sk%C3%B3gafoss%2C_Iceland%2C_20230501_1445_3970.jpg" alt="Skogafoss head-on"><div class="gallery-caption">Head-on view · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Sk%C3%B3gafoss_Waterfall%2C_Iceland%2C_20240720_1330_2993.jpg/800px-Sk%C3%B3gafoss_Waterfall%2C_Iceland%2C_20240720_1330_2993.jpg" alt="Skogafoss with rainbow"><div class="gallery-caption">With rainbow · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Sk%C3%B3gafoss_Waterfall%2C_Iceland%2C_20240720_1411_3075.jpg/800px-Sk%C3%B3gafoss_Waterfall%2C_Iceland%2C_20240720_1411_3075.jpg" alt="Skogafoss from above"><div class="gallery-caption">Top view · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Sk%C3%B3gafoss_Waterfall%2C_Iceland%2C_20240720_1318_2975.jpg/800px-Sk%C3%B3gafoss_Waterfall%2C_Iceland%2C_20240720_1318_2975.jpg" alt="Skogafoss approach"><div class="gallery-caption">Approach path · Wikimedia Commons</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p><ul><li><strong>Classic head-on with rainbow:</strong> 16-24 mm wide, 40-60 m from the base in <strong>afternoon</strong> when sun is behind you. The rainbow is reliably visible 13:00-17:00 in April on sunny days.</li><li><strong>Person-for-scale silhouette:</strong> Have someone walk into the spray zone wearing a colored jacket and shoot from 80 m back — it gives the falls their true sense of size.</li><li><strong>Top-of-falls profile:</strong> From a midpoint on the staircase (~step 250), 35-50 mm captures the curtain in profile against the cliff.</li><li><strong>Long exposure</strong> ND filter at 1-2 sec from the base for silked water — wind makes tripods tricky, brace on the railing.</li><li><strong>Drone:</strong> Skogafoss is technically on private land owned by the Skogar farm; drone use is <strong>discouraged at the falls themselves</strong> due to crowds, though you'll see people doing it. Per Guide to Iceland and on-site signage in 2025, the operator asks visitors not to fly directly over the falls or near other people. If you fly, do so well upstream over the river plain. See <a href="../planning.html#drone">Planning page</a> for general rules.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Direct turnoff from Route 1 at Skogar, ~150 km from Reykjavik (~2h drive). Paved all the way. Any car.</p><ul><li><strong>Parking: free</strong> at the main lot. Large lot but fills 11:00-15:00.</li><li><strong>Toilets:</strong> at the building by the lot, small fee.</li><li><strong>Walk to base:</strong> 3-5 min on flat gravel.</li><li><strong>No entry fee.</strong></li><li><strong>Café & shop</strong> at the lot for coffee, snacks, souvenirs.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>Star sight on Day 3. Pair with Kvernufoss (5 min east, hidden) and Skogar Folk Museum (same village).</p><ul><li><strong>Best light:</strong> Afternoon (13:00-17:00) for the rainbow. Morning leaves the falls in cliff shadow.</li><li><strong>Crowds:</strong> Heaviest 11:00-15:00 with bus tours. Before 10:00 or after 17:00 the base is noticeably emptier.</li><li><strong>Combine with:</strong> Kvernufoss (5 min drive east, hidden waterfall), Skogar Folk Museum (turf houses, indoor backup for rain), Seljalandsfoss (~30 min west).</li><li><strong>Time budget:</strong> 60 min for the base + climb. Add 30-60 min if walking up the Skoga river trail.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google rating ~4.8 (50,000+ reviews). Considered alongside Seljalandsfoss and Godafoss as one of the "must visit" waterfalls in Iceland. The free parking, easy access, and rainbow-on-demand make it almost universally praised. Top complaint is just bus crowding mid-day.</p><p><strong>Honest take:</strong> Lives up to the hype. The 527 steps are the main filter — many tourists turn back partway up, so the top platform is much quieter than the base. Walk a few hundred meters along the Skoga river trail and you'll have most of it to yourself.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities needed for the falls themselves. The Fimmvorduhals trail can be done as a guided multi-day hike from operators like Icelandic Mountain Guides (~฿15,000+/day), but the casual day-trip out-and-back from the top platform needs no booking.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul><li>Slippery rocks at the base — wet, mossy, and the impact wind can push you off balance.</li><li>The 527 stairs are steep and may have icy patches in April; handrails the entire way.</li><li>Top platform: don't lean over the rail. Phones and cameras are dropped off it regularly.</li><li>Walking past the spray line directly under the falls is dangerous — falling rock and impact wind.</li><li>If continuing onto the Fimmvorduhals trail, the weather can change fast; turn around if visibility drops or wind picks up.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul><li><a href="https://safetravel.is" target="_blank">SafeTravel.is — Live alerts</a></li><li><a href="https://en.wikipedia.org/wiki/Sk%C3%B3gafoss" target="_blank">Wikipedia — Skogafoss</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Skogafoss" target="_blank">Google Maps — Skogafoss</a></li><li><a href="https://guidetoiceland.is/travel-iceland/drive/skogafoss" target="_blank">Guide to Iceland — Skogafoss guide</a></li><li><a href="https://www.fi.is/en/hiking-trails/fimmvorduhals" target="_blank">Icelandic Touring Association — Fimmvorduhals trail</a></li></ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

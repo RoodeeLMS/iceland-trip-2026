@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thingvellir National Park - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-blue: #0077B6; --aurora-green: #00B4D8; --deep-navy: #1a1a2e; --glacier-white: #F0F9FF; --ice-blue: #CAF0F8; --volcanic-black: #2D3748; --sunset-gold: #F59E0B; --moss-green: #10B981; --lava-red: #EF4444; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%); min-height: 100vh; color: var(--volcanic-black); line-height: 1.6; }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) { .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; } .navbar-menu.mobile-open { display: flex; } .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); } .menu-toggle { display: block; } }
+        .sight-hero { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%); color: white; padding: 3rem 2rem 2rem; text-align: center; }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin: 0 3px; }
+        .sight-hero .back-link { display: inline-block; margin-bottom: 15px; color: var(--aurora-green); text-decoration: none; font-size: 0.9em; }
+        .sight-hero .back-link:hover { color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .section { background: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); }
+        .section h2 { font-family: 'Playfair Display', serif; color: var(--deep-navy); font-size: 1.4em; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+        .status-box { padding: 12px 16px; border-radius: 8px; border-left: 4px solid var(--aurora-green); background: #f0f9ff; margin-bottom: 10px; }
+        .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 16px; }
+        .meta-item { background: #f8fafc; padding: 10px 12px; border-radius: 8px; font-size: 0.88em; }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+        .map-cta { display: inline-block; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9em; margin-top: 8px; }
+        .map-cta:hover { opacity: 0.9; }
+        .hero-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 12px; }
+        .gallery img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: transform 0.2s; }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+        .map-embed { width: 100%; height: 320px; border: 0; border-radius: 10px; margin-bottom: 10px; }
+        .visit-step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9em; }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+        .researched-note { text-align: center; font-size: 0.78em; color: #888; margin-top: 20px; padding: 10px; }
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🏞️</span>
+        <h1>Thingvellir National Park</h1>
+        <div class="day-badges"><span class="day-badge">Day 2</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/d/de/Almannagj%C3%A1_gorge%2C_%C3%9Eingvellir_National_Park.jpg" alt="Almannagja rift valley at Thingvellir National Park" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.2559, -21.1295</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 2</div>
+                <div class="meta-item"><strong>💰 Parking</strong>฿250 / day (P1 Hakid)</div>
+                <div class="meta-item"><strong>🌐 UNESCO</strong>World Heritage (2004)</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-21.1595%2C64.2409%2C-21.0995%2C64.2709&amp;layer=mapnik&amp;marker=64.2559%2C-21.1295" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=64.2559,-21.1295" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Thingvellir is the most historically and geologically significant site in Iceland — both the founding location of the Althing (the world's oldest surviving parliament, established in 930 AD) and the only place on land where you can walk inside the rift between the North American and Eurasian tectonic plates. UNESCO inscribed it as a World Heritage Site in 2004 for its cultural value, and it's a national park in its own right. For most Golden Circle visitors it's the first stop of the day and often the most rewarding — a single short walk delivers a parliament site, a waterfall, and a continental rift in under an hour.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 Open year-round</strong> — Visitor centre at Hakid is open daily; park trails are open with no major closures reported for April 2026.</div>
+            <p><strong>April 2026 conditions:</strong> Snow and ice patches still likely on the Almannagja boardwalk, especially the descending ramp from Hakid and shaded sections near Öxarárfoss. Bring micro-spikes or be ready to step carefully — falls on the iced-over wooden ramps are the single most common complaint on Tripadvisor for this season. The Öxará river runs high with snowmelt so the falls are loud and full.</p>
+            <p>Daylight in early April is ~14 hours, so timing is flexible. The visitor centre opens at 09:00. No seasonal trail closures inside the rift area itself.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+
+            <div class="visit-step">
+                <div class="visit-step-num">1</div>
+                <div class="visit-step-content">
+                    <strong>Park at P1 Hakid — the upper visitor centre lot</strong>
+                    Coming from Reykjavik on Route 36, P1 Hakid is signposted on the right and sits on the western escarpment directly above the rift. Pay parking via the Parka app: ฿250 (ISK 1,000) covers all park lots P1-P5 for the entire day. Skip the smaller lots — Hakid puts you at the top of the rift descent and saves backtracking. Use the toilets here; there are none down in the rift.
+                    <div class="step-meta">⏱️ 5 min · 📍 P1 Hakid lot, 64.2581, -21.1303</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">2</div>
+                <div class="visit-step-content">
+                    <strong>Hakid viewpoint platform — read the rift from above</strong>
+                    Walk 60 m from the lot to the wooden viewing deck at the lip of Almannagja. This is the single best orientation shot of the park: the rift cuts left-right beneath you, the Lögberg (Law Rock) site is visible to the east, and Lake Thingvallavatn fills the horizon. Read the interpretive panels — they explain that you are standing on the North American plate looking across at the Eurasian plate 7 km away.
+                    <div class="step-meta">⏱️ 5-10 min · 📍 Hakid platform, 60m from P1</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">3</div>
+                <div class="visit-step-content">
+                    <strong>Descend into Almannagja — walk between the plates</strong>
+                    Take the wooden ramp/stairs down into the gorge. For the next ~700 m you're walking along the floor of the Almannagja rift with sheer basalt cliffs (the eastern edge of the North American plate) rising 30-40 m on your left. This is the literal "mid-Atlantic ridge on dry land" experience. Watch for ice on the ramp in April. Stop at the marked Lögberg (Law Rock) site about a third of the way down — a flagpole marks where the chieftains gave speeches at the Althing for ~800 years.
+                    <div class="step-meta">⏱️ 20-25 min · 📍 Almannagja rift floor, 0-700m from Hakid</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">4</div>
+                <div class="visit-step-content">
+                    <strong>Detour up to Öxarárfoss waterfall</strong>
+                    Roughly 500 m down the rift, a signed wooden boardwalk branches left (west) up a short slope. Follow it 200 m to Öxarárfoss, where the Öxará river drops ~20 m over the rift wall into a pool. In April it's running hard with snowmelt and the basalt is dark and wet — high contrast, very photogenic. The boardwalk gets icy; grip the rail. Return the same way to the main rift path.
+                    <div class="step-meta">⏱️ 15-20 min · 📍 Öxarárfoss, ~500m down rift then 200m west</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">5</div>
+                <div class="visit-step-content">
+                    <strong>Continue to Thingvellir Church and the farmhouses</strong>
+                    Keep walking down the rift until it opens out into the plain. Cross the small wooden bridge over the Öxará river and you'll see the white-and-black Thingvellirkirkja (1859) and the five interconnected gabled buildings of the Prime Minister's summer residence. The church and graveyard are free to enter — the interior is plain Icelandic Lutheran with a small altar painting. Skáldareitur (the Poets' Cemetery) next to it holds the graves of Jónas Hallgrímsson and Einar Benediktsson.
+                    <div class="step-meta">⏱️ 10-15 min · 📍 Thingvellirkirkja, ~1 km from Hakid</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">6</div>
+                <div class="visit-step-content">
+                    <strong>Peer into Peningagja and Flosagja fissures</strong>
+                    From the church area, walk ~200 m east along the trail to find Peningagja ("coin fissure"), a narrow water-filled crack where visitors traditionally throw coins. The water is glass-clear blue from filtered glacier melt — same source water as Silfra. Adjacent Flosagja is the larger fissure system. Don't enter the water (it's ~2°C and protected); just look down. Brilliant aerial-style photo straight down into blue.
+                    <div class="step-meta">⏱️ 10 min · 📍 Peningagja/Flosagja fissures, ~200m east of church</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">7</div>
+                <div class="visit-step-content">
+                    <strong>Skip Silfra (we don't cold-water swim) — note it for context</strong>
+                    Silfra is the famous fissure where divers and snorkelers swim in 2°C glacial water between the tectonic plates. Booked tours run ฿7,000-12,000 per person via Dive.is and Arctic Adventures. Our group doesn't swim in cold water — skip. You can still walk past the Silfra parking area (P5) and look down into the crystal-clear entry pool from the rim, which gives a sense of the visibility for free.
+                    <div class="step-meta">⏱️ 5 min (optional walk-by) · 📍 P5 Silfra rim, ~700m further east</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">8</div>
+                <div class="visit-step-content">
+                    <strong>Loop back to Hakid via the upper trail (or shuttle road)</strong>
+                    Either retrace the rift back to P1 (more atmospheric, ~25 min) or take the gravel service road that climbs the western slope back to the visitor centre (less scenic but ice-free). At Hakid, the Visitor Centre has a free 10-minute film on the geology and parliament history that's genuinely worth the time — much more substantive than the typical tourist exhibit. Then drive on to Bruarfoss / Geysir.
+                    <div class="step-meta">⏱️ 25 min walk + 15 min film · 📍 Back to P1 Hakid Visitor Centre</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/d/de/Almannagj%C3%A1_gorge%2C_%C3%9Eingvellir_National_Park.jpg" alt="Almannagja rift gorge">
+                    <div class="gallery-caption">Almannagja rift · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/17-09-05-%C3%9Eingvellir-%C3%96xar%C3%A1rfoss-RalfR-DSC_2722.jpg" alt="Oxararfoss waterfall">
+                    <div class="gallery-caption">Öxarárfoss waterfall · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Almannagj%C3%A1_rift_at_%C3%9Eingvellir_National_Park.jpg" alt="Almannagja rift wall">
+                    <div class="gallery-caption">Rift wall, North American plate · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8e/Roca_de_la_Ley%2C_Parque_Nacional_de_%C3%9Eingvellir%2C_Su%C3%B0urland%2C_Islandia%2C_2014-08-16%2C_DD_019.jpg" alt="Lögberg Law Rock site">
+                    <div class="gallery-caption">Lögberg (Law Rock) site · Wikimedia Commons</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p>
+            <ul>
+                <li><strong>Hakid platform, wide:</strong> 16-24 mm to capture both the rift dropping away and the lake on the horizon. Best in morning when the eastern light hits the western cliff face.</li>
+                <li><strong>Almannagja from below:</strong> Stand on the rift floor, point the wide lens straight up the cliff face. Person in frame for scale.</li>
+                <li><strong>Öxarárfoss:</strong> 24-50 mm framed tight on the falls and the dark basalt amphitheatre. Slow shutter (0.5-1 sec) on a tripod for silky water — but the boardwalk vibrates so brace against the rail.</li>
+                <li><strong>Peningagja:</strong> Shoot straight down with a polariser on to cut surface reflection — the blue is unreal.</li>
+            </ul>
+            <p><strong>🚫 Drone: PERMIT REQUIRED — effectively prohibited for casual visitors.</strong> Per the official <a href="https://www.thingvellir.is/en/administration/licensing/droneflying-for-personal-use/" target="_blank">Thingvellir National Park drone policy</a>, personal drone flying is restricted to early morning (before 09:00) or late afternoon (after 18:00), must avoid all popular sites (Hak, Almannagja, Lögberg, Flosagja, Öxarárfoss, the church, Silfra), and a written permission from the park is required for filming. In practice: do not fly here during a normal Golden Circle visit. Park rangers actively enforce. Save the drone for the rental car day on Snaefellsnes.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Paved Route 36 from Reykjavik — 45 km, ~50 minutes. Any rental car. The road is well-maintained and ploughed in winter.</p>
+            <ul>
+                <li><strong>P1 Hakid</strong> (recommended): top of Almannagja, next to Visitor Centre. 64.2581, -21.1303.</li>
+                <li><strong>P2 / P5</strong>: alternative lower lots near the church and Silfra — only useful if P1 is full or you want to start from the church.</li>
+                <li><strong>Parking fee:</strong> ISK 1,000 ≈ <strong>฿250</strong> per car per day, valid in all park lots. Pay via the <a href="https://www.parka.is/" target="_blank">Parka app</a> or at the kiosk. No on-site cash machine.</li>
+                <li>No park entry fee — only parking is charged.</li>
+                <li>Toilets at Hakid Visitor Centre (free) and at P5 Silfra. None on the rift trail itself.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>★ Star sight — the most important stop on Day 2 and worth real time. Allocate <strong>1.5-2 hours</strong> minimum on the ground, 2.5 hours if you watch the visitor centre film.</p>
+            <ul>
+                <li><strong>Best time of day:</strong> First stop after leaving Reykjavik — arrive 09:00-09:30 to beat the 11:00 tour bus wave. Morning light also rakes the western rift wall well.</li>
+                <li><strong>Crowds:</strong> Heaviest 11:00-15:00 from Reykjavik day-tour buses. By 16:00 it's quiet again, but you'll want to be at Geysir/Gullfoss by then.</li>
+                <li><strong>Combine with (in order):</strong> Thingvellir → Bruarfoss (40 min drive) → Fridheimar lunch (15 min) → Geysir (10 min) → Gullfoss (10 min) → Kerid (50 min, on the way back to Reykjavik).</li>
+                <li>Don't try to "do" Thingvellir in 30 minutes — it's the one Golden Circle stop where rushing genuinely diminishes the experience.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google Maps: ~4.7 stars across 50,000+ reviews. Tripadvisor: #1 thing to do in Selfoss/southern Iceland region. Universally praised for the Almannagja walk, the historical weight (people are visibly moved at the Lögberg site), and the sheer geological clarity — you can actually see the plate boundary, not just imagine it.</p>
+            <p><strong>Honest take:</strong> Not overrated. The single most common complaint is parking fees and slippery boardwalks in winter — both addressable with the Parka app and decent footwear. The visitor centre film is unusually good. Skip it only if you've seen an extensive geology documentary on Iceland already. The Silfra snorkel is not the only reason to come — the rift walk alone justifies the stop.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided is the right move for our group. The walking is the main event and no booking is needed. Optional add-ons (skipped on this trip but listed for completeness):</p>
+            <ul>
+                <li><strong>Silfra snorkel</strong> via <a href="https://www.dive.is/" target="_blank">Dive.is</a> or <a href="https://adventures.is/" target="_blank">Arctic Adventures</a> — ~฿7,000-9,000 (snorkel) / ฿15,000-20,000 (dive). Drysuit provided. <em>Skipped — group doesn't cold-water swim.</em></li>
+                <li><strong>Visitor Centre film</strong> — free with parking. Highly recommended.</li>
+                <li><strong>Ranger-guided walks</strong> — occasional in summer only, not running in April.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul>
+                <li><strong>Ice on boardwalks (April):</strong> The wooden ramps from Hakid down into Almannagja and the boardwalk to Öxarárfoss are the highest-risk fall hazards. Micro-spikes or YakTrax are smart in early April.</li>
+                <li><strong>Stay on marked trails</strong> — fissures here are deep and some are partially overgrown with moss. Stepping off-trail near Flosagja is genuinely dangerous.</li>
+                <li><strong>Do not enter the water</strong> at Peningagja or Flosagja — protected, and the cold (~2°C) will incapacitate quickly.</li>
+                <li><strong>No drone without permit</strong> — fines apply. See Photography section.</li>
+                <li>No SafeTravel.is alerts active for Thingvellir as of research date.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+                <li><a href="https://www.thingvellir.is/en/" target="_blank">Thingvellir National Park — official site</a></li>
+                <li><a href="https://www.thingvellir.is/en/service/parking-service/" target="_blank">Thingvellir parking service & fees</a></li>
+                <li><a href="https://www.thingvellir.is/en/administration/licensing/droneflying-for-personal-use/" target="_blank">Thingvellir drone permit policy</a></li>
+                <li><a href="https://whc.unesco.org/en/list/1152/" target="_blank">UNESCO World Heritage listing</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/%C3%9Eingvellir" target="_blank">Wikipedia — Þingvellir</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Thingvellir+National+Park" target="_blank">Google Maps — Thingvellir</a></li>
+                <li><a href="https://safetravel.is/" target="_blank">SafeTravel.is — current conditions</a></li>
+            </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer><p>Iceland Trip 2026 | Part of the Sights guide</p></footer>
+
+    <script>
+        function toggleMobileMenu() { document.getElementById('navMenu').classList.toggle('mobile-open'); }
+    </script>
+</body>
+</html>

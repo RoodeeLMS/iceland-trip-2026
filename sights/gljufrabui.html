@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gljufrabui - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🌊</span>
+        <h1>Gljufrabui</h1>
+        <div class="day-badges"><span class="day-badge">Day 3</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Glj%C3%BAfrab%C3%BAi%2C_July_2019.jpg/960px-Glj%C3%BAfrab%C3%BAi%2C_July_2019.jpg" alt="Gljufrabui" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>63.6194, -19.9872</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 3</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-20.0172%2C63.6044%2C-19.9572%2C63.6344&amp;layer=mapnik&amp;marker=63.6194%2C-19.9872" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=63.6194,-19.9872" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Gljufrabui ("Canyon Dweller") is a 40 m waterfall hidden inside a narrow rock cleft 500 m north of Seljalandsfoss along the same cliff line. From outside you only see the top spilling over; to actually see the falls you wade up the shallow stream into the slot canyon. Most visitors miss it entirely because they don't know it's there — that's the appeal.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 Open</strong> — No active closures as of April 2026. The slot canyon entry is via wading the stream; in spring the water is cold and ankle-deep to mid-calf. Waterproof boots strongly recommended.</div><p><strong>April 2026 conditions:</strong> Snowmelt makes the stream slightly higher than summer flow. The boulders inside the cleft are slick with algae and constant spray. The cave interior is permanently misted — assume your camera and hood will get wet.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+            <div class="visit-step"><div class="visit-step-num">1</div><div class="visit-step-content"><strong>Walk from Seljalandsfoss lot</strong>From the main Seljalandsfoss parking, head north along the obvious cliff-base path past two minor waterfalls. ~500 m on flat gravel, 5-7 minutes. No separate parking needed.<div class="step-meta">⏱️ 7 min · 📍 Path north of Seljalandsfoss</div></div></div><div class="visit-step"><div class="visit-step-num">2</div><div class="visit-step-content"><strong>Spot the cleft entrance</strong>Look for a narrow vertical crack in the cliff with a stream running out of it. There's no signage shouting at you — easy to walk past. A worn boulder at the entrance is the giveaway.<div class="step-meta">⏱️ 1 min · 📍 Cleft entrance, 63.6194, -19.9872</div></div></div><div class="visit-step"><div class="visit-step-num">3</div><div class="visit-step-content"><strong>Wade into the slot canyon</strong>Step into the stream and walk ~20 m into the cleft. The water is shallow (ankle-to-shin) but icy. Boots help; barefoot is miserable in April. Once inside the cleft opens into a hidden chamber where the full waterfall is revealed crashing onto a midstream boulder.<div class="step-meta">⏱️ 5 min · 📍 Inside the cleft</div></div></div><div class="visit-step"><div class="visit-step-num">4</div><div class="visit-step-content"><strong>Climb the central boulder (carefully)</strong>A flat-topped boulder sits in the center of the chamber and is the classic photo spot. It's slick — three points of contact climbing up. From here the waterfall fills your entire field of view from above.<div class="step-meta">⏱️ 5 min · 📍 Central boulder</div></div></div><div class="visit-step"><div class="visit-step-num">5</div><div class="visit-step-content"><strong>Optional: climb the chain route for the top view</strong>Outside the cleft, on the south side, a short chain-assisted scramble climbs to a hole in the rock that gives a top-down view down into the canyon. Slick in spring — skip if uncertain.<div class="step-meta">⏱️ 10 min · 📍 South side chain route</div></div></div><div class="visit-step"><div class="visit-step-num">6</div><div class="visit-step-content"><strong>Walk back to Seljalandsfoss lot</strong>Same path back. Total round trip including time inside: 25-40 minutes.<div class="step-meta">⏱️ 7 min walk · 📍 Return to lot</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery"><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Glj%C3%BAfrab%C3%BAi%2C_July_2019.jpg/800px-Glj%C3%BAfrab%C3%BAi%2C_July_2019.jpg" alt="Gljufrabui inside cleft"><div class="gallery-caption">Inside the cleft · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Glj%C3%BAfrab%C3%BAi-pjt1.jpg/800px-Glj%C3%BAfrab%C3%BAi-pjt1.jpg" alt="Gljufrabui falls"><div class="gallery-caption">Hidden falls · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Seljalandsfoss_and_Glj%C3%BAfrab%C3%BAi%2C_July_2019.jpg/800px-Seljalandsfoss_and_Glj%C3%BAfrab%C3%BAi%2C_July_2019.jpg" alt="Seljalandsfoss and Gljufrabui"><div class="gallery-caption">Both falls · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Gljufrafoss_Waterfall%2C_Iceland%2C_20240720_1516_3127.jpg/800px-Gljufrafoss_Waterfall%2C_Iceland%2C_20240720_1516_3127.jpg" alt="Gljufrabui from outside"><div class="gallery-caption">Cleft from outside · Wikimedia Commons</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p><ul><li><strong>From the central boulder, ultra-wide:</strong> 14-20 mm pointed up to capture both the falling water and the slot of sky overhead. The cave is dim — bump ISO to 1600+ or use a tripod (good luck — it's wet and crowded).</li><li><strong>Low angle from stream level:</strong> Crouch at the edge of the boulder, mid-tele 35-50 mm, frame the boulder as foreground.</li><li><strong>Cleft entrance from outside:</strong> Wide angle showing the crack in the cliff with people for scale — emphasizes the "hidden" nature.</li><li><strong>Camera protection is the entire game.</strong> Plastic bag, lens cloth, blower bulb. Lenses fog instantly going from cold to wet; let gear acclimate.</li></ul><p><strong>🚫 No drones inside the cleft</strong> (impossible anyway). Outside the cleft the same Seljalandsfoss-area discouragement applies — heavy crowds, narrow valley. See the <a href="../planning.html#drone">Planning page drone section</a> for general rules.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>No separate parking — share the Seljalandsfoss lot (ISK 800 ≈ ฿200). The 500 m walk along the cliff base is flat and obvious.</p><ul><li><strong>Walking shoes:</strong> Waterproof boots highly recommended for the stream wade. Sneakers will get soaked.</li><li><strong>No fee</strong> for entering the cleft.</li><li><strong>No facilities</strong> at Gljufrabui itself — use the toilets at Seljalandsfoss.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>Always paired with Seljalandsfoss as a single visit. Total combined time: 60-90 minutes for both.</p><ul><li><strong>Best light:</strong> Midday in the chamber — direct overhead light from the slot above gives the strongest contrast on the falling water. Morning and evening leave the interior too dark.</li><li><strong>Crowds:</strong> Far thinner than Seljalandsfoss because most visitors don't know it exists or don't want to wade. The cleft itself fits maybe 6-8 people comfortably; brief waits at peak hours.</li><li><strong>Time budget:</strong> 20-30 min after the Seljalandsfoss visit.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google rating ~4.7. The "hidden gem" framing is universal in reviews — people who find it consistently rank it more impressive than Seljalandsfoss itself because of the dramatic enclosed setting. Common complaint: wet feet and slippery rocks for unprepared visitors.</p><p><strong>Honest take:</strong> Underrated. If you'll already be at Seljalandsfoss with the walk-behind closed, Gljufrabui partially compensates by giving you the immersive close-up experience that the closed Seljalandsfoss path normally provides.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities. No tours specifically target this spot.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul><li>Slippery boulders inside the cleft — three points of contact climbing the central rock.</li><li>Cold water in April — wading without waterproof boots leads to numb feet fast.</li><li>Falling rock from the cleft walls is rare but possible; do not linger directly under the lip.</li><li>Camera gear gets soaked — protect or accept the risk.</li><li>The chain-assisted top route is slick and exposed in spring — skip if you're uncertain.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul><li><a href="https://safetravel.is" target="_blank">SafeTravel.is — Live alerts</a></li><li><a href="https://en.wikipedia.org/wiki/Glj%C3%BAfrab%C3%BAi" target="_blank">Wikipedia — Gljufrabui</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Gljufrabui" target="_blank">Google Maps — Gljufrabui</a></li><li><a href="https://guidetoiceland.is/travel-iceland/drive/gljufrabui-waterfall" target="_blank">Guide to Iceland — Gljufrabui guide</a></li></ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

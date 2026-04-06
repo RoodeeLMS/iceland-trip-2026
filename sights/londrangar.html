@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lóndrangar Basalt Cliffs - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🗿</span>
+        <h1>Lóndrangar Basalt Cliffs</h1>
+        <div class="day-badges"><span class="day-badge">Day 7</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://commons.wikimedia.org/wiki/Special:FilePath/Londrangar_Cliffs.jpg?width=1000" alt="Lóndrangar Basalt Cliffs" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.7383, -23.7817</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 7</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-23.8117%2C64.7233%2C-23.7517%2C64.7533&amp;layer=mapnik&amp;marker=64.7383%2C-23.7817" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=64.7383,-23.7817" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p><strong>Lóndrangar</strong> are two dramatic basalt sea stacks — 75 m and 61 m tall — rising out of the cliff line on the south coast of Snæfellsnes inside the national park. They are the eroded plugs of an old volcanic crater. A wooden viewing platform sits 200 m from the parking lot, and a short clifftop walk leads further west for a side-on angle. It is one of the easiest "wow" stops on the peninsula and pairs naturally with Djúpalónssandur and Saxhóll on the same Day 7 loop.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 Open year-round, free, in Snæfellsjökull National Park.</strong> Viewing platform with a railing — safe for all ages.</div><p><strong>April 2026:</strong> Cliffs face south so wind exposure is constant. Path can be muddy/icy in shoulder season. <strong>Drone permit required</strong> in the national park.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+            <div class="visit-step"><div class="visit-step-num">1</div><div class="visit-step-content"><strong>Park at the Malarrif / Lóndrangar lot</strong>Signposted off Route 574, free gravel lot. Two access points: the main Malarrif visitor centre (with toilets and a small exhibit on the park) and a smaller dedicated Lóndrangar lot 1 km further east. Either works.<div class="step-meta">⏱️ 2 min · 📍 64.7383, -23.7817</div></div></div>
+<div class="visit-step"><div class="visit-step-num">2</div><div class="visit-step-content"><strong>Walk to the main viewing platform</strong>From the Lóndrangar lot, a flat 200 m gravel path leads to a wooden railed platform on the cliff edge directly opposite the two stacks. This is the headline view: both pillars rising vertically out of the dark cliff face.<div class="step-meta">⏱️ 4 min · 📍 200 m S of lot</div></div></div>
+<div class="visit-step"><div class="visit-step-num">3</div><div class="visit-step-content"><strong>Walk west along the clifftop for 5 minutes</strong>From the platform, an unmarked but obvious path runs ~300 m west along the cliff edge. The angle changes and the smaller stack lines up beside the larger — a more dramatic "twin stacks" composition. Stay back from the unfenced edge.<div class="step-meta">⏱️ 10 min round trip · 📍 ~300 m W</div></div></div>
+<div class="visit-step"><div class="visit-step-num">4</div><div class="visit-step-content"><strong>Optional: walk east toward Malarrif lighthouse</strong>From the same platform, a 1.5 km coastal path leads east to the orange Malarrif lighthouse and visitor centre. Adds ~45 min round trip. Skip in bad weather; do it if you have time and the light is good.<div class="step-meta">⏱️ 30-45 min · 📍 Optional, 1.5 km E</div></div></div>
+<div class="visit-step"><div class="visit-step-num">5</div><div class="visit-step-content"><strong>Read the bird & saga signs at the platform</strong>Information boards at the platform explain the cliff seabird colonies (kittiwakes, fulmars, guillemots, puffins seasonally) and the local saga that the larger pillar is a "church" of the hidden people. 2 minutes of reading adds context.<div class="step-meta">⏱️ 2 min · 📍 Platform</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Londrangar_Cliffs.jpg?width=800" alt="Lóndrangar basalt stacks"><div class="gallery-caption">Lóndrangar basalt stacks · Wikimedia Commons</div></div>
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/L%C3%B3ndrangar_Mike_Kr%C3%BCger_090513_1.jpg?width=800" alt="Cliff line with stacks"><div class="gallery-caption">Cliff line with stacks · Wikimedia Commons</div></div>
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Londrangar_-_35352590581.jpg?width=800" alt="Aerial-style view"><div class="gallery-caption">Aerial-style view · Wikimedia Commons</div></div>
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Londrangar_-_35483068615.jpg?width=800" alt="Side angle of the pillars"><div class="gallery-caption">Side angle of the pillars · Wikimedia Commons</div></div>
+</div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <ul>
+        <li><strong>Headline shot:</strong> 24-50 mm from the main viewing platform. Both stacks vertical, cliff line as foreground.</li>
+        <li><strong>Compression shot:</strong> 70-200 mm tele from the western clifftop, lining up the smaller stack against the larger.</li>
+        <li><strong>Wide context:</strong> 16-24 mm from further back showing the full cliff sweep and offshore swell.</li>
+        <li><strong>Best light:</strong> Late afternoon (cliffs face south-west). Sunset directly behind the stacks for silhouette.</li>
+    </ul>
+    <p><strong>🚁 Drone — PERMIT REQUIRED:</strong> Inside <strong>Snæfellsjökull National Park</strong>. Drone use requires a permit from the park warden (Umhverfisstofnun / snaefellsjokull.is). Cliffs are also a major seabird nesting site — additional courtesy concerns from May onward. Treat as no-fly. See <a href="../planning.html#drone">Planning drone section</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Paved Route 574, free gravel lot. Any rental car. ~5 min east of Djúpalónssandur, ~15 min south of Saxhóll.</p><ul><li><strong>Parking:</strong> Free, ~20 spaces at Lóndrangar lot, more at Malarrif visitor centre 1 km east.</li><li><strong>Walk:</strong> 200 m flat gravel to the platform.</li><li><strong>Fees:</strong> None.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <ul><li><strong>Allocate:</strong> 20-30 min for the platform; 60-75 min if you walk to Malarrif lighthouse and back.</li><li><strong>Best light:</strong> Late afternoon.</li><li><strong>Combine with:</strong> Djúpalónssandur (5 min west) and Saxhóll (15 min north). All three are the western tip Day 7 loop and easily done in a half day.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google Maps ~4.6 (4,000+ reviews). Praised as effortless and dramatic — minimal walking, big payoff. Honest complaints are mostly about wind and occasional fog hiding the stacks. <strong>Honest take:</strong> highest reward-per-effort stop on Snæfellsnes. Always include if passing.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities needed. Malarrif visitor centre has a small free exhibit on the national park geology and wildlife.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul><li>Unfenced cliff edges past the platform — strong wind risk, stay well back.</li><li>Path can be slippery in wet/icy conditions.</li><li>Falling rock from cliff face — do not stand directly under overhangs (none on the platform itself).</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul><li><a href="https://www.snaefellsjokull.is/" target="_blank">Snæfellsjökull National Park</a></li><li><a href="https://en.wikipedia.org/wiki/Lóndrangar" target="_blank">Wikipedia — Lóndrangar</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Lóndrangar" target="_blank">Google Maps — Lóndrangar</a></li></ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

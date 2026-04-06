@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berserkjahraun Lava Field - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🟤</span>
+        <h1>Berserkjahraun Lava Field</h1>
+        <div class="day-badges"><span class="day-badge">Day 8</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://commons.wikimedia.org/wiki/Special:FilePath/Berserkjahraun_%2815869692709%29.jpg?width=1000" alt="Berserkjahraun Lava Field" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.9861, -22.8878</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 8</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-22.9178%2C64.9711%2C-22.8578%2C65.0011&amp;layer=mapnik&amp;marker=64.9861%2C-22.8878" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=64.9861,-22.8878" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p><strong>Berserkjahraun</strong> is a ~4,000-year-old lava field on the north side of Snæfellsnes, between Stykkishólmur and Grundarfjörður, named after a saga in which two Swedish berserker warriors were given the impossible task of clearing a path across the lava. The field is best experienced as a <strong>scenic drive-through</strong> on Route 558 (a short gravel cut-through between Routes 54 and 56) rather than as a hike: you wind between mossy lava ridges, small craters, and a couple of optional 4x4-only side roads. It is more about the atmosphere and a couple of pull-off photo stops than a "destination."</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 Open year-round.</strong> Route 558 is gravel but normally fine for any rental car in dry conditions; can be soft after heavy rain. Some side branches are F-roads (4x4 only).</div><p><strong>April 2026:</strong> Gravel road may have residual snow patches and soft spots. Drive slowly and check conditions on road.is. Side F-roads (e.g. F570 area) are closed in April.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+            <div class="visit-step"><div class="visit-step-num">1</div><div class="visit-step-content"><strong>Turn off Route 54 onto Route 558 (gravel)</strong>From the Kirkjufell / Grundarfjörður direction, head ~25 km east on Route 54 to the signed junction with Route 558. The gravel cut-through is ~12 km long and connects to Route 56 near Hraunsfjörður. Drive slowly: 30-50 km/h.<div class="step-meta">⏱️ 1 min · 📍 Junction with Rt 54</div></div></div>
+<div class="visit-step"><div class="visit-step-num">2</div><div class="visit-step-content"><strong>Pull off at the first viewpoint over the lava</strong>~2 km in, the road climbs over a small rise with a wide pull-off on the right. Step out for a wide view over the moss-covered lava ridges with Hraunsfjörður bay behind. Photo + 5 min.<div class="step-meta">⏱️ 5-10 min · 📍 ~2 km in</div></div></div>
+<div class="visit-step"><div class="visit-step-num">3</div><div class="visit-step-content"><strong>Walk a short loop on the lava (5 min)</strong>From the pull-off, an informal track lets you walk ~50 m onto the moss-covered lava for texture. <strong>Do not step on the moss</strong> — stick to the bare rock track. The 4,000-year-old moss cushions are extremely slow to recover.<div class="step-meta">⏱️ 10 min · 📍 Lava edge</div></div></div>
+<div class="visit-step"><div class="visit-step-num">4</div><div class="visit-step-content"><strong>Continue the drive — small craters</strong>Further along the road passes between several small scoria cones (Rauðhálsar / Rauðukúlur). Slow down for them; one has a small unmarked pull-off where you can step out and look up at the red cone.<div class="step-meta">⏱️ 10 min · 📍 Mid-route</div></div></div>
+<div class="visit-step"><div class="visit-step-num">5</div><div class="visit-step-content"><strong>Connect to Route 56 — exit</strong>The gravel road meets paved Route 56 near the head of Hraunsfjörður. From here you can continue south to the Vatnaleið junction (toward Selvallafoss) or back north to Stykkishólmur.<div class="step-meta">⏱️ 5 min · 📍 Rt 56 exit</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Berserkjahraun_%2815869692709%29.jpg?width=800" alt="Mossy lava field"><div class="gallery-caption">Mossy lava field · Wikimedia Commons</div></div>
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Berserkjahraun_Aug_18-01.jpg?width=800" alt="Lava ridges and crater"><div class="gallery-caption">Lava ridges and crater · Wikimedia Commons</div></div>
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Berserkjahraun.jpg?width=800" alt="Wide field view"><div class="gallery-caption">Wide field view · Wikimedia Commons</div></div>
+<div><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Iceland_Snaefellsnes.jpg?width=800" alt="Snæfellsnes lava landscape"><div class="gallery-caption">Snæfellsnes lava landscape · Wikimedia Commons</div></div>
+</div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <ul>
+        <li><strong>Wide landscape:</strong> 16-35 mm from the first pull-off — moss texture foreground, fjord background.</li>
+        <li><strong>Tight texture:</strong> 50-100 mm of moss cushions on lava — graphic abstract, best in soft light.</li>
+        <li><strong>Crater portrait:</strong> 35 mm of one of the Rauðhálsar red scoria cones against blue sky.</li>
+        <li><strong>Best light:</strong> Soft overcast for moss colour saturation; harsh midday sun washes the green out.</li>
+    </ul>
+    <p><strong>🚁 Drone:</strong> Outside the national park here, no formal local ban. The lava moss is environmentally fragile but drones do not affect it from the air. Standard courtesy: keep clear of any other visitors on the road. See <a href="../planning.html#drone">Planning drone section</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Gravel Route 558 (12 km cut-through between Rt 54 and Rt 56). Any rental car in normal conditions. Side branches are F-roads — closed in April and 4x4-only when open.</p><ul><li><strong>Parking:</strong> Informal pull-offs along the gravel road.</li><li><strong>Walk:</strong> None required — this is a drive-through. Optional 5 min walks at pull-offs.</li><li><strong>Fees:</strong> None.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <ul>
+        <li><strong>Allocate:</strong> 30-45 min for the drive-through with 2-3 short photo stops. Up to 60 min if you linger.</li>
+        <li><strong>Best light:</strong> Soft / overcast for moss colour. Late afternoon side-light on the cones.</li>
+        <li><strong>Combine with:</strong> Stykkishólmur (15 min north), Kirkjufell (30 min west on Route 54), Selvallafoss (15 min south on Route 56). All Day 8.</li>
+        <li><strong>Skip if:</strong> Heavy rain (gravel turns soft) or you are short on time. Berserkjahraun is the lowest-priority of the Day 8 stops.</li>
+    </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google Maps ratings are sparse — most visitors rate the road, not a destination. Consistent feedback: "beautiful drive, glad we took it instead of staying on Route 54." <strong>Honest take:</strong> not a "stop" so much as a scenic alternative routing. Worth the extra 15-20 minutes vs the main road if you have time and dry conditions; skip if rushed or wet.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities needed.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul><li>Gravel road — drive slowly, watch for soft spots and potholes.</li><li>Stay on bare rock; do not step on the moss.</li><li>F-road side branches are closed and signposted; do not enter with a 2WD.</li><li>Limited mobile signal in the lava field.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+        <li><a href="https://en.wikipedia.org/wiki/Berserkjahraun" target="_blank">Wikipedia — Berserkjahraun</a></li>
+        <li><a href="https://www.google.com/maps/search/?api=1&query=Berserkjahraun" target="_blank">Google Maps — Berserkjahraun</a></li>
+        <li><a href="https://www.road.is" target="_blank">road.is — current road conditions</a></li>
+    </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

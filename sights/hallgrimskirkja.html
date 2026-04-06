@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hallgrimskirkja - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%); min-height: 100vh; color: var(--volcanic-black); line-height: 1.6; }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+        .sight-hero { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%); color: white; padding: 3rem 2rem 2rem; text-align: center; }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin: 0 3px; }
+        .sight-hero .back-link { display: inline-block; margin-bottom: 15px; color: var(--aurora-green); text-decoration: none; font-size: 0.9em; }
+        .sight-hero .back-link:hover { color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .section { background: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); }
+        .section h2 { font-family: 'Playfair Display', serif; color: var(--deep-navy); font-size: 1.4em; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+        .status-box { padding: 12px 16px; border-radius: 8px; border-left: 4px solid var(--aurora-green); background: #f0f9ff; margin-bottom: 10px; }
+        .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 16px; }
+        .meta-item { background: #f8fafc; padding: 10px 12px; border-radius: 8px; font-size: 0.88em; }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+        .map-cta { display: inline-block; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9em; margin-top: 8px; }
+        .map-cta:hover { opacity: 0.9; }
+        .hero-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 12px; }
+        .gallery img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: transform 0.2s; }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+        .map-embed { width: 100%; height: 320px; border: 0; border-radius: 10px; margin-bottom: 10px; }
+        .visit-step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9em; }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+        .researched-note { text-align: center; font-size: 0.78em; color: #888; margin-top: 20px; padding: 10px; }
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">⛪</span>
+        <h1>Hallgrimskirkja</h1>
+        <div class="day-badges"><span class="day-badge">Day 1</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Leifur_Eir%C3%ADksson_and_Hallgr%C3%ADmskirkja_%2814527191932%29.jpg/960px-Leifur_Eir%C3%ADksson_and_Hallgr%C3%ADmskirkja_%2814527191932%29.jpg" alt="Hallgrimskirkja with Leif Erikson statue" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.1415, -21.9266</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 1</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-21.9566%2C64.1265%2C-21.8966%2C64.1565&amp;layer=mapnik&amp;marker=64.1415%2C-21.9266" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=64.1415,-21.9266" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Hallgrimskirkja is Reykjavik's 74.5 m Lutheran church, the tallest building in Iceland and the city's defining landmark — visible from almost everywhere downtown. Designed by state architect Gudjon Samuelsson in 1937 to evoke the columnar basalt of Svartifoss and Iceland's volcanic landscape, it took 41 years to build (completed 1986). The interior is austere white concrete; the real draw is the <strong>tower elevator ride</strong> for the best 360° view in the city.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 Open as normal.</strong> No closures or scaffolding reported for April 2026. Per <a href="https://www.hallgrimskirkja.is/en-gb/opnunartimar" target="_blank">hallgrimskirkja.is</a>: winter hours (Sep-Apr) are <strong>10:00–17:00 daily</strong>, tower closes 30 minutes before. <strong>Sunday closure 10:30–12:30</strong> for the 11:00 mass — plan around it.</div>
+            <p><strong>Tickets (2026):</strong> ISK 1,500 (~฿375) adults, ISK 200 (~฿50) children 7-16. Sold on-site at the church shop only — <strong>no online pre-booking</strong>. Cards accepted. Tower elevator runs continuously; queues of 10-20 minutes are normal at midday.</p>
+            <p><strong>April 2026 conditions:</strong> ~14 hours of daylight, sunset around 20:30 by mid-month. Wind at the top is significantly stronger than at street level — bring a windproof layer even on a calm day. The viewing platform is open-air through narrow slits, not glass.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+
+            <div class="visit-step">
+                <div class="visit-step-num">1</div>
+                <div class="visit-step-content">
+                    <strong>Approach from Skolavordustigur (Rainbow Street)</strong>
+                    Walk up Skolavordustigur from Laugavegur — the rainbow-painted pedestrian street leads straight to the church and gives you the postcard approach shot with the tower framed at the end. This is the single best exterior angle and it's free. Stop two-thirds of the way up for the classic centered composition.
+                    <div class="step-meta">⏱️ 10 min · 📍 Skolavordustigur, ~400m walk from Laugavegur</div>
+                </div>
+            </div>
+            <div class="visit-step">
+                <div class="visit-step-num">2</div>
+                <div class="visit-step-content">
+                    <strong>Photo with the Leif Erikson statue</strong>
+                    Centered in the plaza facing the church is the bronze statue of Leifur Eiriksson — a 1930 gift from the US for the 1000th anniversary of the Althing. It sits on the church's central axis, so you can frame statue and facade in one symmetrical shot. Walk around to the front of the statue (facing the church) for the classic angle.
+                    <div class="step-meta">⏱️ 5 min · 📍 Plaza in front of church</div>
+                </div>
+            </div>
+            <div class="visit-step">
+                <div class="visit-step-num">3</div>
+                <div class="visit-step-content">
+                    <strong>Buy tower tickets at the church shop</strong>
+                    Enter through the main doors. The ticket counter / shop is on the right just inside the entrance. Pay ISK 1,500 (~฿375) per adult by card. There is no online ticketing — walk-up only. If a tour group is queueing for the elevator, buy your ticket first then step into the nave to look around while you wait.
+                    <div class="step-meta">⏱️ 5 min · 📍 Inside main entrance, right side</div>
+                </div>
+            </div>
+            <div class="visit-step">
+                <div class="visit-step-num">4</div>
+                <div class="visit-step-content">
+                    <strong>Look at the nave and the Klais pipe organ</strong>
+                    The interior is intentionally austere — bare white concrete, narrow Gothic-arched windows, almost no ornamentation. The standout is the <strong>15 m, 5,275-pipe Klais organ</strong> at the rear, installed in 1992. Walk to the front pews and turn around for the full view. If a rehearsal is happening you may catch it for free — Friday lunchtime concerts at 12:00 are common.
+                    <div class="step-meta">⏱️ 5-10 min · 📍 Nave</div>
+                </div>
+            </div>
+            <div class="visit-step">
+                <div class="visit-step-num">5</div>
+                <div class="visit-step-content">
+                    <strong>Take the elevator up the tower</strong>
+                    The elevator goes most of the way up; the last short flight is stairs to the viewing level. Capacity is small (~6 people), so expect a queue. The viewing room has narrow open-air slits on all four sides — colored roofs west toward Tjornin lake, Harpa and the harbor north, the snow-capped Esja range across the bay, and Perlan / the airport south. Walk a full circle slowly, then a second pass for photos.
+                    <div class="step-meta">⏱️ 15-20 min · 📍 Tower viewing platform, 74.5 m up</div>
+                </div>
+            </div>
+            <div class="visit-step">
+                <div class="visit-step-num">6</div>
+                <div class="visit-step-content">
+                    <strong>Identify the landmarks from the top</strong>
+                    From the north slit: Harpa's glass facade, the Old Harbor, Mount Esja beyond. From the west: the colorful roofs of the old town, Tjornin pond, City Hall. From the south: the Perlan dome on its hill, BSI bus terminal, Keflavik on the horizon on a clear day. From the east: Laugardalur valley climbing toward Mosfellsbaer.
+                    <div class="step-meta">⏱️ 5 min · 📍 Tower viewing platform</div>
+                </div>
+            </div>
+            <div class="visit-step">
+                <div class="visit-step-num">7</div>
+                <div class="visit-step-content">
+                    <strong>Exit and walk down Skolavordustigur</strong>
+                    Head down the rainbow side on the way out. It's lined with design shops, the Handknitting Association of Iceland (genuine lopapeysa sweaters), bakeries, and ceramics studios — all worth a brief browse. The walk down naturally feeds you into Laugavegur for food and the rest of the afternoon.
+                    <div class="step-meta">⏱️ 15-30 min · 📍 Skolavordustigur descending NW</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+                <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Hallgr%C3%ADmskirkja.jpeg/800px-Hallgr%C3%ADmskirkja.jpeg" alt="Hallgrimskirkja exterior"><div class="gallery-caption">Front facade · Wikimedia Commons</div></div>
+                <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Leifur_Eir%C3%ADksson_and_Hallgr%C3%ADmskirkja_%2814527191932%29.jpg/800px-Leifur_Eir%C3%ADksson_and_Hallgr%C3%ADmskirkja_%2814527191932%29.jpg" alt="Leif Erikson statue and church"><div class="gallery-caption">Leif Erikson statue · Wikimedia Commons</div></div>
+                <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Reykjavik_Hallgrimskirkja_Interior_01.jpg/800px-Reykjavik_Hallgrimskirkja_Interior_01.jpg" alt="Interior nave and organ"><div class="gallery-caption">Nave and Klais organ · Wikimedia Commons</div></div>
+                <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Hallgr%C3%ADmskirkja_1.jpg/800px-Hallgr%C3%ADmskirkja_1.jpg" alt="Hallgrimskirkja side view"><div class="gallery-caption">Side view · Wikimedia Commons</div></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p>
+            <ul>
+                <li><strong>Skolavordustigur lead-in:</strong> Stand mid-street ~200 m down from the church, use <strong>24-35 mm</strong>, frame the rainbow road as a leading line straight to the tower. Best 10:00-12:00 in April when the sun lights the front facade from the southeast.</li>
+                <li><strong>Symmetrical front shot with Leif:</strong> Wide lens, low angle, statue centered. The vertical columns demand symmetry — small tilts look wrong.</li>
+                <li><strong>Interior, organ from the nave:</strong> Stand at the altar end and shoot back toward the entrance — the Klais organ above the doors fills the frame at <strong>16-24 mm</strong>. Bump ISO to 1600+; the interior is darker than it looks.</li>
+                <li><strong>From the tower:</strong> The colorful roofs are the iconic shot at <strong>50-85 mm</strong> compression. North slit at golden hour gives Harpa + harbor + Esja in one frame.</li>
+            </ul>
+            <p><strong>🚫 Drone:</strong> Do not fly here. Reykjavik city centre sits inside BIRK (Reykjavik Airport) controlled airspace and the church plaza is a busy public space — drone flight is effectively prohibited without special clearance per the <a href="https://www.icetra.is/aviation/drones" target="_blank">Icelandic Transport Authority</a>. General Iceland drone rules are on the <a href="../planning.html#drone">Planning page</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Central Reykjavik. From most downtown hotels it's a 10-15 minute walk uphill. Driving is possible but parking is the bottleneck.</p>
+            <ul>
+                <li><strong>Walk:</strong> From Laugavegur up Skolavordustigur — 5-8 minutes, mildly uphill.</li>
+                <li><strong>Parking:</strong> Street parking around the plaza is metered <strong>P2 zone</strong> (~ISK 220/hr ≈ ฿55). Use the <strong>Parka</strong> or <strong>EasyPark</strong> app. Free on Sundays. Vitatorg parking garage is a 5 min walk away.</li>
+                <li><strong>Bus:</strong> Straeto routes 1, 3, 6, 12, 13, 14 stop at Hlemmur (10 min walk) or Snorrabraut (8 min walk).</li>
+                <li><strong>Entry to church:</strong> Free. <strong>Tower:</strong> ISK 1,500 (฿375) adults.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>Day 1 priority ★ — your first real Reykjavik landmark after arrival. Pair with the natural Skolavordustigur → Hallgrimskirkja → Laugavegur walking loop.</p>
+            <ul>
+                <li><strong>Best time:</strong> 10:00 opening or after 15:00. Midday (11:30-14:00) draws cruise/bus crowds. Sunday 10:30-12:30 closure matters — plan for 13:00 if arriving Sunday morning.</li>
+                <li><strong>Best light:</strong> Front facade lights up in late morning (sun from southeast). Tower views best at golden hour — in April that's ~19:30-20:30.</li>
+                <li><strong>Combine with:</strong> Skolavordustigur Rainbow Street (literally at the foot of the church), Einar Jonsson Museum sculpture garden (free, 2 min walk), Laugavegur, then walk down to Sun Voyager and Harpa.</li>
+                <li><strong>Allocate:</strong> 60-90 minutes total (5 min plaza + 10 min interior + 30 min tower including queue + 15 min organ/photos).</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google Maps: <strong>4.7 / 5</strong> with 50,000+ reviews. Tripadvisor consistently lists it among the top 3 things to do in Reykjavik.</p>
+            <p><strong>Praised:</strong> Striking exterior, the tower view (almost universally called "the best view of Reykjavik"), free entry to the nave, the organ when you catch a recital, and the calm austerity of the interior versus ornate European cathedrals.</p>
+            <p><strong>Common complaints:</strong> Tower elevator queues at midday, the tight viewing slits (not floor-to-ceiling glass — some find the photo angles cramped), and the interior being "too plain" if you're expecting stained glass and gilt.</p>
+            <p><strong>Honest take:</strong> Not overrated. The exterior is genuinely a one-of-a-kind piece of architecture and the tower is the only high vantage point in central Reykjavik, so it's worth the ฿375 even if it feels touristy. Skip the tower only if visibility is below ~5 km. The nave is a 5-minute stop, not a destination.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities needed. The tower elevator is the only paid component and tickets are walk-up only at the church shop.</p>
+            <p>Free organ recitals are common — check the <a href="https://www.hallgrimskirkja.is/en-gb/concerts" target="_blank">concert calendar</a>. The summer International Organ Festival (June-August) is famous; April has fewer events but Friday noon recitals do happen.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <p>No specific hazards. The tower viewing slits are narrow and railed — safe for kids. In strong April winds, the windchill at the top can be 10°C colder than at street level, so bring a jacket. Floors inside the church can be slick if recent visitors tracked in snow.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+                <li><a href="https://www.hallgrimskirkja.is/en-gb" target="_blank">Official site — hallgrimskirkja.is</a></li>
+                <li><a href="https://www.hallgrimskirkja.is/en-gb/opnunartimar" target="_blank">Opening hours & tower ticket info</a></li>
+                <li><a href="https://www.hallgrimskirkja.is/en-gb/concerts" target="_blank">Concert calendar</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Hallgr%C3%ADmskirkja" target="_blank">Wikipedia — Hallgrimskirkja</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Hallgrimskirkja" target="_blank">Google Maps — Hallgrimskirkja</a></li>
+                <li><a href="https://visitreykjavik.is/service/hallgrimskirkja-church-tower" target="_blank">Visit Reykjavik — Tower info</a></li>
+            </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

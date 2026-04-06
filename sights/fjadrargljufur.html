@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fjadrargljufur Canyon - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🏞️</span>
+        <h1>Fjadrargljufur Canyon</h1>
+        <div class="day-badges"><span class="day-badge">Day 4</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Fja%C3%B0r%C3%A1rglj%C3%BAfur_%28Unsplash%29.jpg/960px-Fja%C3%B0r%C3%A1rglj%C3%BAfur_%28Unsplash%29.jpg" alt="Fjadrargljufur Canyon" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>63.7715, -18.1728</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 4</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-18.2028%2C63.7565%2C-18.1428%2C63.7865&amp;layer=mapnik&amp;marker=63.7715%2C-18.1728" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=63.7715,-18.1728" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Fjadrargljufur is a 2 km long, up to 100 m deep serpentine canyon carved into palagonite tuff over the last 9,000 years by the Fjadra river, which still flows along the bottom. The walls are mossy, the bends are dramatic, and the rim trail offers a series of viewpoints. The canyon went viral in 2015 after Justin Bieber filmed a music video here, traffic exploded, the moss on the rim was trampled, and the site was <strong>closed for several months</strong> in 2019 for restoration. It has since reopened with a hardened, marked rim trail and clearly fenced viewpoints — the rules are now strictly enforced.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 Open</strong> as of April 2026, with the rim trail and viewpoints accessible. The <strong>bottom-of-canyon trail is closed in winter and shoulder seasons</strong> (typically reopens in summer when river levels drop and ice clears) — assume it is <strong>closed</strong> in early April. The rim trail is the visit; the bottom trail is summer-only.</div><p><strong>April 2026 conditions:</strong> Rim trail may be muddy or have icy patches in spots. Stay on the marked path; the rim is fragile and falls into the canyon are fatal. Verify the access road is open — Route 206 is unpaved gravel and can be rough or briefly closed after heavy rain.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+            <div class="visit-step"><div class="visit-step-num">1</div><div class="visit-step-content"><strong>Drive Route 206 — gravel access road</strong>Turn off Route 1 about 5 km east of Kirkjubaejarklaustur onto Route 206. ~2 km of gravel road; manageable in any 2WD car in dry conditions, slower-going if rutted. Free parking lot at the trailhead.<div class="step-meta">⏱️ 10 min · 📍 Route 206 trailhead lot</div></div></div><div class="visit-step"><div class="visit-step-num">2</div><div class="visit-step-content"><strong>Read the trail rules at the start</strong>Information board at the trailhead explains the closure history and the strict on-trail rule. Worth a 2-minute read so the rules feel earned, not arbitrary.<div class="step-meta">⏱️ 2 min · 📍 Trailhead board</div></div></div><div class="visit-step"><div class="visit-step-num">3</div><div class="visit-step-content"><strong>First viewpoint — the dramatic upstream bend</strong>From the lot, walk up the gentle rim trail. The first major viewpoint is ~150 m in and looks down at the most dramatic upstream bend. Stay behind the wooden barriers — they're there because the rim has crumbled and people have died here.<div class="step-meta">⏱️ 10 min · 📍 First viewpoint</div></div></div><div class="visit-step"><div class="visit-step-num">4</div><div class="visit-step-content"><strong>Continue along the rim trail</strong>The trail continues along the rim for ~1 km, with multiple fenced viewpoints along the way. Each gives a slightly different angle on the canyon's curves. Pace is gentle but uphill toward the head.<div class="step-meta">⏱️ 20-30 min · 📍 Rim trail</div></div></div><div class="visit-step"><div class="visit-step-num">5</div><div class="visit-step-content"><strong>Top viewpoint at the head of the canyon</strong>At the upper end of the trail, ~1 km from the lot, the final viewpoint looks back down the entire canyon — the postcard wide-angle. This is the shot to wait for.<div class="step-meta">⏱️ 10 min · 📍 Top viewpoint</div></div></div><div class="visit-step"><div class="visit-step-num">6</div><div class="visit-step-content"><strong>Walk back to the lot</strong>Same trail back. Total round trip: 60-90 minutes. The bottom-of-canyon trail (the river-level walk through the canyon) is summer-only and closed in April.<div class="step-meta">⏱️ 20-30 min back · 📍 Return to lot</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery"><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Fja%C3%B0r%C3%A1rglj%C3%BAfur_%28Unsplash%29.jpg/800px-Fja%C3%B0r%C3%A1rglj%C3%BAfur_%28Unsplash%29.jpg" alt="Fjadrargljufur from above"><div class="gallery-caption">From above · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Fja%C3%B0r%C3%A1rglj%C3%BAfur_%2876794009%29.jpeg/800px-Fja%C3%B0r%C3%A1rglj%C3%BAfur_%2876794009%29.jpeg" alt="Canyon bend"><div class="gallery-caption">Canyon bend · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Fja%C3%B0r%C3%A1rglj%C3%BAfur_%2816282217980%29.jpg/800px-Fja%C3%B0r%C3%A1rglj%C3%BAfur_%2816282217980%29.jpg" alt="Canyon and river"><div class="gallery-caption">Canyon and river · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Fja%C3%B0r%C3%A1rglj%C3%BAfur.JPG/800px-Fja%C3%B0r%C3%A1rglj%C3%BAfur.JPG" alt="Mossy canyon walls"><div class="gallery-caption">Canyon walls · Wikimedia Commons</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p><ul><li><strong>Top viewpoint, looking down the canyon:</strong> 16-24 mm wide. This is the iconic Fjadrargljufur shot — serpentine bends snaking away into the distance. Best in soft overcast or golden hour. Midday harsh sun creates ugly contrast.</li><li><strong>First viewpoint, dramatic upstream bend:</strong> 24-35 mm. The closer angle shows the moss texture on the canyon walls and the river below.</li><li><strong>Profile of the canyon walls:</strong> 50-85 mm from any viewpoint, frame the layered tuff against the moss for texture.</li><li><strong>Best light:</strong> Soft overcast (very common in Iceland) brings out the moss greens. Golden hour is good but the deep canyon stays shadowed.</li><li><strong>🚫 Drone:</strong> <strong>Drones are explicitly prohibited at Fjadrargljufur</strong> per the Environment Agency of Iceland and on-site signage (post-Bieber, the rules tightened significantly). Do not fly here. See <a href="../planning.html#drone">Planning page</a> for general drone rules.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Route 206, a 2 km gravel side road off Route 1, ~5 km east of Kirkjubaejarklaustur. Free parking at the trailhead. Any 2WD car in dry weather; check road conditions if recent heavy rain.</p><ul><li><strong>Parking: free.</strong></li><li><strong>No entry fee.</strong></li><li><strong>No facilities</strong> at the trailhead — use Kirkjubaejarklaustur 5 km west.</li><li><strong>Walk to first viewpoint:</strong> ~150 m, gentle uphill.</li><li><strong>Walk to top viewpoint:</strong> ~1 km, gentle uphill on a maintained trail.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>Major Day 4 stop. 60-90 minutes. Pair with Eldhraun (~20 min west), Dverghamrar (~15 min west), and Kirkjubaejarklaustur (lunch/fuel, 5 min west).</p><ul><li><strong>Best light:</strong> Soft overcast or late afternoon. Avoid harsh midday sun.</li><li><strong>Crowds:</strong> Moderate; far quieter than the south coast waterfalls thanks to the gravel access road.</li><li><strong>Combine with:</strong> Eldhraun, Dverghamrar, Hofskirkja (farther east), Skaftafell.</li><li><strong>Time budget:</strong> 75 min for the full rim trail round trip.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google rating ~4.7. Reviews are overwhelmingly positive on the canyon itself and the post-restoration trail design. Common complaints: occasional closure for further restoration, gravel access road, and the bottom trail being closed most of the year. Some visitors are disappointed they can't walk down into the canyon.</p><p><strong>Honest take:</strong> Lives up to the hype if you set expectations correctly. The rim trail is the experience; the bottom-of-canyon trail (the original viral attraction) is realistically not available outside summer. Even just from above, the canyon is one of the most photogenic landscapes on the south coast.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul><li><strong>Stay on the marked trail and behind barriers.</strong> The rim has crumbled in places and falls into the canyon are fatal — there have been deaths here from people stepping off the path for photos.</li><li>Trail can be muddy or icy in spring; non-slip footwear helps.</li><li>Wind on the rim can be strong — brace tripods and small children.</li><li>Bottom-of-canyon trail is closed in winter and shoulder seasons; do not attempt to descend.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul><li><a href="https://www.ust.is/the-environment-agency-of-iceland/protected-areas/" target="_blank">Environment Agency — Protected areas</a></li><li><a href="https://en.wikipedia.org/wiki/Fja%C3%B0r%C3%A1rglj%C3%BAfur" target="_blank">Wikipedia — Fjadrargljufur</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Fjadrargljufur" target="_blank">Google Maps — Fjadrargljufur</a></li><li><a href="https://safetravel.is" target="_blank">SafeTravel.is — Live alerts</a></li></ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

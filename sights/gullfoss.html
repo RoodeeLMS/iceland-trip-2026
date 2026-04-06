@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gullfoss - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-blue: #0077B6; --aurora-green: #00B4D8; --deep-navy: #1a1a2e; --glacier-white: #F0F9FF; --ice-blue: #CAF0F8; --volcanic-black: #2D3748; --sunset-gold: #F59E0B; --moss-green: #10B981; --lava-red: #EF4444; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%); min-height: 100vh; color: var(--volcanic-black); line-height: 1.6; }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) { .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; } .navbar-menu.mobile-open { display: flex; } .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); } .menu-toggle { display: block; } }
+        .sight-hero { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%); color: white; padding: 3rem 2rem 2rem; text-align: center; }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin: 0 3px; }
+        .sight-hero .back-link { display: inline-block; margin-bottom: 15px; color: var(--aurora-green); text-decoration: none; font-size: 0.9em; }
+        .sight-hero .back-link:hover { color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .section { background: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); }
+        .section h2 { font-family: 'Playfair Display', serif; color: var(--deep-navy); font-size: 1.4em; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+        .status-box { padding: 12px 16px; border-radius: 8px; border-left: 4px solid var(--aurora-green); background: #f0f9ff; margin-bottom: 10px; }
+        .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 16px; }
+        .meta-item { background: #f8fafc; padding: 10px 12px; border-radius: 8px; font-size: 0.88em; }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+        .map-cta { display: inline-block; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9em; margin-top: 8px; }
+        .map-cta:hover { opacity: 0.9; }
+        .hero-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 12px; }
+        .gallery img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: transform 0.2s; }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+        .map-embed { width: 100%; height: 320px; border: 0; border-radius: 10px; margin-bottom: 10px; }
+        .visit-step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9em; }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+        .researched-note { text-align: center; font-size: 0.78em; color: #888; margin-top: 20px; padding: 10px; }
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">💦</span>
+        <h1>Gullfoss</h1>
+        <div class="day-badges"><span class="day-badge">Day 2</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/1/12/Gullfoss%2C_Iceland%2C_20230501_1002_3834.jpg" alt="Gullfoss waterfall" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.3275, -20.1200</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 2</div>
+                <div class="meta-item"><strong>💰 Entry</strong>Free · Parking free</div>
+                <div class="meta-item"><strong>📐 Drop</strong>32 m total (two tiers)</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-20.1500%2C64.3125%2C-20.0900%2C64.3425&amp;layer=mapnik&amp;marker=64.3275%2C-20.1200" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=64.3275,-20.1200" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Gullfoss ("Golden Falls") is a two-tier waterfall on the glacial Hvítá river that drops a total of 32 m into a 70 m deep canyon. The Hvítá carries meltwater from Langjökull, Iceland's second-largest glacier, and the high sediment load gives the water its golden-brown tint in sunlight. It's the third star of the Golden Circle alongside Thingvellir and Geysir, and on a windy day the spray cloud is visible from the parking lot 500 m away. There's a story that in the early 20th century the falls were nearly destroyed for hydroelectric development; activist Sigríður Tómasdóttir's protest helped save them, and there's a memorial to her on site.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 Open year-round, free</strong> — Both upper and lower viewing platforms accessible. Lower path may close in icy conditions.</div>
+            <p><strong>April 2026 conditions:</strong> The lower viewing path that descends to within metres of the falls is frequently closed in winter and early spring due to ice on the rock steps. Check on arrival — if it's open, take it; if not, the upper viewpoint still gives an excellent angle. The falls are at peak volume in April-May from snowmelt. Expect heavy spray downwind: <strong>waterproof outer layer is mandatory</strong> or you and your camera will get soaked.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+
+            <div class="visit-step">
+                <div class="visit-step-num">1</div>
+                <div class="visit-step-content">
+                    <strong>Park at the upper lot — closer to the visitor centre and toilets</strong>
+                    There are two free lots: an upper lot by the visitor centre / café (better in winter, closer to toilets), and a lower lot at the start of the lower path. Use the upper lot in April — the lower one's path is often iced. Both are free.
+                    <div class="step-meta">⏱️ 3 min · 📍 Upper lot, by visitor centre</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">2</div>
+                <div class="visit-step-content">
+                    <strong>Walk to the upper viewing platform — the wide panoramic shot</strong>
+                    From the upper lot, a paved path leads ~150 m to the upper viewing platform on the cliff above the falls. This is the best location to see <strong>both tiers</strong> of the cascade and the entire 70 m canyon — the lower tier turns 90 degrees into the canyon, which is the falls' most distinctive feature and only visible from above.
+                    <div class="step-meta">⏱️ 10-15 min · 📍 Upper viewing platform</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">3</div>
+                <div class="visit-step-content">
+                    <strong>Take the stairs/ramp down to the middle viewpoint</strong>
+                    From the upper platform, a wooden staircase descends ~60 steps to a middle viewpoint roughly level with the upper tier of the falls. This is the closest you can get without entering the spray zone. <strong>Watch for ice on the steps in April</strong> — handrail is essential.
+                    <div class="step-meta">⏱️ 10 min · 📍 Middle viewpoint, ~60 steps down</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">4</div>
+                <div class="visit-step-content">
+                    <strong>If open: walk the lower spray path along the river</strong>
+                    From the middle viewpoint, a flat gravel/rock path extends along the river right up to within 20 m of the falls. <strong>This is the wet zone</strong> — the entire path is in the spray cloud and you and your camera will be drenched. Do this LAST and keep the camera in a plastic bag until the moment of the shot. Skip if path is closed (frequent in April due to ice).
+                    <div class="step-meta">⏱️ 10-15 min (if open) · 📍 Lower spray path</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">5</div>
+                <div class="visit-step-content">
+                    <strong>Visit the Sigríður Tómasdóttir memorial</strong>
+                    On the cliff above the falls near the visitor centre is a small stone bust of Sigríður Tómasdóttir, the farmer's daughter who walked barefoot to Reykjavik in protest of plans to dam the falls in the early 1900s. Read the plaque — it's a small but meaningful piece of conservation history. 2 minutes well spent.
+                    <div class="step-meta">⏱️ 5 min · 📍 Sigríður memorial, near visitor centre</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">6</div>
+                <div class="visit-step-content">
+                    <strong>Warm up and dry off at the visitor centre / Gullfoss Kaffi</strong>
+                    Free toilets, café (Gullfoss Kaffi is famous for its lamb soup, ฿700-1,000), and a small souvenir shop. Good place to thaw out before driving back. From here it's ~25 min to Fridheimar (if not done earlier) or ~50 min to Kerid via Route 35 → 359.
+                    <div class="step-meta">⏱️ 20-30 min · 📍 Gullfoss Kaffi & visitor centre</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Gullfoss%2C_Iceland%2C_20230501_1002_3834.jpg" alt="Gullfoss waterfall full view">
+                    <div class="gallery-caption">Two-tier Gullfoss · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/81/Gullfoss%2C_Su%C3%B0urland%2C_Islandia%2C_2014-08-16%2C_DD_119.JPG" alt="Gullfoss from above">
+                    <div class="gallery-caption">From upper viewpoint · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Gullfoss%2C_Su%C3%B0urland%2C_Islandia%2C_2014-08-16%2C_DD_123.JPG" alt="Gullfoss canyon edge">
+                    <div class="gallery-caption">Canyon and 90° turn · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Iceland_-_2017-02-22_-_Gullfoss_-_3684.jpg" alt="Gullfoss in winter">
+                    <div class="gallery-caption">Winter spray · Wikimedia Commons</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p>
+            <ul>
+                <li><strong>Upper platform, ultrawide:</strong> 14-20 mm captures both tiers, the 90° canyon turn, and the spray cloud all in one frame. The signature Gullfoss shot.</li>
+                <li><strong>Telephoto compression:</strong> 70-200 mm at ~135 mm picks out the upper cascade against the canyon wall — strips out the crowd.</li>
+                <li><strong>Slow shutter from middle viewpoint:</strong> ND filter + 1/4 to 1 sec for silky water. Tripod mandatory. Beware spray on the front element.</li>
+                <li><strong>Best light:</strong> Late morning to early afternoon when the sun lights the falls from over your shoulder. In April this is roughly 11:00-14:00.</li>
+                <li><strong>Rainbow:</strong> On sunny days a permanent rainbow appears in the spray when the sun is behind you — usually visible from the upper platform after ~13:00.</li>
+            </ul>
+            <p><strong>Drone:</strong> Drone flying at Gullfoss is <strong>discouraged but not strictly prohibited</strong> — there is no formal no-fly zone, but the area is busy with crowds and the spray cloud rises high enough that low flight is risky. Stay well back, fly only when no one is downwind, and keep above the canyon rim. Per <a href="https://guidetoiceland.is/travel-info/flying-drones-in-iceland" target="_blank">Guide to Iceland (2026)</a>: "respect other visitors at popular sites like Gullfoss and Geysir." General Iceland drone rules: <a href="../planning.html#drone">Planning page</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Paved Route 35, well-maintained year-round. Any 2WD rental car. The road ends at Gullfoss — beyond the falls, Route 35 becomes the gravel F-road into the highlands (closed in April).</p>
+            <ul>
+                <li><strong>From Geysir:</strong> ~10 min / 10 km north on Route 35.</li>
+                <li><strong>From Reykjavik direct:</strong> ~2 hours / 120 km via Route 1 → 35.</li>
+                <li><strong>Parking:</strong> Two free lots. Use the upper one in winter/spring.</li>
+                <li><strong>No entry fee.</strong></li>
+                <li>Walk from upper lot to upper viewing platform: ~150 m, flat paved.</li>
+                <li>Walk from upper to middle viewpoint: ~60 wooden steps down.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>★ Star sight. <strong>45-60 minutes</strong> on the ground including all viewpoints and a café break. Always paired with Geysir (10 min away).</p>
+            <ul>
+                <li><strong>Best light:</strong> 11:00-14:00 in April for the rainbow and direct sun on the upper tier. Avoid first/last hour of daylight when the canyon is in deep shadow.</li>
+                <li><strong>Crowds:</strong> Heaviest 12:00-14:00 with the bus tour wave from Reykjavik. Either get there before 11:00 or after 15:30.</li>
+                <li><strong>Combine with:</strong> Geysir (10 min, mandatory pair), Fridheimar (25 min back south), Kerid (~50 min on the way back to Reykjavik via Route 35 → 359 → 35).</li>
+                <li>Order tip: <strong>Geysir first, then Gullfoss</strong> — Gullfoss is the bigger reward, save it for second.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google: ~4.7 stars across 50,000+ reviews. Among the most consistently praised waterfalls in Iceland — first-time visitors rank it equal to or above Skogafoss. The two-tier 90° turn is genuinely unique among major waterfalls.</p>
+            <p><strong>Honest take:</strong> Not overrated. The most common complaint is the spray soaking visitors and cameras, which is itself part of the experience — bring a rain shell. Second complaint is the crowds 12:00-14:00; arrive at 10:30 or 15:30 and you'll have most of the upper platform to yourself. The lower spray path being closed in winter is the only legitimate disappointment, and even with it closed the upper view is excellent.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities needed. Optional add-ons:</p>
+            <ul>
+                <li><strong>Langjökull glacier snowmobile / ice cave</strong> tours depart from a base nearby (Mountaineers of Iceland, ~฿20,000-25,000) — half-day commitment, not on this trip.</li>
+                <li><strong>Gullfoss Kaffi lamb soup</strong> at the visitor centre — famous, ~฿800-1,000 per bowl, refillable.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul>
+                <li><strong>Stay behind the safety rope</strong> on all paths. The cliff edges are unfenced beyond the marked viewpoints, and the rock is wet, mossy, and undercut.</li>
+                <li><strong>Ice on stairs and lower path</strong> in April — the spray refreezes constantly. Use the handrail; consider micro-spikes.</li>
+                <li><strong>Slippery wet rock</strong> on the lower viewing path — falls into the river are fatal. The river is glacial meltwater, ~1-3°C, with no exit downstream of the falls.</li>
+                <li><strong>Spray-soaked clothing</strong> in April-cold air can cause hypothermia fast — bring a waterproof outer layer.</li>
+                <li><strong>Strong wind</strong> on the cliff platform is common; secure hats, lens caps, drone props.</li>
+                <li>No SafeTravel.is alerts active for Gullfoss as of research date.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+                <li><a href="https://gullfoss.is/" target="_blank">Gullfoss — official site</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Gullfoss" target="_blank">Wikipedia — Gullfoss</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Gullfoss" target="_blank">Google Maps — Gullfoss</a></li>
+                <li><a href="https://safetravel.is/" target="_blank">SafeTravel.is</a></li>
+                <li><a href="https://guidetoiceland.is/travel-iceland/drive/gullfoss" target="_blank">Guide to Iceland — Gullfoss travel guide</a></li>
+            </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer><p>Iceland Trip 2026 | Part of the Sights guide</p></footer>
+
+    <script>
+        function toggleMobileMenu() { document.getElementById('navMenu').classList.toggle('mobile-open'); }
+    </script>
+</body>
+</html>

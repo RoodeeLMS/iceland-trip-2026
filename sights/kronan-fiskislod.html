@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kronan Fiskislod Grocery - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-blue: #0077B6; --aurora-green: #00B4D8; --deep-navy: #1a1a2e; --glacier-white: #F0F9FF; --ice-blue: #CAF0F8; --volcanic-black: #2D3748; --sunset-gold: #F59E0B; --moss-green: #10B981; --lava-red: #EF4444; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%); min-height: 100vh; color: var(--volcanic-black); line-height: 1.6; }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) { .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; } .navbar-menu.mobile-open { display: flex; } .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); } .menu-toggle { display: block; } }
+        .sight-hero { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%); color: white; padding: 3rem 2rem 2rem; text-align: center; }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin: 0 3px; }
+        .sight-hero .back-link { display: inline-block; margin-bottom: 15px; color: var(--aurora-green); text-decoration: none; font-size: 0.9em; }
+        .sight-hero .back-link:hover { color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .section { background: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); }
+        .section h2 { font-family: 'Playfair Display', serif; color: var(--deep-navy); font-size: 1.4em; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+        .status-box { padding: 12px 16px; border-radius: 8px; border-left: 4px solid var(--aurora-green); background: #f0f9ff; margin-bottom: 10px; }
+        .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 16px; }
+        .meta-item { background: #f8fafc; padding: 10px 12px; border-radius: 8px; font-size: 0.88em; }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+        .map-cta { display: inline-block; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9em; margin-top: 8px; }
+        .map-cta:hover { opacity: 0.9; }
+        .hero-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 12px; }
+        .gallery img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: transform 0.2s; }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+        .map-embed { width: 100%; height: 320px; border: 0; border-radius: 10px; margin-bottom: 10px; }
+        .visit-step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9em; }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+        .researched-note { text-align: center; font-size: 0.78em; color: #888; margin-top: 20px; padding: 10px; }
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🥘</span>
+        <h1>Kronan Fiskislod Grocery</h1>
+        <div class="day-badges"><span class="day-badge">Day 1</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Selfoss_Kronan.JPG/960px-Selfoss_Kronan.JPG" alt="Kronan supermarket exterior" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.1548, -21.9516</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 1</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-21.9816%2C64.1398%2C-21.9216%2C64.1698&amp;layer=mapnik&amp;marker=64.1548%2C-21.9516" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=Kronan+Granda+Reykjavik" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Not a sight — a logistics stop. Kronan is one of Iceland's two main budget grocery chains (the other being Bonus). The Fiskislod / Grandi branch sits in the Old Harbour district about 10 minutes from downtown by car, and it's the most convenient large supermarket for stocking up on road-trip food before heading out on Day 2 onward. <strong>Stocking your car here will save you ฿2,000-4,000 per day</strong> versus eating at every petrol station and tourist restaurant on the south coast.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 Open daily.</strong> Per <a href="https://kronan.is/" target="_blank">kronan.is</a> and <a href="https://en.ja.is/kronan/0AaVo/" target="_blank">já.is</a>: standard hours are <strong>roughly 09:00 (or 10:00) – 21:00 daily</strong>, including Sundays. Fiskislod address: Fiskislod 15-21, 101 Reykjavik. Confirm exact hours on the day via Google Maps.</div>
+            <p>Cards accepted (Visa/MC), no minimum. The Krónan app gives small discounts but is not necessary.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+
+            <div class="visit-step">
+                <div class="visit-step-num">1</div>
+                <div class="visit-step-content">
+                    <strong>Park out front and grab a basket</strong>
+                    Free parking lot directly in front of the store — easy in/out, plenty of space, much less stressful than central Reykjavik. Walk in, grab a basket (no coin needed for baskets; trolleys may need a 100 ISK coin or app).
+                    <div class="step-meta">⏱️ 2 min · 📍 Free lot, Fiskislod 15-21</div>
+                </div>
+            </div>
+            <div class="visit-step">
+                <div class="visit-step-num">2</div>
+                <div class="visit-step-content">
+                    <strong>Hit the essentials list</strong>
+                    What to actually buy for the road trip (priced roughly in ฿):
+                    <ul>
+                        <li><strong>Skyr</strong> — single-serve pots, ฿60-90 each. Buy 8-10 for breakfasts.</li>
+                        <li><strong>Bread + cheese + cold cuts</strong> — sandwich kit for car lunches. ~฿800 covers 4-5 meals.</li>
+                        <li><strong>Bottled water</strong> — large 1.5 L bottles ฿50-80. Buy a 6-pack and refill from taps thereafter (Iceland's tap water is the best in the world).</li>
+                        <li><strong>Snacks</strong> — Icelandic chocolate (Sirius, Noi Sirius), licorice, bananas, apples, trail mix.</li>
+                        <li><strong>Instant noodles / cup soups</strong> if your hotels have kettles.</li>
+                        <li><strong>Disposable cutlery + paper towels</strong> for car eating.</li>
+                        <li><strong>Coffee or tea bags</strong> if you want morning caffeine in your room.</li>
+                    </ul>
+                    Skip: alcohol (sold separately at Vinbudin, and your group doesn't drink), prepared hot meals (limited selection here).
+                    <div class="step-meta">⏱️ 20-30 min · 📍 In-store</div>
+                </div>
+            </div>
+            <div class="visit-step">
+                <div class="visit-step-num">3</div>
+                <div class="visit-step-content">
+                    <strong>Pay and load directly into the car</strong>
+                    Self-checkout and staffed lanes both available. Bring or buy reusable bags (~฿25 each — plastic bags are not free in Iceland). Load directly into the rental and you're set for the next 2-3 days of road tripping.
+                    <div class="step-meta">⏱️ 5-10 min</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+                <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Selfoss_Kronan.JPG/800px-Selfoss_Kronan.JPG" alt="Kronan supermarket exterior"><div class="gallery-caption">Kronan storefront (Selfoss branch shown — Fiskislod is similar) · Wikimedia Commons</div></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p>Not a photo stop. It's a grocery store. Drones obviously not relevant — and central Reykjavik / Old Harbour is BIRK controlled airspace anyway.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <ul>
+                <li><strong>From downtown Reykjavik:</strong> 5-10 minutes by car. Head north-west on Geirsgata / Mýrargata into the Grandi area; the store is on Fiskislod.</li>
+                <li><strong>Parking:</strong> Free, large lot in front. The whole point of choosing this branch over a downtown one.</li>
+                <li><strong>Walking:</strong> Possible from Old Harbour (~15 min) but not really practical with a full grocery load.</li>
+                <li><strong>Fees:</strong> None to enter. Bag fees ~฿25.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <ul>
+                <li><strong>Best time:</strong> Late afternoon Day 1, after picking up the rental car and before dinner. Or Day 2 morning before leaving Reykjavik for the Golden Circle.</li>
+                <li><strong>Combine with:</strong> Grandi old harbour area has good restaurants (Matur og Drykkur, Coocoo's Nest) and the Whales of Iceland museum if you want a half-day in the area.</li>
+                <li><strong>Allocate:</strong> 30-45 minutes total including parking and loading.</li>
+                <li><strong>Bonus tip:</strong> Bonus (the orange pig logo store) is marginally cheaper than Krónan, but Krónan has a better selection and more central locations. Either is fine. Avoid 10-11 (the convenience chain) for groceries — it's roughly 30-50% more expensive.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google Maps: ~<strong>4.4 / 5</strong>. Locals like Krónan as a slightly higher-quality alternative to Bonus, with better produce and a wider selection of organic/vegan options. Per <a href="https://guidetoiceland.is/travel-iceland/drive/kronan" target="_blank">Guide to Iceland</a>, prices are similar to Bonus but selection is broader.</p>
+            <p><strong>Honest take:</strong> It's a supermarket. Doing a grocery run on Day 1 and stocking the car is one of the highest-leverage cost-saving moves on any Iceland trip — easily ฿10,000-20,000 saved over a 9-day trip versus eating out for every meal.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-serve grocery shopping. No tickets, tours, or activities.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <p>None. Reykjavik supermarket — same risk profile as a Tesco. Watch the parking lot for slick patches in early April.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+                <li><a href="https://kronan.is/" target="_blank">Official site — kronan.is</a></li>
+                <li><a href="https://en.ja.is/kronan/0AaVo/" target="_blank">já.is — Krónan Grandi listing</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Kronan+Fiskislod+Reykjavik" target="_blank">Google Maps — Krónan Fiskislod</a></li>
+                <li><a href="https://guidetoiceland.is/travel-iceland/drive/kronan" target="_blank">Guide to Iceland — Krónan supermarkets</a></li>
+                <li><a href="https://guidetoiceland.is/travel-info/shopping-for-groceries-in-iceland" target="_blank">Guide to Iceland — Grocery shopping in Iceland</a></li>
+            </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

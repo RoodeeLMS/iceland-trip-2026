@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deildartunguhver - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">♨️</span>
+        <h1>Deildartunguhver</h1>
+        <div class="day-badges"><span class="day-badge">Day 6</span><span class="day-badge">★ Priority</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://commons.wikimedia.org/wiki/Special:FilePath/Deildartunguhver%20boiling%20water.jpg?width=1200" alt="Deildartunguhver hot spring" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.6636, -21.4081</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 6 (West / Silver Circle)</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-21.4381%2C64.6486%2C-21.3781%2C64.6786&amp;layer=mapnik&amp;marker=64.6636%2C-21.4081" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=64.6636,-21.4081" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Deildartunguhver is the highest-flow hot spring in Europe — <strong>~180 litres per second</strong> of water at <strong>97°C / 207°F</strong> erupts continuously from a fissure in the basalt. The output is so large it heats homes and greenhouses across two towns (Borgarnes and Akranes) via the longest hot-water pipeline in Iceland. On site you walk a short boardwalk past steam vents and the open boiling pools. Adjacent is <strong>Krauma Spa</strong> (built 2017), which mixes the spring's water with cold glacial melt for a bathing complex. <em>Our group is not swimming — Krauma is mentioned here only as a skip / reference.</em></p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box">
+                <strong>🟢 Open year-round, free walk-up site, no closures</strong> — Per <a href="https://www.krauma.is/en/deildartunguhver" target="_blank">krauma.is</a>: the spring viewing area is free and accessible all year. Krauma Spa adjacent is also year-round.
+            </div>
+            <p><strong>April 2026 conditions:</strong> Cold ambient air + 97°C water = enormous billowing steam clouds, the most photogenic time of year for this stop. Boardwalks may be icy from condensed steam refreezing — watch your footing. The site is small and exposed; if it's blowing horizontal sleet, the visit shrinks to 5 minutes from the parking lot edge.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+
+            <div class="visit-step">
+                <div class="visit-step-num">1</div>
+                <div class="visit-step-content">
+                    <strong>Park at the free Deildartunguhver lot</strong>
+                    Free paved lot directly off Route 50, signposted. Krauma Spa shares the access road but has its own parking; the spring boardwalk lot is the one closer to the steaming hillside. Restrooms inside Krauma's reception (if you're using them, technically you should be a customer — the cafe/coffee at Krauma is the polite workaround).
+                    <div class="step-meta">⏱️ 2 min · 📍 Free lot, Rd 50</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">2</div>
+                <div class="visit-step-content">
+                    <strong>Walk the boardwalk past the main vents</strong>
+                    A short railed boardwalk (~100 m total) runs alongside the spring fissure. Stop at the first vent to feel the heat radiating off the rock. The water is genuinely 97°C — close to boiling. Do NOT step off the boardwalk; surface crusts elsewhere on the slope can collapse into superheated water (this is the standard Icelandic geothermal hazard).
+                    <div class="step-meta">⏱️ 5 min · 📍 Main boardwalk, ~50 m from lot</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">3</div>
+                <div class="visit-step-content">
+                    <strong>Look for the open boiling pool at the end of the boardwalk</strong>
+                    The far end opens onto the largest visible pool — clear water rolling and visibly boiling. In April cold this is wrapped in a constant steam plume. Photographic gold for backlit / silhouette compositions if the sun is low.
+                    <div class="step-meta">⏱️ 5 min · 📍 End of boardwalk</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">4</div>
+                <div class="visit-step-content">
+                    <strong>Notice the geothermal pipeline & tomato greenhouses</strong>
+                    Look uphill — the silver insulated pipes carry the spring water 64 km to Akranes, the longest hot-water pipeline in Iceland. Across the road, geothermally heated greenhouses grow tomatoes and other produce year-round (some sold at Krauma's restaurant). Quick context stop, ~2 min.
+                    <div class="step-meta">⏱️ 2 min · 📍 View from boardwalk back toward road</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">5</div>
+                <div class="visit-step-content">
+                    <strong>(Skip) Krauma Spa</strong>
+                    The bathing complex next door opened in 2017 and mixes the spring water with glacial melt for soaking. Adult entry ~ISK 4,990 ≈ <strong>฿1,250</strong>. Our group does not swim — note it as a "skip" reference. The Krauma cafe/restaurant is open to non-bathers if you want a coffee with the steam plume in view.
+                    <div class="step-meta">⏱️ Skip · 📍 Krauma building, adjacent</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+                <div>
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Deildartunguhver%20boiling%20water.jpg?width=800" alt="Deildartunguhver boiling water">
+                    <div class="gallery-caption">Boiling water · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Splashing%20hot%20spring%20of%20Deildartunguhver%20in%20Western%20Iceland%20%2833607768298%29.jpg?width=800" alt="Splashing hot spring">
+                    <div class="gallery-caption">Splashing spring · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Deildartunguhver%20-%20Centrale.jpg?width=800" alt="Deildartunguhver site overview">
+                    <div class="gallery-caption">Site overview · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/La%20laguna%20de%20Deildartunguhver%20%2810016869364%29.jpg?width=800" alt="Hot spring lagoon">
+                    <div class="gallery-caption">Pool & landscape · Wikimedia Commons</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p>
+            <ul>
+                <li><strong>Backlit steam plume:</strong> Shoot toward the low sun (early morning or late afternoon) so the steam glows and the foreground stays moody. 35-85 mm works best — wide loses the impact, super-tele compresses it too flat.</li>
+                <li><strong>Detail of the boiling pool:</strong> 70-200 mm tele on the surface roll. 1/500 sec freezes the boiling pattern; 1/15 sec turns it abstract.</li>
+                <li><strong>Pipeline as foreground:</strong> Use the silver insulated pipes as a leading line into the steam — gives the shot a sense of scale and tells the geothermal-heating story in one frame.</li>
+                <li><strong>April advantage:</strong> Cold air = 5-10x more visible steam than summer photos. This is the right season for this site.</li>
+            </ul>
+            <p><strong>🚁 Drone:</strong> No site-specific ban posted, but the site is small, partially within the Krauma commercial property boundary, and other visitors are usually within the small viewing area — keep flights short, low, and away from the spa building. Mind the steam plume (warm rising air messes with rotor lift). For general Iceland drone law see the <a href="../planning.html#drone">Drone section on the Planning page</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>~1.5 hr from Reykjavik via Ring Road then Route 50. All paved, any 2WD rental fine.</p>
+            <ul>
+                <li><strong>Parking:</strong> Free at the spring lot (Krauma has its own).</li>
+                <li><strong>Walk to boardwalk:</strong> ~50 m flat.</li>
+                <li><strong>Entry:</strong> Free for the spring. Krauma Spa: ~ISK 4,990 ≈ <strong>฿1,250</strong> adult (skip).</li>
+                <li><strong>Restrooms:</strong> Inside Krauma reception (be a cafe customer).</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>Quick stop, ~15 min on the boardwalk plus 5 min for parking and orientation. Pair with Hraunfossar / Barnafoss to the north (~30 min drive) on Day 6's West loop.</p>
+            <ul>
+                <li><strong>Best light:</strong> Cold mornings = biggest steam plumes. Late afternoon backlight is the most dramatic.</li>
+                <li><strong>Crowds:</strong> Light. A handful of tour buses pass through but the boardwalk is short so turnover is fast.</li>
+                <li><strong>Combine with:</strong> Hraunfossar + Barnafoss (~30 km north), Reykholt historical site (~10 min east, Snorri Sturluson connection), Krauma cafe.</li>
+                <li>Allocate 15-20 min total. Don't budget more — it's small.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Tripadvisor ~4.0/5. Reviewers consistently call it interesting but small — the praise centres on the steam plume and the geothermal-engineering story; the complaints are about it being a 10-minute stop rather than a destination. Krauma Spa adjacent gets generally positive reviews from bathers but is irrelevant to a non-swimming visit.</p>
+            <p><strong>Honest take:</strong> Matches expectations. Don't expect a Geysir / Strokkur experience — there's no eruption show, just a continuously boiling fissure. The "highest flow in Europe" stat is the hook, and it's genuinely impressive once you understand 180 L/s. Worth a 15 min stop, not a 1 hr one.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided for the spring itself. Optional (skip): <a href="https://www.krauma.is/en" target="_blank">Krauma Geothermal Spa</a>, ~ISK 4,990 ≈ <strong>฿1,250</strong> adult, no advance booking required, open year-round. Group is not swimming — listed for reference only.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul>
+                <li><strong>97°C water — stay on the boardwalk.</strong> Stepping off can break through a thin surface crust into scalding water/steam. Standard Icelandic geothermal area rule.</li>
+                <li>Boardwalk surfaces can be icy in April from condensed steam refreezing — go slow.</li>
+                <li>Keep cameras / phones on wrist straps near the steam — moisture and lens fog are constant.</li>
+                <li>No active SafeTravel.is alert at time of research.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+                <li><a href="https://en.wikipedia.org/wiki/Deildartunguhver" target="_blank">Wikipedia — Deildartunguhver</a></li>
+                <li><a href="https://www.krauma.is/en/deildartunguhver" target="_blank">Krauma — Deildartunguhver info</a></li>
+                <li><a href="https://www.krauma.is/en" target="_blank">Krauma Spa (skip — group does not swim)</a></li>
+                <li><a href="https://guidetoiceland.is/travel-iceland/drive/deildartunguhver" target="_blank">Guide to Iceland — Deildartunguhver</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Deildartunguhver" target="_blank">Google Maps — Deildartunguhver</a></li>
+                <li><a href="https://safetravel.is/" target="_blank">SafeTravel.is</a></li>
+            </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

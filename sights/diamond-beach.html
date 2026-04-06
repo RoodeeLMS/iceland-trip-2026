@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diamond Beach - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-blue: #0077B6; --aurora-green: #00B4D8; --deep-navy: #1a1a2e; --glacier-white: #F0F9FF; --ice-blue: #CAF0F8; --volcanic-black: #2D3748; --sunset-gold: #F59E0B; --moss-green: #10B981; --lava-red: #EF4444; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%); min-height: 100vh; color: var(--volcanic-black); line-height: 1.6; }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+        .sight-hero { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%); color: white; padding: 3rem 2rem 2rem; text-align: center; }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin: 0 3px; }
+        .sight-hero .back-link { display: inline-block; margin-bottom: 15px; color: var(--aurora-green); text-decoration: none; font-size: 0.9em; }
+        .sight-hero .back-link:hover { color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .section { background: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); }
+        .section h2 { font-family: 'Playfair Display', serif; color: var(--deep-navy); font-size: 1.4em; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+        .status-box { padding: 12px 16px; border-radius: 8px; border-left: 4px solid var(--aurora-green); background: #f0f9ff; margin-bottom: 10px; }
+        .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 16px; }
+        .meta-item { background: #f8fafc; padding: 10px 12px; border-radius: 8px; font-size: 0.88em; }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+        .map-cta { display: inline-block; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9em; margin-top: 8px; }
+        .map-cta:hover { opacity: 0.9; }
+        .hero-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 12px; }
+        .gallery img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: transform 0.2s; }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+        .map-embed { width: 100%; height: 320px; border: 0; border-radius: 10px; margin-bottom: 10px; }
+        .visit-step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9em; }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+        .researched-note { text-align: center; font-size: 0.78em; color: #888; margin-top: 20px; padding: 10px; }
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">💎</span>
+        <h1>Diamond Beach</h1>
+        <div class="day-badges"><span class="day-badge">Day 4</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Diamond_Beach_Iceland_%2848614620487%29.jpg/960px-Diamond_Beach_Iceland_%2848614620487%29.jpg" alt="Iceberg fragments scattered on Diamond Beach black sand" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.0456, -16.1783</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 4</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-16.2083%2C64.0306%2C-16.1483%2C64.0606&amp;layer=mapnik&amp;marker=64.0456%2C-16.1783" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=64.0456,-16.1783" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Diamond Beach (officially <strong>Breiðamerkursandur</strong>, locally split into <em>Eystri-Fellsfjara</em> on the east of the outflow channel and <em>Vestari-Fellsfjara</em> on the west) is a stretch of black volcanic sand directly across the Ring Road from Jokulsarlon. Icebergs that calve off Breiðamerkurjökull, drift across the lagoon, and squeeze under the Ring Road bridge eventually wash up on this beach as polished, glassy fragments — the "diamonds." No two visits look the same: the beach changes hour by hour with the tide.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box">
+                <strong>🟢 Open 24/7 year-round</strong> · No closures. Both lots (Eystri-Fellsfjara east, Vestari-Fellsfjara west) accessible. Per <a href="https://diamondbeachiceland.com/parking/" target="_blank">diamondbeachiceland.com</a>: parking is one paid zone shared with Jökulsárlón — pay once for the day.
+            </div>
+            <p><strong>April 2026 conditions:</strong> Iceberg density on the beach is at its <strong>seasonal best</strong> November-April per multiple guides — winter calving has fed the lagoon and the bergs are washing through in volume. Daylight ~14 hrs. Black sand can be very wet and reflective for photos. Watch sneaker waves — same Atlantic that hits Reynisfjara.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+
+            <div class="visit-step">
+                <div class="visit-step-num">1</div>
+                <div class="visit-step-content">
+                    <strong>Use your Jokulsarlon parking ticket — pick a side</strong>
+                    If you came from Jokulsarlon, your Parka ticket already covers both Diamond Beach lots for the day — no need to pay again. <strong>West lot (Vestari-Fellsfjara)</strong> tends to have larger ice on west swells; <strong>east lot (Eystri-Fellsfjara)</strong> is closer to the outflow and gets newly-arrived bergs first. Most visitors do both — drive across the bridge or walk if you have time.
+                    <div class="step-meta">⏱️ 2 min · 📍 Either Diamond Beach lot</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">2</div>
+                <div class="visit-step-content">
+                    <strong>Walk to the wave line and scan for ice</strong>
+                    Cross the low dune (~50 m from either lot) onto the black sand. <strong>Stand back from the surf</strong> — sneaker waves here are real, just like Reynisfjara. Look up and down the beach to spot the densest cluster of ice. Don't fixate on the first berg you see; walk 100-200 m in either direction to find a chunk that's photogenic <em>and</em> isolated from other tourists.
+                    <div class="step-meta">⏱️ 5 min · 📍 Wave line, ~50m from lot</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">3</div>
+                <div class="visit-step-content">
+                    <strong>Pick a "hero" iceberg and shoot the wash</strong>
+                    Find a fist-to-cooler-sized chunk sitting on wet sand where the surf still washes around it. Crouch low. Each receding wave drains around the ice and leaves silver streaks on black sand — that's the shot everyone wants. The ice melts and shifts every few minutes; commit to one berg for ~5 min and you'll get multiple wash patterns.
+                    <div class="step-meta">⏱️ 10-15 min · 📍 Surf zone</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">4</div>
+                <div class="visit-step-content">
+                    <strong>Backlight check — get the sun behind the ice</strong>
+                    The "diamond" effect is at its best when sun shines <em>through</em> the ice toward you. In April, low sun angle helps — try to stand so the ice is between you and the sun. The interior fractures light up like cut glass. This single trick separates a snapshot from a portfolio shot.
+                    <div class="step-meta">⏱️ 5 min · 📍 Same area, change angle</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">5</div>
+                <div class="visit-step-content">
+                    <strong>Walk back along the dry sand for the wide</strong>
+                    Step back from the surf and shoot a wide angle showing the full strewn beach with the Atlantic horizon. The crowd thins as you walk away from the lot. If you're at Vestari-Fellsfjara (west), the western half is consistently quieter.
+                    <div class="step-meta">⏱️ 10 min · 📍 ~150m from lot</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">6</div>
+                <div class="visit-step-content">
+                    <strong>Cross to the other lot if you have time</strong>
+                    Each side genuinely shows different ice. If you have 20 spare minutes, drive across the bridge (don't walk on the road shoulder — fast traffic) and repeat the loop. The two lots together = the full Diamond Beach experience.
+                    <div class="step-meta">⏱️ 20 min · 📍 Other side of outflow</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Diamond_Beach_Iceland_%2848614620487%29.jpg/800px-Diamond_Beach_Iceland_%2848614620487%29.jpg" alt="Diamond Beach with ice on black sand">
+                    <div class="gallery-caption">Diamond Beach · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Iceberg_at_Diamond_Beach%2C_Iceland.jpg/800px-Iceberg_at_Diamond_Beach%2C_Iceland.jpg" alt="Single iceberg close-up">
+                    <div class="gallery-caption">Iceberg detail · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Diamond_Beach_Iceland_2017.jpg/800px-Diamond_Beach_Iceland_2017.jpg" alt="Wide view of Diamond Beach">
+                    <div class="gallery-caption">Wide view · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Diamond_Beach_-_panoramio.jpg/800px-Diamond_Beach_-_panoramio.jpg" alt="Diamond Beach surf">
+                    <div class="gallery-caption">Surf and ice · Wikimedia Commons</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p>
+            <ul>
+                <li><strong>Low-angle wash shot:</strong> <strong>16-24 mm wide</strong>, lens within 30 cm of the sand, single iceberg as foreground. Shutter <strong>1/4 to 1/2 sec</strong> to streak the receding wash.</li>
+                <li><strong>Backlit "glass":</strong> Sun behind the ice, <strong>50-85 mm</strong> isolating internal fractures. Best at low sun (early/late).</li>
+                <li><strong>Wide beach scatter:</strong> <strong>24-35 mm</strong>, dry sand, foreground ice + background ice + horizon line. Shoots the "diamonds on velvet" feel.</li>
+                <li><strong>Best light:</strong> Sunrise (low east light over ice) and sunset (warm tone on west bergs). Midday is flattest.</li>
+            </ul>
+            <p><strong>🚫 Drone: PERMIT REQUIRED — no-fly.</strong> Diamond Beach is inside <strong>Vatnajökull National Park</strong> (Breiðamerkursandur). Recreational drone use requires advance written authorization from park authorities. Don't fly. Cite: <a href="https://www.vatnajokulsthjodgardur.is/en" target="_blank">vatnajokulsthjodgardur.is</a>. General Iceland drone rules: <a href="../planning.html#drone">Planning page</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Directly on Route 1, immediately south of the Jokulsarlon bridge. Two parking lots, one on each side of the outflow channel.</p>
+            <ul>
+                <li><strong>Parking:</strong> ISK 1,000 ≈ <strong>฿250</strong> per car via Parka app — <strong>same ticket valid at Jokulsarlon and both Diamond Beach lots</strong>. Pay once, use all three.</li>
+                <li><strong>Lot names:</strong> <em>Eystri-Fellsfjara</em> (east of outflow), <em>Vestari-Fellsfjara</em> (west of outflow).</li>
+                <li><strong>Walk to beach:</strong> ~50 m from either lot over a low dune. Flat.</li>
+                <li><strong>Lots open 24/7</strong> — no overnight parking allowed.</li>
+                <li><strong>No facilities</strong> at the beach lots — use the toilets at Jokulsarlon café before crossing.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>★ priority. Always paired with Jokulsarlon — they're across the road from each other. Allocate <strong>30-45 minutes</strong> for a quick visit, <strong>60-90 minutes</strong> if doing both lots and chasing photos.</p>
+            <ul>
+                <li><strong>Best light:</strong> Sunrise and sunset for the backlit "diamond" effect. April sunset is around 20:00.</li>
+                <li><strong>Crowds:</strong> Same midday bus pattern as Jokulsarlon — quietest before 10:00 and after 17:00.</li>
+                <li><strong>Combine with:</strong> Always with Jokulsarlon (cross the road); Vestrahorn (1 hr east) for sunset.</li>
+                <li><strong>Day 4 plan:</strong> Skaftafell → Fjallsárlón → Jokulsarlon → Diamond Beach → Vestrahorn → Höfn.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Tripadvisor and Google: 4.7-4.8 / 5 across thousands of reviews. Universally praised. Frequently called "the most photogenic beach in Iceland."</p>
+            <p><strong>Honest take:</strong> Lives up to the hype, but the experience is <strong>completely conditional on iceberg supply</strong>. Some days the beach has 50+ chunks scattered like a jeweller's tray; other days it's nearly bare. April is statistically a high-supply month, so you should be fine. The other minor catch: it's often crowded right at the lot exit — walk 100 m and it empties out.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities needed. The beach is free; only parking is paid (and shared with Jokulsarlon).</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul>
+                <li><strong>Sneaker waves</strong> — same Atlantic that kills people at Reynisfjara. Stay back from the wash line. Never turn your back on the sea.</li>
+                <li><strong>Do NOT climb on icebergs</strong> — they shift and roll, the surface is slippery, and a wave can drag both you and the ice into the surf.</li>
+                <li><strong>Cold water:</strong> ~2°C. Hypothermia in minutes if you go in.</li>
+                <li><strong>Watch the Ring Road</strong> when crossing between lots. Trucks and tour buses don't slow.</li>
+                <li><strong>Tide check:</strong> High tide brings more wave reach — give yourself extra buffer.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+                <li><a href="https://diamondbeachiceland.com/parking/" target="_blank">DiamondBeachIceland.com — Official parking info</a></li>
+                <li><a href="https://www.vatnajokulsthjodgardur.is/en" target="_blank">Vatnajökull National Park (drone & park rules)</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Brei%C3%B0amerkursandur" target="_blank">Wikipedia — Breiðamerkursandur</a></li>
+                <li><a href="https://safetravel.is/" target="_blank">SafeTravel.is — current alerts</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Diamond+Beach+Iceland" target="_blank">Google Maps — Diamond Beach</a></li>
+                <li><a href="jokulsarlon.html">Jokulsarlon page (across the road)</a></li>
+            </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

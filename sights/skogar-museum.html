@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skogar Folk Museum - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🌋</span>
+        <h1>Skogar Folk Museum</h1>
+        <div class="day-badges"><span class="day-badge">Day 3</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Skogar%2C_folk_museum_-_panoramio_%282%29.jpg/960px-Skogar%2C_folk_museum_-_panoramio_%282%29.jpg" alt="Skogar Folk Museum" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>63.5258, -19.5128</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 3</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-19.5428%2C63.5108%2C-19.4828%2C63.5408&amp;layer=mapnik&amp;marker=63.5258%2C-19.5128" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=63.5258,-19.5128" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>The Skogar Folk Museum (Skogasafn) is one of Iceland's largest open-air folk museums, founded in 1949 by local schoolteacher Thordur Tomasson, who personally collected most of the 18,000+ artifacts. The site has three indoor exhibition halls (folk artifacts, transport & communication, technical) plus an outdoor cluster of restored <strong>turf-roofed houses, a turf church, and a school</strong>. It's the best indoor backup option on the south coast for a rainy day and the most efficient way to see traditional turf architecture without driving north.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 Open year-round</strong> — Hours vary by season. April hours are typically 10:00-17:00 daily; verify on the official site (<a href="https://skogasafn.is/en/" target="_blank">skogasafn.is</a>) the morning of your visit.</div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+            <div class="visit-step"><div class="visit-step-num">1</div><div class="visit-step-content"><strong>Park & buy tickets</strong>Free parking at the museum lot. Tickets at the main building reception. Adult admission ~ISK 2,500 ≈ <strong>฿625</strong>; check current price on the official site. Combo with Kvernufoss visit recommended (same lot).<div class="step-meta">⏱️ 5 min · 📍 Main building entrance</div></div></div><div class="visit-step"><div class="visit-step-num">2</div><div class="visit-step-content"><strong>Folk Museum hall (Byggdasafn)</strong>Start with the main folk museum hall. ~18,000 artifacts — fishing gear, farming tools, household items, costumes — most personally collected by Thordur Tomasson. Spend 30-45 minutes; the curation density is high.<div class="step-meta">⏱️ 30-45 min · 📍 Folk hall</div></div></div><div class="visit-step"><div class="visit-step-num">3</div><div class="visit-step-content"><strong>Transport & Communication Museum</strong>Connected building covering Iceland's transport history — early cars, telephone exchanges, postal service, the bridge to modern infrastructure. Interesting if you're curious how a country of 350,000 went from no roads to fully connected in 80 years. Skip if pressed for time.<div class="step-meta">⏱️ 20-30 min · 📍 Transport hall</div></div></div><div class="visit-step"><div class="visit-step-num">4</div><div class="visit-step-content"><strong>Walk to the outdoor turf houses</strong>Outside the main building, the open-air cluster contains six restored turf-roofed structures — farmhouses, a barn, a smithy, plus the iconic <strong>turf church</strong> (1970 reconstruction). You can enter most of them; ducking is required at low doorways. This is the photogenic part.<div class="step-meta">⏱️ 20-30 min · 📍 Outdoor cluster</div></div></div><div class="visit-step"><div class="visit-step-num">5</div><div class="visit-step-content"><strong>Turf church interior</strong>The small turf church is the visual highlight. Step inside; the interior is reconstructed with period furnishings. Photography allowed. ~5 minutes.<div class="step-meta">⏱️ 5 min · 📍 Turf church</div></div></div><div class="visit-step"><div class="visit-step-num">6</div><div class="visit-step-content"><strong>Optional: Kvernufoss trailhead exit</strong>Exit at the back of the museum grounds toward the river — this is the start of the Kvernufoss trail. Combine the two visits and avoid moving the car. See the Kvernufoss page.<div class="step-meta">⏱️ Combine with Kvernufoss · 📍 Back gate</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery"><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Skogar%2C_folk_museum_-_panoramio_%282%29.jpg/800px-Skogar%2C_folk_museum_-_panoramio_%282%29.jpg" alt="Skogar Folk Museum panorama"><div class="gallery-caption">Open-air cluster · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Skogar_Folk_Museum_%289503321868%29.jpg/800px-Skogar_Folk_Museum_%289503321868%29.jpg" alt="Turf houses"><div class="gallery-caption">Turf houses · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Skogar_museum_%2828291508087%29.jpg/800px-Skogar_museum_%2828291508087%29.jpg" alt="Skogar museum building"><div class="gallery-caption">Museum building · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Skogasafn_%28Skogar_folk_museum%29%2C_Iceland.JPG/800px-Skogasafn_%28Skogar_folk_museum%29%2C_Iceland.JPG" alt="Skogasafn"><div class="gallery-caption">Skogasafn · Wikimedia Commons</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p><ul><li><strong>Turf church exterior:</strong> 24-35 mm from the front, low angle to emphasize the green roof against the sky. Best in soft overcast light — direct sun blows out the white wood and crushes the grass tones.</li><li><strong>Cluster of turf houses:</strong> 35-50 mm from the south side, late afternoon side-light gives the turf walls dimension.</li><li><strong>Interior detail shots:</strong> 35 mm prime, high ISO. Indoor halls and the church are dim.</li><li><strong>🚫 Drone:</strong> Not appropriate at an active museum site with visitors. Skip entirely.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Direct paved access off Route 1 at Skogar village, 1 km east of Skogafoss. Free parking. Any car.</p><ul><li><strong>Adult admission:</strong> ~ISK 2,500 ≈ <strong>฿625</strong> (verify on official site).</li><li><strong>Hours:</strong> Typically 10:00-17:00 in April; verify the morning of your visit.</li><li><strong>Toilets, café, gift shop</strong> on site.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>Indoor backup for rain or wind days. Pair with Skogafoss (1 km west) and Kvernufoss (trailhead is at the museum's back gate).</p><ul><li><strong>Best timing:</strong> Visit anytime — entirely indoor. No light considerations.</li><li><strong>Crowds:</strong> Light to moderate. Quieter than Skogafoss.</li><li><strong>Time budget:</strong> 60-90 min for a thorough visit; 45 min if just hitting the highlights and outdoor cluster.</li><li><strong>Combine with:</strong> Skogafoss + Kvernufoss = a complete Skogar village stop, ~3 hours total.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google rating ~4.6. Reviewers consistently praise the depth of the collection and the founder's personal story. Common positive: "best folk museum in Iceland." Negatives: signage in Icelandic in some sections (English summaries are present but sparse), and some visitors feel ฿625 is steep for a small museum.</p><p><strong>Honest take:</strong> Worth it if it's raining or if anyone in the group is interested in Icelandic history. If the weather is great, consider skipping it and spending the time outdoors at Skogafoss + Kvernufoss instead.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no tour booking needed. Audio guide available at reception (small fee).</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul><li>Low doorways in the turf houses — duck.</li><li>Uneven floors in restored buildings; watch your step.</li><li>No specific hazards otherwise.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul><li><a href="https://skogasafn.is/en/" target="_blank">Skogasafn — Official site</a></li><li><a href="https://en.wikipedia.org/wiki/Sk%C3%B3gar_Museum" target="_blank">Wikipedia — Skogar Museum</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Skogar+Folk+Museum" target="_blank">Google Maps — Skogar Folk Museum</a></li></ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

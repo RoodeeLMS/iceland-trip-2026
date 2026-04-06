@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vestrahorn / Stokksnes - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-blue: #0077B6; --aurora-green: #00B4D8; --deep-navy: #1a1a2e; --glacier-white: #F0F9FF; --ice-blue: #CAF0F8; --volcanic-black: #2D3748; --sunset-gold: #F59E0B; --moss-green: #10B981; --lava-red: #EF4444; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%); min-height: 100vh; color: var(--volcanic-black); line-height: 1.6; }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+        .sight-hero { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%); color: white; padding: 3rem 2rem 2rem; text-align: center; }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin: 0 3px; }
+        .sight-hero .back-link { display: inline-block; margin-bottom: 15px; color: var(--aurora-green); text-decoration: none; font-size: 0.9em; }
+        .sight-hero .back-link:hover { color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .section { background: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); }
+        .section h2 { font-family: 'Playfair Display', serif; color: var(--deep-navy); font-size: 1.4em; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+        .status-box { padding: 12px 16px; border-radius: 8px; border-left: 4px solid var(--aurora-green); background: #f0f9ff; margin-bottom: 10px; }
+        .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 16px; }
+        .meta-item { background: #f8fafc; padding: 10px 12px; border-radius: 8px; font-size: 0.88em; }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+        .map-cta { display: inline-block; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9em; margin-top: 8px; }
+        .map-cta:hover { opacity: 0.9; }
+        .hero-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 12px; }
+        .gallery img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: transform 0.2s; }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+        .map-embed { width: 100%; height: 320px; border: 0; border-radius: 10px; margin-bottom: 10px; }
+        .visit-step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9em; }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+        .researched-note { text-align: center; font-size: 0.78em; color: #888; margin-top: 20px; padding: 10px; }
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🏔️</span>
+        <h1>Vestrahorn / Stokksnes</h1>
+        <div class="day-badges"><span class="day-badge">Day 4</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Vestrahorn_Mountain_Iceland.jpg/960px-Vestrahorn_Mountain_Iceland.jpg" alt="Vestrahorn mountain reflected in wet black sand at Stokksnes" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.2486, -14.9822</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 4</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-15.0122%2C64.2336%2C-14.9522%2C64.2636&amp;layer=mapnik&amp;marker=64.2486%2C-14.9822" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=64.2486,-14.9822" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Vestrahorn is a 454 m gabbro and granophyre mountain with seven jagged peaks rising directly from the black sand beach at <strong>Stokksnes</strong>, on a private peninsula 15 minutes east of Höfn. The combination of mountain, dunes with marram grass, and a wet tidal beach that turns into a mirror at low tide makes it arguably the single most photographed mountain in Iceland. The land is privately owned by the family who runs the <strong>Viking Café</strong> at the entrance — you pay them to drive in, and the property includes a small abandoned <strong>Viking film set</strong> built for a movie that was never finished.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box">
+                <strong>🟢 Open year-round</strong> · Viking Café open 8:00-19:00 in shoulder seasons (8:00-20:00 in summer). After hours, an automated machine outside the café takes payment via QR code (per <a href="https://www.iceland.org/beaches/stokksnes" target="_blank">iceland.org/beaches/stokksnes</a>).
+            </div>
+            <p><strong>April 2026 conditions:</strong> Perfect season for the reflection shot — winter rains and lingering snow keep the sand wet. Daylight ~14 hrs, sunset ~20:00. <strong>Wind is the main hazard</strong> — Stokksnes is exposed and gusts of 20+ m/s are common, which will ground any drone and can knock you over on the dunes. Always check the wind forecast (vedur.is) before committing the 1-hour detour.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+
+            <div class="visit-step">
+                <div class="visit-step-num">1</div>
+                <div class="visit-step-content">
+                    <strong>Pay at Viking Café entrance</strong>
+                    Turn off Route 1 onto the signed Stokksnes road (15 min east of Höfn). The road passes through a tunnel and ends at the Viking Café. Pay <strong>~ISK 900 ≈ ฿225</strong> per person at the counter (card accepted), or after hours at the QR machine outside. The fee covers the beach, the dunes, and the Viking film set. Keep your ticket — you may be checked at the white gate beyond the café.
+                    <div class="step-meta">⏱️ 5 min · 📍 Viking Café, ~800m before beach</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">2</div>
+                <div class="visit-step-content">
+                    <strong>Drive through the gate to the main beach lot</strong>
+                    Past the café, a short gravel road leads through the gate and out to the main parking area near the beach. Any car can do it — flat gravel.
+                    <div class="step-meta">⏱️ 3 min · 📍 Main beach lot</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">3</div>
+                <div class="visit-step-content">
+                    <strong>Walk to the marram-grass dunes for the classic angle</strong>
+                    From the lot, walk ~5 min onto the low dunes. The signature shot is taken here: <strong>Vestrahorn rising directly behind tufts of marram grass</strong> with a wet beach foreground. Crouch low and frame so the grass tufts foreground the mountain.
+                    <div class="step-meta">⏱️ 10-15 min · 📍 Marram dunes, ~200m from lot</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">4</div>
+                <div class="visit-step-content">
+                    <strong>Walk down to the wet beach for the reflection shot</strong>
+                    Continue past the dunes onto the flat black sand. At <strong>low tide</strong> or after rain, a thin film of water turns the beach into a mirror — Vestrahorn doubles vertically. This is THE shot. Time it: tide tables for Höfn are on <a href="https://www.flodatafla.is/" target="_blank">flodatafla.is</a>. Keep your tripod legs locked, the wind will try to take it.
+                    <div class="step-meta">⏱️ 20-30 min · 📍 Wet sand flats below dunes</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">5</div>
+                <div class="visit-step-content">
+                    <strong>Detour to the abandoned Viking film set</strong>
+                    From the lot a short gravel track (signed) leads ~5 min to a cluster of wooden Viking-era buildings — a film set built for a project that was never completed and now left to decay. It photographs well in moody light. Walk among the buildings, no entry restriction inside the village area.
+                    <div class="step-meta">⏱️ 15 min · 📍 Viking village, ~400m from lot</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">6</div>
+                <div class="visit-step-content">
+                    <strong>Optional: walk further along the beach away from the lot</strong>
+                    For a clean composition without other photographers in frame, walk 200-300 m east along the beach. The mountain stays in view and the crowd thins fast. Watch your footing in the soft sand.
+                    <div class="step-meta">⏱️ 15 min · 📍 East beach</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">7</div>
+                <div class="visit-step-content">
+                    <strong>Return via Viking Café — coffee, soup, gift shop</strong>
+                    The café itself is worth a stop on the way out: hot soup, coffee, and views back toward Vestrahorn through the windows. A good warmup before the short drive to Höfn for the night.
+                    <div class="step-meta">⏱️ 20 min · 📍 Viking Café</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Vestrahorn_Mountain_Iceland.jpg/800px-Vestrahorn_Mountain_Iceland.jpg" alt="Vestrahorn reflected in wet sand">
+                    <div class="gallery-caption">Vestrahorn reflection · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Stokksnes_Iceland_dunes.jpg/800px-Stokksnes_Iceland_dunes.jpg" alt="Stokksnes dunes with marram grass">
+                    <div class="gallery-caption">Stokksnes dunes · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Vestrahorn_panorama.jpg/800px-Vestrahorn_panorama.jpg" alt="Vestrahorn panorama">
+                    <div class="gallery-caption">Wide panorama · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Viking_village_Stokksnes.jpg/800px-Viking_village_Stokksnes.jpg" alt="Abandoned Viking film set">
+                    <div class="gallery-caption">Viking film set · Wikimedia Commons</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p>
+            <ul>
+                <li><strong>Reflection shot:</strong> <strong>16-24 mm wide</strong>, tripod low to wet sand, mountain mirrored vertically. Shoot at <strong>low tide</strong> or right after rain. Use a polarizer to control glare on the water film.</li>
+                <li><strong>Marram-grass foreground:</strong> <strong>24-35 mm</strong>, get inches above the dune grass, tilt up so the peaks fill the upper third.</li>
+                <li><strong>Tele compression:</strong> <strong>70-200 mm</strong> from further back along the beach — flattens the seven peaks into a wall of rock.</li>
+                <li><strong>Best light:</strong> Sunrise (east light hits the front of the mountain — best of the day in April) and last hour before sunset. Midday is flat.</li>
+                <li><strong>Long exposure:</strong> ND filter, <strong>2-10 sec</strong> at the wet sand if there's any wash — silks the surf without losing the reflection.</li>
+            </ul>
+            <p><strong>🚁 Drone: ALLOWED at your own risk</strong> on the private property (this is one of the very few "famous" Iceland sights where recreational drone is OK — not in any national park). <strong>Wind is the dealbreaker</strong>: gusts of 15-20 m/s are routine and have grounded plenty of visitors. Check forecast before unboxing. Per <a href="https://www.iceland.org/beaches/stokksnes" target="_blank">iceland.org</a>, commercial use (paid shoots, brand content) requires advance arrangement and a higher fee from the landowner. Recreational sport-mode flying is fine. General Iceland drone rules: <a href="../planning.html#drone">Planning page</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>15 minutes east of Höfn off Route 1 — about 1 hour east of Jokulsarlon. Signposted "Stokksnes / Viking Café." The access road passes through a single-lane road tunnel. Fully drivable in any rental car.</p>
+            <ul>
+                <li><strong>Entry fee:</strong> ~ISK 900 ≈ <strong>฿225</strong> per person, paid at Viking Café (card accepted). After hours, automated kiosk + QR. Some sources cite ISK 1,000 ≈ ฿250 — verify on arrival.</li>
+                <li><strong>Café hours:</strong> 8:00-19:00 outside summer, 8:00-20:00 in summer. Open year-round.</li>
+                <li><strong>Walk to beach/dunes:</strong> ~5 min from main lot. Flat.</li>
+                <li><strong>Walk to Viking film set:</strong> ~5 min, signed.</li>
+                <li><strong>Facilities:</strong> Café (food, hot drinks, gift shop, toilets) at the entrance.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>★ priority. The classic Day 4 sunset stop after Diamond Beach. Allocate <strong>1.5-2 hours</strong> on the property. The detour is worth it <em>if</em> the wind is manageable — check vedur.is the morning of.</p>
+            <ul>
+                <li><strong>Best light:</strong> Sunrise (east light on the mountain) and the hour before sunset. April sunset is around 20:00. Blue hour after sunset is excellent for the reflection shot.</li>
+                <li><strong>Tide check:</strong> Best reflection at low tide — check Höfn tide tables on <a href="https://www.flodatafla.is/" target="_blank">flodatafla.is</a>.</li>
+                <li><strong>Crowds:</strong> Few — the entry fee filters casual visitors. Photographers concentrate at golden/blue hour. Midday is nearly empty.</li>
+                <li><strong>Combine with:</strong> Höfn town for dinner (15 min east), Jokulsarlon (1 hr west).</li>
+                <li><strong>Skip if:</strong> Wind forecast is over 18-20 m/s — the drone won't fly, the tripod won't stand, and standing on the dunes is unpleasant.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Tripadvisor: ~4.7 / 5 across thousands of reviews. Universally praised by photographers. Common compliments: "the best mountain view in Iceland," "worth every króna of the entry fee," "perfect at low tide."</p>
+            <p><strong>Honest take:</strong> The hype is real <em>if</em> conditions cooperate. The entry fee is a small filter that keeps it from being a coach-park scrum. The single most common disappointment is people arriving in heavy cloud or screaming wind and not seeing the peaks at all — Vestrahorn frequently hides in its own weather. The film set is a fun bonus, but no one would pay the entry just for it. Verdict: not overrated — but extremely conditions-dependent. Don't commit the detour if the weather isn't on your side.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided. The entry fee at Viking Café (~฿225/person) covers all access. No booked activities. The café also serves as a small shop and food stop.</p>
+            <p>Commercial photo/video shoots require advance arrangement with the landowner at a higher fee — recreational visitors don't need this.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul>
+                <li><strong>Wind:</strong> Stokksnes is one of the windiest spots on the south coast. Gusts can knock people over and will instantly down a drone. Check forecast (<a href="https://en.vedur.is/" target="_blank">vedur.is</a>) the morning of.</li>
+                <li><strong>Tide and waves:</strong> The beach is open Atlantic. Stay back from the wash line. Same sneaker-wave risk as Reynisfjara.</li>
+                <li><strong>Tripod in wind:</strong> Hang your bag from the centre column. Don't extend the centre column.</li>
+                <li><strong>Driving the access tunnel:</strong> Single lane — yield to oncoming traffic in the lay-bys.</li>
+                <li><strong>Respect the private property:</strong> Stay on marked tracks, don't damage the marram grass (it stabilizes the dunes), pack out all trash.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+                <li><a href="https://www.iceland.org/beaches/stokksnes" target="_blank">Iceland.org — Stokksnes guide (2026)</a></li>
+                <li><a href="https://guidetoiceland.is/travel-iceland/drive/stokksnes" target="_blank">Guide to Iceland — Stokksnes</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Vestrahorn" target="_blank">Wikipedia — Vestrahorn</a></li>
+                <li><a href="https://en.vedur.is/" target="_blank">Vedur.is — Wind & weather forecast</a></li>
+                <li><a href="https://www.flodatafla.is/" target="_blank">Flodatafla.is — Höfn tide tables</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Vestrahorn+Stokksnes+Viking+Cafe" target="_blank">Google Maps — Viking Café / Stokksnes</a></li>
+            </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

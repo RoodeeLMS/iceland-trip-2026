@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sun Voyager Sculpture - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-blue: #0077B6; --aurora-green: #00B4D8; --deep-navy: #1a1a2e; --glacier-white: #F0F9FF; --ice-blue: #CAF0F8; --volcanic-black: #2D3748; --sunset-gold: #F59E0B; --moss-green: #10B981; --lava-red: #EF4444; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%); min-height: 100vh; color: var(--volcanic-black); line-height: 1.6; }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) { .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; } .navbar-menu.mobile-open { display: flex; } .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); } .menu-toggle { display: block; } }
+        .sight-hero { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%); color: white; padding: 3rem 2rem 2rem; text-align: center; }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin: 0 3px; }
+        .sight-hero .back-link { display: inline-block; margin-bottom: 15px; color: var(--aurora-green); text-decoration: none; font-size: 0.9em; }
+        .sight-hero .back-link:hover { color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .section { background: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); }
+        .section h2 { font-family: 'Playfair Display', serif; color: var(--deep-navy); font-size: 1.4em; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+        .status-box { padding: 12px 16px; border-radius: 8px; border-left: 4px solid var(--aurora-green); background: #f0f9ff; margin-bottom: 10px; }
+        .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 16px; }
+        .meta-item { background: #f8fafc; padding: 10px 12px; border-radius: 8px; font-size: 0.88em; }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+        .map-cta { display: inline-block; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9em; margin-top: 8px; }
+        .map-cta:hover { opacity: 0.9; }
+        .hero-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 12px; }
+        .gallery img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: transform 0.2s; }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+        .map-embed { width: 100%; height: 320px; border: 0; border-radius: 10px; margin-bottom: 10px; }
+        .visit-step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9em; }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+        .researched-note { text-align: center; font-size: 0.78em; color: #888; margin-top: 20px; padding: 10px; }
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">⛵</span>
+        <h1>Sun Voyager Sculpture</h1>
+        <div class="day-badges"><span class="day-badge">Day 1</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Islanda-_Reykjav%C3%ADk-_S%C3%B3lfari%C3%B0_%28Sun%20Voyager%29.jpg/960px-Islanda-_Reykjav%C3%ADk-_S%C3%B3lfari%C3%B0_%28Sun%20Voyager%29.jpg" alt="Sun Voyager sculpture on Reykjavik waterfront" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.1475, -21.9225</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 1</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-21.9525%2C64.1325%2C-21.8925%2C64.1625&amp;layer=mapnik&amp;marker=64.1475%2C-21.9225" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=64.1475,-21.9225" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Sun Voyager (Solfar) is a polished steel sculpture by Jon Gunnar Arnason on Reykjavik's waterfront, installed in 1990. Often mistaken for a Viking longship, the artist described it as a <strong>dreamboat — an ode to the sun</strong>, symbolising hope, progress, and undiscovered territory. Set on a low circular plinth right at the water's edge with Mount Esja across the bay, it's one of the most photographed objects in Iceland and free to visit any time.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 Always accessible.</strong> Open-air public sculpture, no fees, no opening hours, no closures. The plinth and surrounding pavers are well maintained.</div>
+            <p><strong>April 2026 conditions:</strong> Exposed waterfront — wind off the bay can be cold. Pavers may be icy on early mornings. Sunset is around 20:30 mid-month, sunrise around 06:00, giving you two clear golden-hour windows in a normal day.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+
+            <div class="visit-step">
+                <div class="visit-step-num">1</div>
+                <div class="visit-step-content">
+                    <strong>Arrive via the Saebraut waterfront path</strong>
+                    Walk along the Saebraut promenade — from Harpa it's 5 min east; from downtown hotels around Laugavegur, ~10 min north on Frakkastigur. The sculpture sits on a low circular plinth on the seaward side of the path. You'll see it from 100 m away.
+                    <div class="step-meta">⏱️ 2 min · 📍 Saebraut waterfront path</div>
+                </div>
+            </div>
+            <div class="visit-step">
+                <div class="visit-step-num">2</div>
+                <div class="visit-step-content">
+                    <strong>Walk a full circle around it</strong>
+                    The sculpture changes character completely from different angles. From the south (the path side) it looks like a stylised ship. From the north (water side) the curves are more abstract and Mount Esja sits perfectly behind it. Walk a slow lap before composing any photo.
+                    <div class="step-meta">⏱️ 5 min · 📍 Around the plinth</div>
+                </div>
+            </div>
+            <div class="visit-step">
+                <div class="visit-step-num">3</div>
+                <div class="visit-step-content">
+                    <strong>Take the classic side-on shot with Esja behind</strong>
+                    Stand on the path side (south), drop low — almost to ground level — and shoot the sculpture in profile with Mount Esja's snow-capped ridge across the bay forming the backdrop. This is the postcard. A wide-to-normal lens (24-50 mm) works best.
+                    <div class="step-meta">⏱️ 5 min · 📍 South side, low angle</div>
+                </div>
+            </div>
+            <div class="visit-step">
+                <div class="visit-step-num">4</div>
+                <div class="visit-step-content">
+                    <strong>Walk the waterfront west toward Harpa</strong>
+                    From Sun Voyager, continue west along Saebraut. It's 5 minutes flat to Harpa, so the two are a natural pair. The walk itself has good views across to Esja and Videy island, especially if the light is good.
+                    <div class="step-meta">⏱️ 5 min walk to Harpa</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+                <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Islanda-_Reykjav%C3%ADk-_S%C3%B3lfari%C3%B0_%28Sun%20Voyager%29.jpg/800px-Islanda-_Reykjav%C3%ADk-_S%C3%B3lfari%C3%B0_%28Sun%20Voyager%29.jpg" alt="Sun Voyager profile"><div class="gallery-caption">Profile view · Wikimedia Commons</div></div>
+                <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Reykjavik_%285057774193%29.jpg/800px-Reykjavik_%285057774193%29.jpg" alt="Sun Voyager waterfront"><div class="gallery-caption">Waterfront context · Wikimedia Commons</div></div>
+                <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Reykjavik_%285064728778%29.jpg/800px-Reykjavik_%285064728778%29.jpg" alt="Sun Voyager close"><div class="gallery-caption">Detail view · Wikimedia Commons</div></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p>Photography is the entire reason most people visit. Specifics:</p>
+            <ul>
+                <li><strong>Side profile + Esja:</strong> 24-50 mm, low angle, south side. The single best composition.</li>
+                <li><strong>Sunset / golden hour:</strong> The sculpture <em>faces roughly north</em>, which means in April the <strong>setting sun (~20:30, in the NW)</strong> rakes the bow from the side and lights the polished steel beautifully. Sunrise (~06:00, in the NE) similarly side-lights but from the opposite direction.</li>
+                <li><strong>Blue hour after sunset:</strong> ~30-45 min after sunset, the sky goes deep blue and the steel reflects it. With Reykjavik's mid-April long twilights, blue hour lasts a full hour.</li>
+                <li><strong>Silhouette:</strong> Stand on the north side and shoot south at sunrise — sculpture goes black against a bright sky.</li>
+                <li><strong>Long exposure:</strong> Tripod, 10-30 sec, ND filter, smooth out the bay water for a glassy backdrop.</li>
+                <li><strong>Wide lens for context:</strong> 16-24 mm captures the sculpture, the path, the bay, and Esja in one frame. Great for environmental shots.</li>
+            </ul>
+            <p><strong>🚫 Drone:</strong> No. Reykjavik central waterfront is BIRK controlled airspace and the path is busy with pedestrians — flying here requires explicit clearance per the <a href="https://www.icetra.is/aviation/drones" target="_blank">Icelandic Transport Authority</a>. General drone rules on the <a href="../planning.html#drone">Planning page</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <ul>
+                <li><strong>Walk:</strong> 5 min east of Harpa along the waterfront path. ~10 min from Laugavegur via Frakkastigur.</li>
+                <li><strong>Parking:</strong> Limited street parking on Saebraut and side streets, P2/P3 zones (~ISK 220/hr ≈ ฿55). Free Sundays. Most visitors walk from a downtown stay.</li>
+                <li><strong>Fees:</strong> None. Open 24/7.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <ul>
+                <li><strong>Best time:</strong> Sunrise (~06:00) for empty conditions and side light, or sunset (~20:30) for warm light + crowds. Midday is the worst — flat light and tour groups.</li>
+                <li><strong>Crowds:</strong> Low at sunrise. By midday, expect 20-50 people. Reasonably patient and you can get a clean shot in 5 min.</li>
+                <li><strong>Combine with:</strong> Harpa (5 min walk west) — these two are always done together. Then continue west to the Old Harbour for dinner, or back south to Hallgrimskirkja.</li>
+                <li><strong>Allocate:</strong> 15-20 minutes total. It's a single object, not a destination.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google Maps: <strong>4.6 / 5</strong> with 30,000+ reviews. Tripadvisor reliably top-10 for Reykjavik.</p>
+            <p><strong>Praised:</strong> The setting (waterfront + Esja), free, photogenic, easy to combine with Harpa.</p>
+            <p><strong>Common complaints:</strong> "Smaller than expected" comes up a lot — it's not enormous (~4 m long). Crowds at midday. Some people show up expecting a Viking ship and feel cheated.</p>
+            <p><strong>Honest take:</strong> Slightly overrated as a "must-see" — it's a sculpture, you look at it for 10 minutes, take a photo, leave. But it's free, en route to Harpa, and the photo with Esja behind is genuinely great. Worth the 15-minute stop, not worth a special trip across town.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided. Free. No tickets, no tours. Some walking tours of central Reykjavik stop here as part of a wider loop, but you don't need one to see it.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <p>None. Open public area, low plinth, no climbing involved. Don't climb on the sculpture itself — it's a working artwork and damage is taken seriously. In strong wind, the waterfront path can be exposed; hold onto hats.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+                <li><a href="https://en.wikipedia.org/wiki/Sun_Voyager" target="_blank">Wikipedia — Sun Voyager (Solfar)</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Sun+Voyager+Reykjavik" target="_blank">Google Maps — Sun Voyager</a></li>
+                <li><a href="https://visitreykjavik.is/service/sun-voyager" target="_blank">Visit Reykjavik — Sun Voyager</a></li>
+                <li><a href="https://guidetoiceland.is/travel-iceland/drive/the-sun-voyager" target="_blank">Guide to Iceland — Sun Voyager</a></li>
+            </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

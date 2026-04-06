@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jokulsarlon Glacier Lagoon - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-blue: #0077B6; --aurora-green: #00B4D8; --deep-navy: #1a1a2e; --glacier-white: #F0F9FF; --ice-blue: #CAF0F8; --volcanic-black: #2D3748; --sunset-gold: #F59E0B; --moss-green: #10B981; --lava-red: #EF4444; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%); min-height: 100vh; color: var(--volcanic-black); line-height: 1.6; }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+        .sight-hero { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%); color: white; padding: 3rem 2rem 2rem; text-align: center; }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin: 0 3px; }
+        .sight-hero .back-link { display: inline-block; margin-bottom: 15px; color: var(--aurora-green); text-decoration: none; font-size: 0.9em; }
+        .sight-hero .back-link:hover { color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .section { background: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); }
+        .section h2 { font-family: 'Playfair Display', serif; color: var(--deep-navy); font-size: 1.4em; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+        .status-box { padding: 12px 16px; border-radius: 8px; border-left: 4px solid var(--aurora-green); background: #f0f9ff; margin-bottom: 10px; }
+        .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 16px; }
+        .meta-item { background: #f8fafc; padding: 10px 12px; border-radius: 8px; font-size: 0.88em; }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+        .map-cta { display: inline-block; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9em; margin-top: 8px; }
+        .map-cta:hover { opacity: 0.9; }
+        .hero-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 12px; }
+        .gallery img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: transform 0.2s; }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+        .map-embed { width: 100%; height: 320px; border: 0; border-radius: 10px; margin-bottom: 10px; }
+        .visit-step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9em; }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+        .researched-note { text-align: center; font-size: 0.78em; color: #888; margin-top: 20px; padding: 10px; }
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🧊</span>
+        <h1>Jokulsarlon Glacier Lagoon</h1>
+        <div class="day-badges"><span class="day-badge">Day 4</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Jokulsarlon_Iceland.jpg/960px-Jokulsarlon_Iceland.jpg" alt="Jokulsarlon glacier lagoon with floating icebergs" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.0785, -16.2306</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 4</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-16.2606%2C64.0635%2C-16.2006%2C64.0935&amp;layer=mapnik&amp;marker=64.0785%2C-16.2306" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=64.0785,-16.2306" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Jökulsárlón is Iceland's largest and deepest glacial lake (~284 m deep), formed when the snout of the <strong>Breiðamerkurjökull</strong> outlet glacier began retreating in the 1930s. The lagoon is now ~25 km² and growing every year as the glacier recedes. Massive blue-and-white icebergs calve off the glacier wall, drift slowly across the lagoon, and eventually float out under the Ring Road bridge into the Atlantic — where many wash back onto Diamond Beach next door. It is the single most famous landscape on the south coast and a top-priority sight on Day 4.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box">
+                <strong>🟢 Open year-round</strong> · Lagoon and parking accessible 24/7. Café and shop open seasonally. <strong>Boat tours: NOT running in early April</strong> — Jökulsárlón's own zodiac/amphibian operators only start in <strong>May</strong>. (Per <a href="https://icelagoon.is/tours/" target="_blank">icelagoon.is</a>.) For a boat tour in April, drive 10 min west to Fjallsárlón, which opens its zodiac season at the start of April.
+            </div>
+            <p><strong>April 2026 conditions:</strong> Iceberg density is typically excellent through April — winter calving has filled the lagoon and the outflow current hasn't yet flushed everything. Daylight ~14 hrs. Wind off the glacier can be brutal even on a sunny day; bring a windproof shell. Watch for seals near the outflow channel — they hunt fish in the current and are often visible from the bridge.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+
+            <div class="visit-step">
+                <div class="visit-step-num">1</div>
+                <div class="visit-step-content">
+                    <strong>Park at the main lot (south side of the bridge)</strong>
+                    Turn off Route 1 immediately south of the Jokulsarlon bridge. Parking is ISK 1,000 ≈ <strong>฿250</strong> via the <strong>Parka app</strong> — and the same ticket covers <strong>both Diamond Beach lots</strong> across the road for the rest of the day. Pay once, use everywhere. Use the toilets at the café before heading out — there are none on the lagoon walk.
+                    <div class="step-meta">⏱️ 5 min · 📍 Main lot, south side of bridge</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">2</div>
+                <div class="visit-step-content">
+                    <strong>Walk to the main lagoon overlook</strong>
+                    From the lot, walk ~100 m north to the elevated gravel viewing area at the lagoon's edge. This is the postcard angle: icebergs in the foreground, glacier wall on the horizon. Stand here a few minutes and you'll usually hear cracks and rumbles from the calving face — sound carries across cold water.
+                    <div class="step-meta">⏱️ 10 min · 📍 Main viewpoint, ~100m from lot</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">3</div>
+                <div class="visit-step-content">
+                    <strong>Walk west along the lagoon shore for the close-up</strong>
+                    Follow the gravel path west (left as you face the lagoon) for ~300-500 m. Bergs drift toward the outflow on this side, so you get the closest views of individual ice formations. Look for the deep-blue glacial bergs (denser, older ice) versus the white ones (newer, more air bubbles). Striped black bergs carry volcanic ash from past eruptions.
+                    <div class="step-meta">⏱️ 15-20 min · 📍 West shoreline path</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">4</div>
+                <div class="visit-step-content">
+                    <strong>Return via the Ring Road bridge — seal-spotting</strong>
+                    Walk back past the lot and onto the pedestrian shoulder of the bridge over the outflow channel. <strong>Look down into the channel</strong> — harbour seals hunt the strong tidal current here and you'll often see 2-5 of them surfacing among the ice. This is the best wildlife moment of the entire south coast.
+                    <div class="step-meta">⏱️ 10 min · 📍 Ring Road bridge, ~50m east of lot</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">5</div>
+                <div class="visit-step-content">
+                    <strong>Cross the road to Diamond Beach (separate detail page)</strong>
+                    Don't drive — walk under or carefully across the Ring Road to the beach lots on either side of the outflow. Same parking ticket valid. The bergs that just floated under the bridge end up on the black sand here within minutes. See the <a href="diamond-beach.html">Diamond Beach page</a> for the walk-through there.
+                    <div class="step-meta">⏱️ Continues at Diamond Beach</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">6</div>
+                <div class="visit-step-content">
+                    <strong>Optional: east-side gravel road for a quieter angle</strong>
+                    A short, drivable gravel spur leaves the Ring Road just north of the bridge and runs along the lagoon's east shore. Most tour buses skip it. Park at the small pull-out, walk a few minutes to the water — same icebergs, half the people, different angle on the glacier.
+                    <div class="step-meta">⏱️ 15 min if added</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Jokulsarlon_Iceland.jpg/800px-Jokulsarlon_Iceland.jpg" alt="Jokulsarlon icebergs">
+                    <div class="gallery-caption">Jökulsárlón panorama · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Jokulsarlon_lake.jpg/800px-Jokulsarlon_lake.jpg" alt="Iceberg on lagoon">
+                    <div class="gallery-caption">Lagoon icebergs · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Jokulsarlon_2017_panorama.jpg/800px-Jokulsarlon_2017_panorama.jpg" alt="Jokulsarlon panorama">
+                    <div class="gallery-caption">Wide view · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Seal_at_J%C3%B6kuls%C3%A1rl%C3%B3n.jpg/800px-Seal_at_J%C3%B6kuls%C3%A1rl%C3%B3n.jpg" alt="Seal at Jokulsarlon">
+                    <div class="gallery-caption">Seal in outflow channel · Wikimedia Commons</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p>
+            <ul>
+                <li><strong>Wide, foreground berg:</strong> <strong>16-24 mm</strong>, low to the water at the main viewpoint. Pick a single dramatic berg as anchor and let the glacier line the background.</li>
+                <li><strong>Tele compression of glacier wall:</strong> <strong>200-400 mm</strong> from the west shore — flattens the lagoon and makes the glacier face look enormous. Your best "scale" shot.</li>
+                <li><strong>Seals from the bridge:</strong> <strong>200 mm+</strong> looking straight down into the outflow. Patience required — a seal usually surfaces every 1-2 min.</li>
+                <li><strong>Best light:</strong> Sunset (~20:00 in April) lights the bergs warm against deep blue water. Sunrise also works on the east side. Midday is flattest light.</li>
+            </ul>
+            <p><strong>🚫 Drone: PERMIT REQUIRED — no-fly.</strong> Jökulsárlón is inside <strong>Vatnajökull National Park</strong>. Recreational drone use requires advance written permission from park authorities. Don't fly. Cite: <a href="https://www.vatnajokulsthjodgardur.is/en" target="_blank">vatnajokulsthjodgardur.is</a>. General drone rules: <a href="../planning.html#drone">Planning page</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Directly on Route 1 (the Ring Road), 50 minutes east of Skaftafell, 1 hour west of Höfn. Fully paved, any car.</p>
+            <ul>
+                <li><strong>Parking:</strong> ISK 1,000 ≈ <strong>฿250</strong> per car via Parka app. <strong>Same ticket valid at both Diamond Beach lots</strong> the same day.</li>
+                <li><strong>Walk to main viewpoint:</strong> ~100 m on flat gravel.</li>
+                <li><strong>Facilities:</strong> Café (open seasonally — check at the door in April), toilets, gift shop at the south lot.</li>
+                <li><strong>Wind warning:</strong> Wind chill off the glacier is brutal even when the rest of the south coast is calm. Beanies and gloves on.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>Top-priority sight. Pair tightly with Diamond Beach (across the road) and optionally Fjallsárlón (10 min west). Allocate <strong>1.5-2 hours</strong> for the lagoon alone, more if doing Fjallsárlón's boat tour earlier.</p>
+            <ul>
+                <li><strong>Best light:</strong> Late afternoon to sunset — bergs glow blue-orange. Sunrise also stunning if staying nearby.</li>
+                <li><strong>Crowds:</strong> Tour buses arrive 11:00-15:00. Early morning and after 17:00 are quieter.</li>
+                <li><strong>Combine with:</strong> Skaftafell (50 min west), Fjallsárlón (10 min west), Diamond Beach (across the road), Vestrahorn (1 hr east).</li>
+                <li><strong>Day 4 plan:</strong> Skaftafell hike → Fjallsárlón optional → Jokulsarlon → Diamond Beach → drive to Vestrahorn for sunset → overnight Höfn.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Tripadvisor and Google: consistently 4.7-4.8 / 5 across tens of thousands of reviews. Routinely listed in "top 10 Iceland sights" lists. Frequently called "the best stop on the Ring Road."</p>
+            <p><strong>Honest take:</strong> Lives up to the hype. The combination of icebergs, glacier wall, seals, and the fact that you can walk right up to the water with no fence makes it unique even by Iceland's high bar. The only legitimate complaint is that the parking lot can feel like a coach park midday — easily fixed by visiting early or late, or walking 500 m west along the shore.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p><strong>Boat tours from Jokulsarlon are NOT running in early April</strong> — the lagoon's amphibian and zodiac operators (<a href="https://icelagoon.is/tours/" target="_blank">icelagoon.is</a>) start their season in May.</p>
+            <p>If you want a boat tour on Day 4, the alternative is <strong>Fjallsárlón</strong> 10 minutes west, which runs zodiac tours from <strong>April 1</strong> each year. See the <a href="fjallsarlon.html">Fjallsárlón page</a>. Price: ~ISK 11,300 ≈ <strong>฿2,825</strong> per person, 1.5 hours total, ~45 min on water.</p>
+            <p>Otherwise: self-guided. The lagoon overlook + Diamond Beach is the full free experience and most visitors are satisfied without a boat.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul>
+                <li><strong>Do NOT step onto icebergs.</strong> They roll without warning and the water is ~2°C. Several deaths recorded historically.</li>
+                <li><strong>Stay back from the lagoon edge</strong> — the bank can collapse and the bottom drops fast.</li>
+                <li><strong>Wind chill:</strong> Even a calm forecast gets wind off the glacier here. Layer up.</li>
+                <li><strong>Walking on the bridge:</strong> Use the pedestrian shoulder, not the road. Trucks come fast.</li>
+                <li><strong>No lifeguard, no rescue</strong> — treat the water as hostile.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+                <li><a href="https://icelagoon.is/" target="_blank">Icelagoon.is — Official site & boat tour seasons</a></li>
+                <li><a href="https://www.vatnajokulsthjodgardur.is/en" target="_blank">Vatnajökull National Park (drone & park rules)</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/J%C3%B6kuls%C3%A1rl%C3%B3n" target="_blank">Wikipedia — Jökulsárlón</a></li>
+                <li><a href="https://safetravel.is/" target="_blank">SafeTravel.is — current alerts</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Jokulsarlon+Glacier+Lagoon" target="_blank">Google Maps — Jokulsarlon</a></li>
+                <li><a href="fjallsarlon.html">Fjallsárlón page (boat tours in April)</a></li>
+                <li><a href="diamond-beach.html">Diamond Beach page (across the road)</a></li>
+            </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

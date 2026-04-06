@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gunnuhver - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-blue: #0077B6; --aurora-green: #00B4D8; --deep-navy: #1a1a2e; --glacier-white: #F0F9FF; --ice-blue: #CAF0F8; --volcanic-black: #2D3748; --sunset-gold: #F59E0B; --moss-green: #10B981; --lava-red: #EF4444; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%); min-height: 100vh; color: var(--volcanic-black); line-height: 1.6; }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) { .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; } .navbar-menu.mobile-open { display: flex; } .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); } .menu-toggle { display: block; } }
+        .sight-hero { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%); color: white; padding: 3rem 2rem 2rem; text-align: center; }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin: 0 3px; }
+        .sight-hero .back-link { display: inline-block; margin-bottom: 15px; color: var(--aurora-green); text-decoration: none; font-size: 0.9em; }
+        .sight-hero .back-link:hover { color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .section { background: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); }
+        .section h2 { font-family: 'Playfair Display', serif; color: var(--deep-navy); font-size: 1.4em; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+        .status-box { padding: 12px 16px; border-radius: 8px; border-left: 4px solid var(--aurora-green); background: #f0f9ff; margin-bottom: 10px; }
+        .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 16px; }
+        .meta-item { background: #f8fafc; padding: 10px 12px; border-radius: 8px; font-size: 0.88em; }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+        .map-cta { display: inline-block; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9em; margin-top: 8px; }
+        .map-cta:hover { opacity: 0.9; }
+        .hero-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 12px; }
+        .gallery img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: transform 0.2s; }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+        .map-embed { width: 100%; height: 320px; border: 0; border-radius: 10px; margin-bottom: 10px; }
+        .visit-step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9em; }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+        .researched-note { text-align: center; font-size: 0.78em; color: #888; margin-top: 20px; padding: 10px; }
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">♨️</span>
+        <h1>Gunnuhver</h1>
+        <div class="day-badges"><span class="day-badge">Day 9</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://commons.wikimedia.org/wiki/Special:FilePath/Gunnuhver%20panorama.jpg?width=1200" alt="Gunnuhver mud pool and steam plumes" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>63.8194, -22.6833</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 9</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-22.7133%2C63.8044%2C-22.6533%2C63.8344&amp;layer=mapnik&amp;marker=63.8194%2C-22.6833" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=63.8194,-22.6833" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Gunnuhver is Iceland's largest mud pool and the most active part of the Reykjanes high-temperature geothermal area, on the south-western tip of the peninsula a few hundred metres from the Reykjanesviti lighthouse. Steam plumes from the central vent rise 10-20 m on a cold day and the ground rumbles audibly under your feet. Named after Gunna, a 17th-century woman whose ghost (per Icelandic folklore) was lured into the spring by a priest after she'd terrorised the locals — she's said to be still trapped down there. Boardwalks loop around the main vent and the largest mud pots.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box" style="border-left-color: #F59E0B; background: #fff7ed;">
+                <strong>🟠 Reykjanes volcanic system on Heightened Unrest (Level 2)</strong> — Per the Icelandic Met Office, no eruption underway in April 2026 but ~21 million m³ of magma beneath nearby Svartsengi. Gunnuhver's boardwalks have been damaged by ground heaving and expanding vents multiple times in the past decade — sections may be roped off without notice. Confirm on <a href="https://en.vedur.is" target="_blank">vedur.is</a> and <a href="https://safetravel.is" target="_blank">safetravel.is</a> the morning of your visit.
+            </div>
+            <p>The site is open access, free, no booking required. Boardwalks and the small parking lot are intact as of recent reports. New vents appear and old ones go quiet on a yearly basis — Gunnuhver is a moving target. April: cold air makes the steam plumes huge and dramatic. Bring eye protection if you're sensitive to sulphur drift. Daylight ~14 hours.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+
+            <div class="visit-step">
+                <div class="visit-step-num">1</div>
+                <div class="visit-step-content">
+                    <strong>Park at the Gunnuhver lot</strong>
+                    Free gravel lot at the end of the short access road off Route 425, near the Reykjanesviti lighthouse. Read the sign — it explains the Gunna legend and warns you to stay on the boardwalks.
+                    <div class="step-meta">⏱️ 2 min · 📍 End of access road off Route 425</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">2</div>
+                <div class="visit-step-content">
+                    <strong>Walk straight to the main steam vent</strong>
+                    From the lot, the boardwalk leads ~30 m to the central vent — a powerful, continuously roaring fumarole. On a cold morning the plume is enormous and the noise is the closest you'll come to standing next to a jet engine in nature. Stay on the boardwalk; the wind shifts and you may walk through warm steam.
+                    <div class="step-meta">⏱️ 5 min · 📍 Main vent, ~30 m from lot</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">3</div>
+                <div class="visit-step-content">
+                    <strong>Loop to the large mud pool</strong>
+                    Follow the boardwalk around to Iceland's largest mud pool — a wide grey-blue cauldron of slow, viscous bubbles. Stand and watch for at least a minute. The biggest plops come irregularly. Best video opportunity here.
+                    <div class="step-meta">⏱️ 8 min · 📍 Mud pool platform, west side of loop</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">4</div>
+                <div class="visit-step-content">
+                    <strong>Climb to the upper viewpoint</strong>
+                    A short staircase climbs the slope above the boardwalk to a small viewing platform with a top-down view of the whole Gunnuhver field — vent, mud pool, and the broader rust-red mineral ground. Best wide composition.
+                    <div class="step-meta">⏱️ 5 min · 📍 Upper viewpoint, ~15 m above field</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">5</div>
+                <div class="visit-step-content">
+                    <strong>Walk 5 minutes to the Reykjanesviti lighthouse</strong>
+                    From Gunnuhver lot, the path or short drive leads to Iceland's oldest lighthouse on a small hill, with views over the cliffs at Valahnúkamöl and (clear days) the offshore island of Eldey. Quick add-on; pairs naturally with Gunnuhver in one stop.
+                    <div class="step-meta">⏱️ 15-20 min · 📍 Lighthouse, ~800 m from Gunnuhver</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+                <div>
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Gunnuhver%20panorama.jpg?width=800" alt="Gunnuhver panorama">
+                    <div class="gallery-caption">Gunnuhver panorama · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Gunnuhver%204.jpg?width=800" alt="Gunnuhver steam vent">
+                    <div class="gallery-caption">Steam vent · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Gunnuhver%20mud%20pools.jpg?width=800" alt="Gunnuhver mud pools">
+                    <div class="gallery-caption">Mud pools · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Gunnuhver%20geothermal%20area.jpg?width=800" alt="Gunnuhver geothermal area">
+                    <div class="gallery-caption">Geothermal field · Wikimedia Commons</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p>
+            <ul>
+                <li><strong>Backlit steam plume:</strong> Position so the sun is behind the main vent. Steam plume glows white against dark sky/hill. 35-85 mm. Best at low sun (early morning or mid-late afternoon in April).</li>
+                <li><strong>Top-down from the upper viewpoint:</strong> 24-35 mm wide showing the whole field — orange/rust mineral ground, mud pool, and vent.</li>
+                <li><strong>Mud pop close-up:</strong> 70-200 mm tele on a tripod, manual focus on a single bubble, burst mode for the moment of plop.</li>
+                <li><strong>Cold-day plumes:</strong> Below 5°C the plume can dwarf a person — best dramatic shots in April mornings before the sun warms the air.</li>
+            </ul>
+            <p><strong>🚁 Drone — DO NOT FLY OVER THE GEOTHERMAL FIELD.</strong> Hot, corrosive steam will kill drone motors quickly, and downwash can disturb other visitors. Local site signage discourages drone use at active geothermal sites. The whole Reykjanes peninsula is also subject to TFRs during volcanic activity — check NOTAMs. If you fly, stay over open ground away from the field. General drone rules on the <a href="../planning.html#drone">Planning page</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Paved Route 425 to a short signposted access road on the south-western tip of Reykjanes. About 50 minutes from Reykjavík, 25 minutes from KEF airport. Any 2WD rental.</p>
+            <ul>
+                <li><strong>Parking:</strong> Free gravel lot at the end of the access road.</li>
+                <li><strong>Walk:</strong> Less than 1 minute to the main vent boardwalk.</li>
+                <li><strong>Fees:</strong> None.</li>
+                <li><strong>Facilities:</strong> None on-site. Reykjanesviti area sometimes has portable toilets seasonally — not guaranteed.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>Pair with <strong>Brimketill</strong> (10 min east) and the <strong>Reykjanesviti lighthouse</strong> (5 min walk). Combined, the three sights are one ~1-hour stop on the western tip of the peninsula.</p>
+            <ul>
+                <li><strong>Best light:</strong> Early morning (cold air = huge plumes) or late afternoon for warm light on mineral ground.</li>
+                <li><strong>Crowds:</strong> Light. Tour buses sometimes drop in for 15 minutes; mostly self-driving travellers.</li>
+                <li><strong>Allocate:</strong> ~20 minutes for the Gunnuhver loop alone; ~45 minutes including the lighthouse and Valahnúkamöl cliffs.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Tripadvisor and Google reviewers rate it ~4.4/5. Common praise: "much more impressive than expected for a free site," the size of the steam plume, the otherworldly atmosphere. Common complaint: short visit, sulphur smell. A few reviews mention sections of boardwalk being closed when they visited. Honest take: <strong>not overrated</strong> — for a free 20-minute stop with the largest mud pool in the country, it punches well above its weight.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities needed.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul>
+                <li><strong>Stay on the boardwalks at all times.</strong> Ground temperatures reach 100°C+ just below the surface. New vents can open without warning.</li>
+                <li>Sulphur dioxide and hydrogen sulphide present. Limit exposure if asthmatic; stay upwind of plumes.</li>
+                <li>If a section of boardwalk is roped off or warning tape is in place, do not cross.</li>
+                <li>Reykjanes volcanic monitoring active — check vedur.is and safetravel.is the morning of your visit.</li>
+                <li>Do not let children or pets off the boardwalk; do not bring strollers (boardwalks have steps).</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+                <li><a href="https://www.visitreykjanes.is/en/place/gunnuhver" target="_blank">Visit Reykjanes — Gunnuhver</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Gunnuhver" target="_blank">Wikipedia — Gunnuhver</a></li>
+                <li><a href="https://en.vedur.is/volcanoes/reykjanes/" target="_blank">Icelandic Met Office — Reykjanes volcanic system</a></li>
+                <li><a href="https://safetravel.is" target="_blank">SafeTravel.is — current alerts</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Gunnuhver" target="_blank">Google Maps — Gunnuhver</a></li>
+            </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

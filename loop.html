@@ -83,6 +83,7 @@
         .log-entry.warning { border-left-color: #f59e0b; }
         .log-entry.error { border-left-color: #ef4444; }
         .log-entry.update { border-left-color: #8b5cf6; }
+        .log-entry.suggestion { border-left-color: #06b6d4; }
 
         .entry-header {
             display: flex; justify-content: space-between; align-items: flex-start;
@@ -101,6 +102,7 @@
         .level-badge.warning { background: #fef3c7; color: #92400e; }
         .level-badge.error { background: #fee2e2; color: #991b1b; }
         .level-badge.update { background: #ede9fe; color: #5b21b6; }
+        .level-badge.suggestion { background: #cffafe; color: #155e75; }
 
         .entry-time {
             font-family: 'JetBrains Mono', monospace;
@@ -171,10 +173,11 @@
 
         <div class="controls">
             <button class="filter-btn active" data-level="all" onclick="filterLog('all', this)">All</button>
-            <button class="filter-btn" data-level="success" onclick="filterLog('success', this)">✅ Success</button>
-            <button class="filter-btn" data-level="update" onclick="filterLog('update', this)">🔄 Update</button>
-            <button class="filter-btn" data-level="info" onclick="filterLog('info', this)">ℹ️ Info</button>
+            <button class="filter-btn" data-level="suggestion" onclick="filterLog('suggestion', this)">💡 Suggestion</button>
             <button class="filter-btn" data-level="warning" onclick="filterLog('warning', this)">⚠️ Warning</button>
+            <button class="filter-btn" data-level="update" onclick="filterLog('update', this)">🔄 Update</button>
+            <button class="filter-btn" data-level="success" onclick="filterLog('success', this)">✅ Success</button>
+            <button class="filter-btn" data-level="info" onclick="filterLog('info', this)">ℹ️ Info</button>
             <button class="filter-btn" data-level="error" onclick="filterLog('error', this)">❌ Error</button>
             <span class="stats" id="stats"></span>
             <button class="refresh-btn" onclick="loadLog()">🔄 Refresh</button>
@@ -242,7 +245,7 @@
                 const absTime = ts.toLocaleString();
                 const icon = {
                     info: 'ℹ️', success: '✅', warning: '⚠️',
-                    error: '❌', update: '🔄'
+                    error: '❌', update: '🔄', suggestion: '💡'
                 }[e.level] || '📝';
                 return `
                     <div class="log-entry ${e.level}">
@@ -260,10 +263,10 @@
             }).join('');
 
             // Update stats
-            const counts = { success: 0, update: 0, info: 0, warning: 0, error: 0 };
+            const counts = { success: 0, update: 0, info: 0, warning: 0, error: 0, suggestion: 0 };
             allEntries.forEach(e => { if (counts[e.level] !== undefined) counts[e.level]++; });
             document.getElementById('stats').textContent =
-                `${allEntries.length} total · ${counts.success} success · ${counts.update} updates · ${counts.warning} warn · ${counts.error} err`;
+                `${allEntries.length} total · ${counts.suggestion} 💡 · ${counts.warning} ⚠️ · ${counts.update} 🔄 · ${counts.success} ✅ · ${counts.info} ℹ️ · ${counts.error} ❌`;
         }
 
         function filterLog(level, btn) {

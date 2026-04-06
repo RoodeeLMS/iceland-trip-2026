@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harpa Concert Hall - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-blue: #0077B6; --aurora-green: #00B4D8; --deep-navy: #1a1a2e; --glacier-white: #F0F9FF; --ice-blue: #CAF0F8; --volcanic-black: #2D3748; --sunset-gold: #F59E0B; --moss-green: #10B981; --lava-red: #EF4444; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%); min-height: 100vh; color: var(--volcanic-black); line-height: 1.6; }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) { .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; } .navbar-menu.mobile-open { display: flex; } .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); } .menu-toggle { display: block; } }
+        .sight-hero { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%); color: white; padding: 3rem 2rem 2rem; text-align: center; }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin: 0 3px; }
+        .sight-hero .back-link { display: inline-block; margin-bottom: 15px; color: var(--aurora-green); text-decoration: none; font-size: 0.9em; }
+        .sight-hero .back-link:hover { color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .section { background: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); }
+        .section h2 { font-family: 'Playfair Display', serif; color: var(--deep-navy); font-size: 1.4em; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+        .status-box { padding: 12px 16px; border-radius: 8px; border-left: 4px solid var(--aurora-green); background: #f0f9ff; margin-bottom: 10px; }
+        .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 16px; }
+        .meta-item { background: #f8fafc; padding: 10px 12px; border-radius: 8px; font-size: 0.88em; }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+        .map-cta { display: inline-block; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9em; margin-top: 8px; }
+        .map-cta:hover { opacity: 0.9; }
+        .hero-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 12px; }
+        .gallery img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: transform 0.2s; }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+        .map-embed { width: 100%; height: 320px; border: 0; border-radius: 10px; margin-bottom: 10px; }
+        .visit-step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9em; }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+        .researched-note { text-align: center; font-size: 0.78em; color: #888; margin-top: 20px; padding: 10px; }
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🎵</span>
+        <h1>Harpa Concert Hall</h1>
+        <div class="day-badges"><span class="day-badge">Day 1</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Snow_in_Reykjavik%2C_Harpa_concert_hall_%286905136669%29.jpg/960px-Snow_in_Reykjavik%2C_Harpa_concert_hall_%286905136669%29.jpg" alt="Harpa Concert Hall facade in snow" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.1504, -21.9326</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 1</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-21.9626%2C64.1354%2C-21.9026%2C64.1654&amp;layer=mapnik&amp;marker=64.1504%2C-21.9326" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=64.1504,-21.9326" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Harpa is Reykjavik's harbour-front concert hall and conference centre, opened in 2011 after the financial crisis nearly killed the project. The standout is its honeycomb glass facade, designed by Danish-Icelandic artist Olafur Eliasson with Henning Larsen Architects, made of thousands of geometric glass cells that catch and refract light in different colours throughout the day. Free to enter, free to wander, no ticket needed for the public lobbies — and arguably Reykjavik's most photogenic interior.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 Open and free to enter.</strong> Per <a href="https://www.harpa.is/en" target="_blank">harpa.is</a>: public lobbies open daily, typically <strong>09:00–22:00</strong> (later on event nights). Building entry is always free; only the concert hall interiors (Eldborg, etc.) require a ticket or guided tour.</div>
+            <p><strong>Guided tours (2026):</strong> Public guided tours run several times daily — book via <a href="https://www.harpa.is/en/guided-tours" target="_blank">harpa.is/en/guided-tours</a>. Standard tour ~ISK 3,500 (~฿875). Behind-the-scenes "with live music" tour ~ISK 5,500 (~฿1,375). Both take you into Eldborg, the main hall, which you cannot otherwise see.</p>
+            <p><strong>April 2026 conditions:</strong> Indoor — weather doesn't matter. Best at golden hour or after dark when the facade lights up from within.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+
+            <div class="visit-step">
+                <div class="visit-step-num">1</div>
+                <div class="visit-step-content">
+                    <strong>Approach from the harbour side first</strong>
+                    Walk to Harpa from the Sun Voyager along the waterfront path (5 min). Approach from the east so you see the full glass facade rising against the harbour. Stop on the open plaza in front for the establishing exterior shot — this is the angle every postcard uses. The hexagonal pattern is most visible from ~30 m back.
+                    <div class="step-meta">⏱️ 5 min · 📍 Eastern plaza, harbour side</div>
+                </div>
+            </div>
+            <div class="visit-step">
+                <div class="visit-step-num">2</div>
+                <div class="visit-step-content">
+                    <strong>Enter the main lobby — look up</strong>
+                    Walk in through the glass doors. The first thing to do is stop and look straight up. The ceiling is a mirrored aluminium honeycomb that reflects the entire lobby — patterns, people, the harbour through the glass — into a kaleidoscope. This is the single most photographed interior in Iceland. Take your time, walk around it from different floors.
+                    <div class="step-meta">⏱️ 10 min · 📍 Main lobby, ground floor</div>
+                </div>
+            </div>
+            <div class="visit-step">
+                <div class="visit-step-num">3</div>
+                <div class="visit-step-content">
+                    <strong>Climb to the upper floors</strong>
+                    Take the stairs (or lift) up. Each level gives a different angle on the glass facade from inside — the coloured light through the cells changes with every step. The third and fourth floors have glass walkways that frame the harbour view perfectly. Walk all four sides of the building on at least one upper floor.
+                    <div class="step-meta">⏱️ 15-20 min · 📍 Floors 2-4</div>
+                </div>
+            </div>
+            <div class="visit-step">
+                <div class="visit-step-num">4</div>
+                <div class="visit-step-content">
+                    <strong>Photograph the glass cells from inside</strong>
+                    On any upper floor, stand close to the glass wall (within 1 m) and shoot through the cells toward the harbour. The hexagons frame fragments of the view in their own grid — looks like a Mondrian painting of Mount Esja. Best done at golden hour when warm light hits the glass.
+                    <div class="step-meta">⏱️ 10 min · 📍 Upper floor glass walls</div>
+                </div>
+            </div>
+            <div class="visit-step">
+                <div class="visit-step-num">5</div>
+                <div class="visit-step-content">
+                    <strong>Optional: book the guided tour for Eldborg</strong>
+                    If you have an extra hour and ฿875, the standard guided tour takes you into Eldborg, the main 1,800-seat concert hall. The interior is a deep red wood-and-concrete cavern that you simply cannot see otherwise. Book online a day ahead or check at the desk on arrival — daytime tours often have walk-up availability in shoulder season.
+                    <div class="step-meta">⏱️ 45-60 min · 📍 Tour starts from main lobby info desk</div>
+                </div>
+            </div>
+            <div class="visit-step">
+                <div class="visit-step-num">6</div>
+                <div class="visit-step-content">
+                    <strong>Browse the design shops and grab a coffee</strong>
+                    The ground floor has a small concentration of Icelandic design shops (Epal, the Harpa shop) and a couple of cafes/restaurants. Skuli Craft Bar and Smurstodin (sandwich bar) on the ground floor are reasonable lunch stops. Use the bathrooms — they're clean and free, a rarity downtown.
+                    <div class="step-meta">⏱️ 15-30 min · 📍 Ground floor</div>
+                </div>
+            </div>
+            <div class="visit-step">
+                <div class="visit-step-num">7</div>
+                <div class="visit-step-content">
+                    <strong>Return at night for the lit facade</strong>
+                    If you can swing it, come back after dark. The glass cells have integrated LED lighting that runs slow colour cycles — blues, purples, golds — and the building becomes the most striking object on the harbour. Best from the plaza in front or from across the small harbour basin to the east. 5 min from any downtown hotel.
+                    <div class="step-meta">⏱️ 10 min · 📍 Eastern plaza or across basin</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+                <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Harpa_harpa_01.jpg/800px-Harpa_harpa_01.jpg" alt="Harpa exterior glass facade"><div class="gallery-caption">Glass facade · Wikimedia Commons</div></div>
+                <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Snow_in_Reykjavik%2C_Harpa_concert_hall_%286905136669%29.jpg/800px-Snow_in_Reykjavik%2C_Harpa_concert_hall_%286905136669%29.jpg" alt="Harpa in snow"><div class="gallery-caption">Winter view · Wikimedia Commons</div></div>
+                <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Concert_at_the_Harpa_in_Reykjavik.jpg/800px-Concert_at_the_Harpa_in_Reykjavik.jpg" alt="Concert inside Harpa"><div class="gallery-caption">Eldborg interior · Wikimedia Commons</div></div>
+                <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/Harpa_%2838859105685%29.jpg/800px-Harpa_%2838859105685%29.jpg" alt="Harpa from harbour"><div class="gallery-caption">Harbour-side view · Wikimedia Commons</div></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <ul>
+                <li><strong>Mirrored ceiling, lobby:</strong> 14-24 mm ultra-wide, point straight up. Try at midday when natural light fills the building.</li>
+                <li><strong>Through-the-cells exterior view:</strong> Stand 1 m from any upper-floor glass wall and shoot the harbour through the hexagonal grid. 35-50 mm.</li>
+                <li><strong>Front facade exterior:</strong> 24-35 mm from the eastern plaza. Best at <strong>blue hour</strong> (~30 min after sunset, ~21:00 mid-April) when the interior LEDs begin to dominate over the fading sky.</li>
+                <li><strong>Tripods:</strong> Permitted in public areas as long as you don't block walkways. Staff are tolerant.</li>
+            </ul>
+            <p><strong>🚫 Drone:</strong> No. Reykjavik harbour is BIRK controlled airspace and Harpa is right next to the Coast Guard berth — drone flights here are not permitted without explicit clearance per the <a href="https://www.icetra.is/aviation/drones" target="_blank">Icelandic Transport Authority</a>. General drone rules on the <a href="../planning.html#drone">Planning page</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <ul>
+                <li><strong>Walk:</strong> From Hallgrimskirkja, ~15 min downhill via Bankastraeti and Laekjargata. From Sun Voyager, 5 min along the waterfront.</li>
+                <li><strong>Parking:</strong> Harpa has its own <strong>underground garage</strong> beneath the building — pay by plate at the machines or via the Parka app. Approx ISK 250/hr (~฿65). The most convenient downtown parking by far.</li>
+                <li><strong>Bus:</strong> Multiple Straeto routes stop at Laekjartorg (3 min walk).</li>
+                <li><strong>Entry to building:</strong> Free. <strong>Guided tour:</strong> ~ISK 3,500 (฿875).</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>Day 1 priority ★. Natural pairing with Sun Voyager (5 min walk away) and the Old Harbour. The classic afternoon Reykjavik loop is Hallgrimskirkja → Skolavordustigur → Laugavegur → Sun Voyager → Harpa.</p>
+            <ul>
+                <li><strong>Best time:</strong> Late afternoon into blue hour. Arrive ~17:00, browse the interior in daylight, watch the building light up at dusk.</li>
+                <li><strong>Crowds:</strong> Low at 09:00-11:00, busy when cruise ships are in (check the harbour). The interior is large enough that crowds rarely feel oppressive.</li>
+                <li><strong>Combine with:</strong> Sun Voyager, Old Harbour walk, and dinner at one of the harbour-side restaurants nearby (Matur og Drykkur, Forretto Bar).</li>
+                <li><strong>Allocate:</strong> 45-60 minutes without the tour, 90-120 with the guided tour.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google Maps: <strong>4.7 / 5</strong> with 30,000+ reviews. Won the 2013 Mies van der Rohe Award (EU's top architecture prize). Tripadvisor "Top 5 things to do in Reykjavik" reliably.</p>
+            <p><strong>Praised:</strong> The architecture (universal), free entry, the mirrored ceiling, the harbour views from the upper floors, clean bathrooms, the guided tour for music lovers.</p>
+            <p><strong>Common complaints:</strong> Restaurants inside are pricey (Reykjavik average + 20%), the building can feel empty in the daytime if no event is on, the guided tour is "fine but expensive" in some reviews.</p>
+            <p><strong>Honest take:</strong> Underrated as a free indoor activity. Even if you have zero interest in classical music, the building is genuinely one of the best modern interiors in Europe and it costs nothing to wander. Skip the tour unless you specifically want to see Eldborg.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <ul>
+                <li><strong>Harpa Guided Tour</strong> (in-house, 45 min, ~฿875) — book at <a href="https://www.harpa.is/en/guided-tours" target="_blank">harpa.is/en/guided-tours</a> or at the desk.</li>
+                <li><strong>Harpa Behind-the-Scenes with Live Music</strong> (~60 min, ~฿1,375) — same source.</li>
+                <li><strong>Concerts:</strong> Check <a href="https://www.harpa.is/en/calendar" target="_blank">the calendar</a> for the dates of your visit. The Iceland Symphony Orchestra plays here regularly. April programming usually has at least one concert per night. Tickets typically ฿800-3,500 depending on event.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <p>None. Indoor public building, well lit, security present, free bathrooms, accessible. The only "hazard" is the polished floors right after the cleaners pass through — they put out wet-floor signs.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+                <li><a href="https://www.harpa.is/en" target="_blank">Official site — harpa.is</a></li>
+                <li><a href="https://www.harpa.is/en/guided-tours" target="_blank">Guided tours booking</a></li>
+                <li><a href="https://www.harpa.is/en/calendar" target="_blank">Concert calendar</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Harpa_(concert_hall)" target="_blank">Wikipedia — Harpa</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Harpa+Concert+Hall+Reykjavik" target="_blank">Google Maps — Harpa</a></li>
+                <li><a href="https://visitreykjavik.is/service/harpa-concert-hall-and-conference-centre" target="_blank">Visit Reykjavik — Harpa</a></li>
+            </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>

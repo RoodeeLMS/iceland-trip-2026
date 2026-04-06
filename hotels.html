@@ -1302,6 +1302,25 @@
             const card = header.closest('.hotel-card');
             card.classList.toggle('collapsed');
         }
+
+        // Inject Google Maps link next to each hotel title
+        (function injectHotelMapLinks() {
+            document.querySelectorAll('.hotel-card .hotel-title h3').forEach(h => {
+                if (h.querySelector('.map-link')) return;
+                let name = h.textContent.trim().replace(/^[^\p{L}]+/u, '').trim();
+                const q = encodeURIComponent(name + ' Iceland');
+                const a = document.createElement('a');
+                a.href = `https://www.google.com/maps/search/?api=1&query=${q}`;
+                a.target = '_blank';
+                a.className = 'map-link';
+                a.title = 'Open in Google Maps';
+                a.textContent = ' 📍';
+                a.style.cssText = 'text-decoration:none;font-size:0.8em;margin-left:6px;';
+                // Stop click from toggling the card
+                a.addEventListener('click', e => e.stopPropagation());
+                h.appendChild(a);
+            });
+        })();
     </script>
 </body>
 

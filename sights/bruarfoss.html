@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruarfoss - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-blue: #0077B6; --aurora-green: #00B4D8; --deep-navy: #1a1a2e; --glacier-white: #F0F9FF; --ice-blue: #CAF0F8; --volcanic-black: #2D3748; --sunset-gold: #F59E0B; --moss-green: #10B981; --lava-red: #EF4444; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%); min-height: 100vh; color: var(--volcanic-black); line-height: 1.6; }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) { .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; } .navbar-menu.mobile-open { display: flex; } .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); } .menu-toggle { display: block; } }
+        .sight-hero { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%); color: white; padding: 3rem 2rem 2rem; text-align: center; }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge { display: inline-block; background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 12px; font-size: 0.85em; margin: 0 3px; }
+        .sight-hero .back-link { display: inline-block; margin-bottom: 15px; color: var(--aurora-green); text-decoration: none; font-size: 0.9em; }
+        .sight-hero .back-link:hover { color: white; }
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+        .section { background: white; border-radius: 12px; padding: 24px 28px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); }
+        .section h2 { font-family: 'Playfair Display', serif; color: var(--deep-navy); font-size: 1.4em; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+        .status-box { padding: 12px 16px; border-radius: 8px; border-left: 4px solid var(--aurora-green); background: #f0f9ff; margin-bottom: 10px; }
+        .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-bottom: 16px; }
+        .meta-item { background: #f8fafc; padding: 10px 12px; border-radius: 8px; font-size: 0.88em; }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+        .map-cta { display: inline-block; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 0.9em; margin-top: 8px; }
+        .map-cta:hover { opacity: 0.9; }
+        .hero-image { width: 100%; max-height: 400px; object-fit: cover; border-radius: 12px; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-top: 12px; }
+        .gallery img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; cursor: pointer; transition: transform 0.2s; }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+        .map-embed { width: 100%; height: 320px; border: 0; border-radius: 10px; margin-bottom: 10px; }
+        .visit-step { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9em; }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+        .researched-note { text-align: center; font-size: 0.78em; color: #888; margin-top: 20px; padding: 10px; }
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">💧</span>
+        <h1>Bruarfoss</h1>
+        <div class="day-badges"><span class="day-badge">Day 2</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/0/0e/The_blue_waterfall_-_Bruarfoss_-_Iceland_%2841967794764%29.jpg" alt="Bruarfoss blue waterfall" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>64.2647, -20.5175</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 2</div>
+                <div class="meta-item"><strong>💰 Parking</strong>~฿190 (ISK 750)</div>
+                <div class="meta-item"><strong>🚶 Walk</strong>~300 m / 5 min (new lot)</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-20.5475%2C64.2497%2C-20.4875%2C64.2797&amp;layer=mapnik&amp;marker=64.2647%2C-20.5175" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=64.2647,-20.5175" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Bruarfoss is a small but exceptionally photogenic waterfall on the Brúará river, famous for the saturated turquoise-blue colour of its glacial meltwater pouring over a row of basalt steps into a narrow gorge. It used to require a 3.5 km muddy hike each way from the village of Brekkuskógur — that's the version most blogs describe — but a <strong>new official parking lot opened much closer to the falls</strong>, cutting the walk to roughly 300 m. It's now a quick, easy stop on the Golden Circle.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 Open year-round</strong> — New parking lot operational. Free to visit, parking ~ISK 750 (฿190) per car.</div>
+            <p><strong>April 2026 conditions:</strong> The short path can be muddy, slippery, and patchy with snow/ice in early April. Bring waterproof boots. The river is high with snowmelt — the blue colour is at its strongest in spring. Per multiple blog reports (Earth Trekkers, Laidback Trip, 2026), the new lot is well signposted off Route 37; ignore older blog posts that send you to the long Brekkuskógur trailhead.</p>
+            <p><strong>⚠️ SafeTravel.is pin active here:</strong> the bedrock around the falls is wet, undercut, and slippery; people have died falling into the river. Keep well back from the rim. There are no railings.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+
+            <div class="visit-step">
+                <div class="visit-step-num">1</div>
+                <div class="visit-step-content">
+                    <strong>Park at the new Bruarfoss lot (NOT the old Brekkuskógur trailhead)</strong>
+                    From Route 37, follow signs for "Brúarfoss" — the new gravel lot is at approximately 64.2647, -20.5175, very close to the falls. Pay ฿190 (ISK 750) at the kiosk. Ignore Google results that route you to the village 3.5 km away; the long hike is only relevant if you want it as a hike.
+                    <div class="step-meta">⏱️ 3 min · 📍 Bruarfoss new parking lot</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">2</div>
+                <div class="visit-step-content">
+                    <strong>Walk the short marked path to the wooden viewing bridge</strong>
+                    From the lot, follow the gravel/dirt path ~300 m down to the river. In April expect mud and possibly icy patches. The path ends at a small wooden footbridge spanning the gorge directly above the falls — the iconic shooting position.
+                    <div class="step-meta">⏱️ 5-7 min · 📍 Wooden viewing bridge over the gorge</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">3</div>
+                <div class="visit-step-content">
+                    <strong>Stop on the bridge — the classic shot looking upstream</strong>
+                    Stand mid-bridge facing upstream. The waterfall spreads in a wide, shallow horseshoe of small drops feeding into the bright blue chute beneath your feet. This is the postcard view. Tripod doesn't fit well — handheld at 1/60 s and let the water blur naturally.
+                    <div class="step-meta">⏱️ 10 min · 📍 Wooden bridge, dead centre</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">4</div>
+                <div class="visit-step-content">
+                    <strong>Walk a few metres along the rim for a side angle — but stay back from the edge</strong>
+                    From the bridge, a short marked path lets you walk along the gorge rim for an alternative side composition that shows more of the basalt steps and the depth of the chute. <strong>Do NOT approach the unfenced rock edge</strong> — per safetravel.is, the rock is undercut, frequently icy, and falls into the river have been fatal. Keep at least 2 m back.
+                    <div class="step-meta">⏱️ 5 min · 📍 Marked rim path beside the bridge</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">5</div>
+                <div class="visit-step-content">
+                    <strong>Optional: walk 5 minutes upstream to Midfoss and Hlauptungufoss</strong>
+                    A maintained trail continues upstream past Bruarfoss for about 1 km to two smaller waterfalls — Midfoss and Hlauptungufoss. They're worth it if you have 30 extra minutes and the weather is decent. Skip if pressed for Geysir/Gullfoss timing.
+                    <div class="step-meta">⏱️ 30 min round-trip (optional) · 📍 Upstream trail from bridge</div>
+                </div>
+            </div>
+
+            <div class="visit-step">
+                <div class="visit-step-num">6</div>
+                <div class="visit-step-content">
+                    <strong>Return to the lot and drive 25 minutes north to Geysir</strong>
+                    Back to the car the same way. From here it's ~25 minutes on Route 37 / 35 to the Geysir Geothermal Area. If you booked Fridheimar lunch, that's a 15-minute detour south first.
+                    <div class="step-meta">⏱️ 5 min walk back · 📍 Onward to Geysir or Fridheimar</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery">
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/The_blue_waterfall_-_Bruarfoss_-_Iceland_%2841967794764%29.jpg" alt="Bruarfoss blue waterfall">
+                    <div class="gallery-caption">Blue chute at Bruarfoss · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Bruarfoss_waterfall_on_Bruara_River_Iceland.jpg" alt="Bruarfoss on Bruara river">
+                    <div class="gallery-caption">Bruarfoss on the Brúará river · Wikimedia Commons</div>
+                </div>
+                <div>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Br%C3%BAarfoss_%2815657306391%29.jpg" alt="Bruarfoss wide view">
+                    <div class="gallery-caption">Wider view of the falls · Wikimedia Commons</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p>
+            <ul>
+                <li><strong>From the wooden bridge looking upstream:</strong> 24-35 mm wide, handheld at 1/60 s. The blue is most saturated on overcast days — direct sun blows out the white foam.</li>
+                <li><strong>Polariser is essential</strong> — kills the surface glare and pops the turquoise.</li>
+                <li><strong>Side angle from the rim path</strong> at 35-50 mm shows the depth of the chute and the layered basalt.</li>
+                <li><strong>Best time:</strong> Overcast or even light rain. Mid-day is fine because the gorge is shaded — you don't need golden hour here.</li>
+            </ul>
+            <p><strong>Drone:</strong> No specific Bruarfoss prohibition published, but the surrounding land is private farm property and the area is not in the Thingvellir park boundary. Be respectful of any other visitors on the bridge and don't fly low over them. Standard Icelandic drone rules apply (see <a href="../planning.html#drone">Planning page</a>).</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Paved Route 37 off Route 35 (the main Golden Circle road). Any 2WD rental car. The final approach to the new lot is a short gravel spur, well-graded.</p>
+            <ul>
+                <li><strong>From Thingvellir:</strong> ~40 min via Route 36 → 365 → 37.</li>
+                <li><strong>From Geysir:</strong> ~25 min south via Route 35 → 37.</li>
+                <li><strong>Parking fee:</strong> ISK 750 ≈ <strong>฿190</strong> per car. Pay at on-site kiosk.</li>
+                <li><strong>No entry fee</strong> to the falls themselves.</li>
+                <li>Walk from new lot to bridge: ~300 m, ~5 minutes.</li>
+                <li><em>Avoid:</em> the old Brekkuskógur village trailhead unless you specifically want a 7 km out-and-back hike.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>Quick stop, ~30-40 minutes total including the walk. Easy to slot between Thingvellir (morning) and Geysir/Gullfoss (afternoon), and it pairs nicely with a Fridheimar lunch nearby.</p>
+            <ul>
+                <li><strong>Best light:</strong> Overcast. The gorge is shaded so time-of-day matters less than sky condition.</li>
+                <li><strong>Crowds:</strong> Much busier since the new lot opened — expect 10-30 other people. Still nothing like Geysir or Gullfoss. Earlier or later in the day is calmer.</li>
+                <li><strong>Combine with:</strong> Fridheimar lunch (10 min away), Geysir (25 min north), the optional Midfoss/Hlauptungufoss extension upstream.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Tripadvisor: ~4.5 stars across thousands of reviews. Once a "hidden gem" reward for hikers, now much more accessible thanks to the new lot — which has changed the reputation. Older blog reviews praise the long hike as part of the experience; current 2025-2026 reviews are mixed: some appreciate the easier access, others miss the sense of effort and seclusion.</p>
+            <p><strong>Honest take:</strong> The water colour is genuinely one of the best blues in Iceland. The new short walk makes it a no-brainer stop. It's not an overrated waterfall by any means, but with the new lot it's also no longer a "secret" — manage expectations on solitude.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities needed.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <p>Per <a href="https://safetravel.is/" target="_blank">safetravel.is</a> active pin at this location:</p>
+            <ul>
+                <li><strong>Slippery, undercut bedrock at the rim</strong> — fatal falls have occurred. Stay at least 2 m back from any unfenced edge.</li>
+                <li><strong>The river is fast and very cold (~2-4°C)</strong> — anyone falling in is in immediate critical danger.</li>
+                <li>The wooden bridge is narrow and slick when wet/icy — go single file, hold the rail.</li>
+                <li>April mud and ice on the access path — waterproof boots with grip recommended.</li>
+                <li>Do not let children near the gorge edge.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+                <li><a href="https://guidetoiceland.is/travel-iceland/drive/bruarfoss-waterfall" target="_blank">Guide to Iceland — Bruarfoss</a></li>
+                <li><a href="https://www.earthtrekkers.com/how-to-visit-bruarfoss-waterfall/" target="_blank">Earth Trekkers — How to visit (covers new parking lot)</a></li>
+                <li><a href="https://www.alltrails.com/trail/iceland/southern/hlauptungufoss-midfoss-and-bruarfoss-waterfalls" target="_blank">AllTrails — Hlauptungufoss / Midfoss / Bruarfoss</a></li>
+                <li><a href="https://en.wikipedia.org/wiki/Br%C3%BAarfoss" target="_blank">Wikipedia — Brúarfoss</a></li>
+                <li><a href="https://www.google.com/maps/search/?api=1&query=Bruarfoss+waterfall" target="_blank">Google Maps — Bruarfoss</a></li>
+                <li><a href="https://safetravel.is/" target="_blank">SafeTravel.is</a></li>
+            </ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer><p>Iceland Trip 2026 | Part of the Sights guide</p></footer>
+
+    <script>
+        function toggleMobileMenu() { document.getElementById('navMenu').classList.toggle('mobile-open'); }
+    </script>
+</body>
+</html>

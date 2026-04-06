@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dyrholaey Viewpoint & Arch - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">🏔️</span>
+        <h1>Dyrholaey Viewpoint & Arch</h1>
+        <div class="day-badges"><span class="day-badge">Day 3</span><span class="day-badge">Day 5</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Dyrh%C3%B3laey_Peninsula%2C_Iceland%2C_20240720_1018_2882.jpg/960px-Dyrh%C3%B3laey_Peninsula%2C_Iceland%2C_20240720_1018_2882.jpg" alt="Dyrholaey Viewpoint & Arch" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>63.4019, -19.1283</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 3 · Day 5</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-19.1583%2C63.3869%2C-19.0983%2C63.4169&amp;layer=mapnik&amp;marker=63.4019%2C-19.1283" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=63.4019,-19.1283" target="_blank" class="map-cta">📍 Open in Google Maps</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>Dyrholaey ("door hill island") is a 120 m volcanic promontory at the southernmost tip of mainland Iceland, named for the massive natural sea arch piercing its base. The headland delivers some of the south coast's best panoramas: black-sand beaches stretching east to Reynisfjara, the Reynisdrangar sea stacks, the Mýrdalsjökull glacier inland, and on clear days the Westman Islands offshore. There are <strong>two parking areas</strong> — a low lot at sea level and a high lot atop the promontory — and they offer completely different experiences.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>🟢 OPEN in April 2026</strong> — Dyrholaey is closed annually <strong>May 1 to June 25</strong> for puffin and seabird nesting (per Environment Agency of Iceland). We're visiting in early April, so it's open. After the closure ends in late June, the upper lot is the only one accessible during nesting season.</div><p><strong>April 2026 conditions:</strong> Wind on the upper headland is severe — expect 50-80 km/h gusts on most spring days. Holds onto your hat, secure tripods, and consider whether the upper lot is safe to walk if wind is in red-flag territory. The unpaved upper road can be muddy; 2WD is fine in dry but tricky after heavy rain.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+            <div class="visit-step"><div class="visit-step-num">1</div><div class="visit-step-content"><strong>Decide: lower lot or upper lot first?</strong><strong>Lower lot (Kirkjufjara/Lágey):</strong> sea-level beach with views of the arch from underneath. <strong>Upper lot (Háey):</strong> top of the promontory with the lighthouse and panoramic views over the entire coast. If you only have time for one, the <strong>upper lot is the better choice</strong> for the panorama. With time for both, do upper first then drive down to lower.<div class="step-meta">⏱️ Decide before turning · 📍 Route 218 junction</div></div></div><div class="visit-step"><div class="visit-step-num">2</div><div class="visit-step-content"><strong>Drive Route 218 — note: upper road is steeper</strong>Turn off Route 1 onto paved Route 218. After ~5 km the road splits: the upper lot road is signed and is a steeper, partly gravel climb. The lower lot continues straight. Both are doable in any 2WD car in dry conditions.<div class="step-meta">⏱️ 10 min drive · 📍 Route 218</div></div></div><div class="visit-step"><div class="visit-step-num">3</div><div class="visit-step-content"><strong>Upper lot — walk to the lighthouse</strong>Park at the upper lot (free). The 1910 Dyrholaey lighthouse sits at the highest point, ~200 m walk from the lot on a flat path. Wind can be brutal here — brace yourself.<div class="step-meta">⏱️ 10 min · 📍 Upper lot lighthouse</div></div></div><div class="visit-step"><div class="visit-step-num">4</div><div class="visit-step-content"><strong>Walk to the cliff edge for the panorama</strong>From the lighthouse, walk to the marked cliff-edge viewpoint. South: the Atlantic and (clear day) the Westman Islands. East: black sand beach stretching to Reynisfjara and the basalt sea stacks of Reynisdrangar in the distance. West: the long Solheimasandur black sand plain. <strong>Stay behind the rope/marked edge.</strong><div class="step-meta">⏱️ 15-20 min · 📍 Cliff edge</div></div></div><div class="visit-step"><div class="visit-step-num">5</div><div class="visit-step-content"><strong>Look down: spot the arch from above</strong>From the cliff edge you can see the natural arch piercing the base of the promontory directly below — it's big enough that boats and small planes have famously passed through. The view straight down into the surf is the headline.<div class="step-meta">⏱️ 5 min · 📍 Arch overlook</div></div></div><div class="visit-step"><div class="visit-step-num">6</div><div class="visit-step-content"><strong>Drive down to the lower lot (optional)</strong>Back to Route 218 and continue to the lower lot. From here a short walk takes you to a sea-level beach where you see the arch from underneath — a different and equally photogenic view. The beach itself is dangerous (sneaker waves) and is sometimes closed; check signage. Stay well back from the water.<div class="step-meta">⏱️ 15 min · 📍 Lower lot beach</div></div></div><div class="visit-step"><div class="visit-step-num">7</div><div class="visit-step-content"><strong>Photo: Reynisdrangar from the east edge</strong>Whether at upper or lower lot, walk to the easternmost accessible point and frame the Reynisdrangar sea stacks 5 km east. This is one of the iconic south coast compositions.<div class="step-meta">⏱️ 10 min · 📍 East edge</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery"><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Dyrh%C3%B3laey_Peninsula%2C_Iceland%2C_20240720_1018_2882.jpg/800px-Dyrh%C3%B3laey_Peninsula%2C_Iceland%2C_20240720_1018_2882.jpg" alt="Dyrholaey panorama"><div class="gallery-caption">Panorama from upper lot · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Dyrh%C3%B3laey_Peninsula%2C_Iceland%2C_20240720_1019_2885.jpg/800px-Dyrh%C3%B3laey_Peninsula%2C_Iceland%2C_20240720_1019_2885.jpg" alt="Dyrholaey arch"><div class="gallery-caption">Arch view · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Dyrh%C3%B3laey_Peninsula%2C_Iceland%2C_20240720_1027_2898.jpg/800px-Dyrh%C3%B3laey_Peninsula%2C_Iceland%2C_20240720_1027_2898.jpg" alt="Dyrholaey cliffs"><div class="gallery-caption">Cliff edge · Wikimedia Commons</div></div><div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/Dyrh%C3%B3laey_Peninsula%2C_Iceland%2C_20240720_1032_2903.jpg/800px-Dyrh%C3%B3laey_Peninsula%2C_Iceland%2C_20240720_1032_2903.jpg" alt="Dyrholaey lighthouse area"><div class="gallery-caption">Lighthouse area · Wikimedia Commons</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p><ul><li><strong>Upper lot panorama, golden hour:</strong> 24-35 mm from the cliff edge facing east, late afternoon when the basalt stacks are side-lit. Best single composition on the south coast.</li><li><strong>Tele compression toward Reynisdrangar:</strong> 70-200 mm at ~135 mm compresses the sea stacks against the surf. Stack the lighthouse in the foreground for a strong layered shot.</li><li><strong>Arch from the lower beach:</strong> 16-24 mm wide at sea level, low tide is best to get the arch silhouetted against the sky. Black sand foreground.</li><li><strong>Lighthouse:</strong> Backlit at sunset with the sun behind it from the west.</li><li><strong>Wind is the biggest practical issue.</strong> Bring a heavy bag to weight the tripod, or shoot handheld at high shutter speeds.</li><li><strong>🚫 Drone:</strong> <strong>NO DRONES April through August</strong> due to bird nesting protections. Dyrholaey is a designated bird reserve and drone use is prohibited during the nesting season — and discouraged year-round. Do not fly here. See <a href="../planning.html#drone">Planning page drone section</a> for general rules.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Paved Route 218 directly off Route 1, ~10 km west of Vik. The lower lot road is paved; the upper lot road is a steeper paved + short gravel climb. Both are accessible in any 2WD car in dry weather. After heavy rain or in snow, the upper road can be tricky — assess at the junction.</p><ul><li><strong>Parking: free</strong> at both lots.</li><li><strong>No entry fee.</strong></li><li><strong>No facilities</strong> at either lot — no toilets, no café. Use the facilities in Vik (10 min east) before or after.</li><li><strong>Walk from upper lot to lighthouse:</strong> ~200 m, flat.</li><li><strong>Walk from lower lot to beach:</strong> ~150 m, flat.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p>Visiting Day 3 westbound and possibly again Day 5 on the return. The two-visit hedge is useful: if Day 3 is too windy or low-cloud, Day 5's forecast may be clear.</p><ul><li><strong>Best light:</strong> Late afternoon to sunset for the eastward Reynisdrangar shot. Sunrise also works but the sun rises behind the sea stacks, throwing them into silhouette.</li><li><strong>Crowds:</strong> Lighter than Reynisfjara because of the extra detour. Buses do come but in smaller numbers.</li><li><strong>Combine with:</strong> Reynisfjara (5 km east), Vik village (10 km east), Vik church viewpoint.</li><li><strong>Time budget:</strong> 45 min for upper lot only; 75-90 min for both lots.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p>Google rating ~4.7. Frequently called the best viewpoint on the south coast — the panoramic position lets you see most other south coast highlights from one spot. Common positives: lighthouse, panorama, fewer crowds than Reynisfjara. Common complaints: severe wind, no facilities, occasional closure of the lower road in spring.</p><p><strong>Honest take:</strong> Underrated relative to Reynisfjara. The upper lot view is arguably the single best landscape shot on the south coast. Don't skip it just because Reynisfjara is the famous one.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided — no booked activities. Some Reykjavik day tours include a brief stop here, but with our rental car there's no reason to book one.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul><li>Severe wind on the upper headland — risk of being blown off balance near cliff edges. Stay behind ropes/markers.</li><li>Cliff drops are unfenced in places — keep children and groups well back.</li><li>The lower beach has the same sneaker-wave hazard as Reynisfjara — minimum 25 m back from the water.</li><li>Closed annually May 1 to June 25 for nesting birds — we're in April so this does not affect us, but plan around it for any future trips.</li><li>Upper road can be muddy or icy; check at the junction before committing.</li></ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul><li><a href="https://www.ust.is/the-environment-agency-of-iceland/protected-areas/south-iceland/dyrholaey/" target="_blank">Environment Agency — Dyrholaey nature reserve</a></li><li><a href="https://safetravel.is" target="_blank">SafeTravel.is — Live alerts</a></li><li><a href="https://en.wikipedia.org/wiki/Dyrh%C3%B3laey" target="_blank">Wikipedia — Dyrholaey</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=Dyrholaey" target="_blank">Google Maps — Dyrholaey</a></li></ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    </script>
+</body>
+</html>
