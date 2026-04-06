@@ -94,9 +94,24 @@
             background: white; border-radius: 12px; padding: 20px;
             margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             border-left: 5px solid var(--primary-blue);
+            display: flex; gap: 20px; align-items: flex-start;
         }
         .stop-card.priority { border-left-color: #10b981; background: #f0fdf4; }
         .stop-card.optional { border-left-color: #9ca3af; }
+        .stop-image {
+            flex-shrink: 0; width: 180px; height: 120px;
+            border-radius: 8px; overflow: hidden; background: #f0f9ff;
+        }
+        .stop-image img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+            transition: transform 0.3s;
+        }
+        .stop-image img:hover { transform: scale(1.05); }
+        .stop-content { flex: 1; min-width: 0; }
+        @media (max-width: 700px) {
+            .stop-card { flex-direction: column; }
+            .stop-image { width: 100%; height: 180px; }
+        }
 
         .stop-header {
             display: flex; justify-content: space-between; align-items: flex-start;
@@ -250,108 +265,126 @@
             </div>
 
             <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>⛪ Hallgrimskirkja <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 1</span><span class="day-badge">Day 6</span><span class="day-badge">Day 9</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 30-45 min</span>
-                    <span>🎟️ Tower: ISK 1,400 (~฿350)</span>
-                    <span class="skill-badge skill-easy">Easy walk</span>
-                </div>
-                <p class="stop-desc">Iconic concrete church, 74m tall. Tower elevator gives panoramic views of Reykjavik. Free to enter the church; tower costs ~฿350.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Go up the tower! Best panoramic city views. Look for Snaefellsjokull glacier on the horizon.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Perfect — dramatic moody light on the concrete exterior. Tower still worth it.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Interior is a great shelter. Skip the tower (limited views). Still photograph the facade.</div>
-                    <div class="weather-item w-wind"><strong>💨 Wind:</strong> Fine — building is sheltered. Tower may close if wind >25 m/s.</div>
-                </div>
-            </div>
-
-            <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🌈 Rainbow Street (Skolavordustigur)</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 1</span><span class="day-badge">Day 6</span><span class="day-badge">Day 9</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 15 min</span>
-                    <span>🎟️ Free</span>
-                    <span class="skill-badge skill-easy">Easy walk</span>
-                </div>
-                <p class="stop-desc">Colorful painted street leading up to Hallgrimskirkja. Famous Instagram spot.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Vibrant colors pop in sun.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Wet street reflects colors — actually BETTER in light rain!</div>
-                    <div class="weather-item w-wind"><strong>💨 Wind:</strong> Sheltered by buildings. Fine.</div>
-                </div>
-            </div>
-
-            <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>🎵 Harpa Concert Hall <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 1</span><span class="day-badge">Day 6</span><span class="day-badge">Day 9</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 30 min</span>
-                    <span>🎟️ Free to enter</span>
-                    <span class="skill-badge skill-easy">Easy</span>
-                </div>
-                <p class="stop-desc">Stunning glass honeycomb facade designed by Olafur Eliasson. Can enter the lobby for free — incredible interior geometry.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear/golden hour:</strong> The #1 photo time! Glass reflections are magical at sunset. <strong>Your Day 1 arrival at 17:15 is perfect timing.</strong></div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Interior photos still great — indoor spot.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Shelter inside! Best indoor stop in Reykjavik during rain.</div>
-                </div>
-            </div>
-
-            <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>⛵ Sun Voyager Sculpture <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 1</span><span class="day-badge">Day 6</span><span class="day-badge">Day 9</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 15 min</span>
-                    <span>🎟️ Free</span>
-                    <span class="skill-badge skill-easy">Easy walk</span>
-                </div>
-                <p class="stop-desc">Steel sculpture of a viking ship on the waterfront, 5 min walk from Harpa. Iconic sunset photo spot with Mt. Esja across the bay.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear/golden hour:</strong> THE shot. Sculpture silhouette against fiery sky + Mt. Esja backdrop.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody dramatic silhouette shots still work.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Skip — exposed on waterfront, no shelter.</div>
-                    <div class="weather-item w-wind"><strong>💨 Wind:</strong> VERY exposed. Hold phone carefully.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Hallgr%C3%ADmskirkja.jpeg/500px-Hallgr%C3%ADmskirkja.jpeg" alt="Hallgrimskirkja" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>⛪ Hallgrimskirkja <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 1</span><span class="day-badge">Day 6</span><span class="day-badge">Day 9</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 30-45 min</span>
+                        <span>🎟️ Tower: ISK 1,400 (~฿350)</span>
+                        <span class="skill-badge skill-easy">Easy walk</span>
+                    </div>
+                    <p class="stop-desc">Iconic concrete church, 74m tall. Tower elevator gives panoramic views of Reykjavik. Free to enter the church; tower costs ~฿350.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Go up the tower! Best panoramic city views. Look for Snaefellsjokull glacier on the horizon.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Perfect — dramatic moody light on the concrete exterior. Tower still worth it.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Interior is a great shelter. Skip the tower (limited views). Still photograph the facade.</div>
+                        <div class="weather-item w-wind"><strong>💨 Wind:</strong> Fine — building is sheltered. Tower may close if wind >25 m/s.</div>
+                    </div>
                 </div>
             </div>
 
             <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🛍️ Laugavegur main street</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 1</span><span class="day-badge">Day 6</span><span class="day-badge">Day 9</span></div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Rainbow_Street_Reykjavik_Iceland.jpg/500px-Rainbow_Street_Reykjavik_Iceland.jpg" alt="Rainbow Street" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🌈 Rainbow Street (Skolavordustigur)</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 1</span><span class="day-badge">Day 6</span><span class="day-badge">Day 9</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 15 min</span>
+                        <span>🎟️ Free</span>
+                        <span class="skill-badge skill-easy">Easy walk</span>
+                    </div>
+                    <p class="stop-desc">Colorful painted street leading up to Hallgrimskirkja. Famous Instagram spot.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Vibrant colors pop in sun.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Wet street reflects colors — actually BETTER in light rain!</div>
+                        <div class="weather-item w-wind"><strong>💨 Wind:</strong> Sheltered by buildings. Fine.</div>
+                    </div>
                 </div>
-                <div class="stop-meta">
-                    <span>⏱️ 45 min stroll</span>
-                    <span>🎟️ Free</span>
-                    <span class="skill-badge skill-easy">Easy</span>
+            </div>
+
+            <div class="stop-card priority">
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Harpa_Concert_Hall%2C_Reykjavik.jpg/400px-Harpa_Concert_Hall%2C_Reykjavik.jpg" alt="Harpa Concert Hall" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🎵 Harpa Concert Hall <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 1</span><span class="day-badge">Day 6</span><span class="day-badge">Day 9</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 30 min</span>
+                        <span>🎟️ Free to enter</span>
+                        <span class="skill-badge skill-easy">Easy</span>
+                    </div>
+                    <p class="stop-desc">Stunning glass honeycomb facade designed by Olafur Eliasson. Can enter the lobby for free — incredible interior geometry.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear/golden hour:</strong> The #1 photo time! Glass reflections are magical at sunset. <strong>Your Day 1 arrival at 17:15 is perfect timing.</strong></div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Interior photos still great — indoor spot.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Shelter inside! Best indoor stop in Reykjavik during rain.</div>
+                    </div>
                 </div>
-                <p class="stop-desc">Reykjavik's main shopping street. Street art, cafés, wool shops, restaurants. Good for dinner.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>Any weather:</strong> Shelter from rain in shops/cafes. Iceland's main urban stretch.</div>
+            </div>
+
+            <div class="stop-card priority">
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/71/Sun_Voyager.jpeg/400px-Sun_Voyager.jpeg" alt="Sun Voyager" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>⛵ Sun Voyager Sculpture <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 1</span><span class="day-badge">Day 6</span><span class="day-badge">Day 9</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 15 min</span>
+                        <span>🎟️ Free</span>
+                        <span class="skill-badge skill-easy">Easy walk</span>
+                    </div>
+                    <p class="stop-desc">Steel sculpture of a viking ship on the waterfront, 5 min walk from Harpa. Iconic sunset photo spot with Mt. Esja across the bay.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear/golden hour:</strong> THE shot. Sculpture silhouette against fiery sky + Mt. Esja backdrop.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody dramatic silhouette shots still work.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Skip — exposed on waterfront, no shelter.</div>
+                        <div class="weather-item w-wind"><strong>💨 Wind:</strong> VERY exposed. Hold phone carefully.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stop-card">
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Laugavegur_street_scene.jpg/400px-Laugavegur_street_scene.jpg" alt="Laugavegur" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🛍️ Laugavegur main street</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 1</span><span class="day-badge">Day 6</span><span class="day-badge">Day 9</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 45 min stroll</span>
+                        <span>🎟️ Free</span>
+                        <span class="skill-badge skill-easy">Easy</span>
+                    </div>
+                    <p class="stop-desc">Reykjavik's main shopping street. Street art, cafés, wool shops, restaurants. Good for dinner.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>Any weather:</strong> Shelter from rain in shops/cafes. Iceland's main urban stretch.</div>
+                    </div>
                 </div>
             </div>
 
             <div class="stop-card optional">
-                <div class="stop-header">
-                    <h3>🥘 Kronan Fiskislod (grocery)</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 1</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 45 min</span>
-                    <span>🕐 Open until 21:00</span>
-                    <span class="skill-badge skill-easy">Easy</span>
-                </div>
-                <p class="stop-desc">Big supermarket for stocking up on groceries for Days 1-3. Bread, cheese, snacks, breakfast supplies, dinner ingredients. Essential for the road trip budget.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>Any weather:</strong> Indoor stop — do after dinner, after dark.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Reykjav%C3%ADk_skyline_-_Skuggahverfi.JPG/500px-Reykjav%C3%ADk_skyline_-_Skuggahverfi.JPG" alt="Kronan" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🥘 Kronan Fiskislod (grocery)</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 1</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 45 min</span>
+                        <span>🕐 Open until 21:00</span>
+                        <span class="skill-badge skill-easy">Easy</span>
+                    </div>
+                    <p class="stop-desc">Big supermarket for stocking up on groceries for Days 1-3. Bread, cheese, snacks, breakfast supplies, dinner ingredients. Essential for the road trip budget.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>Any weather:</strong> Indoor stop — do after dinner, after dark.</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -364,118 +397,136 @@
             </div>
 
             <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>🏞️ Thingvellir National Park <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 2</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 1.5-2 hours</span>
-                    <span>🅿️ ISK 1,000 (~฿250)</span>
-                    <span class="skill-badge skill-easy">Easy paths</span>
-                </div>
-                <p class="stop-desc">Walk between the North American and Eurasian tectonic plates in the Almannagja rift. UNESCO site. Medieval parliament location. Multiple waterfalls and dramatic cliffs.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Best for the long-view photos of the rift. Early afternoon light hits the cliffs nicely.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody atmospheric — actually great for the dramatic rift valley.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Paths get muddy but still walkable. Bring waterproof boots. Silfra area looks magical in rain.</div>
-                    <div class="weather-item w-wind"><strong>💨 Wind:</strong> The valley channels wind — can be intense. Hold hats. Still doable.</div>
-                    <div class="weather-item w-snow"><strong>❄️ Snow:</strong> Beautiful but trails may be icy. Walk carefully on wooden boardwalks.</div>
-                </div>
-                <div class="tip-inline">💡 <strong>Photo tip:</strong> Walk down into the Almannagja rift. The viewing platform above is nice but the bottom of the gorge is more dramatic.</div>
-            </div>
-
-            <div class="stop-card">
-                <div class="stop-header">
-                    <h3>💧 Bruarfoss (hidden blue waterfall)</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 2</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 2-3 hours (hike)</span>
-                    <span>🅿️ ISK 750 (~฿190)</span>
-                    <span class="skill-badge skill-moderate">3km hike</span>
-                </div>
-                <p class="stop-desc">Electric-blue waterfall hidden from the main tourist route. Requires a 3km round-trip walk from the parking lot. Stunning turquoise water through black volcanic rock.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> IDEAL — blue water color pops in sunlight. Priority visit if weather is good.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Still good, colors are muted but visible.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Light rain:</strong> Trail is muddy but OK with boots. Bring rain cover.</div>
-                    <div class="weather-item w-danger"><strong>🌨️ Heavy rain/snow:</strong> SKIP. 3km muddy hike in rain not worth it. Prioritize other Golden Circle stops.</div>
-                </div>
-            </div>
-
-            <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>♨️ Geysir Geothermal Area <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 2</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 45 min-1 hour</span>
-                    <span>🅿️ ISK 1,000 (~฿250)</span>
-                    <span class="skill-badge skill-easy">Easy boardwalk</span>
-                </div>
-                <p class="stop-desc">Strokkur erupts every 5-10 minutes to heights of 20-30 meters. Original Geysir is mostly dormant. Multiple bubbling mud pools and hot springs.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Good but steam dissipates quickly.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Great contrast — white steam against gray sky.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Still fine — paths are paved. The steam + rain creates dramatic atmosphere.</div>
-                    <div class="weather-item w-wind"><strong>💨 Wind:</strong> Watch which way steam blows — stay upwind! Water is scalding hot.</div>
-                    <div class="weather-item w-snow"><strong>❄️ Snow/cold:</strong> BEST conditions! Massive steam columns in cold air. Epic photography.</div>
-                </div>
-                <div class="tip-inline">💡 <strong>Photo tip:</strong> Burst mode during eruption. Get low for dramatic perspective. Stay upwind of Strokkur.</div>
-            </div>
-
-            <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>💦 Gullfoss (Golden Waterfall) <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 2</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 45 min</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-easy">Easy viewpoints</span>
-                </div>
-                <p class="stop-desc">Massive two-tiered waterfall dropping into a dramatic canyon. Two viewing platforms (upper and lower). One of Iceland's most powerful falls.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Rainbows in the spray when sun hits right. Afternoon is best angle.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Waterfall looks dramatic, fewer people.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Powerful when water volume is high. Get wet anyway from spray, so no worse!</div>
-                    <div class="weather-item w-snow"><strong>❄️ Snow:</strong> Partially frozen edges in April = incredible photography. Lower path may be icy.</div>
-                    <div class="weather-item w-wind"><strong>💨 Wind:</strong> Spray blows everywhere — protect camera lens.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/%C3%9Eingvellir_from_the_information_centre.JPG/400px-%C3%9Eingvellir_from_the_information_centre.JPG" alt="Thingvellir" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🏞️ Thingvellir National Park <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 2</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 1.5-2 hours</span>
+                        <span>🅿️ ISK 1,000 (~฿250)</span>
+                        <span class="skill-badge skill-easy">Easy paths</span>
+                    </div>
+                    <p class="stop-desc">Walk between the North American and Eurasian tectonic plates in the Almannagja rift. UNESCO site. Medieval parliament location. Multiple waterfalls and dramatic cliffs.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Best for the long-view photos of the rift. Early afternoon light hits the cliffs nicely.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody atmospheric — actually great for the dramatic rift valley.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Paths get muddy but still walkable. Bring waterproof boots. Silfra area looks magical in rain.</div>
+                        <div class="weather-item w-wind"><strong>💨 Wind:</strong> The valley channels wind — can be intense. Hold hats. Still doable.</div>
+                        <div class="weather-item w-snow"><strong>❄️ Snow:</strong> Beautiful but trails may be icy. Walk carefully on wooden boardwalks.</div>
+                    </div>
+                    <div class="tip-inline">💡 <strong>Photo tip:</strong> Walk down into the Almannagja rift. The viewing platform above is nice but the bottom of the gorge is more dramatic.</div>
                 </div>
             </div>
 
             <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🌋 Kerid Crater Lake</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 2</span></div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Bruara_from35.jpg/400px-Bruara_from35.jpg" alt="Bruarfoss" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>💧 Bruarfoss (hidden blue waterfall)</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 2</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 2-3 hours (hike)</span>
+                        <span>🅿️ ISK 750 (~฿190)</span>
+                        <span class="skill-badge skill-moderate">3km hike</span>
+                    </div>
+                    <p class="stop-desc">Electric-blue waterfall hidden from the main tourist route. Requires a 3km round-trip walk from the parking lot. Stunning turquoise water through black volcanic rock.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> IDEAL — blue water color pops in sunlight. Priority visit if weather is good.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Still good, colors are muted but visible.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Light rain:</strong> Trail is muddy but OK with boots. Bring rain cover.</div>
+                        <div class="weather-item w-danger"><strong>🌨️ Heavy rain/snow:</strong> SKIP. 3km muddy hike in rain not worth it. Prioritize other Golden Circle stops.</div>
+                    </div>
                 </div>
-                <div class="stop-meta">
-                    <span>⏱️ 30-45 min</span>
-                    <span>🎟️ ISK 600 (~฿150)</span>
-                    <span class="skill-badge skill-easy">Easy walk</span>
+            </div>
+
+            <div class="stop-card priority">
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Strokkur_Geysir_%2814135319580%29_%28cropped%29.jpg/400px-Strokkur_Geysir_%2814135319580%29_%28cropped%29.jpg" alt="Geysir" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>♨️ Geysir Geothermal Area <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 2</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 45 min-1 hour</span>
+                        <span>🅿️ ISK 1,000 (~฿250)</span>
+                        <span class="skill-badge skill-easy">Easy boardwalk</span>
+                    </div>
+                    <p class="stop-desc">Strokkur erupts every 5-10 minutes to heights of 20-30 meters. Original Geysir is mostly dormant. Multiple bubbling mud pools and hot springs.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Good but steam dissipates quickly.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Great contrast — white steam against gray sky.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Still fine — paths are paved. The steam + rain creates dramatic atmosphere.</div>
+                        <div class="weather-item w-wind"><strong>💨 Wind:</strong> Watch which way steam blows — stay upwind! Water is scalding hot.</div>
+                        <div class="weather-item w-snow"><strong>❄️ Snow/cold:</strong> BEST conditions! Massive steam columns in cold air. Epic photography.</div>
+                    </div>
+                    <div class="tip-inline">💡 <strong>Photo tip:</strong> Burst mode during eruption. Get low for dramatic perspective. Stay upwind of Strokkur.</div>
                 </div>
-                <p class="stop-desc">Volcanic crater with teal-blue water at the bottom. Red volcanic rock walls. Walk around the rim or down to the water.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Colors POP — red rim, blue water, white snow. Best in sun.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Still good, colors muted.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Skip or quick view from rim only. Colors look dull.</div>
-                    <div class="weather-item w-snow"><strong>❄️ Snow:</strong> Magical — white rim with blue lake. Trail down may be closed.</div>
+            </div>
+
+            <div class="stop-card priority">
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Gullfoss_from_the_Air_%28cropped%29.jpg/400px-Gullfoss_from_the_Air_%28cropped%29.jpg" alt="Gullfoss" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>💦 Gullfoss (Golden Waterfall) <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 2</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 45 min</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-easy">Easy viewpoints</span>
+                    </div>
+                    <p class="stop-desc">Massive two-tiered waterfall dropping into a dramatic canyon. Two viewing platforms (upper and lower). One of Iceland's most powerful falls.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Rainbows in the spray when sun hits right. Afternoon is best angle.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Waterfall looks dramatic, fewer people.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Powerful when water volume is high. Get wet anyway from spray, so no worse!</div>
+                        <div class="weather-item w-snow"><strong>❄️ Snow:</strong> Partially frozen edges in April = incredible photography. Lower path may be icy.</div>
+                        <div class="weather-item w-wind"><strong>💨 Wind:</strong> Spray blows everywhere — protect camera lens.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stop-card">
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/A_girl_standing_on_top_of_Keri%C3%B0.jpg/400px-A_girl_standing_on_top_of_Keri%C3%B0.jpg" alt="Kerid Crater" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🌋 Kerid Crater Lake</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 2</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 30-45 min</span>
+                        <span>🎟️ ISK 600 (~฿150)</span>
+                        <span class="skill-badge skill-easy">Easy walk</span>
+                    </div>
+                    <p class="stop-desc">Volcanic crater with teal-blue water at the bottom. Red volcanic rock walls. Walk around the rim or down to the water.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Colors POP — red rim, blue water, white snow. Best in sun.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Still good, colors muted.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Skip or quick view from rim only. Colors look dull.</div>
+                        <div class="weather-item w-snow"><strong>❄️ Snow:</strong> Magical — white rim with blue lake. Trail down may be closed.</div>
+                    </div>
                 </div>
             </div>
 
             <div class="stop-card optional">
-                <div class="stop-header">
-                    <h3>🍅 Fridheimar Tomato Farm</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 2</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 1 hour</span>
-                    <span>🎟️ Meal ~฿630</span>
-                    <span>🕐 12:00-16:00</span>
-                </div>
-                <p class="stop-desc">Eat lunch inside a working tomato greenhouse. Famous tomato soup with fresh bread. Reservation recommended.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-rain"><strong>🌧️ Rain/cold:</strong> BEST in bad weather! Warm indoor lunch, humid greenhouse, steaming tomato soup. Cozy escape.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Fridheimar_Tomatoes.jpg/500px-Fridheimar_Tomatoes.jpg" alt="Fridheimar" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🍅 Fridheimar Tomato Farm</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 2</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 1 hour</span>
+                        <span>🎟️ Meal ~฿630</span>
+                        <span>🕐 12:00-16:00</span>
+                    </div>
+                    <p class="stop-desc">Eat lunch inside a working tomato greenhouse. Famous tomato soup with fresh bread. Reservation recommended.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-rain"><strong>🌧️ Rain/cold:</strong> BEST in bad weather! Warm indoor lunch, humid greenhouse, steaming tomato soup. Cozy escape.</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -488,116 +539,134 @@
             </div>
 
             <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>💧 Seljalandsfoss (walk behind!) <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 3</span><span class="day-badge primary">Day 5 ★</span></div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Seljalandsfoss%2C_Su%C3%B0urland%2C_Islandia%2C_2014-08-16%2C_DD_189-191_HDR.JPG/500px-Seljalandsfoss%2C_Su%C3%B0urland%2C_Islandia%2C_2014-08-16%2C_DD_189-191_HDR.JPG" alt="Seljalandsfoss" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>💧 Seljalandsfoss (walk behind!) <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 3</span><span class="day-badge primary">Day 5 ★</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 45 min-1 hour</span>
+                        <span>🅿️ ISK 1,000 (~฿250)</span>
+                        <span class="skill-badge skill-easy">Easy but wet</span>
+                    </div>
+                    <p class="stop-desc">60m waterfall you can walk behind through a cave passage. Iconic Iceland photo spot. Path gets very slippery and wet from spray.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear (Day 5!):</strong> BEST — sunset creates golden backlight from behind the falls. THE shot. Arrive ~19:00-20:30 Day 5.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Fine — even lighting, fewer harsh shadows.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> You'll get wet anyway from spray. Path is slippery. Quick visit only.</div>
+                        <div class="weather-item w-wind"><strong>💨 Wind:</strong> ⚠️ Walk-behind path DANGEROUS in high wind. Spray blows everywhere. Stay at front.</div>
+                        <div class="weather-item w-snow"><strong>❄️ Snow/ice:</strong> Path behind may be closed/icy. Front view only.</div>
+                    </div>
+                    <div class="tip-inline">💡 <strong>Strategy:</strong> On Day 3 (rainy), quick front photo only. Save the walk-behind for Day 5 sunset when it's dry.</div>
                 </div>
-                <div class="stop-meta">
-                    <span>⏱️ 45 min-1 hour</span>
-                    <span>🅿️ ISK 1,000 (~฿250)</span>
-                    <span class="skill-badge skill-easy">Easy but wet</span>
-                </div>
-                <p class="stop-desc">60m waterfall you can walk behind through a cave passage. Iconic Iceland photo spot. Path gets very slippery and wet from spray.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear (Day 5!):</strong> BEST — sunset creates golden backlight from behind the falls. THE shot. Arrive ~19:00-20:30 Day 5.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Fine — even lighting, fewer harsh shadows.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> You'll get wet anyway from spray. Path is slippery. Quick visit only.</div>
-                    <div class="weather-item w-wind"><strong>💨 Wind:</strong> ⚠️ Walk-behind path DANGEROUS in high wind. Spray blows everywhere. Stay at front.</div>
-                    <div class="weather-item w-snow"><strong>❄️ Snow/ice:</strong> Path behind may be closed/icy. Front view only.</div>
-                </div>
-                <div class="tip-inline">💡 <strong>Strategy:</strong> On Day 3 (rainy), quick front photo only. Save the walk-behind for Day 5 sunset when it's dry.</div>
             </div>
 
             <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🌊 Gljufrabui (hidden canyon waterfall)</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 3</span><span class="day-badge primary">Day 5 ★</span></div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Gljufrafoss_Waterfall%2C_Iceland%2C_20240720_1516_3127.jpg/500px-Gljufrafoss_Waterfall%2C_Iceland%2C_20240720_1516_3127.jpg" alt="Gljufrabui" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🌊 Gljufrabui (hidden canyon waterfall)</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 3</span><span class="day-badge primary">Day 5 ★</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 30 min</span>
+                        <span>🅿️ Included w/ Seljalandsfoss</span>
+                        <span class="skill-badge skill-moderate">Wade through stream</span>
+                    </div>
+                    <p class="stop-desc">500m walk from Seljalandsfoss. Wade through ankle-deep stream into a hidden canyon where a waterfall crashes into a mossy chamber. Magical atmosphere.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Light beam effect through the canyon opening at midday!</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Still atmospheric, soft light.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> ⚠️ Stream can rise, current faster. Skip in heavy rain.</div>
+                        <div class="weather-item w-snow"><strong>❄️ Snow/ice:</strong> Stream stones slippery. Careful.</div>
+                    </div>
+                    <div class="tip-inline">💡 <strong>Bring:</strong> Waterproof boots or sandals. Waterproof everything — spray inside is intense.</div>
                 </div>
-                <div class="stop-meta">
-                    <span>⏱️ 30 min</span>
-                    <span>🅿️ Included w/ Seljalandsfoss</span>
-                    <span class="skill-badge skill-moderate">Wade through stream</span>
-                </div>
-                <p class="stop-desc">500m walk from Seljalandsfoss. Wade through ankle-deep stream into a hidden canyon where a waterfall crashes into a mossy chamber. Magical atmosphere.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Light beam effect through the canyon opening at midday!</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Still atmospheric, soft light.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> ⚠️ Stream can rise, current faster. Skip in heavy rain.</div>
-                    <div class="weather-item w-snow"><strong>❄️ Snow/ice:</strong> Stream stones slippery. Careful.</div>
-                </div>
-                <div class="tip-inline">💡 <strong>Bring:</strong> Waterproof boots or sandals. Waterproof everything — spray inside is intense.</div>
             </div>
 
             <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>💦 Skogafoss <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 3</span><span class="day-badge primary">Day 5 ★</span></div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/2008-05-24_35_Sk%C3%B3gafoss.jpg/400px-2008-05-24_35_Sk%C3%B3gafoss.jpg" alt="Skogafoss" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>💦 Skogafoss <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 3</span><span class="day-badge primary">Day 5 ★</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 45 min</span>
+                        <span>🅿️ ISK 1,000 (~฿250)</span>
+                        <span class="skill-badge skill-easy">Easy / stairs optional</span>
+                    </div>
+                    <p class="stop-desc">60m wide waterfall with perfect rectangular shape. Climb 527 stairs to the top for a different view. One of Iceland's most famous waterfalls.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> RAINBOWS in the spray when sun is behind you (afternoon-evening on Day 5). Best in low sun angles.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Solid monochromatic drama. Good for long exposure shots.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Powerful but no rainbow. Camera lens coated instantly.</div>
+                        <div class="weather-item w-wind"><strong>💨 Wind:</strong> Direction of spray varies. Can soak you from 50m away.</div>
+                        <div class="weather-item w-snow"><strong>❄️ Snow:</strong> Winter wonderland look. Stairs may be icy/closed.</div>
+                    </div>
+                    <div class="tip-inline">💡 <strong>Rainbow tip:</strong> Afternoon/early evening + clear sky = guaranteed rainbow. Day 5 timing perfect!</div>
                 </div>
-                <div class="stop-meta">
-                    <span>⏱️ 45 min</span>
-                    <span>🅿️ ISK 1,000 (~฿250)</span>
-                    <span class="skill-badge skill-easy">Easy / stairs optional</span>
-                </div>
-                <p class="stop-desc">60m wide waterfall with perfect rectangular shape. Climb 527 stairs to the top for a different view. One of Iceland's most famous waterfalls.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> RAINBOWS in the spray when sun is behind you (afternoon-evening on Day 5). Best in low sun angles.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Solid monochromatic drama. Good for long exposure shots.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Powerful but no rainbow. Camera lens coated instantly.</div>
-                    <div class="weather-item w-wind"><strong>💨 Wind:</strong> Direction of spray varies. Can soak you from 50m away.</div>
-                    <div class="weather-item w-snow"><strong>❄️ Snow:</strong> Winter wonderland look. Stairs may be icy/closed.</div>
-                </div>
-                <div class="tip-inline">💡 <strong>Rainbow tip:</strong> Afternoon/early evening + clear sky = guaranteed rainbow. Day 5 timing perfect!</div>
             </div>
 
             <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🏞️ Kvernufoss (hidden waterfall)</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 3</span><span class="day-badge primary">Day 5</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 45 min</span>
-                    <span>🅿️ Free (Skogar Museum)</span>
-                    <span class="skill-badge skill-easy">15 min walk</span>
-                </div>
-                <p class="stop-desc">Just behind Skogafoss area. 10-15 min walk from Skogar Museum. Walk-behind experience with 5% of the crowds. The "quiet alternative" to Seljalandsfoss.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Peaceful and beautiful. Few people.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Good — even light.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Short walk, OK in light rain with boots.</div>
-                    <div class="weather-item w-wind"><strong>💨 Wind:</strong> Sheltered in the canyon valley — one of the safer spots in wind.</div>
-                </div>
-            </div>
-
-            <div class="stop-card optional">
-                <div class="stop-header">
-                    <h3>🌋 Skogar Folk Museum</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 3</span><span class="day-badge primary">Day 5</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 1 hour</span>
-                    <span>🎟️ ~ISK 2,500 (~฿625)</span>
-                    <span class="skill-badge skill-easy">Indoor</span>
-                </div>
-                <p class="stop-desc">Open-air museum with turf houses, old church, and Icelandic folk history. Good rainy-day option.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> BEST rainy day stop in the South Coast. Indoor history + outdoor turf buildings.</div>
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Skip — spend time outdoors instead.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/2019-04-10_-_Kvernufoss%2C_Iceland.jpg/400px-2019-04-10_-_Kvernufoss%2C_Iceland.jpg" alt="Kvernufoss" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🏞️ Kvernufoss (hidden waterfall)</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 3</span><span class="day-badge primary">Day 5</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 45 min</span>
+                        <span>🅿️ Free (Skogar Museum)</span>
+                        <span class="skill-badge skill-easy">15 min walk</span>
+                    </div>
+                    <p class="stop-desc">Just behind Skogafoss area. 10-15 min walk from Skogar Museum. Walk-behind experience with 5% of the crowds. The "quiet alternative" to Seljalandsfoss.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Peaceful and beautiful. Few people.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Good — even light.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Short walk, OK in light rain with boots.</div>
+                        <div class="weather-item w-wind"><strong>💨 Wind:</strong> Sheltered in the canyon valley — one of the safer spots in wind.</div>
+                    </div>
                 </div>
             </div>
 
             <div class="stop-card optional">
-                <div class="stop-header">
-                    <h3>🌋 Lava Centre (Hvolsvollur)</h3>
-                    <div class="day-badge-row"><span class="day-badge">Day 2</span><span class="day-badge primary">Day 3</span><span class="day-badge">Day 5</span><span class="day-badge">Day 6</span></div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Church_of_Skogar.JPG/400px-Church_of_Skogar.JPG" alt="Skogar Folk Museum" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🌋 Skogar Folk Museum</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 3</span><span class="day-badge primary">Day 5</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 1 hour</span>
+                        <span>🎟️ ~ISK 2,500 (~฿625)</span>
+                        <span class="skill-badge skill-easy">Indoor</span>
+                    </div>
+                    <p class="stop-desc">Open-air museum with turf houses, old church, and Icelandic folk history. Good rainy-day option.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> BEST rainy day stop in the South Coast. Indoor history + outdoor turf buildings.</div>
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Skip — spend time outdoors instead.</div>
+                    </div>
                 </div>
-                <div class="stop-meta">
-                    <span>⏱️ 1.5 hours</span>
-                    <span>🎟️ ~ISK 3,500 (~฿875)</span>
-                    <span class="skill-badge skill-easy">Indoor</span>
-                </div>
-                <p class="stop-desc">Interactive volcano & earthquake museum. Detailed info on Iceland's geology.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-rain"><strong>🌧️ Rain/storm:</strong> Perfect indoor rainy day escape. Educational.</div>
+            </div>
+
+            <div class="stop-card optional">
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Hvolsv%C3%B6llur_0715.jpg/400px-Hvolsv%C3%B6llur_0715.jpg" alt="Lava Centre" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🌋 Lava Centre (Hvolsvollur)</h3>
+                        <div class="day-badge-row"><span class="day-badge">Day 2</span><span class="day-badge primary">Day 3</span><span class="day-badge">Day 5</span><span class="day-badge">Day 6</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 1.5 hours</span>
+                        <span>🎟️ ~ISK 3,500 (~฿875)</span>
+                        <span class="skill-badge skill-easy">Indoor</span>
+                    </div>
+                    <p class="stop-desc">Interactive volcano & earthquake museum. Detailed info on Iceland's geology.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-rain"><strong>🌧️ Rain/storm:</strong> Perfect indoor rainy day escape. Educational.</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -610,76 +679,88 @@
             </div>
 
             <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>⚫ Reynisfjara Black Sand Beach <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 3</span><span class="day-badge primary">Day 5 ★</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 45 min-1 hour</span>
-                    <span>🅿️ ISK 750-1,000</span>
-                    <span class="skill-badge skill-easy">Beach walk</span>
-                </div>
-                <p class="stop-desc">Famous black sand beach with basalt column formations and sea cave. Reynisdrangar sea stacks offshore. WARNING: sneaker waves are deadly.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear (Day 5!):</strong> Best light on basalt columns. Long shadows afternoon. Dramatic sea stack silhouettes.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody black & white vibe. Good for dramatic compositions.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Atmospheric but exposed. Brief visit.</div>
-                    <div class="weather-item w-danger"><strong>💨 High wind/big waves:</strong> ⚠️ DANGEROUS! Sneaker waves kill tourists here. Stay FAR from water edge when waves are >3m. Beach may be closed.</div>
-                    <div class="weather-item w-snow"><strong>❄️ Snow:</strong> White snow on black sand is striking. Fewer crowds.</div>
-                </div>
-                <div class="tip-inline">⚠️ <strong>SAFETY:</strong> Check <a href="https://safetravel.is/" target="_blank">safetravel.is</a> before visiting. Rogue waves are unpredictable. NEVER turn your back to the sea.</div>
-            </div>
-
-            <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🏔️ Dyrholaey viewpoint & arch</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 3</span><span class="day-badge primary">Day 5</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 45 min</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-easy">Drive to viewpoint</span>
-                </div>
-                <p class="stop-desc">High promontory with dramatic sea arch, lighthouse, and panoramic views of the black beach and Reynisdrangar. Puffin nesting season (from May).</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Panoramic views! See Reynisfjara from above.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody sea arch photos.</div>
-                    <div class="weather-item w-danger"><strong>💨 High wind:</strong> ⚠️ Road may CLOSE (exposed cliff road). Check before driving up.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Limited visibility. Quick stop only.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Reynisfjara_Beach_Looking_West_Towards_Dyrh%C3%B3laey.jpg/400px-Reynisfjara_Beach_Looking_West_Towards_Dyrh%C3%B3laey.jpg" alt="Reynisfjara" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>⚫ Reynisfjara Black Sand Beach <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 3</span><span class="day-badge primary">Day 5 ★</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 45 min-1 hour</span>
+                        <span>🅿️ ISK 750-1,000</span>
+                        <span class="skill-badge skill-easy">Beach walk</span>
+                    </div>
+                    <p class="stop-desc">Famous black sand beach with basalt column formations and sea cave. Reynisdrangar sea stacks offshore. WARNING: sneaker waves are deadly.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear (Day 5!):</strong> Best light on basalt columns. Long shadows afternoon. Dramatic sea stack silhouettes.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody black & white vibe. Good for dramatic compositions.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Atmospheric but exposed. Brief visit.</div>
+                        <div class="weather-item w-danger"><strong>💨 High wind/big waves:</strong> ⚠️ DANGEROUS! Sneaker waves kill tourists here. Stay FAR from water edge when waves are >3m. Beach may be closed.</div>
+                        <div class="weather-item w-snow"><strong>❄️ Snow:</strong> White snow on black sand is striking. Fewer crowds.</div>
+                    </div>
+                    <div class="tip-inline">⚠️ <strong>SAFETY:</strong> Check <a href="https://safetravel.is/" target="_blank">safetravel.is</a> before visiting. Rogue waves are unpredictable. NEVER turn your back to the sea.</div>
                 </div>
             </div>
 
             <div class="stop-card">
-                <div class="stop-header">
-                    <h3>⛪ Vik Church hilltop view</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 3</span><span class="day-badge primary">Day 5</span></div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Dyrh%C3%B3laey%2C_Su%C3%B0urland%2C_Islandia%2C_2014-08-17%2C_DD_140.jpg/400px-Dyrh%C3%B3laey%2C_Su%C3%B0urland%2C_Islandia%2C_2014-08-17%2C_DD_140.jpg" alt="Dyrholaey" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🏔️ Dyrholaey viewpoint & arch</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 3</span><span class="day-badge primary">Day 5</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 45 min</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-easy">Drive to viewpoint</span>
+                    </div>
+                    <p class="stop-desc">High promontory with dramatic sea arch, lighthouse, and panoramic views of the black beach and Reynisdrangar. Puffin nesting season (from May).</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Panoramic views! See Reynisfjara from above.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody sea arch photos.</div>
+                        <div class="weather-item w-danger"><strong>💨 High wind:</strong> ⚠️ Road may CLOSE (exposed cliff road). Check before driving up.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Limited visibility. Quick stop only.</div>
+                    </div>
                 </div>
-                <div class="stop-meta">
-                    <span>⏱️ 15-20 min</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-easy">Short walk up</span>
-                </div>
-                <p class="stop-desc">Small red-roofed church on a hill above Vik town. Sweeping views over the black beach and sea stacks. Classic Vik photo.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Best panoramic photo opportunity.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody village + church shot.</div>
-                    <div class="weather-item w-snow"><strong>❄️ Snow:</strong> Red roof on snow = iconic winter shot.</div>
+            </div>
+
+            <div class="stop-card">
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/V%C3%ADk_%C3%AD_M%C3%BDrdal%2C_Iceland.jpg/400px-V%C3%ADk_%C3%AD_M%C3%BDrdal%2C_Iceland.jpg" alt="Vik Church" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>⛪ Vik Church hilltop view</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 3</span><span class="day-badge primary">Day 5</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 15-20 min</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-easy">Short walk up</span>
+                    </div>
+                    <p class="stop-desc">Small red-roofed church on a hill above Vik town. Sweeping views over the black beach and sea stacks. Classic Vik photo.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Best panoramic photo opportunity.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody village + church shot.</div>
+                        <div class="weather-item w-snow"><strong>❄️ Snow:</strong> Red roof on snow = iconic winter shot.</div>
+                    </div>
                 </div>
             </div>
 
             <div class="stop-card optional">
-                <div class="stop-header">
-                    <h3>🌋 Icelandic Lava Show (Vik)</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 3</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 1 hour</span>
-                    <span>🎟️ ~ISK 6,500 (~฿1,625)</span>
-                    <span class="skill-badge skill-easy">Indoor</span>
-                </div>
-                <p class="stop-desc">Watch real molten lava poured indoors. Unique experience — the only place in the world you can safely see lava up close.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-rain"><strong>🌧️ Storm/rain:</strong> PERFECT rainy day alternative. Unforgettable experience.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/V%C3%ADk_%C3%AD_M%C3%BDrdal%2C_Iceland.jpg/400px-V%C3%ADk_%C3%AD_M%C3%BDrdal%2C_Iceland.jpg" alt="Lava Show" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🌋 Icelandic Lava Show (Vik)</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 3</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 1 hour</span>
+                        <span>🎟️ ~ISK 6,500 (~฿1,625)</span>
+                        <span class="skill-badge skill-easy">Indoor</span>
+                    </div>
+                    <p class="stop-desc">Watch real molten lava poured indoors. Unique experience — the only place in the world you can safely see lava up close.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-rain"><strong>🌧️ Storm/rain:</strong> PERFECT rainy day alternative. Unforgettable experience.</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -692,75 +773,87 @@
             </div>
 
             <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🟢 Eldhraun Lava Field</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 4</span><span class="day-badge primary">Day 5</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 15-30 min stop</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-easy">Roadside</span>
-                </div>
-                <p class="stop-desc">Vast moss-covered lava field from the 1783 Laki eruption. Green blanket of moss over jagged lava. DO NOT walk on the moss — it's fragile and takes decades to regrow.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Green moss vivid in sunlight.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Atmospheric and moody.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Colors saturated, but stay on roadside.</div>
-                    <div class="weather-item w-snow"><strong>❄️ Snow:</strong> White over green lava = stunning.</div>
-                </div>
-            </div>
-
-            <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🏞️ Fjadrargljufur Canyon</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 4</span><span class="day-badge primary">Day 5 ★</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 45 min</span>
-                    <span>🅿️ ISK 1,000 (~฿250)</span>
-                    <span class="skill-badge skill-easy">Walk along rim</span>
-                </div>
-                <p class="stop-desc">100m deep canyon carved through palagonite rock. Walking path along the rim with multiple viewpoints. Justin Bieber music video fame.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Best views of the winding canyon.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Dramatic depth perception.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Path may be muddy, but canyon is dramatic with waterfalls at peak flow.</div>
-                    <div class="weather-item w-danger"><strong>❄️ Snow/ice:</strong> Path may be CLOSED for protection. Check on site.</div>
-                </div>
-                <div class="tip-inline">⚠️ <strong>May be closed:</strong> This canyon has been closed in past winters/springs for vegetation recovery. Verify before the hike.</div>
-            </div>
-
-            <div class="stop-card">
-                <div class="stop-header">
-                    <h3>⛪ Hofskirkja Turf Church</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 4</span><span class="day-badge primary">Day 5</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 15 min</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-easy">Roadside</span>
-                </div>
-                <p class="stop-desc">One of the few remaining Icelandic turf churches. Grass roof, wooden walls. A photography classic.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Good but exposes the grass colors.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> BEST atmospheric shot — dark church against gray sky.</div>
-                    <div class="weather-item w-snow"><strong>❄️ Snow:</strong> Snow on turf roof = magical.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Laki_fissure_%283%29.jpg/400px-Laki_fissure_%283%29.jpg" alt="Eldhraun" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🟢 Eldhraun Lava Field</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 4</span><span class="day-badge primary">Day 5</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 15-30 min stop</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-easy">Roadside</span>
+                    </div>
+                    <p class="stop-desc">Vast moss-covered lava field from the 1783 Laki eruption. Green blanket of moss over jagged lava. DO NOT walk on the moss — it's fragile and takes decades to regrow.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Green moss vivid in sunlight.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Atmospheric and moody.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Colors saturated, but stay on roadside.</div>
+                        <div class="weather-item w-snow"><strong>❄️ Snow:</strong> White over green lava = stunning.</div>
+                    </div>
                 </div>
             </div>
 
             <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🗿 Dverghamrar (Dwarf Cliffs)</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 4</span><span class="day-badge primary">Day 5</span></div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Iceland_2008-05-27_%282684049831%29.jpg/400px-Iceland_2008-05-27_%282684049831%29.jpg" alt="Fjadrargljufur" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🏞️ Fjadrargljufur Canyon</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 4</span><span class="day-badge primary">Day 5 ★</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 45 min</span>
+                        <span>🅿️ ISK 1,000 (~฿250)</span>
+                        <span class="skill-badge skill-easy">Walk along rim</span>
+                    </div>
+                    <p class="stop-desc">100m deep canyon carved through palagonite rock. Walking path along the rim with multiple viewpoints. Justin Bieber music video fame.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Best views of the winding canyon.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Dramatic depth perception.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Path may be muddy, but canyon is dramatic with waterfalls at peak flow.</div>
+                        <div class="weather-item w-danger"><strong>❄️ Snow/ice:</strong> Path may be CLOSED for protection. Check on site.</div>
+                    </div>
+                    <div class="tip-inline">⚠️ <strong>May be closed:</strong> This canyon has been closed in past winters/springs for vegetation recovery. Verify before the hike.</div>
                 </div>
-                <div class="stop-meta">
-                    <span>⏱️ 15 min</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-easy">Roadside</span>
+            </div>
+
+            <div class="stop-card">
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Hofskirkja%2C_Hofi_%C3%AD_%C3%96r%C3%A6fum.JPG/500px-Hofskirkja%2C_Hofi_%C3%AD_%C3%96r%C3%A6fum.JPG" alt="Hofskirkja" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>⛪ Hofskirkja Turf Church</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 4</span><span class="day-badge primary">Day 5</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 15 min</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-easy">Roadside</span>
+                    </div>
+                    <p class="stop-desc">One of the few remaining Icelandic turf churches. Grass roof, wooden walls. A photography classic.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Good but exposes the grass colors.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> BEST atmospheric shot — dark church against gray sky.</div>
+                        <div class="weather-item w-snow"><strong>❄️ Snow:</strong> Snow on turf roof = magical.</div>
+                    </div>
                 </div>
-                <p class="stop-desc">Columnar basalt formations right next to the road. Legend says dwarves live there. Quick photo stop.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>Any weather:</strong> Short roadside stop, no hike required.</div>
+            </div>
+
+            <div class="stop-card">
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Dverghamrar_Iceland.jpg/400px-Dverghamrar_Iceland.jpg" alt="Dverghamrar" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🗿 Dverghamrar (Dwarf Cliffs)</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 4</span><span class="day-badge primary">Day 5</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 15 min</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-easy">Roadside</span>
+                    </div>
+                    <p class="stop-desc">Columnar basalt formations right next to the road. Legend says dwarves live there. Quick photo stop.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>Any weather:</strong> Short roadside stop, no hike required.</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -773,98 +866,113 @@
             </div>
 
             <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>🏔️ Skaftafell National Park (Svartifoss hike) <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 4</span></div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/SvartifossWinter.jpg/400px-SvartifossWinter.jpg" alt="Skaftafell" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🏔️ Skaftafell National Park (Svartifoss hike) <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 4</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 2-3 hours</span>
+                        <span>🅿️ ISK 1,040 (~฿260)</span>
+                        <span class="skill-badge skill-moderate">3km hike, some elevation</span>
+                    </div>
+                    <p class="stop-desc">Hike to Svartifoss — "Black Falls" — where water drops past hexagonal basalt columns. Also Skaftafellsjokull glacier view nearby. Part of Vatnajokull National Park.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Best for the hike and basalt column photos.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Still good — basalt columns pop against any sky.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> ⚠️ Trail gets muddy/slippery. Doable with good boots. Skip if heavy rain.</div>
+                        <div class="weather-item w-danger"><strong>❄️ Snow/ice:</strong> Trail may be treacherous. Use caution or skip.</div>
+                    </div>
+                    <div class="tip-inline">💡 <strong>Save 50%:</strong> Parking at Skaftafell AND Jokulsarlon same day gets you 50% off one ticket!</div>
                 </div>
-                <div class="stop-meta">
-                    <span>⏱️ 2-3 hours</span>
-                    <span>🅿️ ISK 1,040 (~฿260)</span>
-                    <span class="skill-badge skill-moderate">3km hike, some elevation</span>
-                </div>
-                <p class="stop-desc">Hike to Svartifoss — "Black Falls" — where water drops past hexagonal basalt columns. Also Skaftafellsjokull glacier view nearby. Part of Vatnajokull National Park.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Best for the hike and basalt column photos.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Still good — basalt columns pop against any sky.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> ⚠️ Trail gets muddy/slippery. Doable with good boots. Skip if heavy rain.</div>
-                    <div class="weather-item w-danger"><strong>❄️ Snow/ice:</strong> Trail may be treacherous. Use caution or skip.</div>
-                </div>
-                <div class="tip-inline">💡 <strong>Save 50%:</strong> Parking at Skaftafell AND Jokulsarlon same day gets you 50% off one ticket!</div>
             </div>
 
             <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>🧊 Jökulsárlón Glacier Lagoon <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 4</span><span class="day-badge primary">Day 5 AM</span></div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/J%C3%B6kuls%C3%A1rl%C3%B3n_lagoon_in_southeastern_Iceland.jpg/400px-J%C3%B6kuls%C3%A1rl%C3%B3n_lagoon_in_southeastern_Iceland.jpg" alt="Jokulsarlon" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🧊 Jökulsárlón Glacier Lagoon <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 4</span><span class="day-badge primary">Day 5 AM</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 1.5-2 hours</span>
+                        <span>🅿️ ISK 1,000 (~฿250)</span>
+                        <span class="skill-badge skill-easy">Lakeshore walk</span>
+                    </div>
+                    <p class="stop-desc">Large lake filled with icebergs calved from Breidamerkurjokull glacier. Seals sometimes swim in the channel. One of Iceland's most iconic sights.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear sunrise/sunset:</strong> BEST — icebergs glow pink/orange. Day 5 sunrise ideal.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody, atmospheric — blue ice vs gray sky. Great for drama.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain/mist:</strong> ATMOSPHERIC MAGIC — icebergs in mist look otherworldly. Unique photos.</div>
+                        <div class="weather-item w-wind"><strong>💨 Wind:</strong> Exposed lakeshore. Hold onto camera.</div>
+                        <div class="weather-item w-snow"><strong>❄️ Snow:</strong> Incredible — snowy shoreline and blue icebergs.</div>
+                    </div>
+                    <div class="tip-inline">💡 <strong>Any weather works!</strong> Jökulsárlón is photogenic in everything. Don't skip even in rain.</div>
                 </div>
-                <div class="stop-meta">
-                    <span>⏱️ 1.5-2 hours</span>
-                    <span>🅿️ ISK 1,000 (~฿250)</span>
-                    <span class="skill-badge skill-easy">Lakeshore walk</span>
-                </div>
-                <p class="stop-desc">Large lake filled with icebergs calved from Breidamerkurjokull glacier. Seals sometimes swim in the channel. One of Iceland's most iconic sights.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear sunrise/sunset:</strong> BEST — icebergs glow pink/orange. Day 5 sunrise ideal.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody, atmospheric — blue ice vs gray sky. Great for drama.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain/mist:</strong> ATMOSPHERIC MAGIC — icebergs in mist look otherworldly. Unique photos.</div>
-                    <div class="weather-item w-wind"><strong>💨 Wind:</strong> Exposed lakeshore. Hold onto camera.</div>
-                    <div class="weather-item w-snow"><strong>❄️ Snow:</strong> Incredible — snowy shoreline and blue icebergs.</div>
-                </div>
-                <div class="tip-inline">💡 <strong>Any weather works!</strong> Jökulsárlón is photogenic in everything. Don't skip even in rain.</div>
             </div>
 
             <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>💎 Diamond Beach <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 4</span><span class="day-badge primary">Day 5 AM ★</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 45 min-1 hour</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-easy">Beach walk</span>
-                </div>
-                <p class="stop-desc">Ice chunks from Jokulsarlon wash up on black volcanic sand like diamonds. Photography dream. Right across the road from Jokulsarlon parking.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear sunrise/sunset:</strong> THE shot — ice glowing in golden light. Day 5 sunrise = perfect.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Ice still dramatic against dark sand.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Wet sand reflects ice. Works!</div>
-                    <div class="weather-item w-danger"><strong>💨 High wind/waves:</strong> ⚠️ Sneaker waves. Stay back from water edge.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/06/Bubbly_Diamond_on_the_Beach_-_Iceland.jpg/500px-Bubbly_Diamond_on_the_Beach_-_Iceland.jpg" alt="Diamond Beach" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>💎 Diamond Beach <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 4</span><span class="day-badge primary">Day 5 AM ★</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 45 min-1 hour</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-easy">Beach walk</span>
+                    </div>
+                    <p class="stop-desc">Ice chunks from Jokulsarlon wash up on black volcanic sand like diamonds. Photography dream. Right across the road from Jokulsarlon parking.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear sunrise/sunset:</strong> THE shot — ice glowing in golden light. Day 5 sunrise = perfect.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Ice still dramatic against dark sand.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Wet sand reflects ice. Works!</div>
+                        <div class="weather-item w-danger"><strong>💨 High wind/waves:</strong> ⚠️ Sneaker waves. Stay back from water edge.</div>
+                    </div>
                 </div>
             </div>
 
             <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🧊 Fjallsarlon (Quieter lagoon)</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 4</span><span class="day-badge primary">Day 5</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 45 min</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-easy">Short walk</span>
-                </div>
-                <p class="stop-desc">Smaller glacier lagoon than Jokulsarlon, 10 min drive away. Fewer tourists, closer to glacier face. Great alternative/addition.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>Any weather:</strong> Good, and you'll have it mostly to yourself.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Fjalls%C3%A1rl%C3%B3n_Iceland_2016_06.jpg/400px-Fjalls%C3%A1rl%C3%B3n_Iceland_2016_06.jpg" alt="Fjallsarlon" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🧊 Fjallsarlon (Quieter lagoon)</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 4</span><span class="day-badge primary">Day 5</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 45 min</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-easy">Short walk</span>
+                    </div>
+                    <p class="stop-desc">Smaller glacier lagoon than Jokulsarlon, 10 min drive away. Fewer tourists, closer to glacier face. Great alternative/addition.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>Any weather:</strong> Good, and you'll have it mostly to yourself.</div>
+                    </div>
                 </div>
             </div>
 
             <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>🏔️ Vestrahorn / Stokksnes <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge secondary">Day 5 ONLY — sunrise</span></div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Cap_Vestrahorn_from_Vikurfjall_Ring_Road.JPG/500px-Cap_Vestrahorn_from_Vikurfjall_Ring_Road.JPG" alt="Vestrahorn" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🏔️ Vestrahorn / Stokksnes <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge secondary">Day 5 ONLY — sunrise</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 1-2 hours</span>
+                        <span>🎟️ ISK 1,000 at Viking Cafe</span>
+                        <span class="skill-badge skill-easy">Beach walk</span>
+                    </div>
+                    <p class="stop-desc">One of the most iconic photo spots in Iceland. Jagged mountain reflects in wet black sand at low tide. Past Hofn, past Jokulsarlon — the turnaround point.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ SUNRISE CLEAR:</strong> THE ICONIC SHOT. Leave accommodation 05:30 Day 5. Pink mountain + reflection in sand.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Still dramatic but the classic reflection shot needs sun.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain/windy:</strong> SKIP. 30+ min detour not worth it without the view.</div>
+                    </div>
+                    <div class="tip-inline">💡 <strong>Commitment:</strong> Adds ~1 hour to Day 5 drive (past Hofn). Only worth it if weather forecast is clear. Check the night before.</div>
                 </div>
-                <div class="stop-meta">
-                    <span>⏱️ 1-2 hours</span>
-                    <span>🎟️ ISK 1,000 at Viking Cafe</span>
-                    <span class="skill-badge skill-easy">Beach walk</span>
-                </div>
-                <p class="stop-desc">One of the most iconic photo spots in Iceland. Jagged mountain reflects in wet black sand at low tide. Past Hofn, past Jokulsarlon — the turnaround point.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ SUNRISE CLEAR:</strong> THE ICONIC SHOT. Leave accommodation 05:30 Day 5. Pink mountain + reflection in sand.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Still dramatic but the classic reflection shot needs sun.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain/windy:</strong> SKIP. 30+ min detour not worth it without the view.</div>
-                </div>
-                <div class="tip-inline">💡 <strong>Commitment:</strong> Adds ~1 hour to Day 5 drive (past Hofn). Only worth it if weather forecast is clear. Check the night before.</div>
             </div>
         </div>
 
@@ -876,76 +984,88 @@
             </div>
 
             <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>💧 Hraunfossar ("Lava Falls") <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 6</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 45 min</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-easy">Short path</span>
-                </div>
-                <p class="stop-desc">Unique waterfall where water trickles from under a lava field over ~900 meters. Crystal blue water, black lava rocks, green moss.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Blue water pops against black lava.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Still beautiful — soft lighting.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Short walk, OK in rain.</div>
-                    <div class="weather-item w-snow"><strong>❄️ Snow:</strong> White snow + blue water = magical.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Hraunfossar_2004.jpg/400px-Hraunfossar_2004.jpg" alt="Hraunfossar" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>💧 Hraunfossar ("Lava Falls") <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 6</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 45 min</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-easy">Short path</span>
+                    </div>
+                    <p class="stop-desc">Unique waterfall where water trickles from under a lava field over ~900 meters. Crystal blue water, black lava rocks, green moss.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Blue water pops against black lava.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Still beautiful — soft lighting.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Short walk, OK in rain.</div>
+                        <div class="weather-item w-snow"><strong>❄️ Snow:</strong> White snow + blue water = magical.</div>
+                    </div>
                 </div>
             </div>
 
             <div class="stop-card">
-                <div class="stop-header">
-                    <h3>💦 Barnafoss ("Children's Falls")</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 6</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 15 min (combined w/ Hraunfossar)</span>
-                    <span>🅿️ Same parking</span>
-                    <span class="skill-badge skill-easy">Short walk</span>
-                </div>
-                <p class="stop-desc">Dramatic waterfall with tragic legend. Same parking lot as Hraunfossar — walk 5 min over a bridge.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>Any weather:</strong> Paired with Hraunfossar.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Barnafoss_2004.jpg/400px-Barnafoss_2004.jpg" alt="Barnafoss" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>💦 Barnafoss ("Children's Falls")</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 6</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 15 min (combined w/ Hraunfossar)</span>
+                        <span>🅿️ Same parking</span>
+                        <span class="skill-badge skill-easy">Short walk</span>
+                    </div>
+                    <p class="stop-desc">Dramatic waterfall with tragic legend. Same parking lot as Hraunfossar — walk 5 min over a bridge.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>Any weather:</strong> Paired with Hraunfossar.</div>
+                    </div>
                 </div>
             </div>
 
             <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>♨️ Deildartunguhver <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 6</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 20-30 min</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-easy">Viewing platform</span>
-                </div>
-                <p class="stop-desc">Europe's most powerful hot spring. 180 liters per second of 100°C boiling water. Massive steam clouds.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Good — see the full scale.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Steam against dark sky = dramatic.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Hot steam + cold rain = epic photography atmosphere!</div>
-                    <div class="weather-item w-snow"><strong>❄️ Cold/snow:</strong> BEST conditions — massive steam columns, maximum contrast.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Islande_source_Deildartunguhver.jpg/400px-Islande_source_Deildartunguhver.jpg" alt="Deildartunguhver" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>♨️ Deildartunguhver <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 6</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 20-30 min</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-easy">Viewing platform</span>
+                    </div>
+                    <p class="stop-desc">Europe's most powerful hot spring. 180 liters per second of 100°C boiling water. Massive steam clouds.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Good — see the full scale.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Steam against dark sky = dramatic.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Hot steam + cold rain = epic photography atmosphere!</div>
+                        <div class="weather-item w-snow"><strong>❄️ Cold/snow:</strong> BEST conditions — massive steam columns, maximum contrast.</div>
+                    </div>
                 </div>
             </div>
 
             <div class="stop-card optional">
-                <div class="stop-header">
-                    <h3>🏔️ Glymur Waterfall (hike)</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 6</span></div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Glymur.jpg/400px-Glymur.jpg" alt="Glymur" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🏔️ Glymur Waterfall (hike)</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 6</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 3-4 hours</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-hard">Tough hike, rope crossing</span>
+                    </div>
+                    <p class="stop-desc">Iceland's 2nd tallest waterfall (198m). Requires hiking including a river crossing on a log with a rope. Only in good weather.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear + DRY trail:</strong> Epic hike — very rewarding view.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> ⚠️ SKIP — river crossing dangerous, trail slippery.</div>
+                        <div class="weather-item w-snow"><strong>❄️ Snow/ice:</strong> ⚠️ SKIP — too dangerous for 4 people unfamiliar with conditions.</div>
+                    </div>
+                    <div class="tip-inline">⚠️ <strong>Only attempt if:</strong> Weather is dry AND warm. The rope river crossing is intimidating for inexperienced hikers.</div>
                 </div>
-                <div class="stop-meta">
-                    <span>⏱️ 3-4 hours</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-hard">Tough hike, rope crossing</span>
-                </div>
-                <p class="stop-desc">Iceland's 2nd tallest waterfall (198m). Requires hiking including a river crossing on a log with a rope. Only in good weather.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear + DRY trail:</strong> Epic hike — very rewarding view.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> ⚠️ SKIP — river crossing dangerous, trail slippery.</div>
-                    <div class="weather-item w-snow"><strong>❄️ Snow/ice:</strong> ⚠️ SKIP — too dangerous for 4 people unfamiliar with conditions.</div>
-                </div>
-                <div class="tip-inline">⚠️ <strong>Only attempt if:</strong> Weather is dry AND warm. The rope river crossing is intimidating for inexperienced hikers.</div>
             </div>
         </div>
 
@@ -957,130 +1077,151 @@
             </div>
 
             <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🦭 Ytri-Tunga Seal Beach</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 7</span><span class="day-badge">Day 8</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 30-45 min</span>
-                    <span>🅿️ ISK 900 (~฿225)</span>
-                    <span class="skill-badge skill-easy">Beach walk</span>
-                </div>
-                <p class="stop-desc">Beach where seals often haul out on rocks. Not guaranteed but common. Bring binoculars or telephoto lens.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Seals visible from distance, colors pop.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody coastal shots.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Seals don't mind. Bring rain gear.</div>
-                    <div class="weather-item w-danger"><strong>💨 High wind:</strong> Exposed beach. Careful.</div>
-                </div>
-            </div>
-
-            <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>⛪ Budakirkja (Black Church) <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 7</span><span class="day-badge">Day 8</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 20 min</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-easy">Roadside</span>
-                </div>
-                <p class="stop-desc">Striking black wooden church alone in a lava field. One of Iceland's most photographed churches. Dramatic in any weather.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear/golden hour:</strong> Best — black church against golden sky.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Classic dramatic shot.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Moody and atmospheric — suits the mood.</div>
-                    <div class="weather-item w-snow"><strong>❄️ Snow:</strong> Black church on white snow = striking minimalism.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Harbor_seals%2C_Ytri_Tunga_Beach%2C_Iceland%2C_20240714_1217_0999.jpg/500px-Harbor_seals%2C_Ytri_Tunga_Beach%2C_Iceland%2C_20240714_1217_0999.jpg" alt="Ytri-Tunga" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🦭 Ytri-Tunga Seal Beach</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 7</span><span class="day-badge">Day 8</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 30-45 min</span>
+                        <span>🅿️ ISK 900 (~฿225)</span>
+                        <span class="skill-badge skill-easy">Beach walk</span>
+                    </div>
+                    <p class="stop-desc">Beach where seals often haul out on rocks. Not guaranteed but common. Bring binoculars or telephoto lens.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Seals visible from distance, colors pop.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody coastal shots.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Seals don't mind. Bring rain gear.</div>
+                        <div class="weather-item w-danger"><strong>💨 High wind:</strong> Exposed beach. Careful.</div>
+                    </div>
                 </div>
             </div>
 
             <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>🪨 Arnarstapi & Gatklettur Arch <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 7</span><span class="day-badge">Day 8</span></div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/B%C3%BA%C3%B0ir_2024_%280748%29.jpg/400px-B%C3%BA%C3%B0ir_2024_%280748%29.jpg" alt="Budakirkja" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>⛪ Budakirkja (Black Church) <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 7</span><span class="day-badge">Day 8</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 20 min</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-easy">Roadside</span>
+                    </div>
+                    <p class="stop-desc">Striking black wooden church alone in a lava field. One of Iceland's most photographed churches. Dramatic in any weather.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear/golden hour:</strong> Best — black church against golden sky.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Classic dramatic shot.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Moody and atmospheric — suits the mood.</div>
+                        <div class="weather-item w-snow"><strong>❄️ Snow:</strong> Black church on white snow = striking minimalism.</div>
+                    </div>
                 </div>
-                <div class="stop-meta">
-                    <span>⏱️ 1 hour</span>
-                    <span>🅿️ ISK 1,000 (~฿250)</span>
-                    <span class="skill-badge skill-easy">Cliff walk</span>
-                </div>
-                <p class="stop-desc">Small fishing village with dramatic basalt cliffs and the famous Gatklettur sea arch. Cliff walk trail between villages.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Spectacular cliff views. Walk to arch.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody cliff photos.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Slippery cliff path. Stay back from edge.</div>
-                    <div class="weather-item w-danger"><strong>💨 HIGH WIND:</strong> ⚠️ DANGEROUS on cliff walk. Stay in village center.</div>
+            </div>
+
+            <div class="stop-card priority">
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Arnarstapi_2024_%280754%29.jpg/400px-Arnarstapi_2024_%280754%29.jpg" alt="Arnarstapi" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🪨 Arnarstapi & Gatklettur Arch <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 7</span><span class="day-badge">Day 8</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 1 hour</span>
+                        <span>🅿️ ISK 1,000 (~฿250)</span>
+                        <span class="skill-badge skill-easy">Cliff walk</span>
+                    </div>
+                    <p class="stop-desc">Small fishing village with dramatic basalt cliffs and the famous Gatklettur sea arch. Cliff walk trail between villages.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Spectacular cliff views. Walk to arch.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody cliff photos.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Slippery cliff path. Stay back from edge.</div>
+                        <div class="weather-item w-danger"><strong>💨 HIGH WIND:</strong> ⚠️ DANGEROUS on cliff walk. Stay in village center.</div>
+                    </div>
                 </div>
             </div>
 
             <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🌊 Djupalonssandur Pebble Beach</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 7</span><span class="day-badge">Day 8</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 45 min</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-easy">Beach walk</span>
-                </div>
-                <p class="stop-desc">Black pebble beach with rusty shipwreck remnants and traditional strength-testing lifting stones. Dramatic coastline.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Good visibility, shipwreck rust photogenic.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Atmospheric shipwreck shots.</div>
-                    <div class="weather-item w-danger"><strong>💨 High wind/waves:</strong> ⚠️ Sneaker waves like Reynisfjara. Stay back.</div>
-                </div>
-            </div>
-
-            <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🗿 Londrangar Basalt Cliffs</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 7</span><span class="day-badge">Day 8</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 30 min</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-easy">Short path</span>
-                </div>
-                <p class="stop-desc">Dramatic volcanic rock pillars rising from the ocean. 75m tall. Bird cliffs in spring/summer.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Classic coastal photography.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody sea stacks.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Djupalonssandur_Beach_Iceland_Travel_Photography_%28212306465%29.jpeg/500px-Djupalonssandur_Beach_Iceland_Travel_Photography_%28212306465%29.jpeg" alt="Djupalonssandur" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🌊 Djupalonssandur Pebble Beach</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 7</span><span class="day-badge">Day 8</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 45 min</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-easy">Beach walk</span>
+                    </div>
+                    <p class="stop-desc">Black pebble beach with rusty shipwreck remnants and traditional strength-testing lifting stones. Dramatic coastline.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Good visibility, shipwreck rust photogenic.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Atmospheric shipwreck shots.</div>
+                        <div class="weather-item w-danger"><strong>💨 High wind/waves:</strong> ⚠️ Sneaker waves like Reynisfjara. Stay back.</div>
+                    </div>
                 </div>
             </div>
 
             <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🌋 Saxholl Crater</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 7</span><span class="day-badge">Day 8</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 20 min</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-moderate">Metal stairs climb</span>
-                </div>
-                <p class="stop-desc">Volcanic crater with a metal staircase to the top. 360° views of lava fields, ocean, and Snaefellsjokull glacier.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> BEST — see Snaefellsjokull glacier from top.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> OK but limited views.</div>
-                    <div class="weather-item w-danger"><strong>💨 High wind:</strong> ⚠️ Exposed metal stairs. Skip.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d5/Londrangar_hiticeland_sn%C3%A6fellsnes.jpg/400px-Londrangar_hiticeland_sn%C3%A6fellsnes.jpg" alt="Londrangar" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🗿 Londrangar Basalt Cliffs</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 7</span><span class="day-badge">Day 8</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 30 min</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-easy">Short path</span>
+                    </div>
+                    <p class="stop-desc">Dramatic volcanic rock pillars rising from the ocean. 75m tall. Bird cliffs in spring/summer.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Classic coastal photography.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody sea stacks.</div>
+                    </div>
                 </div>
             </div>
 
             <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🪨 Raudfeldsgja Gorge</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 7</span><span class="day-badge">Day 8</span></div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Cr%C3%A1ter_Saxh%C3%B3ll%2C_Vesturland%2C_Islandia%2C_2014-08-14%2C_DD_061.JPG/500px-Cr%C3%A1ter_Saxh%C3%B3ll%2C_Vesturland%2C_Islandia%2C_2014-08-14%2C_DD_061.JPG" alt="Saxholl" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🌋 Saxholl Crater</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 7</span><span class="day-badge">Day 8</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 20 min</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-moderate">Metal stairs climb</span>
+                    </div>
+                    <p class="stop-desc">Volcanic crater with a metal staircase to the top. 360° views of lava fields, ocean, and Snaefellsjokull glacier.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> BEST — see Snaefellsjokull glacier from top.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> OK but limited views.</div>
+                        <div class="weather-item w-danger"><strong>💨 High wind:</strong> ⚠️ Exposed metal stairs. Skip.</div>
+                    </div>
                 </div>
-                <div class="stop-meta">
-                    <span>⏱️ 30-45 min</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-moderate">Wade into narrow gorge</span>
-                </div>
-                <p class="stop-desc">Narrow "Indiana Jones" crack in the mountain. Walk up a stream into a dark slot canyon. Adventurous feel.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Dry enough to walk in.</div>
-                    <div class="weather-item w-danger"><strong>❄️ Ice/snow:</strong> ⚠️ SKIP — icy rocks in gorge very dangerous.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Water rises inside gorge. Risky.</div>
+            </div>
+
+            <div class="stop-card">
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/Rau%C3%B0felldsgj%C3%A1_01.jpg/400px-Rau%C3%B0felldsgj%C3%A1_01.jpg" alt="Raudfeldsgja" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🪨 Raudfeldsgja Gorge</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 7</span><span class="day-badge">Day 8</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 30-45 min</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-moderate">Wade into narrow gorge</span>
+                    </div>
+                    <p class="stop-desc">Narrow "Indiana Jones" crack in the mountain. Walk up a stream into a dark slot canyon. Adventurous feel.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Dry enough to walk in.</div>
+                        <div class="weather-item w-danger"><strong>❄️ Ice/snow:</strong> ⚠️ SKIP — icy rocks in gorge very dangerous.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Water rises inside gorge. Risky.</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1093,74 +1234,86 @@
             </div>
 
             <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>🏔️ Kirkjufell Mountain + Kirkjufellfoss <span class="star">★★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge">Day 7</span><span class="day-badge primary">Day 8</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 1-2 hours</span>
-                    <span>🅿️ ISK 1,200 (~฿300)</span>
-                    <span class="skill-badge skill-easy">Short walk to falls</span>
-                </div>
-                <p class="stop-desc">Iceland's most photographed mountain (465m). Framed by the small Kirkjufellfoss waterfall in the foreground. Famous from Game of Thrones ("arrowhead mountain").</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ SUNSET CLEAR:</strong> THE iconic photo. Face west — golden light on the mountain. Arrive 30 min before sunset.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Still dramatic — moody atmospheric shots.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Challenging but workable. Atmospheric.</div>
-                    <div class="weather-item w-snow"><strong>❄️ Snow on peak:</strong> Snow-capped = iconic winter look. Rare in April.</div>
-                    <div class="weather-item w-danger"><strong>💨 High wind:</strong> Exposed area. Hold camera tight.</div>
-                </div>
-                <div class="tip-inline">💡 <strong>THE photo spot:</strong> Waterfall parking area. Walk to the upper viewpoint for the classic composition. Arrive 30 min before sunset for position.</div>
-            </div>
-
-            <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🏘️ Stykkisholmur Harbor Town</h3>
-                    <div class="day-badge-row"><span class="day-badge">Day 7</span><span class="day-badge primary">Day 8</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 1-2 hours</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-easy">Walk around town</span>
-                </div>
-                <p class="stop-desc">Colorful harbor town. Hilltop lighthouse with harbor views. Walter Mitty film location. Library of Water art installation.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Colorful houses pop. Hilltop views.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody harbor atmosphere.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Shelter in cafes/museums. Town still walkable.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/df/Kirkjufell_in_Iceland.jpg/400px-Kirkjufell_in_Iceland.jpg" alt="Kirkjufell" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🏔️ Kirkjufell Mountain + Kirkjufellfoss <span class="star">★★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge">Day 7</span><span class="day-badge primary">Day 8</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 1-2 hours</span>
+                        <span>🅿️ ISK 1,200 (~฿300)</span>
+                        <span class="skill-badge skill-easy">Short walk to falls</span>
+                    </div>
+                    <p class="stop-desc">Iceland's most photographed mountain (465m). Framed by the small Kirkjufellfoss waterfall in the foreground. Famous from Game of Thrones ("arrowhead mountain").</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ SUNSET CLEAR:</strong> THE iconic photo. Face west — golden light on the mountain. Arrive 30 min before sunset.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Still dramatic — moody atmospheric shots.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Challenging but workable. Atmospheric.</div>
+                        <div class="weather-item w-snow"><strong>❄️ Snow on peak:</strong> Snow-capped = iconic winter look. Rare in April.</div>
+                        <div class="weather-item w-danger"><strong>💨 High wind:</strong> Exposed area. Hold camera tight.</div>
+                    </div>
+                    <div class="tip-inline">💡 <strong>THE photo spot:</strong> Waterfall parking area. Walk to the upper viewpoint for the classic composition. Arrive 30 min before sunset for position.</div>
                 </div>
             </div>
 
             <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🟤 Berserkjahraun Lava Field</h3>
-                    <div class="day-badge-row"><span class="day-badge">Day 7</span><span class="day-badge primary">Day 8</span></div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Stykkish%C3%B3lmur%2C_Iceland.jpg/400px-Stykkish%C3%B3lmur%2C_Iceland.jpg" alt="Stykkisholmur" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🏘️ Stykkisholmur Harbor Town</h3>
+                        <div class="day-badge-row"><span class="day-badge">Day 7</span><span class="day-badge primary">Day 8</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 1-2 hours</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-easy">Walk around town</span>
+                    </div>
+                    <p class="stop-desc">Colorful harbor town. Hilltop lighthouse with harbor views. Walter Mitty film location. Library of Water art installation.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Colorful houses pop. Hilltop views.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Moody harbor atmosphere.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Shelter in cafes/museums. Town still walkable.</div>
+                    </div>
                 </div>
-                <div class="stop-meta">
-                    <span>⏱️ 30 min</span>
-                    <span>🅿️ Roadside</span>
-                    <span class="skill-badge skill-easy">Drive through</span>
-                </div>
-                <p class="stop-desc">Moss-covered lava field named after Viking-era berserkers. Scenic gravel road winds through.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Green moss colors vivid.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Atmospheric and mysterious.</div>
+            </div>
+
+            <div class="stop-card">
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Iceland_Snaefellsnes.jpg/500px-Iceland_Snaefellsnes.jpg" alt="Berserkjahraun" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🟤 Berserkjahraun Lava Field</h3>
+                        <div class="day-badge-row"><span class="day-badge">Day 7</span><span class="day-badge primary">Day 8</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 30 min</span>
+                        <span>🅿️ Roadside</span>
+                        <span class="skill-badge skill-easy">Drive through</span>
+                    </div>
+                    <p class="stop-desc">Moss-covered lava field named after Viking-era berserkers. Scenic gravel road winds through.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Green moss colors vivid.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Atmospheric and mysterious.</div>
+                    </div>
                 </div>
             </div>
 
             <div class="stop-card optional">
-                <div class="stop-header">
-                    <h3>💧 Selvallafoss (hidden walk-behind)</h3>
-                    <div class="day-badge-row"><span class="day-badge">Day 7</span><span class="day-badge primary">Day 8</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 20 min</span>
-                    <span>🅿️ Free roadside</span>
-                    <span class="skill-badge skill-easy">5 min walk</span>
-                </div>
-                <p class="stop-desc">Hidden walk-behind waterfall on Route 56. No signs — unmarked pullover. Often completely deserted.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>Any weather:</strong> The hidden-gem appeal regardless of conditions.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Curtain_Of_Water_In_Iceland_%2840913938%29.jpg/500px-Curtain_Of_Water_In_Iceland_%2840913938%29.jpg" alt="Selvallafoss" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>💧 Selvallafoss (hidden walk-behind)</h3>
+                        <div class="day-badge-row"><span class="day-badge">Day 7</span><span class="day-badge primary">Day 8</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 20 min</span>
+                        <span>🅿️ Free roadside</span>
+                        <span class="skill-badge skill-easy">5 min walk</span>
+                    </div>
+                    <p class="stop-desc">Hidden walk-behind waterfall on Route 56. No signs — unmarked pullover. Often completely deserted.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>Any weather:</strong> The hidden-gem appeal regardless of conditions.</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1173,95 +1326,110 @@
             </div>
 
             <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🏞️ Kleifarvatn Lake</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 9</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 20-30 min</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-easy">Roadside</span>
-                </div>
-                <p class="stop-desc">Deep, moody lake surrounded by black volcanic hills. Feels otherworldly.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Good but the moodiness is less.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> BEST — dark atmospheric landscape matches the vibe.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain/mist:</strong> Incredibly moody and atmospheric.</div>
-                </div>
-            </div>
-
-            <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>♨️ Seltun Geothermal Area <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 9</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 30-45 min</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-easy">Boardwalks</span>
-                </div>
-                <p class="stop-desc">Colorful geothermal field with bubbling mud pots, steaming fumaroles, and sulphur deposits. Yellows, oranges, reds in the earth.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Colors most vibrant.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Good — steam contrast.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Steam + rain = epic. Still good.</div>
-                    <div class="weather-item w-snow"><strong>❄️ Cold:</strong> Maximum steam, otherworldly.</div>
-                </div>
-            </div>
-
-            <div class="stop-card">
-                <div class="stop-header">
-                    <h3>🌊 Brimketill Lava Pool</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 9</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 20 min</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-easy">Viewing platform</span>
-                </div>
-                <p class="stop-desc">Natural lava rock pool that fills with crashing waves. Wooden viewing platform.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>Any weather + big waves:</strong> The wave action is the attraction. More dramatic with high seas.</div>
-                    <div class="weather-item w-danger"><strong>💨 Extreme wind:</strong> Spray can soak viewing platform. Camera protection needed.</div>
-                </div>
-            </div>
-
-            <div class="stop-card">
-                <div class="stop-header">
-                    <h3>♨️ Gunnuhver</h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 9</span></div>
-                </div>
-                <div class="stop-meta">
-                    <span>⏱️ 20 min</span>
-                    <span>🅿️ Free</span>
-                    <span class="skill-badge skill-easy">Boardwalks</span>
-                </div>
-                <p class="stop-desc">Massive steam vent and mud pool. Iceland's largest mud pot. Named after a ghost woman.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-cloudy"><strong>☁️ Cold or cloudy:</strong> Maximum steam visibility.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Steam + rain = dramatic photography.</div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Kleifarvatn_iceland_hiticeland_reykjanes.png/400px-Kleifarvatn_iceland_hiticeland_reykjanes.png" alt="Kleifarvatn" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🏞️ Kleifarvatn Lake</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 9</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 20-30 min</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-easy">Roadside</span>
+                    </div>
+                    <p class="stop-desc">Deep, moody lake surrounded by black volcanic hills. Feels otherworldly.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Good but the moodiness is less.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> BEST — dark atmospheric landscape matches the vibe.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain/mist:</strong> Incredibly moody and atmospheric.</div>
+                    </div>
                 </div>
             </div>
 
             <div class="stop-card priority">
-                <div class="stop-header">
-                    <h3>♨️ Blue Lagoon <span class="star">★</span></h3>
-                    <div class="day-badge-row"><span class="day-badge primary">Day 9 PM</span></div>
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Kr%C3%BDsuv%C3%ADk_volcanic_system_2014_03.jpg/400px-Kr%C3%BDsuv%C3%ADk_volcanic_system_2014_03.jpg" alt="Seltun" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>♨️ Seltun Geothermal Area <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 9</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 30-45 min</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-easy">Boardwalks</span>
+                    </div>
+                    <p class="stop-desc">Colorful geothermal field with bubbling mud pots, steaming fumaroles, and sulphur deposits. Yellows, oranges, reds in the earth.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Colors most vibrant.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Good — steam contrast.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Steam + rain = epic. Still good.</div>
+                        <div class="weather-item w-snow"><strong>❄️ Cold:</strong> Maximum steam, otherworldly.</div>
+                    </div>
                 </div>
-                <div class="stop-meta">
-                    <span>⏱️ 3 hours</span>
-                    <span>🎟️ ~$80 Comfort (~฿2,800)</span>
-                    <span class="skill-badge skill-easy">Spa experience</span>
+            </div>
+
+            <div class="stop-card">
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Reykjanes_%282023%29.jpg/400px-Reykjanes_%282023%29.jpg" alt="Brimketill" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>🌊 Brimketill Lava Pool</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 9</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 20 min</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-easy">Viewing platform</span>
+                    </div>
+                    <p class="stop-desc">Natural lava rock pool that fills with crashing waves. Wooden viewing platform.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>Any weather + big waves:</strong> The wave action is the attraction. More dramatic with high seas.</div>
+                        <div class="weather-item w-danger"><strong>💨 Extreme wind:</strong> Spray can soak viewing platform. Camera protection needed.</div>
+                    </div>
                 </div>
-                <p class="stop-desc">Famous geothermal spa with milky blue water. Silica mud masks, sauna, steam room. Pre-booking REQUIRED.</p>
-                <div class="weather-grid">
-                    <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Blue water most vibrant. Photos best.</div>
-                    <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Atmospheric steam effects.</div>
-                    <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> You're already wet! Rain on hot water = cozy.</div>
-                    <div class="weather-item w-snow"><strong>❄️ Snow:</strong> MAGICAL — snow flakes falling into hot water. Incredible experience.</div>
-                    <div class="weather-item w-danger"><strong>🌋 Volcanic eruption:</strong> May be closed if eruption is active near Grindavik.</div>
+            </div>
+
+            <div class="stop-card">
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Gunnuhver_geothermal_area.jpg/400px-Gunnuhver_geothermal_area.jpg" alt="Gunnuhver" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>♨️ Gunnuhver</h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 9</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 20 min</span>
+                        <span>🅿️ Free</span>
+                        <span class="skill-badge skill-easy">Boardwalks</span>
+                    </div>
+                    <p class="stop-desc">Massive steam vent and mud pool. Iceland's largest mud pot. Named after a ghost woman.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-cloudy"><strong>☁️ Cold or cloudy:</strong> Maximum steam visibility.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> Steam + rain = dramatic photography.</div>
+                    </div>
                 </div>
-                <div class="tip-inline">💡 <strong>Must pre-book!</strong> Doesn't accept walk-ins. Book at bluelagoon.com. Free cancellation up to 24 hours before.</div>
+            </div>
+
+            <div class="stop-card priority">
+                <div class="stop-image"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/00/Blue_Lagoon_Main_Building.JPG/400px-Blue_Lagoon_Main_Building.JPG" alt="Blue Lagoon" onerror="this.parentElement.style.display='none'"></div>
+                <div class="stop-content">
+                    <div class="stop-header">
+                        <h3>♨️ Blue Lagoon <span class="star">★</span></h3>
+                        <div class="day-badge-row"><span class="day-badge primary">Day 9 PM</span></div>
+                    </div>
+                    <div class="stop-meta">
+                        <span>⏱️ 3 hours</span>
+                        <span>🎟️ ~$80 Comfort (~฿2,800)</span>
+                        <span class="skill-badge skill-easy">Spa experience</span>
+                    </div>
+                    <p class="stop-desc">Famous geothermal spa with milky blue water. Silica mud masks, sauna, steam room. Pre-booking REQUIRED.</p>
+                    <div class="weather-grid">
+                        <div class="weather-item w-clear"><strong>☀️ Clear:</strong> Blue water most vibrant. Photos best.</div>
+                        <div class="weather-item w-cloudy"><strong>☁️ Cloudy:</strong> Atmospheric steam effects.</div>
+                        <div class="weather-item w-rain"><strong>🌧️ Rain:</strong> You're already wet! Rain on hot water = cozy.</div>
+                        <div class="weather-item w-snow"><strong>❄️ Snow:</strong> MAGICAL — snow flakes falling into hot water. Incredible experience.</div>
+                        <div class="weather-item w-danger"><strong>🌋 Volcanic eruption:</strong> May be closed if eruption is active near Grindavik.</div>
+                    </div>
+                    <div class="tip-inline">💡 <strong>Must pre-book!</strong> Doesn't accept walk-ins. Book at bluelagoon.com. Free cancellation up to 24 hours before.</div>
+                </div>
             </div>
         </div>
 
