@@ -1,6 +1,18 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-06T19:26:42.762072+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. No data changes since last run (~2h ago). Day 1 forecast still wet (13.8mm rain, 65 km/h gusts), Kp quiet through Apr 9. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-06T19:26:42.583554+00:00",
+      "level": "suggestion",
+      "title": "Download offline maps before BKK boarding",
+      "message": "Before QR829 boarding tonight, open Google Maps on your phone and download the 'Iceland' offline region (~700 MB). KEF arrivals WiFi can be slow and rental car pickup needs the route to your hotel — offline tiles save the hassle. Also pin Hertz/SIXT counter and tomorrow's hotel as Saved places."
+    },
+    {
       "timestamp": "2026-04-06T17:20:18.852222+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -97,5 +109,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-06T17:20:18.852222+00:00"
+  "last_updated": "2026-04-06T19:26:42.762072+00:00"
 }
