@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop Message Board - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            padding: 2.5rem 2rem; text-align: center; color: white;
+        }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: 2em; margin-bottom: 8px; }
+        .page-header p { opacity: 0.85; font-size: 1em; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .controls {
+            display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+            margin-bottom: 20px; padding: 15px; background: white;
+            border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+        }
+        .filter-btn {
+            padding: 6px 14px; border: 1px solid #e2e8f0; border-radius: 6px;
+            background: white; cursor: pointer; font-size: 0.85em;
+            color: #555; font-weight: 500; transition: 0.2s;
+        }
+        .filter-btn:hover { border-color: var(--primary-blue); }
+        .filter-btn.active { background: var(--primary-blue); color: white; border-color: var(--primary-blue); }
+        .refresh-btn {
+            padding: 6px 14px; background: var(--aurora-green); color: white;
+            border: none; border-radius: 6px; cursor: pointer; font-size: 0.85em;
+            font-weight: 500; margin-left: auto;
+        }
+        .refresh-btn:hover { background: var(--primary-blue); }
+        .stats { font-size: 0.82em; color: #666; margin-left: auto; margin-right: 10px; }
+
+        .log-entry {
+            background: white; border-radius: 10px; padding: 15px 20px;
+            margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid #ccc; transition: 0.2s;
+        }
+        .log-entry:hover { box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); }
+        .log-entry.info { border-left-color: #3b82f6; }
+        .log-entry.success { border-left-color: #10b981; }
+        .log-entry.warning { border-left-color: #f59e0b; }
+        .log-entry.error { border-left-color: #ef4444; }
+        .log-entry.update { border-left-color: #8b5cf6; }
+
+        .entry-header {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            gap: 15px; flex-wrap: wrap; margin-bottom: 6px;
+        }
+        .entry-title {
+            font-weight: 600; font-size: 1em; color: var(--volcanic-black);
+            display: flex; align-items: center; gap: 8px;
+        }
+        .level-badge {
+            font-size: 0.7em; padding: 2px 8px; border-radius: 10px;
+            font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px;
+        }
+        .level-badge.info { background: #dbeafe; color: #1e40af; }
+        .level-badge.success { background: #d1fae5; color: #065f46; }
+        .level-badge.warning { background: #fef3c7; color: #92400e; }
+        .level-badge.error { background: #fee2e2; color: #991b1b; }
+        .level-badge.update { background: #ede9fe; color: #5b21b6; }
+
+        .entry-time {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78em; color: #888;
+            white-space: nowrap;
+        }
+        .entry-time-relative { color: #666; font-weight: 500; }
+
+        .entry-message {
+            font-size: 0.9em; color: #555; margin-top: 4px;
+            white-space: pre-wrap; word-wrap: break-word;
+        }
+
+        .empty-state {
+            text-align: center; padding: 60px 20px; color: #888;
+            background: white; border-radius: 10px;
+        }
+        .empty-state .icon { font-size: 3em; margin-bottom: 10px; }
+
+        .loading { text-align: center; padding: 30px; color: #888; }
+
+        .info-box {
+            background: #f0f9ff; border-left: 4px solid var(--primary-blue);
+            padding: 12px 16px; border-radius: 6px; font-size: 0.85em;
+            color: #555; margin-bottom: 20px;
+        }
+        .info-box code {
+            background: rgba(0, 119, 182, 0.1); padding: 1px 6px;
+            border-radius: 3px; font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="index.html" class="navbar-item">Home</a>
+                <a href="itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="flights.html" class="navbar-item">Flights</a>
+                <a href="hotels.html" class="navbar-item">Hotels</a>
+                <a href="sights.html" class="navbar-item">Sights</a>
+                <a href="planning.html" class="navbar-item">Planning</a>
+                <a href="logistics.html" class="navbar-item">Logistics</a>
+                <a href="driving.html" class="navbar-item">Driving</a>
+                <a href="insurance.html" class="navbar-item">Insurance</a>
+                <a href="analysis.html" class="navbar-item">Analysis</a>
+                <a href="forecast.html" class="navbar-item">Forecast</a>
+                <a href="loop.html" class="navbar-item active">📬 Loop</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <h1>📬 Loop Message Board</h1>
+        <p>Automated updates from the background refresh loop</p>
+    </div>
+
+    <div class="container">
+        <div class="info-box">
+            This page shows messages posted by the automated refresh loop. The loop checks data sources (like safetravel.is) periodically and reports back here. To post a message, the loop runs: <code>python3 loop_log.py &lt;level&gt; "title" "message"</code>
+        </div>
+
+        <div class="controls">
+            <button class="filter-btn active" data-level="all" onclick="filterLog('all', this)">All</button>
+            <button class="filter-btn" data-level="success" onclick="filterLog('success', this)">✅ Success</button>
+            <button class="filter-btn" data-level="update" onclick="filterLog('update', this)">🔄 Update</button>
+            <button class="filter-btn" data-level="info" onclick="filterLog('info', this)">ℹ️ Info</button>
+            <button class="filter-btn" data-level="warning" onclick="filterLog('warning', this)">⚠️ Warning</button>
+            <button class="filter-btn" data-level="error" onclick="filterLog('error', this)">❌ Error</button>
+            <span class="stats" id="stats"></span>
+            <button class="refresh-btn" onclick="loadLog()">🔄 Refresh</button>
+        </div>
+
+        <div id="logContainer">
+            <div class="loading">Loading log entries...</div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Loop Message Board</p>
+        <p id="lastUpdated" style="font-size: 0.85rem; opacity: 0.6; margin-top: 0.5rem;">—</p>
+    </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+
+        let allEntries = [];
+        let currentFilter = 'all';
+
+        function formatRelativeTime(isoString) {
+            const then = new Date(isoString);
+            const now = new Date();
+            const diffMs = now - then;
+            const diffSec = Math.floor(diffMs / 1000);
+            const diffMin = Math.floor(diffSec / 60);
+            const diffHr = Math.floor(diffMin / 60);
+            const diffDay = Math.floor(diffHr / 24);
+            if (diffSec < 30) return 'just now';
+            if (diffMin < 1) return diffSec + 's ago';
+            if (diffMin < 60) return diffMin + 'm ago';
+            if (diffHr < 24) return diffHr + 'h ago';
+            if (diffDay < 7) return diffDay + 'd ago';
+            return then.toLocaleDateString();
+        }
+
+        function escapeHtml(s) {
+            if (!s) return '';
+            return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+        }
+
+        function renderEntries() {
+            const container = document.getElementById('logContainer');
+            const filtered = currentFilter === 'all'
+                ? allEntries
+                : allEntries.filter(e => e.level === currentFilter);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="icon">📭</div>
+                        <div>No ${currentFilter === 'all' ? '' : currentFilter + ' '}messages yet.</div>
+                        <div style="font-size: 0.85em; margin-top: 10px;">The loop will post updates here as they happen.</div>
+                    </div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(e => {
+                const ts = new Date(e.timestamp);
+                const relTime = formatRelativeTime(e.timestamp);
+                const absTime = ts.toLocaleString();
+                const icon = {
+                    info: 'ℹ️', success: '✅', warning: '⚠️',
+                    error: '❌', update: '🔄'
+                }[e.level] || '📝';
+                return `
+                    <div class="log-entry ${e.level}">
+                        <div class="entry-header">
+                            <div class="entry-title">
+                                ${icon} ${escapeHtml(e.title)}
+                                <span class="level-badge ${e.level}">${e.level}</span>
+                            </div>
+                            <div class="entry-time" title="${absTime}">
+                                <span class="entry-time-relative">${relTime}</span>
+                            </div>
+                        </div>
+                        ${e.message ? `<div class="entry-message">${escapeHtml(e.message)}</div>` : ''}
+                    </div>`;
+            }).join('');
+
+            // Update stats
+            const counts = { success: 0, update: 0, info: 0, warning: 0, error: 0 };
+            allEntries.forEach(e => { if (counts[e.level] !== undefined) counts[e.level]++; });
+            document.getElementById('stats').textContent =
+                `${allEntries.length} total · ${counts.success} success · ${counts.update} updates · ${counts.warning} warn · ${counts.error} err`;
+        }
+
+        function filterLog(level, btn) {
+            currentFilter = level;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderEntries();
+        }
+
+        async function loadLog() {
+            try {
+                const res = await fetch('loop-log.json?t=' + Date.now());
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const data = await res.json();
+                allEntries = (data.entries || []).slice();
+                renderEntries();
+                if (data.last_updated) {
+                    document.getElementById('lastUpdated').textContent =
+                        'Last entry: ' + new Date(data.last_updated).toLocaleString();
+                }
+            } catch (err) {
+                document.getElementById('logContainer').innerHTML = `
+                    <div class="empty-state">
+                        <div class="icon">⚠️</div>
+                        <div>Could not load log: ${escapeHtml(err.message)}</div>
+                        <div style="font-size: 0.85em; margin-top: 10px;">loop-log.json doesn't exist yet. The loop will create it on first run.</div>
+                    </div>`;
+            }
+        }
+
+        loadLog();
+        // Auto-refresh every 2 minutes
+        setInterval(loadLog, 2 * 60 * 1000);
+    </script>
+</body>
+</html>
