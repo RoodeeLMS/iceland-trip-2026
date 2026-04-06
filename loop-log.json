@@ -1,6 +1,24 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-06T11:23:37.063710+00:00",
+      "level": "suggestion",
+      "title": "Backup plan for Day 9 (Reykjanes)",
+      "message": "Given the Svartsengi magma situation, pre-book a refundable Blue Lagoon slot AND sketch a backup Day 9: if Reykjanes closes, you could do Hvalfjörður loop (Glymur trail, cheap, 1h from Reykjavik) + Perlan museum in the afternoon. Keeps the last full day productive even if Blue Lagoon is shut."
+    },
+    {
+      "timestamp": "2026-04-06T11:23:36.939616+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Pins 22 active (no content change). NOAA Kp quiet (2.67 max 48h). Vedur warnings page 404 again. Volcano page: magma record high under Svartsengi — logged as warning. Flights >24h out, gates stable. Next run ~2h."
+    },
+    {
+      "timestamp": "2026-04-06T11:23:36.726309+00:00",
+      "level": "warning",
+      "title": "Svartsengi magma at record high (Day 9 risk)",
+      "message": "Per vedur.is (update Mar 17, 2026): >23 million m³ magma accumulated beneath Svartsengi — the most since the eruption sequence began. Future Sundhnúkur eruption considered 'likely'. This directly affects Day 9 plans (Apr 16 Reykjanes + Blue Lagoon). Watch for ground-uplift alerts over the next 10 days; have a backup Day 9 itinerary ready (e.g. Reykjavik/Golden Circle revisit)."
+    },
+    {
       "timestamp": "2026-04-06T11:21:34.104904+00:00",
       "level": "suggestion",
       "title": "Drone pre-flight check: register DJI Neo 2 in flydrone.is app",
@@ -31,5 +49,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-06T11:21:34.104904+00:00"
+  "last_updated": "2026-04-06T11:23:37.063710+00:00"
 }
