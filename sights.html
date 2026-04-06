@@ -1451,6 +1451,115 @@
         function toggleMobileMenu() {
             document.getElementById('navMenu').classList.toggle('mobile-open');
         }
+
+        // Fetch SafeTravel.is alerts and match them to specific sights
+        // Alerts mentioning a sight name get injected as warning banners on that sight's card
+        async function fetchSightAlerts() {
+            try {
+                const res = await fetch('https://safetravel.is/wp-json/wp/v2/alert?per_page=20&_fields=id,date,title,excerpt,content,link');
+                if (!res.ok) return;
+                const alerts = await res.json();
+                if (!alerts || alerts.length === 0) return;
+
+                // Build searchable text per alert
+                const alertTexts = alerts.map(a => {
+                    const title = (a.title.rendered || '').replace(/<[^>]+>/g, '');
+                    const excerpt = (a.excerpt.rendered || '').replace(/<[^>]+>/g, '');
+                    const content = ((a.content && a.content.rendered) || '').replace(/<[^>]+>/g, '');
+                    return {
+                        alert: a,
+                        text: (title + ' ' + excerpt + ' ' + content).toLowerCase(),
+                        title: title.replace(/&[^;]+;/g, ''),
+                        excerpt: excerpt.replace(/&[^;]+;/g, '').trim().slice(0, 260)
+                    };
+                });
+
+                // Sight name variations — key = normalized search key, value = list of h3 title keywords to match cards
+                const sightKeywords = {
+                    'seljalandsfoss': ['Seljalandsfoss'],
+                    'gljufrabui': ['Gljufrabui', 'Gljúfrabúi'],
+                    'skogafoss': ['Skogafoss', 'Skógafoss'],
+                    'reynisfjara': ['Reynisfjara'],
+                    'dyrholaey': ['Dyrholaey', 'Dyrhólaey'],
+                    'jokulsarlon': ['Jökulsárlón', 'Jokulsarlon'],
+                    'diamond beach': ['Diamond Beach'],
+                    'skaftafell': ['Skaftafell'],
+                    'svartifoss': ['Svartifoss'],
+                    'fjadrargljufur': ['Fjadrargljufur', 'Fjaðrárgljúfur'],
+                    'vestrahorn': ['Vestrahorn'],
+                    'stokksnes': ['Vestrahorn', 'Stokksnes'],
+                    'kirkjufell': ['Kirkjufell'],
+                    'gullfoss': ['Gullfoss'],
+                    'geysir': ['Geysir', 'Strokkur'],
+                    'thingvellir': ['Thingvellir', 'Þingvellir'],
+                    'þingvellir': ['Thingvellir', 'Þingvellir'],
+                    'bruarfoss': ['Bruarfoss', 'Brúarfoss'],
+                    'kerid': ['Kerid', 'Kerið'],
+                    'fjallsarlon': ['Fjallsarlon'],
+                    'blue lagoon': ['Blue Lagoon'],
+                    'kleifarvatn': ['Kleifarvatn'],
+                    'seltun': ['Seltun'],
+                    'gunnuhver': ['Gunnuhver'],
+                    'brimketill': ['Brimketill'],
+                    'glymur': ['Glymur'],
+                    'hraunfossar': ['Hraunfossar'],
+                    'barnafoss': ['Barnafoss'],
+                    'deildartunguhver': ['Deildartunguhver'],
+                    'arnarstapi': ['Arnarstapi'],
+                    'djupalonssandur': ['Djupalonssandur', 'Djúpalónssandur'],
+                    'budakirkja': ['Budakirkja', 'Búðakirkja', 'Budir', 'Búðir'],
+                    'ytri-tunga': ['Ytri-Tunga', 'Ytri Tunga'],
+                    'stykkisholmur': ['Stykkisholmur', 'Stykkishólmur'],
+                    'reykjavik': ['Reykjavik', 'Reykjavík'],
+                    'harpa': ['Harpa'],
+                    'hallgrimskirkja': ['Hallgrimskirkja', 'Hallgrímskirkja']
+                };
+
+                // For each alert, find which sight cards it affects
+                const allCards = document.querySelectorAll('.stop-card');
+                alertTexts.forEach(a => {
+                    // Find sight keywords mentioned in this alert
+                    Object.entries(sightKeywords).forEach(([needle, h3Terms]) => {
+                        if (a.text.includes(needle)) {
+                            // Find matching cards by h3 content
+                            allCards.forEach(card => {
+                                const h3 = card.querySelector('h3');
+                                if (!h3) return;
+                                const h3Text = h3.textContent;
+                                if (h3Terms.some(term => h3Text.includes(term))) {
+                                    // Avoid double-banner if already added for this alert
+                                    if (card.querySelector(`[data-alert-id="${a.alert.id}"]`)) return;
+                                    const banner = document.createElement('div');
+                                    banner.setAttribute('data-alert-id', a.alert.id);
+                                    banner.style.cssText = 'background: linear-gradient(135deg, #fef3c7, #fde68a); border-left: 4px solid #dc2626; padding: 10px 14px; border-radius: 6px; margin-top: 10px; font-size: 0.82em;';
+                                    banner.innerHTML = `<strong style="color:#991b1b;">⚠️ SafeTravel.is Alert:</strong> <strong>${a.title}</strong><br><span style="color:#555;">${a.excerpt}${a.excerpt.length >= 260 ? '...' : ''}</span> <a href="${a.alert.link}" target="_blank" style="color:#b91c1c;">Read full →</a>`;
+                                    // Insert at top of stop-content
+                                    const content = card.querySelector('.stop-content') || card;
+                                    const header = content.querySelector('.stop-header');
+                                    if (header) header.after(banner);
+                                    else content.prepend(banner);
+                                }
+                            });
+                        }
+                    });
+                });
+
+                // Also show a top-level summary of active alerts (all alerts, not just sight-specific)
+                const header = document.querySelector('.intro-box');
+                if (header && alerts.length > 0) {
+                    const summary = document.createElement('div');
+                    summary.style.cssText = 'background: linear-gradient(135deg, #fef3c7, #fde68a); border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 8px; margin-top: 15px; font-size: 0.88em;';
+                    summary.innerHTML = `<strong style="color:#92400e;">⚠️ ${alerts.length} active SafeTravel.is alert${alerts.length > 1 ? 's' : ''}:</strong> ` +
+                        alertTexts.slice(0, 4).map(a => `<span style="display:inline-block;background:rgba(255,255,255,0.6);padding:3px 8px;border-radius:10px;margin:3px 4px 0 0;">${a.title}</span>`).join('') +
+                        ` <a href="https://safetravel.is/alert/" target="_blank" style="color:#b45309;">See all →</a>`;
+                    header.appendChild(summary);
+                }
+            } catch (err) {
+                console.error('Alert fetch failed:', err);
+            }
+        }
+
+        fetchSightAlerts();
     </script>
 </body>
 </html>

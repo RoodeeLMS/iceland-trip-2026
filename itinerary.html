@@ -552,6 +552,9 @@
     <!-- Main Content -->
     <main class="main-content">
 
+        <!-- Live SafeTravel.is alerts (auto-loaded) -->
+        <div id="safetravelAlerts" style="max-width: 1200px; margin: 0 auto 20px auto; padding: 0 20px;"></div>
+
         <!-- Bonus Stops -->
         <div class="region-header bonus-stops">
             <h2>✈️ Bonus Stop: Berlin</h2>
@@ -1558,6 +1561,41 @@
                 card.classList.remove('active');
             });
         }
+
+        // Fetch live SafeTravel.is alerts and show at top of itinerary
+        async function fetchSafetravelAlerts() {
+            const container = document.getElementById('safetravelAlerts');
+            if (!container) return;
+            try {
+                const res = await fetch('https://safetravel.is/wp-json/wp/v2/alert?per_page=10&_fields=id,date,title,excerpt,link');
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const alerts = await res.json();
+                if (!alerts || alerts.length === 0) return;
+                alerts.sort((a, b) => new Date(b.date) - new Date(a.date));
+                container.innerHTML = `
+                    <div style="background: linear-gradient(135deg, #fef3c7, #fde68a); border-left: 4px solid #dc2626; border-radius: 10px; padding: 16px 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+                        <h3 style="margin: 0 0 10px 0; color: #991b1b; font-size: 1.05em;">⚠️ ${alerts.length} Active SafeTravel.is Alert${alerts.length > 1 ? 's' : ''}</h3>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px;">
+                            ${alerts.slice(0, 6).map(a => {
+                                const title = (a.title.rendered || '').replace(/&[^;]+;/g, '');
+                                const excerpt = (a.excerpt.rendered || '').replace(/<[^>]+>/g, '').replace(/&[^;]+;/g, '').trim().slice(0, 200);
+                                return `<div style="background: rgba(255,255,255,0.7); padding: 10px 12px; border-radius: 6px; font-size: 0.85em;">
+                                    <strong style="color:#78350f;">${title}</strong><br>
+                                    <span style="color:#555;">${excerpt}${excerpt.length >= 200 ? '...' : ''}</span><br>
+                                    <a href="${a.link}" target="_blank" style="color:#b45309;">Read full →</a>
+                                </div>`;
+                            }).join('')}
+                        </div>
+                        <div style="margin-top: 10px; font-size: 0.82em; color: #78350f;">
+                            Source: <a href="https://safetravel.is/alert/" target="_blank" style="color: #b45309;">safetravel.is</a> — auto-refreshes
+                        </div>
+                    </div>`;
+            } catch (err) {
+                console.error('Alert fetch failed:', err);
+            }
+        }
+
+        fetchSafetravelAlerts();
     </script>
 </body>
 
