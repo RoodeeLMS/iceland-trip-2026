@@ -184,7 +184,86 @@ Only if today is Apr 7, 8, 17, or 18 (travel days). Otherwise skip.
 Check the flights for disruption (Iran conflict is ongoing). Open-Meteo doesn't give flight status, so just post an `info` reminder:
 - "Travel day: check flight status on FlightAware/FlightRadar24 before heading to airport"
 
-### Task 6: Review and apply additional tasks below
+### Task 6: Check flight gate assignments
+
+Poll Flightstats for the user's actual flights and post gate updates when they become available. Gates are typically assigned 24-48h before each flight.
+
+**Flights to check:**
+- Outbound Apr 7-8: **QR829** BKK→DOH, **QR079** DOH→BER, **FI529** BER→KEF
+- Return Apr 17-18: **FI520** KEF→FRA, **QR068** FRA→DOH, **QR828** DOH→BKK
+
+**Known gates (already confirmed — only re-check if they change or the flight is <24h away):**
+- QR829 BKK: Gate S111A (SAT-1)
+- FI529 BER: Gate A20
+- QR068 FRA: Gate E9 (T2 Hall E)
+- QR828 DOH: Gate A8
+
+**Still unknown — priority to verify:**
+- QR079 DOH→BER — no historical data found
+- FI520 KEF→FRA — Icelandair doesn't publish KEF gates in advance
+
+**How to check:**
+```bash
+curl -s "https://www.flightstats.com/v2/flight-tracker/QR/79?year=2026&month=4&date=8"
+# Parse for gate info in the HTML (look for "Gate:" followed by value)
+```
+
+Alternative sources: `flightaware.com/live/flight/QTR79`, `qatarairways.com/en/flight-status.html`, `icelandair.com/support/flight-status/`. All typically need a browser — `WebFetch` may or may not work.
+
+**When to post:**
+- **First time a gate becomes known** → post `update` "Gate confirmed: <flight> → <gate>" with context (e.g. "Flightstats shows QR079 departing DOH Concourse C gate C12 tonight. Short walk from Plaza Premium Lounge.")
+- **Gate changes** → post `warning` "Gate change: <flight> moved from X to Y"
+- **No change / still unknown** → skip (don't spam)
+- **Within 6h of departure and still unknown** → post `info` flagging "FI520 gate still N/A in trackers — will be posted at KEF on day-of"
+
+When you post a gate, also update the flights.html page directly to replace the placeholder with the confirmed gate (use Edit tool to update the text in the relevant lounge card). Commit with prefix `Auto: gate update`.
+
+### Task 7: Heartbeat (always post something)
+
+**The loop should never be silent.** Even if nothing else fires, post exactly one `info` entry per run with a terse heartbeat summary. This tells the user the loop is alive and gives them something to read even on boring runs.
+
+Format:
+```bash
+python3 loop_log.py info "Heartbeat" "Loop ran. <1-sentence summary of what was checked>. Next run in ~2h."
+```
+
+Examples of good heartbeats:
+- "Loop ran. SafeTravel pins clean, vedur aurora outlook quiet (Kp 2), no weather warnings, Reynisfjara still orange. Next run in ~2h."
+- "Loop ran. Checked 8 data sources — nothing changed since last run. Next run in ~2h."
+- "Loop ran. QR079 gate still not assigned (T-32h). Weather tomorrow: 4°C partly cloudy. Next run in ~2h."
+
+Post this ONCE per run, as the LAST task. If other tasks posted `update`/`warning`/`suggestion` entries, keep the heartbeat terse — don't repeat their content.
+
+### Task 8: Random proactive suggestion
+
+At the end of every run, brainstorm ONE proactive suggestion the user might find useful and post it as `suggestion`. Pick something relevant to the trip context — not random fluff.
+
+**Topic ideas (rotate — pick a different kind each run):**
+- Something about the day's (or next day's) planned sights that you found in recent news/reddit
+- A restaurant, café, or bakery along the route worth trying (non-alcoholic only — group doesn't drink)
+- A photography tip specific to the current weather + location combo
+- A packing/logistics reminder based on forecast (e.g. "Tomorrow's low is -3°C — make sure windshield scraper is in the rental car")
+- An aurora viewing window if Kp is elevated
+- A shortcut / local tip you found (parking, skipping queues, less-known trail)
+- A cultural note relevant to the day (a holiday, a local event, Icelandic word of the day)
+- An Icelandic food you should try that's in season or locally special to the region
+- A warning about a common tourist mistake at the next sight
+- A drone opportunity based on wind forecast + legal status
+
+**Constraints:**
+- **One per run max** — don't dump a list
+- **No alcohol recommendations** (group doesn't drink)
+- **No hot-spring swimming recommendations** (group doesn't swim)
+- **Non-repetitive** — check recent loop-log entries to avoid suggesting the same thing twice in a row
+- **Concrete and specific** — not "remember to drink water", but "Brauð & Co (Laugavegur location) opens 06:30 — cheapest freshly-baked cardamom buns in downtown Reykjavik, about ฿140"
+- **Cite source** if it's a research-based tip
+
+Post as:
+```bash
+python3 loop_log.py suggestion "<short title>" "<concrete tip, 1-3 sentences, with source if applicable>"
+```
+
+### Task 9: Review and apply additional tasks below
 
 Look at the "Additional Tasks" section below. If anything is in there, execute it and remove it from this file (git commit the removal).
 
