@@ -1627,6 +1627,26 @@
             })
             .catch(() => {});
 
+        // Drone usability by slug — hand-curated from detail page research
+        const droneStatus = {
+            'hallgrimskirkja':'no','rainbow-street':'no','harpa':'no','sun-voyager':'no','laugavegur':'no','kronan-fiskislod':'no',
+            'thingvellir':'no','bruarfoss':'caution','geysir':'caution','gullfoss':'caution','kerid':'no','fridheimar':'caution',
+            'seljalandsfoss':'caution','gljufrabui':'caution','skogafoss':'caution','kvernufoss':'ok','skogar-museum':'ok','lava-centre':'caution',
+            'reynisfjara':'no','dyrholaey':'caution','vik-church':'caution','lava-show':'caution','eldhraun':'caution','fjadrargljufur':'no',
+            'hofskirkja':'ok','dverghamrar':'ok',
+            'skaftafell':'no','jokulsarlon':'no','diamond-beach':'no','fjallsarlon':'no','vestrahorn':'ok',
+            'hraunfossar':'ok','barnafoss':'ok','deildartunguhver':'ok','glymur':'ok',
+            'ytri-tunga':'caution','budakirkja':'ok','arnarstapi':'ok','raudfeldsgja':'caution',
+            'djupalonssandur':'no','londrangar':'no','saxholl':'no','kirkjufell':'ok','stykkisholmur':'caution',
+            'berserkjahraun':'ok','selvallafoss':'ok',
+            'kleifarvatn':'ok','seltun':'caution','brimketill':'caution','gunnuhver':'caution','blue-lagoon':'no'
+        };
+        const droneLabels = {
+            ok:      { text:'🚁 Drone OK',      bg:'#d1fae5', color:'#065f46', title:'Recreational drone allowed (wind permitting). See Planning → Drone Usage.' },
+            caution: { text:'🚁 Drone caution', bg:'#fef3c7', color:'#92400e', title:'Wind, crowds, or partial restriction — verify before flying. See Planning → Drone Usage.' },
+            no:      { text:'🚁 No drone',      bg:'#fee2e2', color:'#991b1b', title:'Prohibited: national park permit required, on-site signage, or airport airspace.' }
+        };
+
         function wireDetailLinks() {
             document.querySelectorAll('.stop-card .stop-header h3').forEach(h => {
                 if (h.dataset.linked) return;
@@ -1638,10 +1658,25 @@
                     return titleNorm.includes(sn.split(' ')[0]) || sn.includes(titleNorm.split(' ')[0]);
                 });
                 if (!match) return;
-                // Wrap the inner content of h3 in an anchor so the whole title becomes the link
                 const inner = h.innerHTML;
                 h.innerHTML = `<a href="sights/${match.slug}.html" style="color:inherit;text-decoration:none;border-bottom:1px dashed var(--primary-blue);" title="View detail page">${inner}</a>`;
                 h.dataset.linked = '1';
+
+                // Inject drone badge into the day-badge-row next to this title
+                const status = droneStatus[match.slug];
+                if (status && droneLabels[status]) {
+                    const header = h.closest('.stop-header');
+                    const row = header ? header.querySelector('.day-badge-row') : null;
+                    if (row && !row.querySelector('.drone-badge')) {
+                        const lbl = droneLabels[status];
+                        const span = document.createElement('span');
+                        span.className = 'drone-badge';
+                        span.title = lbl.title;
+                        span.textContent = lbl.text;
+                        span.style.cssText = `background:${lbl.bg};color:${lbl.color};padding:2px 9px;border-radius:10px;font-size:0.72em;font-weight:600;border:1px solid ${lbl.color}33;`;
+                        row.appendChild(span);
+                    }
+                }
             });
         }
 
