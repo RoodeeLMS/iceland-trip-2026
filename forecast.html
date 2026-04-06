@@ -503,6 +503,34 @@
             <div id="stormContent"></div>
         </div>
 
+        <!-- Live Road Conditions -->
+        <div style="background: white; border-radius: 12px; padding: 25px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);">
+            <h2 style="font-family: 'Playfair Display', serif; color: var(--primary-blue); margin-bottom: 10px; font-size: 1.5em;">🛣️ Live Road Conditions (Vegagerdin)</h2>
+            <p style="font-size: 0.9em; color: #666; margin-bottom: 15px;">Live data from Icelandic Road Administration via safetravel.is — auto-refreshes every 30 min.</p>
+
+            <div id="roadSummary" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
+                <div class="loading" style="color: #888;">Loading road data...</div>
+            </div>
+
+            <h3 style="font-size: 1em; color: var(--primary-blue); margin: 15px 0 8px;">Conditions on Your Route</h3>
+            <div id="routeConditions" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px;">
+                <div class="loading" style="color: #888;">Loading...</div>
+            </div>
+
+            <h3 style="font-size: 1em; color: var(--primary-blue); margin: 20px 0 8px;">Weather at Key Stations (live)</h3>
+            <div id="weatherStations" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
+                <div class="loading" style="color: #888;">Loading...</div>
+            </div>
+
+            <div style="margin-top: 15px; padding: 10px 14px; background: #f0f9ff; border-radius: 6px; font-size: 0.82em; color: #555;">
+                <strong>Legend:</strong>
+                <span style="background: #d1fae5; color: #065f46; padding: 2px 8px; border-radius: 10px; margin: 0 4px;">✅ Passable</span>
+                <span style="background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 10px; margin: 0 4px;">⚠️ Difficult</span>
+                <span style="background: #fef2f2; color: #991b1b; padding: 2px 8px; border-radius: 10px; margin: 0 4px;">🚫 Impassable</span>
+                <span style="background: #e0e7ff; color: #3730a3; padding: 2px 8px; border-radius: 10px; margin: 0 4px;">❄️ Winter closed</span>
+            </div>
+        </div>
+
         <!-- Aurora Section -->
         <div class="aurora-panel" id="auroraPanel">
             <h2>🌌 Aurora Borealis Forecast</h2>
@@ -1253,11 +1281,118 @@
             }
         }
 
+        // Fetch live road conditions from safetravel.is (Vegagerdin data)
+        async function fetchRoadConditions() {
+            const summaryEl = document.getElementById('roadSummary');
+            const routeEl = document.getElementById('routeConditions');
+            const weatherEl = document.getElementById('weatherStations');
+
+            // Keywords on your route to filter relevant segments
+            const routeKeywords = [
+                'Hringvegur', 'Suðurlandsvegur', 'Hellisheiði', 'Selfoss', 'Hvolsvöllur',
+                'Vík', 'Mýrdal', 'Skaftárhreppur', 'Kirkjubæjarklaustur', 'Öræfi',
+                'Jökulsárlón', 'Hornafjörður', 'Reykjanes', 'Grindavík', 'Keflavík',
+                'Snæfellsnes', 'Borgarfjörður', 'Borgarnes', 'Hvalfjörður', 'Þingvellir',
+                'Geysir', 'Gullfoss', 'Stykkishólmur', 'Grundarfjörður', 'Ólafsvík'
+            ];
+
+            // Station names near your route
+            const routeStations = [
+                'Hellisheiði', 'Steinar', 'Vík', 'Kirkjubæjarklaustur', 'Jökulsárlón',
+                'Hafursfell', 'Vatnaleið', 'Búðardalur', 'Borgarnes', 'Ásbjarnarstaðir',
+                'Blönduháls', 'Fróðárheiði', 'Holtavörðuheiði', 'Reykjanes', 'Grindavík'
+            ];
+
+            try {
+                const [roadsRes, weatherRes] = await Promise.all([
+                    fetch('https://safetravel.is/wp-content/themes/safetravel/blocks/travel-conditions/data/vegagerd.php?r=faerd'),
+                    fetch('https://safetravel.is/wp-content/themes/safetravel/blocks/travel-conditions/data/vegagerd.php?r=vedur')
+                ]);
+                const roads = await roadsRes.json();
+                const stations = await weatherRes.json();
+
+                // === Summary ===
+                const statusCounts = { good: 0, difficult: 0, impassable: 0, winter: 0, other: 0 };
+                roads.forEach(r => {
+                    const s = (r.AstandYfirbord || '').toUpperCase();
+                    if (s === 'GREIDFAERT') statusCounts.good++;
+                    else if (s === 'THUNGFAERT' || s === 'HALKA' || s === 'SNJOTHEKJA') statusCounts.difficult++;
+                    else if (s === 'OFAERT' || s === 'OFAERT_VEDUR') statusCounts.impassable++;
+                    else if (s === 'LOKAD_VETRARLOKUN') statusCounts.winter++;
+                    else statusCounts.other++;
+                });
+
+                summaryEl.innerHTML = `
+                    <div style="background:#d1fae5;padding:10px 16px;border-radius:8px;font-size:0.9em;">✅ Passable: <strong>${statusCounts.good}</strong></div>
+                    <div style="background:#fef3c7;padding:10px 16px;border-radius:8px;font-size:0.9em;">⚠️ Difficult: <strong>${statusCounts.difficult}</strong></div>
+                    <div style="background:#fef2f2;padding:10px 16px;border-radius:8px;font-size:0.9em;">🚫 Impassable: <strong>${statusCounts.impassable}</strong></div>
+                    <div style="background:#e0e7ff;padding:10px 16px;border-radius:8px;font-size:0.9em;">❄️ Winter closed: <strong>${statusCounts.winter}</strong></div>
+                `;
+
+                // === Route conditions (filter by keywords) ===
+                const matchedRoads = roads.filter(r => {
+                    const name = (r.FulltNafnButs || r.StuttNafnButs || '').toLowerCase();
+                    return routeKeywords.some(kw => name.includes(kw.toLowerCase()));
+                });
+
+                if (matchedRoads.length === 0) {
+                    routeEl.innerHTML = '<div style="color:#888;padding:10px;">No route-specific data available right now.</div>';
+                } else {
+                    // Sort non-good first so issues are visible
+                    matchedRoads.sort((a, b) => {
+                        const order = s => s === 'GREIDFAERT' ? 1 : 0;
+                        return order(a.AstandYfirbord) - order(b.AstandYfirbord);
+                    });
+
+                    routeEl.innerHTML = matchedRoads.slice(0, 20).map(r => {
+                        const status = (r.AstandYfirbord || '').toUpperCase();
+                        const desc = r.AstandLysingEn || r.AstandLysing || 'Unknown';
+                        let bg = '#f3f4f6', icon = '❔';
+                        if (status === 'GREIDFAERT') { bg = '#d1fae5'; icon = '✅'; }
+                        else if (status === 'THUNGFAERT' || status === 'HALKA' || status === 'SNJOTHEKJA') { bg = '#fef3c7'; icon = '⚠️'; }
+                        else if (status.startsWith('OFAERT')) { bg = '#fef2f2'; icon = '🚫'; }
+                        else if (status === 'LOKAD_VETRARLOKUN') { bg = '#e0e7ff'; icon = '❄️'; }
+                        return `<div style="background:${bg};padding:10px 12px;border-radius:6px;font-size:0.85em;">
+                            <strong>${icon} ${r.FulltNafnButs || r.StuttNafnButs}</strong><br>
+                            <span style="color:#555;font-size:0.9em;">${desc}</span>
+                        </div>`;
+                    }).join('');
+                }
+
+                // === Weather stations on route ===
+                const matchedStations = stations.filter(s => {
+                    const name = (s.Nafn || '').toLowerCase();
+                    return routeStations.some(rs => name.includes(rs.toLowerCase()));
+                });
+
+                if (matchedStations.length === 0) {
+                    weatherEl.innerHTML = '<div style="color:#888;padding:10px;">No nearby station data.</div>';
+                } else {
+                    weatherEl.innerHTML = matchedStations.slice(0, 12).map(s => {
+                        const wind = s.Vindhradi !== null ? Math.round(s.Vindhradi * 10) / 10 : '—';
+                        const gust = s.Vindhvida !== null ? Math.round(s.Vindhvida * 10) / 10 : null;
+                        const temp = s.Hiti !== null ? Math.round(s.Hiti * 10) / 10 : '—';
+                        const dir = s.VindattAscEng ? s.VindattAscEng.trim() : '';
+                        const windWarn = wind !== '—' && wind >= 15;
+                        const bg = windWarn ? '#fef3c7' : '#f0f9ff';
+                        return `<div style="background:${bg};padding:10px 12px;border-radius:6px;font-size:0.82em;">
+                            <strong>${s.Nafn}</strong><br>
+                            🌡 ${temp}°C · 💨 ${wind} m/s ${dir}${gust !== null ? ` (gust ${gust})` : ''}
+                        </div>`;
+                    }).join('');
+                }
+            } catch (err) {
+                summaryEl.innerHTML = `<div class="error-msg" style="width:100%;">Failed to load road conditions: ${err.message}</div>`;
+                routeEl.innerHTML = '';
+                weatherEl.innerHTML = '';
+            }
+        }
+
         async function loadAll() {
-            await Promise.all([fetchWeather(), fetchSunData(), fetchAurora(), fetchAuroraNights()]);
+            await Promise.all([fetchWeather(), fetchSunData(), fetchAurora(), fetchAuroraNights(), fetchRoadConditions()]);
             checkStormAlert();
             const now = new Date();
-            document.getElementById('lastUpdated').innerHTML = `<strong>✅ Data updated:</strong> ${now.toLocaleString()} — Weather from <a href="https://open-meteo.com/" target="_blank">Open-Meteo</a> | Aurora from <a href="https://www.swpc.noaa.gov/" target="_blank">NOAA SWPC</a>`;
+            document.getElementById('lastUpdated').innerHTML = `<strong>✅ Data updated:</strong> ${now.toLocaleString()} — Weather from <a href="https://open-meteo.com/" target="_blank">Open-Meteo</a> | Aurora from <a href="https://www.swpc.noaa.gov/" target="_blank">NOAA SWPC</a> | Roads from <a href="https://safetravel.is/" target="_blank">SafeTravel.is</a>`;
         }
 
         loadAll();
