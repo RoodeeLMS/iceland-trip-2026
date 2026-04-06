@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sólheimasandur DC-3 Plane Wreck - Iceland Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0077B6;
+            --aurora-green: #00B4D8;
+            --deep-navy: #1a1a2e;
+            --glacier-white: #F0F9FF;
+            --ice-blue: #CAF0F8;
+            --volcanic-black: #2D3748;
+            --sunset-gold: #F59E0B;
+            --moss-green: #10B981;
+            --lava-red: #EF4444;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F7FA 50%, #F0F9FF 100%);
+            min-height: 100vh;
+            color: var(--volcanic-black);
+            line-height: 1.6;
+        }
+        .navbar { background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 15px 20px; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .navbar-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .navbar-brand { color: var(--aurora-green); font-family: 'Playfair Display', serif; font-size: 1.3em; font-weight: 700; text-decoration: none; }
+        .navbar-menu { display: flex; gap: 3px; flex-wrap: wrap; }
+        .navbar-item { color: white; text-decoration: none; padding: 8px 12px; border-radius: 4px; transition: 0.3s; font-size: 0.85em; white-space: nowrap; }
+        .navbar-item:hover { background: rgba(0, 180, 216, 0.2); color: var(--aurora-green); }
+        .navbar-item.active { background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green)); color: white; font-weight: bold; }
+        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.5em; cursor: pointer; padding: 5px; }
+        @media (max-width: 768px) {
+            .navbar-menu { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 100%); padding: 10px 0; }
+            .navbar-menu.mobile-open { display: flex; }
+            .navbar-item { padding: 12px 20px; border-radius: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+            .menu-toggle { display: block; }
+        }
+
+        .sight-hero {
+            background: linear-gradient(135deg, var(--deep-navy) 0%, #16213e 50%, var(--primary-blue) 100%);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+        .sight-hero .emoji { font-size: 3em; display: block; margin-bottom: 8px; }
+        .sight-hero h1 { font-family: 'Playfair Display', serif; font-size: 2.2em; margin-bottom: 10px; }
+        .sight-hero .day-badges { margin-top: 10px; }
+        .sight-hero .day-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin: 0 3px;
+        }
+        .sight-hero .back-link {
+            display: inline-block;
+            margin-bottom: 15px;
+            color: var(--aurora-green);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .sight-hero .back-link:hover { color: white; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; }
+
+        .section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+        .section h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-navy);
+            font-size: 1.4em;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .section h2 .icon { font-size: 1.1em; }
+        .section p { margin-bottom: 10px; color: #444; }
+        .section ul { margin: 8px 0 8px 24px; }
+        .section ul li { margin-bottom: 6px; color: #444; }
+        .section a { color: var(--primary-blue); text-decoration: none; }
+        .section a:hover { text-decoration: underline; }
+
+        .status-box {
+            padding: 12px 16px;
+            border-radius: 8px;
+            border-left: 4px solid var(--aurora-green);
+            background: #f0f9ff;
+            margin-bottom: 10px;
+        }
+
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+        .meta-item {
+            background: #f8fafc;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.88em;
+        }
+        .meta-item strong { color: var(--deep-navy); display: block; font-size: 0.8em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+
+        .map-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+        .map-cta:hover { opacity: 0.9; }
+
+        .hero-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover { transform: scale(1.03); }
+        .gallery-caption { font-size: 0.75em; color: #888; text-align: center; margin-top: 4px; }
+
+        .map-embed {
+            width: 100%;
+            height: 320px;
+            border: 0;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .visit-step {
+            display: flex;
+            gap: 14px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .visit-step:last-child { border-bottom: none; }
+        .visit-step-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--aurora-green));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9em;
+        }
+        .visit-step-content { flex: 1; }
+        .visit-step-content strong { color: var(--deep-navy); display: block; margin-bottom: 4px; }
+        .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
+
+        .researched-note {
+            text-align: center;
+            font-size: 0.78em;
+            color: #888;
+            margin-top: 20px;
+            padding: 10px;
+        }
+
+        footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    
+        /* Lightbox */
+        .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; padding: 20px; }
+        .lightbox.open { display: flex; }
+        .lightbox img { max-width: 95vw; max-height: 92vh; object-fit: contain; box-shadow: 0 10px 40px rgba(0,0,0,0.6); border-radius: 4px; }
+        .lightbox .lb-caption { position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; color: #fff; font-size: 0.9em; opacity: 0.85; padding: 0 20px; }
+        .lightbox .lb-close { position: absolute; top: 20px; right: 24px; color: #fff; font-size: 2em; font-weight: 300; cursor: pointer; line-height: 1; opacity: 0.8; }
+        .lightbox .lb-close:hover { opacity: 1; }
+        .gallery img { cursor: zoom-in; }
+        .hero-image { cursor: zoom-in; }
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="../index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+            <button class="menu-toggle" onclick="toggleMobileMenu()" aria-label="Toggle menu">☰</button>
+            <div class="navbar-menu" id="navMenu">
+                <a href="../index.html" class="navbar-item">Home</a>
+                <a href="../itinerary.html" class="navbar-item">Itinerary</a>
+                <a href="../forecast.html" class="navbar-item">Forecast</a>
+                <a href="../driving.html" class="navbar-item">Driving</a>
+                <a href="../sights.html" class="navbar-item active">Sights</a>
+                <a href="../activities.html" class="navbar-item">🎫 Activities</a>
+                <a href="../hotels.html" class="navbar-item">Hotels</a>
+                <a href="../loop.html" class="navbar-item">📬 Loop</a>
+                <a href="../flights.html" class="navbar-item">Flights</a>
+                <a href="../logistics.html" class="navbar-item">Logistics</a>
+                <a href="../insurance.html" class="navbar-item">Insurance</a>
+                <a href="../planning.html" class="navbar-item">Planning</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="sight-hero">
+        <a href="../sights.html" class="back-link">← Back to all sights</a>
+        <span class="emoji">✈️</span>
+        <h1>Sólheimasandur DC-3 Plane Wreck</h1>
+        <div class="day-badges"><span class="day-badge">Day 3</span><span class="day-badge">Day 5</span></div>
+    </div>
+
+    <div class="container">
+
+        <img class="hero-image" src="https://upload.wikimedia.org/wikipedia/commons/6/6a/DC3_on_the_black_beach_in_Solheimasandur.jpg" alt="Sólheimasandur DC-3 Plane Wreck" onerror="this.style.display='none'">
+
+        <div class="section">
+            <div class="meta-grid">
+                <div class="meta-item"><strong>📍 Coordinates</strong>63.4593, -19.3645</div>
+                <div class="meta-item"><strong>📅 Trip Day</strong>Day 3 · Day 5</div>
+            </div>
+            <iframe class="map-embed" src="https://www.openstreetmap.org/export/embed.html?bbox=-19.3945%2C63.4443%2C-19.3345%2C63.4743&amp;layer=mapnik&amp;marker=63.4593%2C-19.3645" loading="lazy"></iframe>
+            <a href="https://www.google.com/maps/search/?api=1&query=63.4593,-19.3645" target="_blank" class="map-cta">📍 Open in Google Maps</a><a href="https://www.google.com/maps/dir/?api=1&destination=63.4593,-19.3645&travelmode=walking" target="_blank" class="map-cta" style="margin-left:8px;background:linear-gradient(135deg,#10b981,#059669);">🥾 Walking directions</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📖</span> Overview</h2>
+            <p>A 1973 US Navy <strong>Douglas Super DC-3</strong> (C-117D) that ran out of fuel and crash-landed on the black sand plain of Sólheimasandur. <strong>No fatalities</strong> — the crew walked away and the wreck has sat on the sand ever since, stripped of wings, engines, and paint by decades of salt spray and Icelandic wind.</p>
+<p>Over the past decade it became one of Iceland's most-Instagrammed locations, helped along by music videos (Justin Bieber, Sigur Rós), a Star Wars-esque aesthetic, and the desolate black-on-black composition. It's pure post-apocalyptic photography — and that's the only real reason to go.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚦</span> Current Status</h2>
+            <div class="status-box"><strong>Open year-round.</strong> The wreck is on private land; the landowner permits walking access but NO driving on the sand plain since 2016 (after too many stuck cars and injured tourists).</div>
+<p>The <strong>shuttle bus</strong> runs seasonally — typically May-Sep. In April 2026 you will almost certainly be <strong>walking both ways</strong>.</p>
+<p><strong>April 2026 specifics:</strong> The walk is flat and easy but brutally exposed — no shelter from wind, no landmarks, no shade. Average completion time <strong>~2 hours round trip</strong>, longer in strong wind.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚶</span> Your Visit — Step by Step</h2>
+            <div class="visit-step">
+    <div class="visit-step-num">1</div>
+    <div class="visit-step-content">
+        <strong>Park at the official lot on Route 1</strong>
+        Signed "Sólheimasandur Plane Wreck Parking" at approximately 63.4914°N, 19.3641°W. Free parking. Toilets at the parking lot. DO NOT attempt to drive onto the sand — you will get stuck, there is no cell signal, and there is a steep fine.
+        <div class="step-meta">⏱️ 2 min · 📍 Route 1 pull-off</div>
+    </div>
+</div>
+<div class="visit-step">
+    <div class="visit-step-num">2</div>
+    <div class="visit-step-content">
+        <strong>Walk the 4 km gravel track south toward the coast</strong>
+        Straight, flat, featureless. Follow the obvious track (there is only one). Dress warmly — there is zero wind shelter for the entire walk. Bring water even in cold weather; people underestimate the exposure.
+        <div class="step-meta">⏱️ ~45-60 min one way · 📍 4 km flat gravel</div>
+    </div>
+</div>
+<div class="visit-step">
+    <div class="visit-step-num">3</div>
+    <div class="visit-step-content">
+        <strong>Arrive at the wreck</strong>
+        The DC-3 sits alone on the black plain. Walk around it, inside it, underneath it. Surfaces are sharp — watch hands and feet. The interior is gutted; stand where the pilots sat. The wings are long gone; the fuselage is what remains.
+        <div class="step-meta">⏱️ 15-30 min on-site · 📍 63.4593°N, 19.3645°W</div>
+    </div>
+</div>
+<div class="visit-step">
+    <div class="visit-step-num">4</div>
+    <div class="visit-step-content">
+        <strong>Walk back the 4 km the same way</strong>
+        Same path, no scenic alternative. On a bad-wind day this is where people underestimate the energy cost. Allow 45-60 min return.
+        <div class="step-meta">⏱️ 45-60 min · 📍 same track</div>
+    </div>
+</div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📸</span> Photos</h2>
+            <div class="gallery"><div><img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/DC3_on_the_black_beach_in_Solheimasandur.jpg" alt="DC-3 wreck on Solheimasandur" loading="lazy"><div class="gallery-caption">The wreck on the black sand · Wikimedia</div></div></div>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">📷</span> Photography & Drone</h2>
+            <p><strong>Best compositions:</strong></p>
+<ul>
+    <li><strong>Wide environmental shot:</strong> 16-24mm, stand 30-50m away, position the wreck centered on a featureless horizon. The vastness of the sand plain is the story.</li>
+    <li><strong>Inside the fuselage looking out:</strong> 16mm wide, put the ribcage of the aircraft frame in silhouette against the sky through the missing tail section.</li>
+    <li><strong>Person-for-scale:</strong> Place someone in a colored jacket 20m in front of the wreck — shows the "lonely end of the world" mood.</li>
+    <li><strong>Blue hour / astro:</strong> Star photography and aurora foregrounds are the other reason people come. Plan for after sunset if the forecast is clear and Kp is elevated — adds 90+ min to the visit but the shots are unique.</li>
+</ul>
+<p><strong>Best time of day:</strong> Overcast flat light is actually ideal — removes harsh shadows and suits the bleak aesthetic. Golden hour works too but the low April sun creates strong front/back-light contrast. Avoid midday if possible.</p>
+<p><strong>🚁 Drone:</strong> Recreational drone use is permitted here (not inside a national park, no signage prohibiting). Excellent aerial subject — tiny speck on vast plain. Watch wind limits for DJI Neo 2 (8 m/s rating); south coast gusts routinely exceed that. See <a href="../planning.html">Planning → Drone Usage</a> for general rules.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🚗</span> Getting There</h2>
+            <p>Parking lot directly off Ring Road (Route 1), between Skógafoss and Vík. No fee, no booking, open year-round.</p>
+<ul>
+    <li><strong>Parking:</strong> free, large gravel lot, signed "Sólheimasandur Plane Wreck Parking"</li>
+    <li><strong>Toilets:</strong> yes, at the parking lot</li>
+    <li><strong>Walk to wreck:</strong> 4 km each way, ~2 hours round trip on flat gravel track</li>
+    <li><strong>No shuttle in April</strong> — shuttle service typically May-September only</li>
+    <li><strong>No entry fee</strong></li>
+    <li><strong>Closest fuel/food:</strong> Skógafoss N1 (10 min west) or Vík N1 (15 min east)</li>
+</ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🗺️</span> Itinerary & Timing</h2>
+            <p><strong>Day 3 timing caveat:</strong> Day 3 is already your most packed day (Seljalandsfoss, Gljúfrabúi, Skógafoss, Kvernufoss, Reynisfjara, Dyrhólaey, Vík). Adding 2 hours here is aggressive. Realistic options:</p>
+<ul>
+    <li><strong>Option A — skip on Day 3, visit Day 5 instead.</strong> Day 5 is the buffer "drive west" day — much more flex to slot in a 2-hour walk in the morning.</li>
+    <li><strong>Option B — fit it on Day 3 by dropping something else.</strong> Trade: skip Kvernufoss (walk-behind) or Skógar Museum to free up ~1.5-2 hours.</li>
+    <li><strong>Option C — sunset/blue hour on Day 3 or Day 5.</strong> April has long dusk; walk out around 18:00 for golden light at the wreck, walk back in blue hour with headlamps.</li>
+</ul>
+<p><strong>Timing advice:</strong> Plan for <strong>2.5 hours total</strong> minimum (45 min walk + 30 min at wreck + 45 min walk + buffer). Add 30-60 min in bad wind. Check the forecast page before committing — if sustained wind &gt;15 m/s, skip; the walk becomes miserable.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⭐</span> Reviews & Reputation</h2>
+            <p><strong>Google Maps rating:</strong> ~4.5/5 — heavily visited and mostly positive, but reviews are sharply split.</p>
+<p><strong>What visitors praise:</strong> Unique atmosphere. Impressive photography subject. The walk itself has a meditative quality. Empty even in summer once you walk past the first 500m.</p>
+<p><strong>Common complaints:</strong> "The walk is 4 KM EACH WAY!" (not signposted prominently — many tourists start walking not realizing). Brutal wind exposure. Disappointment at the wreck being smaller than expected in photos.</p>
+<p><strong>Honest assessment:</strong> Overrated as a "sight", underrated as a photography assignment. If you do not care about photographs, skip it entirely — there is nothing to see that a 2-minute Google image search would not give you. If you <em>do</em> care about photographs and want the shot, the walk is part of the experience.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🎟️</span> Activities & Providers</h2>
+            <p>Self-guided. No booked activities, no tours, no entry fee.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">⚠️</span> Safety Notes</h2>
+            <ul>
+    <li><strong>Never drive onto the sand.</strong> The landowner has banned vehicles since 2016. Cars get stuck, tow recovery is expensive, and fines apply.</li>
+    <li><strong>Wind exposure:</strong> ZERO shelter for the entire walk. Dress for the wind chill, not the air temperature. On a 5°C / 20 m/s day the effective temp is well below zero.</li>
+    <li><strong>Bring water:</strong> 2 hours of walking with no services.</li>
+    <li><strong>Navigation:</strong> Follow the obvious gravel track. In heavy fog (rare but possible), turn back — it is easy to get disoriented on the featureless plain.</li>
+    <li><strong>Sharp metal:</strong> The wreck is unrestored and stripped. Edges are sharp. Watch hands, feet, and children.</li>
+    <li><strong>Cell signal:</strong> spotty to non-existent on the walk itself. Tell someone you are going.</li>
+    <li><strong>In an emergency:</strong> dial <strong>112</strong>.</li>
+</ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="icon">🔗</span> Links</h2>
+            <ul>
+    <li><a href="https://en.wikipedia.org/wiki/S%C3%B3lheimasandur" target="_blank">Wikipedia — Sólheimasandur</a></li>
+    <li><a href="https://www.google.com/maps/search/?api=1&query=63.4593,-19.3645" target="_blank">Google Maps — the wreck itself</a></li>
+    <li><a href="https://www.google.com/maps/search/?api=1&query=63.4914,-19.3641" target="_blank">Google Maps — parking lot</a></li>
+    <li><a href="https://guidetoiceland.is/travel-iceland/drive/solheimasandur-plane-wreck" target="_blank">Guide to Iceland — plane wreck article</a></li>
+    <li><a href="https://safetravel.is/" target="_blank">safetravel.is</a> — check for any current advisories</li>
+</ul>
+        </div>
+
+        <p class="researched-note">Researched 2026-04-06 · Info may change — verify critical details closer to trip</p>
+    </div>
+
+    <footer>
+        <p>Iceland Trip 2026 | Part of the Sights guide</p>
+    </footer>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <span class="lb-close">×</span>
+        <img id="lightboxImg" src="" alt="">
+        <div class="lb-caption" id="lightboxCaption"></div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('mobile-open');
+        }
+    
+        // Lightbox: click hero or gallery images to zoom
+        (function initLightbox() {
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightboxImg');
+            const lbCap = document.getElementById('lightboxCaption');
+            function open(src, caption) {
+                lbImg.src = src;
+                lbCap.textContent = caption || '';
+                lb.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+            window.closeLightbox = function(e) {
+                if (e && e.target && e.target.tagName === 'IMG') return; // allow click on image without closing? No — close anyway
+                lb.classList.remove('open');
+                document.body.style.overflow = '';
+            };
+            // Hero
+            document.querySelectorAll('.hero-image').forEach(img => {
+                img.addEventListener('click', () => open(img.src, img.alt));
+            });
+            // Gallery
+            document.querySelectorAll('.gallery img').forEach(img => {
+                img.addEventListener('click', e => {
+                    e.stopPropagation();
+                    const cap = img.parentElement.querySelector('.gallery-caption');
+                    open(img.src, cap ? cap.textContent : img.alt);
+                });
+            });
+            // Esc key closes
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+        })();
+    </script>
+</body>
+</html>

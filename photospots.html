@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photo Spots - Iceland Trip 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary-blue:#0077B6;--aurora-green:#00B4D8;--deep-navy:#1a1a2e;
+  --glacier-white:#F0F9FF;--volcanic-black:#2D3748;--sunset-gold:#F59E0B;
+  --moss-green:#10B981;--lava-red:#EF4444;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:linear-gradient(135deg,#F0F9FF 0%,#E0F7FA 50%,#F0F9FF 100%);
+  min-height:100vh;color:var(--volcanic-black);line-height:1.6;}
+.navbar{background:linear-gradient(135deg,var(--deep-navy) 0%,#16213e 100%);padding:15px 20px;position:sticky;top:0;z-index:1000;box-shadow:0 4px 20px rgba(0,0,0,0.3);}
+.navbar-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;}
+.navbar-brand{color:var(--aurora-green);font-family:'Playfair Display',serif;font-size:1.3em;font-weight:700;text-decoration:none;}
+.navbar-menu{display:flex;gap:3px;flex-wrap:wrap;}
+.navbar-item{color:white;text-decoration:none;padding:8px 12px;border-radius:4px;transition:0.3s;font-size:0.85em;white-space:nowrap;}
+.navbar-item:hover{background:rgba(0,180,216,0.2);color:var(--aurora-green);}
+.navbar-item.active{background:linear-gradient(135deg,var(--primary-blue),var(--aurora-green));color:white;font-weight:bold;}
+.menu-toggle{display:none;background:none;border:none;color:white;font-size:1.5em;cursor:pointer;padding:5px;}
+@media (max-width:768px){
+  .navbar-menu{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;background:linear-gradient(135deg,var(--deep-navy) 0%,#16213e 100%);padding:10px 0;}
+  .navbar-menu.mobile-open{display:flex;}
+  .navbar-item{padding:12px 20px;border-radius:0;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .menu-toggle{display:block;}
+}
+.page-header{background:linear-gradient(135deg,var(--deep-navy) 0%,#16213e 50%,var(--primary-blue) 100%);padding:2.5rem 2rem;text-align:center;color:white;}
+.page-header h1{font-family:'Playfair Display',serif;font-size:2.2em;margin-bottom:8px;}
+.page-header p{opacity:0.9;max-width:760px;margin:0 auto;}
+.container{max-width:1200px;margin:0 auto;padding:2rem;}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;justify-content:center;}
+.filter-btn{background:white;border:2px solid var(--primary-blue);color:var(--primary-blue);padding:8px 16px;border-radius:20px;cursor:pointer;font-size:0.85em;font-weight:600;transition:0.2s;}
+.filter-btn:hover{background:#e0f7fa;}
+.filter-btn.active{background:linear-gradient(135deg,var(--primary-blue),var(--aurora-green));color:white;border-color:transparent;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;}
+.card{background:white;border-radius:14px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.08);display:flex;flex-direction:column;transition:transform 0.2s;}
+.card:hover{transform:translateY(-3px);}
+.card-img{width:100%;height:200px;object-fit:cover;background:#e0f7fa;cursor:pointer;display:block;}
+.card-img-placeholder{width:100%;height:200px;background:linear-gradient(135deg,#e0f7fa,#b2ebf2);display:flex;align-items:center;justify-content:center;color:#0077B6;font-size:0.85em;text-align:center;padding:1rem;}
+.card-body{padding:18px 20px;flex:1;display:flex;flex-direction:column;}
+.card-title{font-family:'Playfair Display',serif;font-size:1.2em;color:var(--deep-navy);margin-bottom:8px;}
+.card-badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.badge{font-size:0.7em;padding:3px 10px;border-radius:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.4px;}
+.badge-day{background:#dbeafe;color:#1e40af;}
+.badge-detour{background:#fef3c7;color:#92400e;}
+.badge-detour.zero{background:#d1fae5;color:#065f46;}
+.badge-time{background:#ede9fe;color:#5b21b6;}
+.card-desc{font-size:0.88em;color:#475569;margin-bottom:12px;flex:1;}
+.card-meta{font-size:0.78em;color:#64748b;margin-bottom:12px;}
+.card-meta strong{color:var(--deep-navy);}
+.card-actions{display:flex;gap:8px;flex-wrap:wrap;}
+.btn{padding:7px 12px;border-radius:6px;font-size:0.78em;font-weight:600;text-decoration:none;transition:0.2s;display:inline-block;}
+.btn-map{background:var(--primary-blue);color:white;}
+.btn-map:hover{background:var(--deep-navy);}
+.btn-source{background:#f1f5f9;color:#475569;}
+.btn-source:hover{background:#e2e8f0;}
+/* lightbox */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:2000;justify-content:center;align-items:center;padding:20px;cursor:pointer;}
+.lightbox.open{display:flex;}
+.lightbox img{max-width:95%;max-height:95%;object-fit:contain;border-radius:8px;}
+.lightbox-close{position:absolute;top:20px;right:30px;color:white;font-size:2em;background:none;border:none;cursor:pointer;}
+.note{background:#fff7ed;border-left:4px solid var(--sunset-gold);padding:14px 18px;border-radius:8px;margin-bottom:24px;font-size:0.9em;color:#7c2d12;}
+</style>
+</head>
+<body>
+<nav class="navbar">
+  <div class="navbar-container">
+    <a href="index.html" class="navbar-brand">🇮🇸 Iceland 2026</a>
+    <button class="menu-toggle" onclick="document.querySelector('.navbar-menu').classList.toggle('mobile-open')">☰</button>
+    <div class="navbar-menu">
+      <a href="index.html" class="navbar-item">Home</a>
+      <a href="itinerary.html" class="navbar-item">Itinerary</a>
+      <a href="forecast.html" class="navbar-item">Forecast</a>
+      <a href="driving.html" class="navbar-item">Driving</a>
+      <a href="sights.html" class="navbar-item">Sights</a>
+      <a href="activities.html" class="navbar-item">🎫 Activities</a>
+      <a href="photospots.html" class="navbar-item active">📸 Photos</a>
+      <a href="hotels.html" class="navbar-item">Hotels</a>
+      <a href="loop.html" class="navbar-item">📬 Loop</a>
+      <a href="flights.html" class="navbar-item">Flights</a>
+      <a href="logistics.html" class="navbar-item">Logistics</a>
+      <a href="insurance.html" class="navbar-item">Insurance</a>
+      <a href="planning.html" class="navbar-item">Planning</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header">
+  <h1>📸 Roadside Photo Spots</h1>
+  <p>Hand-picked pull-offs, lonely roads, turf farms, horse paddocks and hidden vistas along the route — all complementary to (not duplicating) the main 60 sights.</p>
+</header>
+
+<div class="container">
+  <div class="note"><strong>How to use:</strong> these are quick stops (≤15 min walking, mostly roadside). Filter by day, tap a card for the example image, hit <em>Open in Maps</em> to navigate. Many "example photo" images are placeholders — search the spot name on Unsplash/Flickr the night before for current refs.</div>
+
+  <div class="filters" id="filters">
+    <button class="filter-btn active" data-day="all">All Days</button>
+    <button class="filter-btn" data-day="1">Day 1</button>
+    <button class="filter-btn" data-day="2">Day 2</button>
+    <button class="filter-btn" data-day="3">Day 3</button>
+    <button class="filter-btn" data-day="4">Day 4</button>
+    <button class="filter-btn" data-day="5">Day 5</button>
+    <button class="filter-btn" data-day="6">Day 6</button>
+    <button class="filter-btn" data-day="7">Day 7</button>
+    <button class="filter-btn" data-day="8">Day 8</button>
+    <button class="filter-btn" data-day="9">Day 9</button>
+  </div>
+
+  <div class="grid" id="grid"></div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="this.classList.remove('open')">
+  <button class="lightbox-close">×</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+const SPOTS = [
+  // ===== DAY 1: KEF -> Reykjavik (Route 41) =====
+  {
+    name:"Vogastapi Cliffs Pull-off",
+    lat:64.0231, lon:-22.3672, day:1, detour:5,
+    shoot:"Pull-off on Route 41 with sweeping views over Faxaflói bay toward Snæfellsjökull on clear days. Shoot west across the water at golden hour.",
+    time:"Golden hour", img:null,
+    source:"r/VisitingIceland - Reykjanes scenic stops"
+  },
+  {
+    name:"Kúagerði Lava Coast Pull-off",
+    lat:64.0489, lon:-22.1956, day:1, detour:5,
+    shoot:"Moss-covered lava field meeting the sea right off Route 41. Wide low angle including foreground moss boulders and Mount Esja in the distance.",
+    time:"Any (overcast best for moss color)", img:null,
+    source:"iheartreykjavik.net hidden gems"
+  },
+  {
+    name:"Straumsvík Coastal Lava Pools",
+    lat:64.0517, lon:-22.0461, day:1, detour:5,
+    shoot:"Tidal lava pools and old fishing ruins beside the aluminum smelter road. Reflections of the sky in still pools at blue hour.",
+    time:"Blue hour", img:null,
+    source:"Guide to Iceland - Reykjanes blog"
+  },
+
+  // ===== DAY 2: Golden Circle =====
+  {
+    name:"Mosfellsheiði Horse Paddocks (Rt 36)",
+    lat:64.1842, lon:-21.5050, day:2, detour:0,
+    shoot:"Roadside paddocks of Icelandic horses just before Þingvellir. Pull onto the gravel shoulder; horses often approach the fence. Shoot tight portraits with mountains behind.",
+    time:"Any (soft overcast ideal)",
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Icelandic_horses_in_winter.jpg/640px-Icelandic_horses_in_winter.jpg",
+    source:"22places.com Iceland horse spots"
+  },
+  {
+    name:"Þingvallavatn South Shore Pull-off",
+    lat:64.1939, lon:-21.1014, day:2, detour:5,
+    shoot:"Quiet lay-by on Route 36 south of the park with wide reflections of the volcanic island in Iceland's largest lake. Long-lens compression of distant farms.",
+    time:"Sunrise", img:null,
+    source:"Chris Burkard Iceland portfolio notes"
+  },
+  {
+    name:"Laugarvatn Lake Steam Vents",
+    lat:64.2106, lon:-20.7322, day:2, detour:5,
+    shoot:"Geothermal steam rising from the lake's edge in cold air. Shoot from the south shore lay-by toward the mountains.",
+    time:"Cold morning", img:null,
+    source:"fullsuitcase.com Golden Circle"
+  },
+  {
+    name:"Faxi Waterfall (Vatnsleysufoss)",
+    lat:64.2106, lon:-20.3414, day:2, detour:10,
+    shoot:"Wide, shorter cousin of Gullfoss with a salmon ladder. Roadside parking on Route 30. Shoot from the south bank for the full curtain.",
+    time:"Any",
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Faxi_waterfall_-_panoramio.jpg/640px-Faxi_waterfall_-_panoramio.jpg",
+    source:"r/VisitingIceland Golden Circle add-ons"
+  },
+  {
+    name:"Skálholt Cathedral & Lonely Road",
+    lat:64.1247, lon:-20.5394, day:2, detour:10,
+    shoot:"Historic white cathedral isolated on a hill. Long approach road makes a great leading-line shot back toward the church.",
+    time:"Late afternoon", img:null,
+    source:"iheartreykjavik.net Golden Circle"
+  },
+
+  // ===== DAY 3: South Coast to Vík =====
+  {
+    name:"Hafnarfjall Slopes Pull-off (Rt 1)",
+    lat:63.7794, lon:-20.5408, day:3, detour:0,
+    shoot:"Long straight stretch of Ring Road between Hella and Hvolsvöllur framed by the Eyjafjallajökull massif. Classic 'lonely road to volcano' shot - stand on the shoulder facing east.",
+    time:"Morning backlight", img:null,
+    source:"Iurie Belegurschi tour locations"
+  },
+  {
+    name:"Eyjafjallajökull Foothills Horse Field",
+    lat:63.6244, lon:-19.7989, day:3, detour:0,
+    shoot:"Working farm with paddocks of Icelandic horses directly under Eyjafjallajökull. Pull off Route 1 just east of Seljalandsfoss turn-off.",
+    time:"Any",
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Icelandic_horse_in_pasture.jpg/640px-Icelandic_horse_in_pasture.jpg",
+    source:"r/iceland horse spotting thread"
+  },
+  {
+    name:"Drangshlíð Turf Houses (Drangurinn)",
+    lat:63.5258, lon:-19.6361, day:3, detour:5,
+    shoot:"Two preserved turf houses built into a giant boulder near Skógar. Tiny gravel turn-off from Route 1. Wide angle including the rock above.",
+    time:"Overcast or golden hour",
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Drangshl%C3%AD%C3%B0_turf_houses.jpg/640px-Drangshl%C3%AD%C3%B0_turf_houses.jpg",
+    source:"22places.com South Coast hidden gems"
+  },
+  {
+    name:"Skógafoss Top View Trail (no full Fimmvörðuháls)",
+    lat:63.5333, lon:-19.5108, day:3, detour:10,
+    shoot:"Stairs to the right of Skógafoss lead to a top-down view of the falls and the Skógá river snaking back into the highlands. Stop at the first viewing platform — ~10 min up.",
+    time:"Late afternoon", img:null,
+    source:"Guide to Iceland Skógafoss tips"
+  },
+  {
+    name:"Pétursey Hill (Rt 1 east of Skógar)",
+    lat:63.4719, lon:-19.4019, day:3, detour:0,
+    shoot:"Solitary green tuya rising from flat farmland — a classic Iceland 'mountain alone in a field' composition. Shoot from any of the gravel pull-offs on Route 1.",
+    time:"Sunset side-light", img:null,
+    source:"Chris Burkard South Coast roadside"
+  },
+  {
+    name:"Hjörleifshöfði (the Yoda Cave headland)",
+    lat:63.4153, lon:-18.7656, day:3, detour:15,
+    shoot:"Lone 221m headland visible from Route 1 east of Vík. Even without driving in, the pull-off on the Ring Road gives a striking foreground/headland composition.",
+    time:"Golden hour",
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Hj%C3%B6rleifsh%C3%B6f%C3%B0i.jpg/640px-Hj%C3%B6rleifsh%C3%B6f%C3%B0i.jpg",
+    source:"r/VisitingIceland Yoda Cave thread"
+  },
+
+  // ===== DAY 4: Vík -> Jökulsárlón -> Vestrahorn =====
+  {
+    name:"Mýrdalssandur Black Desert Pull-off",
+    lat:63.4733, lon:-18.5042, day:4, detour:0,
+    shoot:"Vast empty black sand plain east of Vík with Mýrdalsjökull glacier on the horizon. Use a single road sign or fencepost as scale.",
+    time:"Any", img:null,
+    source:"Iurie Belegurschi blog"
+  },
+  {
+    name:"Núpsstaður Old Farm & Chapel (viewable from road)",
+    lat:63.9714, lon:-17.5536, day:4, detour:5,
+    shoot:"Cluster of historic turf-roofed buildings against a cliff. Now closed to visitors but visible and photogenic from the gravel access road.",
+    time:"Soft light",
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/N%C3%BApssta%C3%B0ur.jpg/640px-N%C3%BApssta%C3%B0ur.jpg",
+    source:"Guide to Iceland turf buildings article"
+  },
+  {
+    name:"Skeiðarársandur Bridge Monument",
+    lat:63.9928, lon:-17.2675, day:4, detour:5,
+    shoot:"Twisted steel girders of the 1996 jökulhlaup-destroyed bridge, displayed roadside on Route 1. Powerful low-angle telephoto with Skeiðarárjökull in the background.",
+    time:"Any", img:null,
+    source:"r/VisitingIceland bridge monument thread"
+  },
+  {
+    name:"Svínafellsjökull Glacier Tongue Viewpoint",
+    lat:64.0083, lon:-16.8742, day:4, detour:10,
+    shoot:"Short gravel road off Route 1 leads to a parking area with a 5-minute walk to a glacier-tongue viewpoint. Used as a film location for Interstellar.",
+    time:"Overcast (best ice color)",
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Sv%C3%ADnafellsj%C3%B6kull_glacier.jpg/640px-Sv%C3%ADnafellsj%C3%B6kull_glacier.jpg",
+    source:"fullsuitcase.com glaciers"
+  },
+  {
+    name:"Fláajökull Pull-off",
+    lat:64.2483, lon:-15.5311, day:4, detour:10,
+    shoot:"Quiet glacier tongue with a small lagoon — almost no tourists. Short gravel detour from Route 1 east of Höfn.",
+    time:"Any", img:null,
+    source:"r/iceland quieter glaciers thread"
+  },
+  {
+    name:"Eystrahorn / Krossanesfjall (sister to Vestrahorn)",
+    lat:64.4108, lon:-14.5839, day:4, detour:10,
+    shoot:"Even more dramatic and far less visited than Vestrahorn. Pull off Route 1 at Hvalnes lighthouse for a black-sand beach with jagged peaks behind.",
+    time:"Golden hour",
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Eystrahorn.jpg/640px-Eystrahorn.jpg",
+    source:"22places.com East Iceland"
+  },
+
+  // ===== DAY 5: South Coast buffer day =====
+  {
+    name:"Sólheimajökull Glacier Tongue Pull-off",
+    lat:63.5306, lon:-19.3697, day:5, detour:10,
+    shoot:"Short gravel road off Route 1 to a parking lot with a 10-min flat walk to the glacier lagoon. Shoot the snout reflected in the lagoon at low light.",
+    time:"Overcast",
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/S%C3%B3lheimaj%C3%B6kull.jpg/640px-S%C3%B3lheimaj%C3%B6kull.jpg",
+    source:"Guide to Iceland glacier walks"
+  },
+  {
+    name:"Rútshellir Cave House",
+    lat:63.5256, lon:-19.6450, day:5, detour:0,
+    shoot:"Ancient man-made cave dwelling carved into a roadside cliff right beside Route 1 near Drangshlíð. Park on the shoulder; 1-minute walk.",
+    time:"Side light",
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/R%C3%BAtshellir.jpg/640px-R%C3%BAtshellir.jpg",
+    source:"iheartreykjavik.net cave houses"
+  },
+  {
+    name:"Þakgil Road Mountain Reflections",
+    lat:63.4789, lon:-18.8583, day:5, detour:15,
+    shoot:"First couple km of the Þakgil road (gravel but 2WD-passable in dry April) gives lonely-road compositions with green moss-covered cliffs.",
+    time:"Late afternoon", img:null,
+    source:"r/VisitingIceland Þakgil thread"
+  },
+
+  // ===== DAY 6: South -> West (Borgarnes) =====
+  {
+    name:"Hvalfjörður Old Coast Road (Rt 47)",
+    lat:64.3447, lon:-21.5142, day:6, detour:30,
+    shoot:"Skip the tunnel and take the scenic Route 47 around Hvalfjörður — old whaling station ruins, abandoned farms, and mirror-still fjord reflections at every turn.",
+    time:"Sunrise",
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hvalfj%C3%B6r%C3%B0ur.jpg/640px-Hvalfj%C3%B6r%C3%B0ur.jpg",
+    source:"22places.com hidden Iceland"
+  },
+  {
+    name:"Grábrók Crater Roadside View",
+    lat:64.7711, lon:-21.5306, day:6, detour:5,
+    shoot:"Perfect cinder cone right on Route 1 — viewable from the parking lot without the climb. Wide angle from across the road for the lava field foreground.",
+    time:"Any",
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Gr%C3%A1br%C3%B3k.jpg/640px-Gr%C3%A1br%C3%B3k.jpg",
+    source:"Guide to Iceland West Iceland"
+  },
+  {
+    name:"Borgarfjörður Bridge Pull-off",
+    lat:64.5444, lon:-21.9069, day:6, detour:0,
+    shoot:"Iceland's second-longest bridge stretching across the fjord. Park at the southern end and shoot the bridge as a leading line into the mountains.",
+    time:"Blue hour", img:null,
+    source:"r/iceland bridges thread"
+  },
+
+  // ===== DAY 7: Snæfellsnes south =====
+  {
+    name:"Eldborg Crater Distant View Pull-off",
+    lat:64.7967, lon:-22.3186, day:7, detour:5,
+    shoot:"Almost-perfect oval crater visible from a Route 54 pull-off near Snorrastaðir. Telephoto compression with farm buildings as scale.",
+    time:"Golden hour", img:null,
+    source:"fullsuitcase.com Snæfellsnes"
+  },
+  {
+    name:"Búðahraun Lava Field Roadside",
+    lat:64.8189, lon:-23.3867, day:7, detour:0,
+    shoot:"Carpet of fluffy moss-covered lava on Route 574 just before Búðakirkja. Low to the ground, foreground moss with the black church as a tiny dot in the distance.",
+    time:"Overcast", img:null,
+    source:"Iurie Belegurschi Snæfellsnes"
+  },
+  {
+    name:"Lóndrangar Distant Pull-off (Malarrif side)",
+    lat:64.7300, lon:-23.7867, day:7, detour:0,
+    shoot:"A second, less-visited pull-off west of the main Lóndrangar lot gives a profile view of the basalt pinnacles with wave-action foreground.",
+    time:"Stormy weather",
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/L%C3%B3ndrangar.jpg/640px-L%C3%B3ndrangar.jpg",
+    source:"r/VisitingIceland Snæfellsnes"
+  },
+  {
+    name:"Skarðsvík Golden Sand Beach",
+    lat:64.8786, lon:-23.9056, day:7, detour:10,
+    shoot:"Rare golden-sand beach (in a country of black beaches) backed by black lava cliffs. Short gravel road from Route 574 near Saxhóll.",
+    time:"Midday",
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Skar%C3%B0sv%C3%ADk_beach.jpg/640px-Skar%C3%B0sv%C3%ADk_beach.jpg",
+    source:"22places.com Snæfellsnes"
+  },
+
+  // ===== DAY 8: Snæfellsnes north -> Reykjavík =====
+  {
+    name:"Búlandshöfði Cliff Road Pull-off",
+    lat:64.9508, lon:-23.4400, day:8, detour:0,
+    shoot:"Dramatic high-cliff section of Route 54 between Ólafsvík and Grundarfjörður. Northern pull-off gives a stunning view back toward Kirkjufell on the horizon.",
+    time:"Late afternoon", img:null,
+    source:"Chris Burkard Snæfellsnes"
+  },
+  {
+    name:"Grundarfjörður Old Boat Wreck",
+    lat:64.9244, lon:-23.2606, day:8, detour:5,
+    shoot:"Rusted abandoned fishing boat near the Grundarfjörður harbor mouth. Foreground with Kirkjufell visible across the bay.",
+    time:"Blue hour", img:null,
+    source:"r/iceland abandoned boats"
+  },
+  {
+    name:"Bjarnarhöfn Shark Farm Drying Sheds",
+    lat:64.9883, lon:-22.9442, day:8, detour:5,
+    shoot:"Open-walled wooden sheds where hákarl is hung to dry — visible from outside the museum. Strong graphic composition; you don't need to enter or smell it.",
+    time:"Any", img:null,
+    source:"Guide to Iceland Snæfellsnes oddities"
+  },
+
+  // ===== DAY 9: Reykjanes peninsula =====
+  {
+    name:"Krýsuvíkurberg Sea Cliffs",
+    lat:63.8367, lon:-22.0731, day:9, detour:15,
+    shoot:"Massive 40m sea cliffs with seabird colonies. Gravel road from Route 42 — drivable in dry conditions. Stand well back from the unfenced edge.",
+    time:"Late afternoon",
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Kr%C3%BDsuv%C3%ADkurberg.jpg/640px-Kr%C3%BDsuv%C3%ADkurberg.jpg",
+    source:"r/VisitingIceland Reykjanes hidden"
+  },
+  {
+    name:"Selatangar Abandoned Fishing Station",
+    lat:63.8311, lon:-22.2172, day:9, detour:15,
+    shoot:"Stone ruins of a 19th-century fishing camp on a black-sand coastline. ~5 minute flat walk from the Route 427 parking area.",
+    time:"Golden hour", img:null,
+    source:"iheartreykjavik.net abandoned places"
+  },
+  {
+    name:"Krýsuvíkurkirkja (rebuilt black church)",
+    lat:63.8761, lon:-22.0578, day:9, detour:0,
+    shoot:"Tiny rebuilt black wooden church beside Route 42, isolated in a wide volcanic landscape. Symmetrical compositions work well.",
+    time:"Overcast",
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Kr%C3%BDsuv%C3%ADkurkirkja.jpg/640px-Kr%C3%BDsuv%C3%ADkurkirkja.jpg",
+    source:"22places.com Reykjanes"
+  },
+  {
+    name:"Garður Old Lighthouse (Garðskagaviti)",
+    lat:64.0808, lon:-22.6883, day:9, detour:15,
+    shoot:"Two lighthouses (one tall, one squat) on a windswept point at the very northwest tip of Reykjanes. Sunset photos out over the Atlantic.",
+    time:"Sunset",
+    img:"https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Gar%C3%B0skagaviti.jpg/640px-Gar%C3%B0skagaviti.jpg",
+    source:"Guide to Iceland Reykjanes"
+  }
+];
+
+const grid = document.getElementById('grid');
+const filters = document.getElementById('filters');
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+
+function mapsLink(lat,lon){return `https://www.google.com/maps/search/?api=1&query=${lat},${lon}`;}
+
+function render(filterDay){
+  grid.innerHTML='';
+  const list = filterDay==='all' ? SPOTS : SPOTS.filter(s=>String(s.day)===String(filterDay));
+  list.forEach(s=>{
+    const detourClass = s.detour===0?'zero':'';
+    const detourLabel = s.detour===0?'Roadside (0 min)':`Detour ${s.detour} min`;
+    const imgHTML = s.img
+      ? `<img class="card-img" src="${s.img}" alt="${s.name}" loading="lazy" onclick="openLightbox('${s.img}')" onerror="this.outerHTML='<div class=\\'card-img-placeholder\\'>Example photo not available — search &quot;${s.name}&quot; on Unsplash</div>'">`
+      : `<div class="card-img-placeholder">Example photo not available — search "${s.name}" on Unsplash on the day</div>`;
+    const card = document.createElement('div');
+    card.className='card';
+    card.innerHTML = `
+      ${imgHTML}
+      <div class="card-body">
+        <div class="card-title">${s.name}</div>
+        <div class="card-badges">
+          <span class="badge badge-day">Day ${s.day}</span>
+          <span class="badge badge-detour ${detourClass}">${detourLabel}</span>
+          <span class="badge badge-time">${s.time}</span>
+        </div>
+        <div class="card-desc">${s.shoot}</div>
+        <div class="card-meta"><strong>Coords:</strong> ${s.lat.toFixed(4)}, ${s.lon.toFixed(4)} &nbsp;·&nbsp; <strong>Source:</strong> ${s.source}</div>
+        <div class="card-actions">
+          <a class="btn btn-map" href="${mapsLink(s.lat,s.lon)}" target="_blank" rel="noopener">🗺️ Open in Maps</a>
+        </div>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+function openLightbox(src){
+  lightboxImg.src = src;
+  lightbox.classList.add('open');
+}
+
+filters.addEventListener('click',e=>{
+  if(!e.target.matches('.filter-btn')) return;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active');
+  render(e.target.dataset.day);
+});
+
+render('all');
+</script>
+</body>
+</html>

@@ -61,6 +61,7 @@
     { "slug": "hellnar", "name": "Hellnar & Fjöruhúsið Café", "emoji": "🏘️", "lat": 64.7506, "lon": -23.6483, "days": [7], "priority": "star", "region": "snaefellsnes" },
     { "slug": "bjarnarfoss", "name": "Bjarnarfoss", "emoji": "💧", "lat": 64.8125, "lon": -23.4047, "days": [7], "priority": "normal", "region": "snaefellsnes" },
     { "slug": "valahnukamol", "name": "Valahnúkamöl & Reykjanesviti", "emoji": "🏔️", "lat": 63.8131, "lon": -22.7050, "days": [9], "priority": "star", "region": "reykjanes" },
-    { "slug": "bridge-between-continents", "name": "Bridge Between Continents", "emoji": "🌉", "lat": 63.8683, "lon": -22.6747, "days": [9], "priority": "normal", "region": "reykjanes" }
+    { "slug": "bridge-between-continents", "name": "Bridge Between Continents", "emoji": "🌉", "lat": 63.8683, "lon": -22.6747, "days": [9], "priority": "normal", "region": "reykjanes" },
+    { "slug": "solheimasandur-plane", "name": "Sólheimasandur DC-3 Plane Wreck", "emoji": "✈️", "lat": 63.4593, "lon": -19.3645, "days": [3, 5], "priority": "normal", "region": "south-coast" }
   ]
 }
