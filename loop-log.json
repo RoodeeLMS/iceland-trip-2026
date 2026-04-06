@@ -1,6 +1,18 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-06T23:26:31.204635+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Data sources stable since last run. Day 1 still 75 km/h gusts forecast, Kp quiet (max 2.67). Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-06T23:26:31.034403+00:00",
+      "level": "suggestion",
+      "title": "Icelandic word of the day: 'rok'",
+      "message": "'Rok' = strong wind / gale (rhymes with 'rock'). You'll hear it on every weather update tomorrow. Useful pair: 'það er rok úti' = 'it's blowing a gale outside'. Also 'hvasst' (HVASST) = windy. Locals at the rental counter will respect you using either."
+    },
+    {
       "timestamp": "2026-04-06T21:26:36.434637+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -127,5 +139,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-06T21:26:36.434637+00:00"
+  "last_updated": "2026-04-06T23:26:31.204635+00:00"
 }
