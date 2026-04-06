@@ -56,6 +56,17 @@
         .visit-step-content .step-meta { font-size: 0.78em; color: #888; margin-top: 4px; }
         .researched-note { text-align: center; font-size: 0.78em; color: #888; margin-top: 20px; padding: 10px; }
         footer { background: var(--deep-navy); color: white; text-align: center; padding: 1.5rem; margin-top: 3rem; font-size: 0.85em; }
+    
+        /* Lightbox */
+        .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.92); display: none; align-items: center; justify-content: center; z-index: 9999; cursor: zoom-out; padding: 20px; }
+        .lightbox.open { display: flex; }
+        .lightbox img { max-width: 95vw; max-height: 92vh; object-fit: contain; box-shadow: 0 10px 40px rgba(0,0,0,0.6); border-radius: 4px; }
+        .lightbox .lb-caption { position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; color: #fff; font-size: 0.9em; opacity: 0.85; padding: 0 20px; }
+        .lightbox .lb-close { position: absolute; top: 20px; right: 24px; color: #fff; font-size: 2em; font-weight: 300; cursor: pointer; line-height: 1; opacity: 0.8; }
+        .lightbox .lb-close:hover { opacity: 1; }
+        .gallery img { cursor: zoom-in; }
+        .hero-image { cursor: zoom-in; }
+
     </style>
 </head>
 <body>
@@ -215,10 +226,48 @@
         <p>Iceland Trip 2026 | Part of the Sights guide</p>
     </footer>
 
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <span class="lb-close">×</span>
+        <img id="lightboxImg" src="" alt="">
+        <div class="lb-caption" id="lightboxCaption"></div>
+    </div>
+
     <script>
         function toggleMobileMenu() {
             document.getElementById('navMenu').classList.toggle('mobile-open');
         }
+    
+        // Lightbox: click hero or gallery images to zoom
+        (function initLightbox() {
+            const lb = document.getElementById('lightbox');
+            const lbImg = document.getElementById('lightboxImg');
+            const lbCap = document.getElementById('lightboxCaption');
+            function open(src, caption) {
+                lbImg.src = src;
+                lbCap.textContent = caption || '';
+                lb.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+            window.closeLightbox = function(e) {
+                if (e && e.target && e.target.tagName === 'IMG') return; // allow click on image without closing? No — close anyway
+                lb.classList.remove('open');
+                document.body.style.overflow = '';
+            };
+            // Hero
+            document.querySelectorAll('.hero-image').forEach(img => {
+                img.addEventListener('click', () => open(img.src, img.alt));
+            });
+            // Gallery
+            document.querySelectorAll('.gallery img').forEach(img => {
+                img.addEventListener('click', e => {
+                    e.stopPropagation();
+                    const cap = img.parentElement.querySelector('.gallery-caption');
+                    open(img.src, cap ? cap.textContent : img.alt);
+                });
+            });
+            // Esc key closes
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+        })();
     </script>
 </body>
 </html>
