@@ -1,6 +1,54 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-06T17:20:18.852222+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. SafeTravel+Reynisfjara unchanged (orange), Day 1 forecast shows wet/gusty Reykjavik arrival, Kp quiet, vedur partial. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-06T17:20:18.641709+00:00",
+      "level": "suggestion",
+      "title": "Pack rain cover now, not at KEF",
+      "message": "Forecast for tomorrow's Reykjavik arrival is 10mm rain + 66 km/h gusts. Before leaving BKK, move waterproof shell & backpack rain cover to carry-on top layer — you'll want them walking from the FI529 arrivals hall to the rental pickup, not buried in checked luggage."
+    },
+    {
+      "timestamp": "2026-04-06T17:20:18.462746+00:00",
+      "level": "info",
+      "title": "vedur.is check: partial",
+      "message": "Earthquakes page returned suspicious data (possible fetch artifact) — will retry next run. Warnings page 404 today. No actionable alerts extracted this run."
+    },
+    {
+      "timestamp": "2026-04-06T17:20:06.590152+00:00",
+      "level": "info",
+      "title": "Travel day reminder (Apr 7-8)",
+      "message": "Check QR829 BKK 20:25 departure on FlightAware before heading to Suvarnabhumi. Gate S111A previously confirmed. Iran/Qatar transit corridor remains the watch item — verify no last-minute rerouting alerts on qatarairways.com."
+    },
+    {
+      "timestamp": "2026-04-06T17:20:06.437555+00:00",
+      "level": "info",
+      "title": "Aurora outlook: quiet",
+      "message": "NOAA Kp forecast Apr 7-9 nights all <3. No aurora alerts warranted. Will re-check as trip progresses."
+    },
+    {
+      "timestamp": "2026-04-06T17:20:06.276029+00:00",
+      "level": "warning",
+      "title": "Day 1 (Apr 8) Reykjavik: wet & gusty arrival",
+      "message": "Open-Meteo forecast: 4-8°C, 10mm rain, wind max 37 km/h with gusts to 66 km/h (~18 m/s). Expect wet, windy arrival day. Waterproof shell + pack cover essential walking Reykjavik on foot. Exposed sights like Grótta risky in gusts; car doors need firm grip."
+    },
+    {
+      "timestamp": "2026-04-06T17:19:55.086594+00:00",
+      "level": "info",
+      "title": "Reynisfjara: orange (unchanged)",
+      "message": "Beach accessible from viewpoint only. Sneaker waves not at red. Day 3 (Apr 10) planning should assume viewpoint-only access."
+    },
+    {
+      "timestamp": "2026-04-06T17:19:54.902055+00:00",
+      "level": "info",
+      "title": "SafeTravel pins: no changes",
+      "message": "22 active pins unchanged since last fetch."
+    },
+    {
       "timestamp": "2026-04-06T11:23:37.063710+00:00",
       "level": "suggestion",
       "title": "Backup plan for Day 9 (Reykjanes)",
@@ -49,5 +97,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-06T11:23:37.063710+00:00"
+  "last_updated": "2026-04-06T17:20:18.852222+00:00"
 }
