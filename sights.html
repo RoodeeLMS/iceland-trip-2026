@@ -1452,13 +1452,46 @@
             document.getElementById('navMenu').classList.toggle('mobile-open');
         }
 
-        // Fetch SafeTravel.is alerts and match them to specific sights
-        // Alerts mentioning a sight name get injected as warning banners on that sight's card
+        // Fetch SafeTravel.is alerts + point warnings and match them to specific sights
+        // Combines two sources:
+        //   1. WP REST API (ICE-SAR press-release style alerts)
+        //   2. Static mirror of the safetravel.is map point warnings (safetravel_pins.json)
         async function fetchSightAlerts() {
             try {
-                const res = await fetch('https://safetravel.is/wp-json/wp/v2/alert?per_page=20&_fields=id,date,title,excerpt,content,link');
-                if (!res.ok) return;
-                const alerts = await res.json();
+                // Fetch ICE-SAR alerts from WP API + local mirror of map point warnings
+                const [wpRes, pinsRes] = await Promise.all([
+                    fetch('https://safetravel.is/wp-json/wp/v2/alert?per_page=20&_fields=id,date,title,excerpt,content,link').catch(() => null),
+                    fetch('safetravel_pins.json?t=' + Date.now()).catch(() => null)
+                ]);
+
+                // === Combine both sources into a unified alert list ===
+                let alerts = [];
+
+                if (wpRes && wpRes.ok) {
+                    const wpAlerts = await wpRes.json();
+                    alerts = alerts.concat(wpAlerts || []);
+                }
+
+                if (pinsRes && pinsRes.ok) {
+                    const pinsData = await pinsRes.json();
+                    if (pinsData && pinsData.pins) {
+                        // Convert pins into alert-like objects so the existing matching logic works
+                        pinsData.pins.forEach(p => {
+                            const title = p.title || 'Warning';
+                            const text = p.text || '';
+                            const color = p.condition_color || 'yellow';
+                            alerts.push({
+                                id: 'pin-' + title.replace(/\s+/g, '-').toLowerCase(),
+                                title: { rendered: `[${color.toUpperCase()}] ${title}` },
+                                excerpt: { rendered: text },
+                                content: { rendered: text },
+                                link: 'https://safetravel.is/travel-conditions/',
+                                _pin_color: color
+                            });
+                        });
+                    }
+                }
+
                 if (!alerts || alerts.length === 0) return;
 
                 // Build searchable text per alert
