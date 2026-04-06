@@ -413,6 +413,33 @@
         }
 
         /* Timeline Styles */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 10px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+        .tl-card {
+            background: white;
+            border-radius: 8px;
+            padding: 10px 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--primary-blue);
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.15s, box-shadow 0.15s;
+            display: block;
+        }
+        .tl-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.1); }
+        .tl-card.bonus { border-left-color: var(--sunset-gold); background: linear-gradient(135deg, #fffbeb, #fef3c7); }
+        .tl-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+        .tl-date { font-size: 0.72em; color: #888; font-family: 'JetBrains Mono', monospace; }
+        .tl-tag { font-size: 0.68em; background: var(--primary-blue); color: white; padding: 1px 6px; border-radius: 8px; font-weight: 600; }
+        .tl-card.bonus .tl-tag { background: var(--sunset-gold); }
+        .tl-title { font-weight: 700; font-size: 0.95em; color: var(--deep-navy); margin-bottom: 4px; }
+        .tl-body { font-size: 0.78em; color: #555; line-height: 1.35; }
+
         .timeline-container {
             position: relative;
             max-width: 1200px;
@@ -825,175 +852,62 @@
             <h2 style="color: var(--primary-blue); font-size: 2em; margin-bottom: 10px; text-align: center; font-family: 'Playfair Display', serif;">Your 10-Day Iceland Journey</h2>
             <p style="text-align: center; color: #666; margin-bottom: 40px; font-size: 1.1em;">South Coast & Snaefellsnes Peninsula Adventure</p>
 
-            <div class="timeline-container">
-                <!-- Bonus: Berlin -->
-                <div class="timeline-row timeline-left">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Apr 8 — Bonus</span>
-                        <h3 class="timeline-title">🇩🇪 Berlin Layover</h3>
-                        <p class="timeline-body">
-                            • Arrive BER 06:10 from Doha<br>
-                            • Same-day layover in Berlin<br>
-                            • Brandenburg Gate, East Side Gallery<br>
-                            • Currywurst & Berlin culture<br>
-                            • Icelandair FI511 BER→KEF, arrive 15:50
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Day 1 -->
-                <div class="timeline-row timeline-right">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Apr 8 — Day 1</span>
-                        <h3 class="timeline-title">🛬 Arrival in Reykjavik</h3>
-                        <p class="timeline-body">
-                            • Arrive KEF 15:50 from Berlin<br>
-                            • Pick up rental car at KEF<br>
-                            • Drive to Reykjavik (~50 min)<br>
-                            • Kronan evening shop (primary stockpile)<br>
-                            • Explore Laugavegur & Hallgrimskirkja<br>
-                            • Stay: Thingholt Hotel Apartments
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Day 2 -->
-                <div class="timeline-row timeline-left">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Apr 9 — Day 2</span>
-                        <h3 class="timeline-title">🏞️ Golden Circle</h3>
-                        <p class="timeline-body">
-                            • Full day from Reykjavik<br>
-                            • Thingvellir tectonic plates<br>
-                            • Geysir & Strokkur eruptions<br>
-                            • Gullfoss waterfall<br>
-                            • Stay: Guesthouse Spuni
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Day 3 -->
-                <div class="timeline-row timeline-right">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Apr 10 — Day 3</span>
-                        <h3 class="timeline-title">💧 Waterfalls & Black Sand</h3>
-                        <p class="timeline-body">
-                            • Seljalandsfoss (walk behind it!)<br>
-                            • Gljufrabui (hidden canyon fall)<br>
-                            • Skogafoss + Kvernufoss<br>
-                            • Reynisfjara black sand beach<br>
-                            • <strong>Stock up at Kronan Vik!</strong>
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Day 4 -->
-                <div class="timeline-row timeline-right">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Apr 11 — Day 4</span>
-                        <h3 class="timeline-title">🧊 Canyons, Glaciers & Ice Lagoons</h3>
-                        <p class="timeline-body">
-                            • Eldhraun lava field (no walking on moss!)<br>
-                            • Mulagljufur Canyon hike<br>
-                            • Skaftafell & Svartifoss<br>
-                            • Jokulsarlon glacier lagoon<br>
-                            • Diamond Beach sunset
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Day 5 -->
-                <div class="timeline-row timeline-left">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Apr 12 — Day 5</span>
-                        <h3 class="timeline-title">🔄 Drive West</h3>
-                        <p class="timeline-body">
-                            • Optional: Vestrahorn sunrise<br>
-                            • Hofskirkja turf church<br>
-                            • Dverghamrar dwarf cliffs<br>
-                            • Revisit any missed spots<br>
-                            • Drive to Hvolsvollur
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Day 6 -->
-                <div class="timeline-row timeline-right">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Apr 13 — Day 6</span>
-                        <h3 class="timeline-title">♨️ Hot River & Journey North</h3>
-                        <p class="timeline-body">
-                            • Reykjadalur hot river (3km hike)<br>
-                            • Bathe in naturally heated river<br>
-                            • Hraunfossar & Barnafoss<br>
-                            • Krauma geothermal baths<br>
-                            • Drive to Borgarnes
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Day 7 -->
-                <div class="timeline-row timeline-left">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Apr 14 — Day 7</span>
-                        <h3 class="timeline-title">⛰️ Snaefellsnes South</h3>
-                        <p class="timeline-body">
-                            • Svortuloft orange lighthouse<br>
-                            • Djupalonssandur lifting stones<br>
-                            • Arnarstapi & Gatklettur arch<br>
-                            • Raudfeldsgja gorge<br>
-                            • Budakirkja black church<br>
-                            • Ytri-Tunga seal beach
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Day 8 -->
-                <div class="timeline-row timeline-right">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Apr 15 — Day 8</span>
-                        <h3 class="timeline-title">🏔️ Snaefellsnes North</h3>
-                        <p class="timeline-body">
-                            • Berserkjahraun lava field (4WD)<br>
-                            • Stykkisholmur harbor town<br>
-                            • Library of Water art installation<br>
-                            • Selvallafoss (walk behind it!)<br>
-                            • Kirkjufell sunset photo
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Day 9 -->
-                <div class="timeline-row timeline-left">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Apr 16 — Day 9</span>
-                        <h3 class="timeline-title">🌊 Reykjavik, Reykjanes & Blue Lagoon</h3>
-                        <p class="timeline-body">
-                            • Morning in Reykjavik<br>
-                            • Kleifarvatn moody lake<br>
-                            • Seltun geothermal area<br>
-                            • Brimketill & Gunnuhver<br>
-                            • Blue Lagoon (pre-book!)<br>
-                            • Final dinner in Keflavik
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Day 10 -->
-                <div class="timeline-row timeline-right">
-                    <div class="timeline-content">
-                        <span class="timeline-date">Apr 17 — Day 10</span>
-                        <h3 class="timeline-title">✈️ Departure via Frankfurt 🇩🇪</h3>
-                        <p class="timeline-body">
-                            • Return rental car, fly KEF 07:20<br>
-                            • Icelandair FI520 → Frankfurt 13:00<br>
-                            • 🇩🇪 ~6hrs free: Römerberg, Main River,<br>
-                            &nbsp;&nbsp;Kleinmarkthalle, Zeil shopping<br>
-                            • QR72 FRA→DOH 21:55<br>
-                            • QR828 DOH→BKK, arrive Apr 18
-                        </p>
-                    </div>
-                </div>
+            <div class="timeline-grid">
+                <a href="itinerary.html" class="tl-card bonus">
+                    <div class="tl-head"><span class="tl-date">Apr 8</span><span class="tl-tag">Bonus</span></div>
+                    <div class="tl-title">🇩🇪 Berlin Layover</div>
+                    <div class="tl-body">Arrive BER 06:10, quick city visit (Brandenburg Gate), depart FI529 14:05</div>
+                </a>
+                <a href="itinerary.html" class="tl-card">
+                    <div class="tl-head"><span class="tl-date">Apr 8</span><span class="tl-tag">Day 1</span></div>
+                    <div class="tl-title">🛬 Arrive Reykjavik</div>
+                    <div class="tl-body">KEF 15:50 → rental car → Reykjavik → Kronan shop, Hallgrimskirkja</div>
+                </a>
+                <a href="itinerary.html" class="tl-card">
+                    <div class="tl-head"><span class="tl-date">Apr 9</span><span class="tl-tag">Day 2</span></div>
+                    <div class="tl-title">🏞️ Golden Circle</div>
+                    <div class="tl-body">Thingvellir · Geysir · Gullfoss · Kerid · Bruarfoss · Fridheimar lunch</div>
+                </a>
+                <a href="itinerary.html" class="tl-card">
+                    <div class="tl-head"><span class="tl-date">Apr 10</span><span class="tl-tag">Day 3</span></div>
+                    <div class="tl-title">💧 Waterfalls & Vik</div>
+                    <div class="tl-body">Seljalandsfoss · Skogafoss · Reynisfjara · Kronan Vik (critical stock!)</div>
+                </a>
+                <a href="itinerary.html" class="tl-card">
+                    <div class="tl-head"><span class="tl-date">Apr 11</span><span class="tl-tag">Day 4</span></div>
+                    <div class="tl-title">🧊 Glaciers</div>
+                    <div class="tl-body">Fjadrargljufur · Skaftafell/Svartifoss · Jokulsarlon · Diamond Beach</div>
+                </a>
+                <a href="itinerary.html" class="tl-card">
+                    <div class="tl-head"><span class="tl-date">Apr 12</span><span class="tl-tag">Day 5</span></div>
+                    <div class="tl-title">🔄 Drive West</div>
+                    <div class="tl-body">Vestrahorn sunrise · revisit south coast spots · drive to Hvolsvollur</div>
+                </a>
+                <a href="itinerary.html" class="tl-card">
+                    <div class="tl-head"><span class="tl-date">Apr 13</span><span class="tl-tag">Day 6</span></div>
+                    <div class="tl-title">💦 West Iceland</div>
+                    <div class="tl-body">Hraunfossar · Barnafoss · Deildartunguhver · drive to Borgarnes</div>
+                </a>
+                <a href="itinerary.html" class="tl-card">
+                    <div class="tl-head"><span class="tl-date">Apr 14</span><span class="tl-tag">Day 7</span></div>
+                    <div class="tl-title">⛰️ Snaefellsnes S</div>
+                    <div class="tl-body">Ytri-Tunga seals · Budakirkja · Arnarstapi · Djupalonssandur · Londrangar</div>
+                </a>
+                <a href="itinerary.html" class="tl-card">
+                    <div class="tl-head"><span class="tl-date">Apr 15</span><span class="tl-tag">Day 8</span></div>
+                    <div class="tl-title">🏔️ Snaefellsnes N</div>
+                    <div class="tl-body">Kirkjufell · Stykkisholmur · Berserkjahraun · Selvallafoss</div>
+                </a>
+                <a href="itinerary.html" class="tl-card">
+                    <div class="tl-head"><span class="tl-date">Apr 16</span><span class="tl-tag">Day 9</span></div>
+                    <div class="tl-title">🌋 Reykjanes</div>
+                    <div class="tl-body">Kleifarvatn · Seltun · Gunnuhver · Brimketill · Blue Lagoon (pre-book)</div>
+                </a>
+                <a href="itinerary.html" class="tl-card">
+                    <div class="tl-head"><span class="tl-date">Apr 17</span><span class="tl-tag">Day 10</span></div>
+                    <div class="tl-title">✈️ Departure</div>
+                    <div class="tl-body">FI520 KEF 07:20 → FRA 13:00 · QR068 FRA 16:10 → DOH → QR828 → BKK Apr 18</div>
+                </a>
             </div>
         </div>
 
