@@ -146,41 +146,317 @@
 
     <div class="container">
 
-        <!-- Live Road Conditions -->
-        <div class="section" id="live-conditions">
-            <h2>🛣️ Live Road Conditions</h2>
-            <div class="card">
-                <p style="font-size: 0.9em; color: #666; margin-bottom: 15px;">Live data from Icelandic Road Administration via <a href="https://safetravel.is/" target="_blank" style="color: var(--primary-blue);">safetravel.is</a> — auto-refreshes every 30 minutes. Only sections relevant to YOUR route are shown.</p>
+        <!-- Day-by-Day Driving Info -->
+        <div class="section">
+            <h2>📍 Day-by-Day Driving Info</h2>
+            <p style="margin-bottom: 15px; color: #666; font-size: 0.9em;">Live road conditions, webcams, parking, and fuel — all grouped per trip day. Live data from <a href="https://safetravel.is/" target="_blank" style="color: var(--primary-blue);">safetravel.is</a> auto-refreshes every 30 min. Most parking paid via the <strong>Parka app</strong>. Fuel: ~฿88/liter. Full tank (60L): ~฿5,250. Self-service pumps need <strong>chip+PIN</strong>. Estimated totals: parking <strong>~฿3,000-3,750</strong>, fuel <strong>~฿10,500-15,750</strong>.</p>
 
-                <div id="roadSummary" style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px;">
-                    <div style="color: #888;">Loading road data...</div>
-                </div>
-
-                <h3 style="font-size: 1em; color: var(--primary-blue); margin: 15px 0 8px;">Conditions on Your Route (grouped by day)</h3>
-                <div id="routeConditions">
-                    <div style="color: #888;">Loading...</div>
-                </div>
-
-                <h3 style="font-size: 1em; color: var(--primary-blue); margin: 20px 0 8px;">📹 Live Road Cameras on Your Route</h3>
-                <p style="font-size: 0.82em; color: #666; margin-bottom: 10px;">Real webcams from Vegagerdin — click to enlarge. Reload the page for fresh images.</p>
-                <div id="roadCameras" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px;">
-                    <div style="color: #888;">Loading cameras...</div>
-                </div>
-
-                <h3 style="font-size: 1em; color: var(--primary-blue); margin: 20px 0 8px;">Weather at Key Stations (live)</h3>
-                <div id="weatherStations" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px;">
-                    <div style="color: #888;">Loading...</div>
-                </div>
-
-                <div style="margin-top: 15px; padding: 10px 14px; background: #f0f9ff; border-radius: 6px; font-size: 0.82em; color: #555;">
-                    <strong>Legend:</strong>
-                    <span style="background: #d1fae5; color: #065f46; padding: 2px 8px; border-radius: 10px; margin: 0 4px;">✅ Passable</span>
-                    <span style="background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 10px; margin: 0 4px;">⚠️ Difficult</span>
-                    <span style="background: #fef2f2; color: #991b1b; padding: 2px 8px; border-radius: 10px; margin: 0 4px;">🚫 Impassable</span>
-                    <span style="background: #e0e7ff; color: #3730a3; padding: 2px 8px; border-radius: 10px; margin: 0 4px;">❄️ Winter closed</span>
-                </div>
-                <p id="lastUpdatedDriving" style="margin-top: 10px; text-align: center; font-size: 0.8em; color: #888;">Loading...</p>
+            <div id="roadSummary" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px;">
+                <div style="color: #888;">Loading live road status...</div>
             </div>
+            <div style="padding: 8px 12px; background: #f0f9ff; border-radius: 6px; font-size: 0.78em; color: #555; margin-bottom: 15px;">
+                <strong>Legend:</strong>
+                <span style="background: #d1fae5; color: #065f46; padding: 1px 6px; border-radius: 8px; margin: 0 3px;">✅ Passable</span>
+                <span style="background: #fef3c7; color: #92400e; padding: 1px 6px; border-radius: 8px; margin: 0 3px;">⚠️ Difficult</span>
+                <span style="background: #fef2f2; color: #991b1b; padding: 1px 6px; border-radius: 8px; margin: 0 3px;">🚫 Impassable</span>
+                <span style="background: #e0e7ff; color: #3730a3; padding: 1px 6px; border-radius: 8px; margin: 0 3px;">❄️ Winter closed</span>
+                <span id="lastUpdatedDriving" style="margin-left: 8px; color: #999;">Loading...</span>
+            </div>
+
+            <div class="card">
+                <h3>Day 1 (Apr 8) — Reykjavik Arrival</h3>
+                <div class="day-road-conditions" data-day="1" style="margin-top: 10px; margin-bottom: 15px;">
+                    <h4 style="color: #666; font-size: 0.9em;">🛣️ Live Road Conditions</h4>
+                    <div class="day-roads" data-day="1" style="font-size: 0.85em;"><span style="color:#888;">Loading...</span></div>
+                    <div class="day-cameras" data-day="1" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; margin-top: 10px;"></div>
+                </div>
+                <h4>🅿️ Parking</h4>
+                <table class="fee-table">
+                    <thead><tr><th>Location</th><th>Parking</th><th>THB</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Thingholt Hotel area</td><td>Zone P2/P3</td><td>~฿50-80/hr</td><td>Free after 18:00 & weekends. Check hotel for parking included</td></tr>
+                        <tr><td>Hallgrimskirkja</td><td>Street parking</td><td>~฿50-80/hr</td><td>Limited spots, try Njarðargata street</td></tr>
+                        <tr><td>Harpa / Waterfront</td><td>Harpa underground</td><td>~฿100/hr</td><td>Convenient but pricier</td></tr>
+                        <tr><td>Kronan (Fiskislod)</td><td>Free</td><td>Free</td><td>Customer parking available</td></tr>
+                    </tbody>
+                </table>
+                <h4>⛽ Gas Stations</h4>
+                <table class="fee-table">
+                    <thead><tr><th>Station</th><th>Location</th><th>Type</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>N1 Keflavik</strong></td><td>Near airport</td><td>Staffed</td><td>24hr self-service available</td></tr>
+                        <tr><td><strong>Orkan Keflavik</strong></td><td>Keflavik</td><td>Self-service</td><td>24hr</td></tr>
+                        <tr><td><strong>Orkan Reykjavik</strong></td><td>Multiple locations</td><td>Self-service</td><td>24hr, cheapest chain</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>Day 2 (Apr 9) — Golden Circle</h3>
+                <div class="day-road-conditions" data-day="2" style="margin-top: 10px; margin-bottom: 15px;">
+                    <h4 style="color: #666; font-size: 0.9em;">🛣️ Live Road Conditions</h4>
+                    <div class="day-roads" data-day="2" style="font-size: 0.85em;"><span style="color:#888;">Loading...</span></div>
+                    <div class="day-cameras" data-day="2" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; margin-top: 10px;"></div>
+                </div>
+                <h4>🅿️ Parking</h4>
+                <table class="fee-table">
+                    <thead><tr><th>Location</th><th>Parking (ISK)</th><th>THB</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Thingvellir National Park</td><td>1,000 ISK</td><td>~฿250</td><td>Parka app. Multiple lots (P1-P5). P2 is closest to Almannagjá rift</td></tr>
+                        <tr><td>Bruarfoss</td><td>750 ISK</td><td>~฿190</td><td>Parka app. Covers 4 hours. 2,000 ISK/hr overtime!</td></tr>
+                        <tr><td>Geysir</td><td>1,000 ISK</td><td>~฿250</td><td>Parka app. Valid 8 hours. Large lot, rarely full</td></tr>
+                        <tr><td>Gullfoss</td><td>Free</td><td>Free</td><td>Large free parking lot. Upper & lower lots available</td></tr>
+                        <tr><td>Kerid Crater</td><td>600 ISK</td><td>~฿150</td><td>Pay at kiosk. Includes crater access</td></tr>
+                        <tr><td>Fridheimar</td><td>Free</td><td>Free</td><td>Restaurant parking</td></tr>
+                    </tbody>
+                </table>
+                <h4>⛽ Gas Stations</h4>
+                <table class="fee-table">
+                    <thead><tr><th>Station</th><th>Location</th><th>Type</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>N1 Selfoss</strong></td><td>Austurvegi 48, Selfoss</td><td>Staffed</td><td>Mon-Sat 07:00-23:30</td></tr>
+                        <tr><td><strong>Orkan Selfoss</strong></td><td>Selfoss</td><td>Self-service</td><td>24hr</td></tr>
+                        <tr><td><strong>N1 Hvolsvollur</strong></td><td>Austurvegi 3</td><td>Staffed</td><td>08:00-20:00, has food</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>Day 3 (Apr 10) — South Coast Waterfalls & Vik</h3>
+                <div class="day-road-conditions" data-day="3" style="margin-top: 10px; margin-bottom: 15px;">
+                    <h4 style="color: #666; font-size: 0.9em;">🛣️ Live Road Conditions</h4>
+                    <div class="day-roads" data-day="3" style="font-size: 0.85em;"><span style="color:#888;">Loading...</span></div>
+                    <div class="day-cameras" data-day="3" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; margin-top: 10px;"></div>
+                </div>
+                <h4>🅿️ Parking</h4>
+                <table class="fee-table">
+                    <thead><tr><th>Location</th><th>Parking (ISK)</th><th>THB</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Seljalandsfoss</td><td>1,000 ISK</td><td>~฿250</td><td>Parka app. Same ticket covers Gljufrabui (500m walk)</td></tr>
+                        <tr><td>Gljufrabui</td><td>Included above</td><td>—</td><td>Walk from Seljalandsfoss parking</td></tr>
+                        <tr><td>Skogafoss</td><td>1,000 ISK</td><td>~฿250</td><td>Parka app. Large lot at base of waterfall</td></tr>
+                        <tr><td>Kvernufoss</td><td>Free</td><td>Free</td><td>Park at Skogar Museum, walk 10 min</td></tr>
+                        <tr><td>Reynisfjara (Black Beach)</td><td>750-1,000 ISK</td><td>~฿190-250</td><td>Lower lot 1,000 ISK / Upper lot 750 ISK. Parka app</td></tr>
+                    </tbody>
+                </table>
+                <h4>⛽ Gas Stations</h4>
+                <table class="fee-table">
+                    <thead><tr><th>Station</th><th>Location</th><th>Type</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>N1 Hvolsvollur</strong></td><td>Austurvegi 3</td><td>Staffed</td><td>Fill up in the morning before heading east</td></tr>
+                        <tr><td><strong>N1 Vik</strong></td><td>Austurvegi 18, Vik</td><td>Staffed</td><td>Has restaurant. <strong>FILL UP HERE before heading to Jokulsarlon!</strong></td></tr>
+                        <tr><td><strong>Orkan Vik</strong></td><td>Vik town</td><td>Self-service</td><td>24hr</td></tr>
+                    </tbody>
+                </table>
+                <div class="danger-box">
+                    <strong>⚠️ Critical:</strong> Between Vik and Hofn is ~260 km with only ONE gas station (Kirkjubaejarklaustur). <strong>Fill up in Vik before heading east!</strong>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Day 4 (Apr 11) — Glaciers & Jokulsarlon</h3>
+                <div class="day-road-conditions" data-day="4" style="margin-top: 10px; margin-bottom: 15px;">
+                    <h4 style="color: #666; font-size: 0.9em;">🛣️ Live Road Conditions</h4>
+                    <div class="day-roads" data-day="4" style="font-size: 0.85em;"><span style="color:#888;">Loading...</span></div>
+                    <div class="day-cameras" data-day="4" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; margin-top: 10px;"></div>
+                </div>
+                <h4>🅿️ Parking</h4>
+                <table class="fee-table">
+                    <thead><tr><th>Location</th><th>Parking (ISK)</th><th>THB</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Fjadrargljufur Canyon</td><td>1,000 ISK</td><td>~฿250</td><td>Parka app. May be closed in April — check at site</td></tr>
+                        <tr><td>Skaftafell / Svartifoss</td><td>1,040 ISK</td><td>~฿260</td><td>Parka app. 50% discount if you also park at Jokulsarlon same day!</td></tr>
+                        <tr><td>Jokulsarlon Glacier Lagoon</td><td>1,000 ISK</td><td>~฿250</td><td>Parka app. 50% discount if parked at Skaftafell same day</td></tr>
+                        <tr><td>Diamond Beach</td><td>Free</td><td>Free</td><td>Small lot across the road from Jokulsarlon</td></tr>
+                        <tr><td>Fjallsarlon</td><td>Free</td><td>Free</td><td>Smaller, quieter alternative to Jokulsarlon</td></tr>
+                    </tbody>
+                </table>
+                <div class="tip-box">
+                    <strong>💡 Save 50%:</strong> Skaftafell + Jokulsarlon are both in Vatnajokull National Park. Park at both on the same day and get 50% off the second parking fee!
+                </div>
+                <h4>⛽ Gas Stations</h4>
+                <table class="fee-table">
+                    <thead><tr><th>Station</th><th>Location</th><th>Type</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>N1 Kirkjubaejarklaustur</strong></td><td>Klausturvegi</td><td>Staffed</td><td><strong>Only station between Vik and Hofn (~180 km gap)</strong></td></tr>
+                        <tr><td><strong>N1 Hofn</strong></td><td>Vesturbraut 1, Hofn</td><td>Staffed</td><td>Mon-Fri 08:00-22:00, Sat-Sun 09:00-22:00</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>Day 5 (Apr 12) — Drive West (Return)</h3>
+                <div class="day-road-conditions" data-day="5" style="margin-top: 10px; margin-bottom: 15px;">
+                    <h4 style="color: #666; font-size: 0.9em;">🛣️ Live Road Conditions</h4>
+                    <div class="day-roads" data-day="5" style="font-size: 0.85em;"><span style="color:#888;">Loading...</span></div>
+                    <div class="day-cameras" data-day="5" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; margin-top: 10px;"></div>
+                </div>
+                <h4>🅿️ Parking</h4>
+                <table class="fee-table">
+                    <thead><tr><th>Location</th><th>Parking (ISK)</th><th>THB</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Vestrahorn / Stokksnes</td><td>1,000 ISK</td><td>~฿250</td><td>Pay at Viking Cafe. Includes beach access</td></tr>
+                        <tr><td>Hofskirkja Turf Church</td><td>Free</td><td>Free</td><td>Small pullover on Route 1</td></tr>
+                        <tr><td>Dverghamrar</td><td>Free</td><td>Free</td><td>Small roadside parking</td></tr>
+                    </tbody>
+                </table>
+                <h4>⛽ Gas Stations</h4>
+                <table class="fee-table">
+                    <thead><tr><th>Station</th><th>Location</th><th>Type</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>N1 Hofn</strong></td><td>Vesturbraut 1</td><td>Staffed</td><td>If needed at start of day</td></tr>
+                        <tr><td><strong>N1 Kirkjubaejarklaustur</strong></td><td>Klausturvegi</td><td>Staffed</td><td>Emergency only</td></tr>
+                        <tr><td><strong>N1 Vik</strong></td><td>Austurvegi 18</td><td>Staffed</td><td>Refuel on return</td></tr>
+                        <tr><td><strong>N1 Hvolsvollur</strong></td><td>Austurvegi 3</td><td>Staffed</td><td>Final top-up before Stora Mork</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>Day 6 (Apr 13) — Waterfalls & Borgarnes</h3>
+                <div class="day-road-conditions" data-day="6" style="margin-top: 10px; margin-bottom: 15px;">
+                    <h4 style="color: #666; font-size: 0.9em;">🛣️ Live Road Conditions</h4>
+                    <div class="day-roads" data-day="6" style="font-size: 0.85em;"><span style="color:#888;">Loading...</span></div>
+                    <div class="day-cameras" data-day="6" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; margin-top: 10px;"></div>
+                </div>
+                <h4>🅿️ Parking</h4>
+                <table class="fee-table">
+                    <thead><tr><th>Location</th><th>Parking (ISK)</th><th>THB</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Hraunfossar / Barnafoss</td><td>Free</td><td>Free</td><td>Free parking lot at the site — main stop of the day</td></tr>
+                        <tr><td>Deildartunguhver</td><td>Free</td><td>Free</td><td>Europe's most powerful hot spring. Free parking</td></tr>
+                        <tr><td>Krauma Geothermal Baths</td><td>Free</td><td>Free</td><td>Customer parking. Entry fee separate</td></tr>
+                    </tbody>
+                </table>
+                <h4>⛽ Gas Stations</h4>
+                <table class="fee-table">
+                    <thead><tr><th>Station</th><th>Location</th><th>Type</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Orkan Hveragerdi</strong></td><td>Hveragerdi town</td><td>Self-service</td><td>24hr, if passing through</td></tr>
+                        <tr><td><strong>N1 Borgarnes</strong></td><td>Bruartorgi 1, Borgarnes</td><td>Staffed</td><td>Has food. <strong>Fill before Snaefellsnes!</strong></td></tr>
+                        <tr><td><strong>Orkan Borgarnes</strong></td><td>Borgarnes</td><td>Self-service</td><td>24hr</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>Day 7 (Apr 14) — Snaefellsnes South</h3>
+                <div class="day-road-conditions" data-day="7" style="margin-top: 10px; margin-bottom: 15px;">
+                    <h4 style="color: #666; font-size: 0.9em;">🛣️ Live Road Conditions</h4>
+                    <div class="day-roads" data-day="7" style="font-size: 0.85em;"><span style="color:#888;">Loading...</span></div>
+                    <div class="day-cameras" data-day="7" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; margin-top: 10px;"></div>
+                </div>
+                <h4>🅿️ Parking</h4>
+                <table class="fee-table">
+                    <thead><tr><th>Location</th><th>Parking (ISK)</th><th>THB</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Arnarstapi</td><td>1,000 ISK</td><td>~฿250</td><td>Parka app (location 3401). Valid until midnight</td></tr>
+                        <tr><td>Djupalonssandur</td><td>Free</td><td>Free</td><td>National park parking near the road</td></tr>
+                        <tr><td>Budakirkja (Black Church)</td><td>Free</td><td>Free</td><td>Small roadside lot</td></tr>
+                        <tr><td>Ytri-Tunga (Seal Beach)</td><td>900 ISK</td><td>~฿225</td><td>Pay at kiosk or checkit.is</td></tr>
+                        <tr><td>Raudfeldsgja Gorge</td><td>Free</td><td>Free</td><td>Roadside pullover</td></tr>
+                    </tbody>
+                </table>
+                <h4>⛽ Gas Stations</h4>
+                <table class="fee-table">
+                    <thead><tr><th>Station</th><th>Location</th><th>Type</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>N1 Olafsvik</strong></td><td>Olafsvik town</td><td>Staffed</td><td>Main station on south side of peninsula</td></tr>
+                    </tbody>
+                </table>
+                <div class="tip-box">
+                    <strong>💡 Tip:</strong> Fill up in Borgarnes the night before if possible — stations on the peninsula are fewer and may have limited hours.
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Day 8 (Apr 15) — Snaefellsnes North</h3>
+                <div class="day-road-conditions" data-day="8" style="margin-top: 10px; margin-bottom: 15px;">
+                    <h4 style="color: #666; font-size: 0.9em;">🛣️ Live Road Conditions</h4>
+                    <div class="day-roads" data-day="8" style="font-size: 0.85em;"><span style="color:#888;">Loading...</span></div>
+                    <div class="day-cameras" data-day="8" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; margin-top: 10px;"></div>
+                </div>
+                <h4>🅿️ Parking</h4>
+                <table class="fee-table">
+                    <thead><tr><th>Location</th><th>Parking (ISK)</th><th>THB</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Kirkjufell / Kirkjufellfoss</td><td>1,200 ISK</td><td>~฿300</td><td>EasyPark app or QR code. Popular spot — arrive early for best position</td></tr>
+                        <tr><td>Stykkisholmur</td><td>Free</td><td>Free</td><td>Free parking throughout town</td></tr>
+                        <tr><td>Berserkjahraun</td><td>Free</td><td>Free</td><td>Roadside pullover</td></tr>
+                    </tbody>
+                </table>
+                <h4>⛽ Gas Stations</h4>
+                <table class="fee-table">
+                    <thead><tr><th>Station</th><th>Location</th><th>Type</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Orkan Grundarfjordur</strong></td><td>Grundarfjordur</td><td>Self-service</td><td>24hr, near Kirkjufell</td></tr>
+                        <tr><td><strong>N1 Stykkisholmur</strong></td><td>Stykkisholmur</td><td>Staffed</td><td>Fill up before leaving peninsula</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <h3>Day 9 (Apr 16) — Reykjanes & Blue Lagoon</h3>
+                <div class="day-road-conditions" data-day="9" style="margin-top: 10px; margin-bottom: 15px;">
+                    <h4 style="color: #666; font-size: 0.9em;">🛣️ Live Road Conditions</h4>
+                    <div class="day-roads" data-day="9" style="font-size: 0.85em;"><span style="color:#888;">Loading...</span></div>
+                    <div class="day-cameras" data-day="9" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; margin-top: 10px;"></div>
+                </div>
+                <h4>🅿️ Parking</h4>
+                <table class="fee-table">
+                    <thead><tr><th>Location</th><th>Parking (ISK)</th><th>THB</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Kleifarvatn</td><td>Free</td><td>Free</td><td>Roadside lot</td></tr>
+                        <tr><td>Seltun Geothermal</td><td>Free</td><td>Free</td><td>Small parking lot at site</td></tr>
+                        <tr><td>Gunnuhver</td><td>Free</td><td>Free</td><td>Free parking near boardwalk</td></tr>
+                        <tr><td>Blue Lagoon</td><td>Free</td><td>Free</td><td>Large free parking lot for guests</td></tr>
+                        <tr><td>Reykjavik (if stopping)</td><td>Zone P2-P4</td><td>~฿50-100/hr</td><td>Free after 18:00 & weekends</td></tr>
+                    </tbody>
+                </table>
+                <h4>⛽ Gas Stations</h4>
+                <table class="fee-table">
+                    <thead><tr><th>Station</th><th>Location</th><th>Type</th><th>Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Orkan Reykjavik</strong></td><td>Multiple</td><td>Self-service</td><td>24hr on the way to Reykjanes</td></tr>
+                        <tr><td><strong>N1 Grindavik</strong></td><td>Grindavik</td><td>Staffed</td><td>Near Blue Lagoon area</td></tr>
+                        <tr><td><strong>N1 Keflavik</strong></td><td>Near airport</td><td>Staffed</td><td><strong>Fill tank here evening of Day 9 before drop-off!</strong> 24hr</td></tr>
+                        <tr><td><strong>Orkan Keflavik</strong></td><td>Keflavik</td><td>Self-service</td><td>24hr backup</td></tr>
+                    </tbody>
+                </table>
+                <div class="tip-box">
+                    <strong>⛽ Final fill-up:</strong> Fill tank the evening of Day 9 at N1 or Orkan Keflavik. Drop-off is 06:00 — don't waste time finding fuel at 5 AM!
+                </div>
+            </div>
+
+            <div class="card" style="background: #f0fdf4; border-left: 4px solid #10b981;">
+                <h3>📱 Parking Apps — Download Before Trip!</h3>
+                <ul style="margin-left: 18px; line-height: 2; font-size: 0.95em;">
+                    <li><strong>Parka</strong> — Most common. Used at Thingvellir, waterfalls, Jokulsarlon, Snaefellsnes. Register with license plate</li>
+                    <li><strong>EasyPark</strong> — Used at Kirkjufell, Reykjavik city center</li>
+                    <li><strong>Checkit.is</strong> — Used at Ytri-Tunga and a few other sites</li>
+                </ul>
+                <p style="margin-top: 10px; font-size: 0.85em; color: #666;">Total estimated parking cost for entire trip: <strong>~ISK 12,000-15,000 (~฿3,000-3,750)</strong> for all paid spots.</p>
+            </div>
+
+            <div class="card" style="background: #eff6ff; border-left: 4px solid var(--primary-blue);">
+                <h3>💡 Fuel Tips</h3>
+                <ul style="margin-left: 18px; line-height: 2; font-size: 0.95em;">
+                    <li><strong>Orkan</strong> is usually cheapest (self-service only, 24hr)</li>
+                    <li><strong>N1</strong> is most common, has food/toilets at staffed locations</li>
+                    <li><strong>Fill at half tank</strong> in remote areas — don't risk running low</li>
+                    <li><strong>Chip+PIN card required</strong> at self-service pumps. Contactless may not work</li>
+                    <li><strong>Estimated total fuel cost:</strong> 2-3 fill-ups × ~฿5,250 = <strong>~฿10,500-15,750</strong> for entire trip</li>
+                    <li>Download <strong>N1 app</strong> or check <a href="https://iceland-fuel-stations.com/fuel-map" target="_blank" style="color: var(--primary-blue);">iceland-fuel-stations.com</a> for live prices and station map</li>
+                </ul>
+            </div>
+        </div>
+
+
+
+        <!-- Rental Car Details (one-time info) -->
+        <div class="section" style="border-top: 3px solid var(--ice-blue); padding-top: 30px; margin-top: 30px;">
+            <h2 style="color: #666; font-weight: 500;">📋 Rental Car Details & One-Time Info</h2>
+            <p style="color: #999; font-size: 0.9em; margin-bottom: 15px;">Static booking details and procedures — review once, then focus on day-by-day info above.</p>
         </div>
 
         <!-- Booking Details -->
@@ -341,237 +617,6 @@
                         <tr><td>Towing (after hours/weekend)</td><td>40,000 ISK + 480 ISK/km</td><td>~฿10,000 + ฿120/km</td></tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-
-        <!-- Parking Guide -->
-        <div class="section">
-            <h2>🅿️ Parking Guide — By Day</h2>
-            <p style="margin-bottom: 15px; color: #666; font-size: 0.9em;">Most parking is paid via the <strong>Parka app</strong> (download before trip!) or payment machines. Some accept EasyPark. All accept credit cards. Fees are per car, valid until midnight unless noted.</p>
-
-            <div class="card">
-                <h3>Day 1 (Apr 8) — Reykjavik</h3>
-                <table class="fee-table">
-                    <thead><tr><th>Location</th><th>Parking</th><th>THB</th><th>Notes</th></tr></thead>
-                    <tbody>
-                        <tr><td>Thingholt Hotel area</td><td>Zone P2/P3</td><td>~฿50-80/hr</td><td>Free after 18:00 & weekends. Check hotel for parking included</td></tr>
-                        <tr><td>Hallgrimskirkja</td><td>Street parking</td><td>~฿50-80/hr</td><td>Limited spots, try Njarðargata street</td></tr>
-                        <tr><td>Harpa / Waterfront</td><td>Harpa underground</td><td>~฿100/hr</td><td>Convenient but pricier</td></tr>
-                        <tr><td>Kronan (Fiskislod)</td><td>Free</td><td>Free</td><td>Customer parking available</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="card">
-                <h3>Day 2 (Apr 9) — Golden Circle</h3>
-                <table class="fee-table">
-                    <thead><tr><th>Location</th><th>Parking (ISK)</th><th>THB</th><th>Notes</th></tr></thead>
-                    <tbody>
-                        <tr><td>Thingvellir National Park</td><td>1,000 ISK</td><td>~฿250</td><td>Parka app. Multiple lots (P1-P5). P2 is closest to Almannagjá rift</td></tr>
-                        <tr><td>Bruarfoss</td><td>750 ISK</td><td>~฿190</td><td>Parka app. Covers 4 hours. 2,000 ISK/hr overtime!</td></tr>
-                        <tr><td>Geysir</td><td>1,000 ISK</td><td>~฿250</td><td>Parka app. Valid 8 hours. Large lot, rarely full</td></tr>
-                        <tr><td>Gullfoss</td><td>Free</td><td>Free</td><td>Large free parking lot. Upper & lower lots available</td></tr>
-                        <tr><td>Kerid Crater</td><td>600 ISK</td><td>~฿150</td><td>Pay at kiosk. Includes crater access</td></tr>
-                        <tr><td>Fridheimar</td><td>Free</td><td>Free</td><td>Restaurant parking</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="card">
-                <h3>Day 3 (Apr 10) — South Coast Waterfalls & Vik</h3>
-                <table class="fee-table">
-                    <thead><tr><th>Location</th><th>Parking (ISK)</th><th>THB</th><th>Notes</th></tr></thead>
-                    <tbody>
-                        <tr><td>Seljalandsfoss</td><td>1,000 ISK</td><td>~฿250</td><td>Parka app. Same ticket covers Gljufrabui (500m walk)</td></tr>
-                        <tr><td>Gljufrabui</td><td>Included above</td><td>—</td><td>Walk from Seljalandsfoss parking</td></tr>
-                        <tr><td>Skogafoss</td><td>1,000 ISK</td><td>~฿250</td><td>Parka app. Large lot at base of waterfall</td></tr>
-                        <tr><td>Kvernufoss</td><td>Free</td><td>Free</td><td>Park at Skogar Museum, walk 10 min</td></tr>
-                        <tr><td>Reynisfjara (Black Beach)</td><td>750-1,000 ISK</td><td>~฿190-250</td><td>Lower lot 1,000 ISK / Upper lot 750 ISK. Parka app</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="card">
-                <h3>Day 4 (Apr 11) — Glaciers & Jokulsarlon</h3>
-                <table class="fee-table">
-                    <thead><tr><th>Location</th><th>Parking (ISK)</th><th>THB</th><th>Notes</th></tr></thead>
-                    <tbody>
-                        <tr><td>Fjadrargljufur Canyon</td><td>1,000 ISK</td><td>~฿250</td><td>Parka app. May be closed in April — check at site</td></tr>
-                        <tr><td>Skaftafell / Svartifoss</td><td>1,040 ISK</td><td>~฿260</td><td>Parka app. 50% discount if you also park at Jokulsarlon same day!</td></tr>
-                        <tr><td>Jokulsarlon Glacier Lagoon</td><td>1,000 ISK</td><td>~฿250</td><td>Parka app. 50% discount if parked at Skaftafell same day</td></tr>
-                        <tr><td>Diamond Beach</td><td>Free</td><td>Free</td><td>Small lot across the road from Jokulsarlon</td></tr>
-                        <tr><td>Fjallsarlon</td><td>Free</td><td>Free</td><td>Smaller, quieter alternative to Jokulsarlon</td></tr>
-                    </tbody>
-                </table>
-                <div class="tip-box">
-                    <strong>💡 Save 50%:</strong> Skaftafell + Jokulsarlon are both in Vatnajokull National Park. Park at both on the same day and get 50% off the second parking fee!
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>Day 5 (Apr 12) — Drive West</h3>
-                <table class="fee-table">
-                    <thead><tr><th>Location</th><th>Parking (ISK)</th><th>THB</th><th>Notes</th></tr></thead>
-                    <tbody>
-                        <tr><td>Vestrahorn / Stokksnes</td><td>1,000 ISK</td><td>~฿250</td><td>Pay at Viking Cafe. Includes beach access</td></tr>
-                        <tr><td>Hofskirkja Turf Church</td><td>Free</td><td>Free</td><td>Small pullover on Route 1</td></tr>
-                        <tr><td>Dverghamrar</td><td>Free</td><td>Free</td><td>Small roadside parking</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="card">
-                <h3>Day 6 (Apr 13) — Hot River & Borgarnes</h3>
-                <table class="fee-table">
-                    <thead><tr><th>Location</th><th>Parking (ISK)</th><th>THB</th><th>Notes</th></tr></thead>
-                    <tbody>
-                        <tr><td>Reykjadalur Hot River</td><td>200 ISK/hr</td><td>~฿50/hr</td><td>EasyPark app. Budget 3-4 hours (~฿150-200)</td></tr>
-                        <tr><td>Hraunfossar / Barnafoss</td><td>Free</td><td>Free</td><td>Free parking lot at the site</td></tr>
-                        <tr><td>Krauma Geothermal Baths</td><td>Free</td><td>Free</td><td>Customer parking. Entry fee separate</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="card">
-                <h3>Day 7 (Apr 14) — Snaefellsnes South</h3>
-                <table class="fee-table">
-                    <thead><tr><th>Location</th><th>Parking (ISK)</th><th>THB</th><th>Notes</th></tr></thead>
-                    <tbody>
-                        <tr><td>Arnarstapi</td><td>1,000 ISK</td><td>~฿250</td><td>Parka app (location 3401). Valid until midnight</td></tr>
-                        <tr><td>Djupalonssandur</td><td>Free</td><td>Free</td><td>National park parking near the road</td></tr>
-                        <tr><td>Budakirkja (Black Church)</td><td>Free</td><td>Free</td><td>Small roadside lot</td></tr>
-                        <tr><td>Ytri-Tunga (Seal Beach)</td><td>900 ISK</td><td>~฿225</td><td>Pay at kiosk or checkit.is</td></tr>
-                        <tr><td>Raudfeldsgja Gorge</td><td>Free</td><td>Free</td><td>Roadside pullover</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="card">
-                <h3>Day 8 (Apr 15) — Snaefellsnes North</h3>
-                <table class="fee-table">
-                    <thead><tr><th>Location</th><th>Parking (ISK)</th><th>THB</th><th>Notes</th></tr></thead>
-                    <tbody>
-                        <tr><td>Kirkjufell / Kirkjufellfoss</td><td>1,200 ISK</td><td>~฿300</td><td>EasyPark app or QR code. Popular spot — arrive early for best position</td></tr>
-                        <tr><td>Stykkisholmur</td><td>Free</td><td>Free</td><td>Free parking throughout town</td></tr>
-                        <tr><td>Berserkjahraun</td><td>Free</td><td>Free</td><td>Roadside pullover</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="card">
-                <h3>Day 9 (Apr 16) — Reykjanes & Blue Lagoon</h3>
-                <table class="fee-table">
-                    <thead><tr><th>Location</th><th>Parking (ISK)</th><th>THB</th><th>Notes</th></tr></thead>
-                    <tbody>
-                        <tr><td>Kleifarvatn</td><td>Free</td><td>Free</td><td>Roadside lot</td></tr>
-                        <tr><td>Seltun Geothermal</td><td>Free</td><td>Free</td><td>Small parking lot at site</td></tr>
-                        <tr><td>Gunnuhver</td><td>Free</td><td>Free</td><td>Free parking near boardwalk</td></tr>
-                        <tr><td>Blue Lagoon</td><td>Free</td><td>Free</td><td>Large free parking lot for guests</td></tr>
-                        <tr><td>Reykjavik (if stopping)</td><td>Zone P2-P4</td><td>~฿50-100/hr</td><td>Free after 18:00 & weekends</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="card" style="background: #f0fdf4; border-left: 4px solid #10b981;">
-                <h3>📱 Parking Apps — Download Before Trip!</h3>
-                <ul style="margin-left: 18px; line-height: 2; font-size: 0.95em;">
-                    <li><strong>Parka</strong> — Most common. Used at Thingvellir, waterfalls, Jokulsarlon, Snaefellsnes. Register with license plate</li>
-                    <li><strong>EasyPark</strong> — Used at Reykjadalur, Kirkjufell, Reykjavik city center</li>
-                    <li><strong>Checkit.is</strong> — Used at Ytri-Tunga and a few other sites</li>
-                </ul>
-                <p style="margin-top: 10px; font-size: 0.85em; color: #666;">Total estimated parking cost for entire trip: <strong>~ISK 12,000-15,000 (~฿3,000-3,750)</strong> for all paid spots.</p>
-            </div>
-        </div>
-
-        <!-- Gas Stations Along Route -->
-        <div class="section">
-            <h2>⛽ Gas Stations Along Your Route</h2>
-            <p style="margin-bottom: 15px; color: #666; font-size: 0.9em;">Fuel: ~ISK 350/liter (~฿88/liter). Full tank (60L): ~ISK 21,000 (~฿5,250). Self-service pumps require <strong>chip+PIN credit card</strong>. Download the <strong>N1 app</strong> for station finder.</p>
-
-            <div class="card">
-                <h3>Day 1-2: KEF → Reykjavik → Golden Circle → Hvolsvollur</h3>
-                <table class="fee-table">
-                    <thead><tr><th>Station</th><th>Location</th><th>Type</th><th>Notes</th></tr></thead>
-                    <tbody>
-                        <tr><td><strong>N1 Keflavik</strong></td><td>Keflavik, near airport</td><td>Staffed</td><td>24hr self-service pumps available</td></tr>
-                        <tr><td><strong>Orkan Reykjavik</strong></td><td>Multiple locations</td><td>Self-service</td><td>24hr, cheapest chain. Check app for nearest</td></tr>
-                        <tr><td><strong>N1 Selfoss</strong></td><td>Austurvegi 48, Selfoss</td><td>Staffed</td><td>Open Mon-Sat 07:00-23:30, Sun 09:00-23:30</td></tr>
-                        <tr><td><strong>Orkan Selfoss</strong></td><td>Selfoss town</td><td>Self-service</td><td>24hr</td></tr>
-                        <tr><td><strong>N1 Hvolsvollur</strong></td><td>Austurvegi 3, Hvolsvollur</td><td>Staffed</td><td>Open 08:00-20:00. Has food</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="card">
-                <h3>Day 3-4: Hvolsvollur → Vik → Jokulsarlon → Return</h3>
-                <table class="fee-table">
-                    <thead><tr><th>Station</th><th>Location</th><th>Type</th><th>Notes</th></tr></thead>
-                    <tbody>
-                        <tr><td><strong>N1 Vik</strong></td><td>Austurvegi 18, Vik</td><td>Staffed</td><td>Has restaurant. Fill up here — long stretch ahead!</td></tr>
-                        <tr><td><strong>Orkan Vik</strong></td><td>Vik town</td><td>Self-service</td><td>24hr. Often cheaper than N1</td></tr>
-                        <tr><td><strong>N1 Kirkjubaejarklaustur</strong></td><td>Klausturvegi, Kirkjub.</td><td>Staffed</td><td>Only station between Vik and Hofn (~180 km gap)</td></tr>
-                        <tr><td><strong>N1 Hofn</strong></td><td>Vesturbraut 1, Hofn</td><td>Staffed</td><td>Open Mon-Fri 08:00-22:00, Sat-Sun 09:00-22:00</td></tr>
-                    </tbody>
-                </table>
-                <div class="danger-box">
-                    <strong>⚠️ Critical:</strong> Between Vik and Hofn is ~260 km with only ONE gas station (Kirkjubaejarklaustur). <strong>Fill up in Vik before heading east!</strong>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>Day 5-6: Return West → Hvolsvollur → Borgarnes</h3>
-                <table class="fee-table">
-                    <thead><tr><th>Station</th><th>Location</th><th>Type</th><th>Notes</th></tr></thead>
-                    <tbody>
-                        <tr><td><strong>N1 Hvolsvollur</strong></td><td>Austurvegi 3</td><td>Staffed</td><td>Refuel on return west</td></tr>
-                        <tr><td><strong>Orkan Hveragerdi</strong></td><td>Hveragerdi town</td><td>Self-service</td><td>24hr. Near Reykjadalur trailhead</td></tr>
-                        <tr><td><strong>N1 Borgarnes</strong></td><td>Bruartorgi 1, Borgarnes</td><td>Staffed</td><td>Has food. Fill before Snaefellsnes!</td></tr>
-                        <tr><td><strong>Orkan Borgarnes</strong></td><td>Borgarnes</td><td>Self-service</td><td>24hr</td></tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="card">
-                <h3>Day 7-8: Snaefellsnes Peninsula</h3>
-                <table class="fee-table">
-                    <thead><tr><th>Station</th><th>Location</th><th>Type</th><th>Notes</th></tr></thead>
-                    <tbody>
-                        <tr><td><strong>N1 Olafsvik</strong></td><td>Olafsvik town</td><td>Staffed</td><td>Main station on south side of peninsula</td></tr>
-                        <tr><td><strong>Orkan Grundarfjordur</strong></td><td>Grundarfjordur</td><td>Self-service</td><td>24hr. Near Kirkjufell</td></tr>
-                        <tr><td><strong>N1 Stykkisholmur</strong></td><td>Stykkisholmur</td><td>Staffed</td><td>Fill up before leaving peninsula</td></tr>
-                    </tbody>
-                </table>
-                <div class="warning-box">
-                    <strong>💡 Tip:</strong> Fill up in Borgarnes before entering Snaefellsnes. Stations on the peninsula are fewer and may have limited hours.
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>Day 9-10: Return → Blue Lagoon → KEF</h3>
-                <table class="fee-table">
-                    <thead><tr><th>Station</th><th>Location</th><th>Type</th><th>Notes</th></tr></thead>
-                    <tbody>
-                        <tr><td><strong>Orkan Reykjavik</strong></td><td>Multiple</td><td>Self-service</td><td>24hr. Fill up on the way to Reykjanes</td></tr>
-                        <tr><td><strong>N1 Grindavik</strong></td><td>Grindavik</td><td>Staffed</td><td>Near Blue Lagoon area</td></tr>
-                        <tr><td><strong>N1 Keflavik</strong></td><td>Near airport</td><td>Staffed</td><td>⚠️ Fill tank here BEFORE returning car! 24hr self-service</td></tr>
-                        <tr><td><strong>Orkan Keflavik</strong></td><td>Keflavik</td><td>Self-service</td><td>24hr. Alternative for final fill-up</td></tr>
-                    </tbody>
-                </table>
-                <div class="tip-box">
-                    <strong>⛽ Final fill-up:</strong> Fill tank the evening of Day 9 at N1 or Orkan Keflavik. Drop-off is 06:00 — don't waste time finding fuel at 5 AM!
-                </div>
-            </div>
-
-            <div class="card" style="background: #eff6ff; border-left: 4px solid var(--primary-blue);">
-                <h3>💡 Fuel Tips</h3>
-                <ul style="margin-left: 18px; line-height: 2; font-size: 0.95em;">
-                    <li><strong>Orkan</strong> is usually cheapest (self-service only, 24hr)</li>
-                    <li><strong>N1</strong> is most common, has food/toilets at staffed locations</li>
-                    <li><strong>Fill at half tank</strong> in remote areas — don't risk running low</li>
-                    <li><strong>Chip+PIN card required</strong> at self-service pumps. Contactless may not work</li>
-                    <li><strong>Estimated total fuel cost:</strong> 2-3 fill-ups × ~฿5,250 = <strong>~฿10,500-15,750</strong> for entire trip</li>
-                    <li>Download <strong>N1 app</strong> or check <a href="https://iceland-fuel-stations.com/fuel-map" target="_blank" style="color: var(--primary-blue);">iceland-fuel-stations.com</a> for live prices and station map</li>
-                </ul>
             </div>
         </div>
 
@@ -768,71 +813,71 @@
         // Fetch live road conditions from safetravel.is (Vegagerdin data)
         async function fetchRoadConditions() {
             const summaryEl = document.getElementById('roadSummary');
-            const routeEl = document.getElementById('routeConditions');
-            const weatherEl = document.getElementById('weatherStations');
-            const cameraEl = document.getElementById('roadCameras');
+            const lastUpdEl = document.getElementById('lastUpdatedDriving');
+            const dayRoadEls = document.querySelectorAll('.day-roads[data-day]');
+            const dayCameraEls = document.querySelectorAll('.day-cameras[data-day]');
 
             // Route segments mapped to trip days — keyword match is case-insensitive
             // Each entry: keyword in road name → list of days it affects + friendly description
             const routeMap = [
                 // Reykjavik / Keflavik area (Days 1, 2, 6, 9, 10)
-                { kw: 'reykjanesbraut', days: 'Day 1 & 10', where: 'KEF airport to Reykjavik' },
-                { kw: 'reykjanesbr', days: 'Day 1 & 10', where: 'KEF airport to Reykjavik' },
+                { kw: 'reykjanesbraut', days: 'Day 1 & 10', dayNums: [1], where: 'KEF airport to Reykjavik' },
+                { kw: 'reykjanesbr', days: 'Day 1 & 10', dayNums: [1], where: 'KEF airport to Reykjavik' },
                 // Golden Circle (Day 2)
-                { kw: 'þingvalla', days: 'Day 2', where: 'Reykjavik → Thingvellir' },
-                { kw: 'lyngdalsheiði', days: 'Day 2', where: 'Thingvellir → Laugarvatn' },
-                { kw: 'biskupstungnabraut', days: 'Day 2', where: 'Golden Circle route' },
-                { kw: 'gullfoss', days: 'Day 2', where: 'Golden Circle (near Gullfoss)' },
+                { kw: 'þingvalla', days: 'Day 2', dayNums: [2], where: 'Reykjavik → Thingvellir' },
+                { kw: 'lyngdalsheiði', days: 'Day 2', dayNums: [2], where: 'Thingvellir → Laugarvatn' },
+                { kw: 'biskupstungnabraut', days: 'Day 2', dayNums: [2], where: 'Golden Circle route' },
+                { kw: 'gullfoss', days: 'Day 2', dayNums: [2], where: 'Golden Circle (near Gullfoss)' },
                 // Hellisheiði / Kambar pass — crucial for South Coast
-                { kw: 'hellisheiði', days: 'Day 2, 3, 5, 6', where: 'Reykjavik ↔ Selfoss (main pass)' },
-                { kw: 'hringvegur um hellisheiði', days: 'Day 2, 3, 5, 6', where: 'Reykjavik ↔ Selfoss' },
+                { kw: 'hellisheiði', days: 'Day 2, 3, 5, 6', dayNums: [2], where: 'Reykjavik ↔ Selfoss (main pass)' },
+                { kw: 'hringvegur um hellisheiði', days: 'Day 2, 3, 5, 6', dayNums: [2], where: 'Reykjavik ↔ Selfoss' },
                 // South Coast West
-                { kw: 'suðurland', days: 'Day 3 & 5', where: 'South Coast (Selfoss-Vik)' },
-                { kw: 'seljaland', days: 'Day 3 & 5', where: 'Near Seljalandsfoss' },
-                { kw: 'markarfljót', days: 'Day 3 & 5', where: 'Near Hvolsvollur/waterfalls' },
-                { kw: 'steinar', days: 'Day 3 & 5', where: 'Between Skogafoss & Vik' },
+                { kw: 'suðurland', days: 'Day 3 & 5', dayNums: [3], where: 'South Coast (Selfoss-Vik)' },
+                { kw: 'seljaland', days: 'Day 3 & 5', dayNums: [3], where: 'Near Seljalandsfoss' },
+                { kw: 'markarfljót', days: 'Day 3 & 5', dayNums: [3], where: 'Near Hvolsvollur/waterfalls' },
+                { kw: 'steinar', days: 'Day 3 & 5', dayNums: [3], where: 'Between Skogafoss & Vik' },
                 // Vik area
-                { kw: 'pétursey', days: 'Day 3 & 5', where: 'Near Vik' },
-                { kw: 'reynisfjall', days: 'Day 3 & 5', where: 'Vik / Reynisfjara' },
-                { kw: 'mýrdal', days: 'Day 3 & 5', where: 'Vik area' },
+                { kw: 'pétursey', days: 'Day 3 & 5', dayNums: [3], where: 'Near Vik' },
+                { kw: 'reynisfjall', days: 'Day 3 & 5', dayNums: [3], where: 'Vik / Reynisfjara' },
+                { kw: 'mýrdal', days: 'Day 3 & 5', dayNums: [3], where: 'Vik area' },
                 // East South Coast
-                { kw: 'mýrdalssand', days: 'Day 4 & 5', where: 'Vik → Kirkjubaejarklaustur' },
-                { kw: 'eldhraun', days: 'Day 4 & 5', where: 'Lava field (Kirkjubaejar area)' },
-                { kw: 'kirkjubæjar', days: 'Day 4 & 5', where: 'Kirkjubaejarklaustur' },
-                { kw: 'skaftárhreppur', days: 'Day 4 & 5', where: 'Skaftá area' },
-                { kw: 'lómagnúp', days: 'Day 4 & 5', where: 'Between Klaustur & Skaftafell' },
-                { kw: 'skaftafell', days: 'Day 4 & 5', where: 'Skaftafell National Park' },
-                { kw: 'öræfi', days: 'Day 4 & 5', where: 'Skaftafell / Hof' },
-                { kw: 'kvísker', days: 'Day 4 & 5', where: 'Near Skaftafell' },
-                { kw: 'jökulsá', days: 'Day 4 & 5', where: 'Jokulsarlon area' },
-                { kw: 'gígjukvísl', days: 'Day 4 & 5', where: 'Near Jokulsarlon' },
-                { kw: 'hornafjör', days: 'Day 4 & 5', where: 'Hofn area (Vestrahorn)' },
-                { kw: 'almannaskarð', days: 'Day 5', where: 'Near Hofn / Vestrahorn' },
-                { kw: 'hvalnes', days: 'Day 5', where: 'Near Vestrahorn' },
+                { kw: 'mýrdalssand', days: 'Day 4 & 5', dayNums: [4], where: 'Vik → Kirkjubaejarklaustur' },
+                { kw: 'eldhraun', days: 'Day 4 & 5', dayNums: [4], where: 'Lava field (Kirkjubaejar area)' },
+                { kw: 'kirkjubæjar', days: 'Day 4 & 5', dayNums: [4], where: 'Kirkjubaejarklaustur' },
+                { kw: 'skaftárhreppur', days: 'Day 4 & 5', dayNums: [4], where: 'Skaftá area' },
+                { kw: 'lómagnúp', days: 'Day 4 & 5', dayNums: [4], where: 'Between Klaustur & Skaftafell' },
+                { kw: 'skaftafell', days: 'Day 4 & 5', dayNums: [4], where: 'Skaftafell National Park' },
+                { kw: 'öræfi', days: 'Day 4 & 5', dayNums: [4], where: 'Skaftafell / Hof' },
+                { kw: 'kvísker', days: 'Day 4 & 5', dayNums: [4], where: 'Near Skaftafell' },
+                { kw: 'jökulsá', days: 'Day 4 & 5', dayNums: [4], where: 'Jokulsarlon area' },
+                { kw: 'gígjukvísl', days: 'Day 4 & 5', dayNums: [4], where: 'Near Jokulsarlon' },
+                { kw: 'hornafjör', days: 'Day 4 & 5', dayNums: [4], where: 'Hofn area (Vestrahorn)' },
+                { kw: 'almannaskarð', days: 'Day 5', dayNums: [5], where: 'Near Hofn / Vestrahorn' },
+                { kw: 'hvalnes', days: 'Day 5', dayNums: [5], where: 'Near Vestrahorn' },
                 // West Iceland / Borgarnes (Day 6)
-                { kw: 'hvalfjar', days: 'Day 6', where: 'Hvalfjardargong tunnel to Borgarnes' },
-                { kw: 'hafnarfjall', days: 'Day 6', where: 'Borgarnes area' },
-                { kw: 'borgarfjörður', days: 'Day 6', where: 'Borgarnes / Hraunfossar' },
-                { kw: 'borgarbyggð', days: 'Day 6', where: 'Borgarnes area' },
-                { kw: 'hvítárvallavegur', days: 'Day 6', where: 'To Hraunfossar' },
+                { kw: 'hvalfjar', days: 'Day 6', dayNums: [6], where: 'Hvalfjardargong tunnel to Borgarnes' },
+                { kw: 'hafnarfjall', days: 'Day 6', dayNums: [6], where: 'Borgarnes area' },
+                { kw: 'borgarfjörður', days: 'Day 6', dayNums: [6], where: 'Borgarnes / Hraunfossar' },
+                { kw: 'borgarbyggð', days: 'Day 6', dayNums: [6], where: 'Borgarnes area' },
+                { kw: 'hvítárvallavegur', days: 'Day 6', dayNums: [6], where: 'To Hraunfossar' },
                 // Snaefellsnes (Days 7 & 8)
-                { kw: 'snæfellsnes', days: 'Day 7 & 8', where: 'Snaefellsnes Peninsula' },
-                { kw: 'vatnaleið', days: 'Day 7 & 8', where: 'Snaefellsnes connector' },
-                { kw: 'fróðárheiði', days: 'Day 7 & 8', where: 'Snaefellsnes south↔north pass' },
-                { kw: 'búlandshöfði', days: 'Day 8', where: 'Grundarfjordur (Kirkjufell)' },
-                { kw: 'grundarfjar', days: 'Day 8', where: 'Grundarfjordur (Kirkjufell area)' },
-                { kw: 'stykkishólm', days: 'Day 8', where: 'Stykkisholmur' },
-                { kw: 'brattabrekka', days: 'Day 7', where: 'Route to Snaefellsnes' },
-                { kw: 'ólafsvíkurvegur', days: 'Day 7 & 8', where: 'Snaefellsnes west' },
+                { kw: 'snæfellsnes', days: 'Day 7 & 8', dayNums: [7], where: 'Snaefellsnes Peninsula' },
+                { kw: 'vatnaleið', days: 'Day 7 & 8', dayNums: [7], where: 'Snaefellsnes connector' },
+                { kw: 'fróðárheiði', days: 'Day 7 & 8', dayNums: [7], where: 'Snaefellsnes south↔north pass' },
+                { kw: 'búlandshöfði', days: 'Day 8', dayNums: [8], where: 'Grundarfjordur (Kirkjufell)' },
+                { kw: 'grundarfjar', days: 'Day 8', dayNums: [8], where: 'Grundarfjordur (Kirkjufell area)' },
+                { kw: 'stykkishólm', days: 'Day 8', dayNums: [8], where: 'Stykkisholmur' },
+                { kw: 'brattabrekka', days: 'Day 7', dayNums: [7], where: 'Route to Snaefellsnes' },
+                { kw: 'ólafsvíkurvegur', days: 'Day 7 & 8', dayNums: [7], where: 'Snaefellsnes west' },
                 // Reykjanes (Day 9)
-                { kw: 'grindavík', days: 'Day 9', where: 'Blue Lagoon area' },
-                { kw: 'kleifarvatn', days: 'Day 9', where: 'Reykjanes lake' },
-                { kw: 'krýsuvík', days: 'Day 9', where: 'Seltun / Reykjanes' },
-                { kw: 'reykjanes', days: 'Day 9', where: 'Reykjanes Peninsula' },
-                { kw: 'gíghæð', days: 'Day 9', where: 'Grindavik road' },
-                { kw: 'festarfjall', days: 'Day 9', where: 'Reykjanes south' },
+                { kw: 'grindavík', days: 'Day 9', dayNums: [9], where: 'Blue Lagoon area' },
+                { kw: 'kleifarvatn', days: 'Day 9', dayNums: [9], where: 'Reykjanes lake' },
+                { kw: 'krýsuvík', days: 'Day 9', dayNums: [9], where: 'Seltun / Reykjanes' },
+                { kw: 'reykjanes', days: 'Day 9', dayNums: [9], where: 'Reykjanes Peninsula' },
+                { kw: 'gíghæð', days: 'Day 9', dayNums: [9], where: 'Grindavik road' },
+                { kw: 'festarfjall', days: 'Day 9', dayNums: [9], where: 'Reykjanes south' },
                 // Hringvegur (Route 1) — match specific sections, not entire ring road
-                { kw: 'hringvegur', days: 'Various', where: 'Ring Road section' },
+                { kw: 'hringvegur', days: 'Various', dayNums: [1, 2, 3, 4, 5, 6, 7, 8, 9], where: 'Ring Road section' },
             ];
 
             // Weather station name keywords near your route
@@ -877,72 +922,112 @@
                     else statusCounts.other++;
                 });
 
-                summaryEl.innerHTML = `
-                    <div style="background:#d1fae5;padding:10px 16px;border-radius:8px;font-size:0.9em;">✅ Passable: <strong>${statusCounts.good}</strong></div>
-                    <div style="background:#fef3c7;padding:10px 16px;border-radius:8px;font-size:0.9em;">⚠️ Difficult: <strong>${statusCounts.difficult}</strong></div>
-                    <div style="background:#fef2f2;padding:10px 16px;border-radius:8px;font-size:0.9em;">🚫 Impassable: <strong>${statusCounts.impassable}</strong></div>
-                    <div style="background:#e0e7ff;padding:10px 16px;border-radius:8px;font-size:0.9em;">❄️ Winter closed: <strong>${statusCounts.winter}</strong></div>
-                `;
+                if (summaryEl) {
+                    summaryEl.innerHTML = `
+                        <div style="background:#d1fae5;padding:8px 14px;border-radius:8px;font-size:0.85em;">✅ Passable: <strong>${statusCounts.good}</strong></div>
+                        <div style="background:#fef3c7;padding:8px 14px;border-radius:8px;font-size:0.85em;">⚠️ Difficult: <strong>${statusCounts.difficult}</strong></div>
+                        <div style="background:#fef2f2;padding:8px 14px;border-radius:8px;font-size:0.85em;">🚫 Impassable: <strong>${statusCounts.impassable}</strong></div>
+                        <div style="background:#e0e7ff;padding:8px 14px;border-radius:8px;font-size:0.85em;">❄️ Winter closed: <strong>${statusCounts.winter}</strong></div>
+                    `;
+                }
 
-                // === Route conditions — match each road to routeMap entries ===
-                const matchedRoads = [];
+                // === Match each road to routeMap entries (tagged with dayNums) ===
+                const matchedByDay = {}; // { 1: [...], 2: [...], ... }
                 const seenIds = new Set();
                 roads.forEach(r => {
                     const name = (r.FulltNafnButs || r.StuttNafnButs || '').toLowerCase();
                     const shortName = (r.StuttNafnButs || '').toLowerCase();
-                    // Find all routeMap entries that match
                     for (const entry of routeMap) {
                         if (name.includes(entry.kw) || shortName.includes(entry.kw)) {
-                            // Avoid duplicate road segments
-                            if (!seenIds.has(r.IdButur)) {
-                                seenIds.add(r.IdButur);
-                                matchedRoads.push({ road: r, days: entry.days, where: entry.where });
-                            }
-                            break; // Stop at first match
+                            const key = r.IdButur + '|' + entry.dayNums.join(',');
+                            if (seenIds.has(key)) break;
+                            seenIds.add(key);
+                            entry.dayNums.forEach(d => {
+                                if (!matchedByDay[d]) matchedByDay[d] = [];
+                                matchedByDay[d].push({ road: r, where: entry.where });
+                            });
+                            break;
                         }
                     }
                 });
 
-                if (matchedRoads.length === 0) {
-                    routeEl.innerHTML = '<div style="color:#888;padding:10px;">No route-specific data available right now.</div>';
-                } else {
-                    // Sort: issues first, then by day order
-                    const dayOrder = m => {
-                        const d = m.days;
-                        if (d.includes('Day 1')) return 1;
-                        if (d.includes('Day 2')) return 2;
-                        if (d.includes('Day 3')) return 3;
-                        if (d.includes('Day 4')) return 4;
-                        if (d.includes('Day 5')) return 5;
-                        if (d.includes('Day 6')) return 6;
-                        if (d.includes('Day 7')) return 7;
-                        if (d.includes('Day 8')) return 8;
-                        if (d.includes('Day 9')) return 9;
-                        return 99;
-                    };
-                    const statusOrder = s => {
-                        if (s === 'GREIDFAERT') return 1;
-                        if (s === 'LOKAD_VETRARLOKUN') return 2;
-                        return 0; // issues first
-                    };
-                    matchedRoads.sort((a, b) => {
-                        const so = statusOrder(a.road.AstandYfirbord) - statusOrder(b.road.AstandYfirbord);
-                        if (so !== 0) return so;
-                        return dayOrder(a) - dayOrder(b);
-                    });
+                // === Match cameras to days using same routeMap logic ===
+                // For cameras, we map camera location name to days based on which route segment they represent
+                const cameraDayMap = {
+                    'hellisheiði': [2, 3, 5, 6],
+                    'kambar': [2, 3, 5, 6],
+                    'litla kaffistofan': [2, 3, 5],
+                    'sandskeið': [2, 6],
+                    'gjábakki': [2],
+                    'lyngdalsheiði': [2],
+                    'gullfoss': [2],
+                    'kotströnd': [2, 3, 5],
+                    'landvegamót': [2, 3, 5],
+                    'markarfljót': [3, 5],
+                    'steinar': [3, 5],
+                    'pétursey': [3, 5],
+                    'reynisfjall': [3, 5],
+                    'mýrdalssandur': [4, 5],
+                    'eldhraun': [4, 5],
+                    'lómagnúpur': [4, 5],
+                    'kvísker': [4, 5],
+                    'gígjukvísl': [4, 5],
+                    'almannaskarð': [5],
+                    'hvalnesskriður': [5],
+                    'lónsbakki': [5],
+                    'hafnarfjall': [6],
+                    'sveinatunga': [6],
+                    'brattabrekka': [6, 7],
+                    'vatnaleið': [7, 8],
+                    'haffjarðará': [7, 8],
+                    'fróðárheiði': [7, 8],
+                    'búlandshöfði': [8],
+                    'kleifarvatn': [9],
+                    'gíghæð': [9],
+                    'festarfjall': [9],
+                    'þyrill': [6],
+                    'hveradalir': [9],
+                    'grundartangi': [6]
+                };
 
-                    // Group by day
-                    const byDay = {};
-                    matchedRoads.forEach(m => {
-                        if (!byDay[m.days]) byDay[m.days] = [];
-                        byDay[m.days].push(m);
-                    });
+                // Group cameras by day
+                const cameraByDay = {};
+                const seenCamLocations = {}; // { day: Set }
+                cameras.forEach(c => {
+                    const name = (c.Myndavel || '').toLowerCase();
+                    for (const [loc, days] of Object.entries(cameraDayMap)) {
+                        if (name.includes(loc)) {
+                            days.forEach(d => {
+                                if (!cameraByDay[d]) cameraByDay[d] = [];
+                                if (!seenCamLocations[d]) seenCamLocations[d] = new Set();
+                                if (!seenCamLocations[d].has(c.Myndavel)) {
+                                    seenCamLocations[d].add(c.Myndavel);
+                                    cameraByDay[d].push(c);
+                                }
+                            });
+                            break;
+                        }
+                    }
+                });
 
-                    // Render grouped
-                    const dayKeys = Object.keys(byDay).sort((a, b) => dayOrder({ days: a }) - dayOrder({ days: b }));
-                    routeEl.innerHTML = dayKeys.map(dayKey => {
-                        const items = byDay[dayKey];
-                        const cards = items.slice(0, 10).map(m => {
+                // === Render per-day road conditions ===
+                const statusOrder = s => {
+                    if (s === 'GREIDFAERT') return 1;
+                    if (s === 'LOKAD_VETRARLOKUN') return 2;
+                    return 0;
+                };
+
+                dayRoadEls.forEach(el => {
+                    const day = parseInt(el.dataset.day);
+                    const items = matchedByDay[day] || [];
+                    if (items.length === 0) {
+                        el.innerHTML = '<span style="color:#888;">No specific alerts on your route for this day. Check safetravel.is for updates.</span>';
+                        return;
+                    }
+                    // Sort: issues first
+                    items.sort((a, b) => statusOrder(a.road.AstandYfirbord) - statusOrder(b.road.AstandYfirbord));
+                    el.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;">` +
+                        items.slice(0, 12).map(m => {
                             const status = (m.road.AstandYfirbord || '').toUpperCase();
                             const desc = m.road.AstandLysingEn || m.road.AstandLysing || 'Unknown';
                             let bg = '#f3f4f6', icon = '❔';
@@ -950,80 +1035,38 @@
                             else if (status === 'THUNGFAERT' || status === 'HALKA' || status === 'SNJOTHEKJA') { bg = '#fef3c7'; icon = '⚠️'; }
                             else if (status.startsWith('OFAERT')) { bg = '#fef2f2'; icon = '🚫'; }
                             else if (status === 'LOKAD_VETRARLOKUN') { bg = '#e0e7ff'; icon = '❄️'; }
-                            return `<div style="background:${bg};padding:8px 12px;border-radius:6px;font-size:0.82em;">
+                            return `<div style="background:${bg};padding:6px 10px;border-radius:6px;font-size:0.8em;">
                                 <strong>${icon} ${m.where}</strong><br>
-                                <span style="color:#666;font-size:0.88em;">${m.road.FulltNafnButs || m.road.StuttNafnButs}</span><br>
-                                <span style="color:#444;font-size:0.9em;">${desc}</span>
+                                <span style="color:#555;font-size:0.9em;">${desc}</span>
                             </div>`;
-                        }).join('');
-                        return `<div style="margin-bottom:12px;">
-                            <div style="font-weight:600;color:var(--primary-blue);font-size:0.88em;margin-bottom:6px;">${dayKey}</div>
-                            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px;">${cards}</div>
-                        </div>`;
-                    }).join('');
-                }
-
-                // === Road Cameras on your route ===
-                const matchedCameras = cameras.filter(c => {
-                    const name = (c.Myndavel || '').toLowerCase();
-                    return routeCameraLocations.some(loc => name.includes(loc));
+                        }).join('') + `</div>`;
                 });
 
-                if (matchedCameras.length === 0) {
-                    cameraEl.innerHTML = '<div style="color:#888;padding:10px;">No cameras found on route.</div>';
-                } else {
-                    // Group by location (take only 1 angle per location to avoid clutter)
-                    const seenLocations = new Set();
-                    const uniqueCameras = matchedCameras.filter(c => {
-                        if (seenLocations.has(c.Myndavel)) return false;
-                        seenLocations.add(c.Myndavel);
-                        return true;
-                    });
-
-                    // Add cache-buster to URLs so images refresh
-                    const cacheBust = Date.now();
-                    cameraEl.innerHTML = uniqueCameras.slice(0, 18).map(c => {
-                        // Force https and add cache buster
+                // === Render per-day cameras ===
+                const cacheBust = Date.now();
+                dayCameraEls.forEach(el => {
+                    const day = parseInt(el.dataset.day);
+                    const cams = cameraByDay[day] || [];
+                    if (cams.length === 0) {
+                        el.innerHTML = '';
+                        return;
+                    }
+                    el.innerHTML = cams.slice(0, 8).map(c => {
                         const url = c.Slod.replace(/^http:/, 'https:') + '?t=' + cacheBust;
-                        return `<div style="background:#f8fafc;border-radius:8px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,0.08);">
+                        return `<div style="background:#f8fafc;border-radius:6px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.06);">
                             <a href="${url}" target="_blank" style="display:block;">
-                                <img src="${url}" alt="${c.Myndavel}" style="width:100%;height:140px;object-fit:cover;display:block;" onerror="this.parentElement.parentElement.style.display='none'">
+                                <img src="${url}" alt="${c.Myndavel}" style="width:100%;height:110px;object-fit:cover;display:block;" onerror="this.parentElement.parentElement.style.display='none'">
                             </a>
-                            <div style="padding:8px 10px;font-size:0.8em;">
-                                <strong style="color:var(--primary-blue);">${c.Myndavel}</strong><br>
-                                <span style="color:#666;">${c.Vegheiti}</span>
+                            <div style="padding:5px 8px;font-size:0.72em;">
+                                <strong style="color:var(--primary-blue);">${c.Myndavel}</strong>
                             </div>
                         </div>`;
                     }).join('');
-                }
-
-                // === Weather stations on route ===
-                const matchedStations = stations.filter(s => {
-                    const name = (s.Nafn || '').toLowerCase();
-                    return routeStations.some(rs => name.includes(rs.toLowerCase()));
                 });
-
-                if (matchedStations.length === 0) {
-                    weatherEl.innerHTML = '<div style="color:#888;padding:10px;">No nearby station data.</div>';
-                } else {
-                    weatherEl.innerHTML = matchedStations.slice(0, 12).map(s => {
-                        const wind = s.Vindhradi !== null ? Math.round(s.Vindhradi * 10) / 10 : '—';
-                        const gust = s.Vindhvida !== null ? Math.round(s.Vindhvida * 10) / 10 : null;
-                        const temp = s.Hiti !== null ? Math.round(s.Hiti * 10) / 10 : '—';
-                        const dir = s.VindattAscEng ? s.VindattAscEng.trim() : '';
-                        const windWarn = wind !== '—' && wind >= 15;
-                        const bg = windWarn ? '#fef3c7' : '#f0f9ff';
-                        return `<div style="background:${bg};padding:10px 12px;border-radius:6px;font-size:0.82em;">
-                            <strong>${s.Nafn}</strong><br>
-                            🌡 ${temp}°C · 💨 ${wind} m/s ${dir}${gust !== null ? ` (gust ${gust})` : ''}
-                        </div>`;
-                    }).join('');
-                }
             } catch (err) {
-                summaryEl.innerHTML = `<div class="error-msg" style="width:100%;">Failed to load road conditions: ${err.message}</div>`;
-                routeEl.innerHTML = '';
-                weatherEl.innerHTML = '';
-                cameraEl.innerHTML = '';
+                if (summaryEl) summaryEl.innerHTML = `<div class="error-msg" style="width:100%;">Failed to load road conditions: ${err.message}</div>`;
+                dayRoadEls.forEach(el => el.innerHTML = `<span style="color:#b91c1c;">Error loading: ${err.message}</span>`);
+                dayCameraEls.forEach(el => el.innerHTML = '');
             }
         }
 
