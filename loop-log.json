@@ -1,6 +1,30 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-07T11:27:14.987877+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. vedur.is YELLOW alert confirms windy Day 1. Open-Meteo still 504 (4 runs), met.no fallback holding steady (3-5°C, 13 m/s, 15mm). Reynisfjara orange. Kp max 3.33. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-07T11:27:14.833800+00:00",
+      "level": "suggestion",
+      "title": "Buy a cheap re-useable water bottle at KEF",
+      "message": "Iceland tap water is some of the cleanest on earth — direct from glacial springs, no need to buy bottled. Grab a 1L reusable (Krónan, Bónus, or airport Joe & the Juice ~ISK 500-1000) on Day 1 and refill everywhere. Saves ~ISK 400/bottle over 10 days and is better-tasting than anything bottled."
+    },
+    {
+      "timestamp": "2026-04-07T11:27:14.685741+00:00",
+      "level": "info",
+      "title": "Flood note: Héraðsvötn ice jam",
+      "message": "Per vedur.is: thawing + frozen ground causing rapid stream rise; ice jam risk in Héraðsvötn river (Skagafjörður, N Iceland) may break loose and flood the main road. NOT on our planned route (we stay south/west) but worth knowing if anyone suggests a detour north."
+    },
+    {
+      "timestamp": "2026-04-07T11:27:14.504322+00:00",
+      "level": "warning",
+      "title": "vedur.is YELLOW alert: widespread wind/rain",
+      "message": "Per vedur.is/alerts (Apr 7): YELLOW weather alert covering Reykjavik Capital, South, Faxaflói, Breiðafjörður, Westfjords, NW, NE, East & Eastfjords — basically the whole country except the southeast. South 13-20 m/s + rain, moderating evening. Aligns with our forecast for Day 1 Reykjavik arrival. Plan indoor activities on landing."
+    },
+    {
       "timestamp": "2026-04-07T09:27:27.223547+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -235,5 +259,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-07T09:27:27.223547+00:00"
+  "last_updated": "2026-04-07T11:27:14.987877+00:00"
 }
