@@ -1,6 +1,18 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-07T01:26:32.546963+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. All sources stable: Day 1 forecast steady (~74 km/h gusts, 9mm rain), Reynisfjara orange, Kp quiet (2.67). Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-07T01:26:32.377916+00:00",
+      "level": "suggestion",
+      "title": "Reykjavik wet-day Plan B: Perlan + Hallgrímskirkja tower",
+      "message": "Given tomorrow's 9mm rain + 74 km/h gusts, swap any outdoor arrival walking for Perlan (planetarium + ice cave exhibit, ~ISK 5990) and Hallgrímskirkja tower (ISK 1400, sheltered elevator view). Both are indoor/semi-indoor, high-reward, and close before 18:00 — check the 20:00 Lava Show slot fits after."
+    },
+    {
       "timestamp": "2026-04-06T23:26:31.204635+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -139,5 +151,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-06T23:26:31.204635+00:00"
+  "last_updated": "2026-04-07T01:26:32.546963+00:00"
 }
