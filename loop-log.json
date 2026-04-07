@@ -1,6 +1,18 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-07T23:26:37.761340+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. All sources unchanged from last run. Day 1 today (67 km/h gusts holding), Day 2 still 76 km/h, Day 3 dry. Kp quiet. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-07T23:26:37.603183+00:00",
+      "level": "suggestion",
+      "title": "Hot dog at Bæjarins Beztu",
+      "message": "Iceland's most famous hot dog stand (Bæjarins Beztu Pylsur, Tryggvagata 1, downtown Reykjavik) is open today until 01:00. ~ISK 600. Order 'eina með öllu' = 'one with everything' (mustard, ketchup, remoulade, raw + fried onions). Bill Clinton ate here. It's a 2-min walk from the harbour, indoor counter so the rain doesn't matter."
+    },
+    {
       "timestamp": "2026-04-07T21:26:40.348241+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -355,5 +367,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-07T21:26:40.348241+00:00"
+  "last_updated": "2026-04-07T23:26:37.761340+00:00"
 }
