@@ -95,12 +95,15 @@ def build_frame_urls(type_pattern, run, ext, frame_numbers):
 #  thattaspa precip:     every 3h (003 to 072)
 #  harmonie cloud:       every 1h (1 to 72)
 #  aurora isl_skyjahula: every 1h (1 to 72)
+ECM_FRAMES = list(range(3, 145, 3)) + list(range(150, 241, 6))  # 3h to +144h, then 6h to +240h
 FULL_RANGES = {
-    'thattaspa_ig_island_10uv':         list(range(1, 73)),       # wind every 1h
-    'thattaspa_ig_island_2t':           list(range(1, 73)),       # temperature every 1h
-    'thattaspa_ig_island_urk-msl-10uv': list(range(3, 73, 3)),    # precip every 3h
-    'harmonie_island_tcc_lcc_mcc_hcc':  list(range(1, 73)),       # cloud every 1h
+    'thattaspa_ig_island_10uv':         list(range(1, 73)),       # HARMONIE wind every 1h
+    'thattaspa_ig_island_2t':           list(range(1, 73)),       # HARMONIE temp every 1h
+    'thattaspa_ig_island_urk-msl-10uv': list(range(3, 73, 3)),    # HARMONIE precip every 3h
+    'harmonie_island_tcc_lcc_mcc_hcc':  list(range(1, 73)),       # HARMONIE cloud every 1h
     'isl_skyjahula2':                   list(range(1, 73)),       # aurora cloud every 1h
+    'thattaspa_ecm-is_island_10uv':     ECM_FRAMES,               # ECMWF IFS wind (medium-range, +240h)
+    'thattaspa_ecm-is_island_2t':       ECM_FRAMES,               # ECMWF IFS temp (medium-range, +240h)
 }
 
 def fetch_alerts(html):
@@ -158,11 +161,14 @@ def main():
     try:
         html2 = fetch('https://en.vedur.is/weather/forecasts/elements/')
         for label, type_id in [('wind', 'thattaspa_ig_island_10uv'),
-                                ('temperature', 'thattaspa_ig_island_2t')]:
+                                ('temperature', 'thattaspa_ig_island_2t'),
+                                ('wind_ecmwf', 'thattaspa_ecm-is_island_10uv'),
+                                ('temperature_ecmwf', 'thattaspa_ecm-is_island_2t')]:
             try:
                 visible, run, ext = fetch_map_urls(html2, type_id)
                 if run:
-                    latest_run = run
+                    if 'ig_island' in type_id:  # only HARMONIE runs drive precip
+                        latest_run = run
                     full_frames = FULL_RANGES.get(type_id, visible)
                     urls = build_frame_urls(type_id, run, ext, full_frames)
                     result[f'{label}_maps'] = {'run': run, 'urls': urls, 'frame_hours': full_frames}
@@ -205,7 +211,7 @@ def main():
     print(f'Outlook: {tf.get("outlook", "")[:120]}...')
     print(f'Multi-day: {len(tf.get("multi_day", []))} days')
     print(f'Alerts: {result.get("alerts", {}).get("count", 0)}')
-    for k in ['wind_maps', 'temperature_maps', 'precipitation_maps', 'cloud_total_maps', 'aurora_clouds_maps']:
+    for k in ['wind_maps', 'temperature_maps', 'precipitation_maps', 'cloud_total_maps', 'aurora_clouds_maps', 'wind_ecmwf_maps', 'temperature_ecmwf_maps']:
         v = result.get(k, {})
         print(f'{k}: run {v.get("run", "?")} ({len(v.get("urls", []))} frames)')
 

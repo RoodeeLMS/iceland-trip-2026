@@ -512,14 +512,21 @@
                 <div style="opacity:0.6;">Loading text forecast...</div>
             </div>
 
-            <!-- Map tabs -->
+            <!-- Map tabs (collapsed by default) -->
             <div style="margin-top:18px;">
+                <button onclick="toggleVedurMaps(this)" id="vedurMapsToggle" style="width:100%; background:rgba(255,255,255,0.08); color:white; border:1px solid rgba(255,255,255,0.2); padding:10px 14px; border-radius:8px; cursor:pointer; font-family:inherit; font-size:0.9em; font-weight:600; display:flex; justify-content:space-between; align-items:center;">
+                    <span>🗺️ HARMONIE forecast maps (wind, rain, temp, clouds, aurora)</span>
+                    <span id="vedurMapsChevron">▼</span>
+                </button>
+              <div id="vedurMapsPanel" style="display:none; margin-top:12px;">
                 <div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;" id="vedurMapTabs">
                     <button onclick="showVedurMap('wind')" class="vedur-tab active">💨 Wind</button>
                     <button onclick="showVedurMap('precipitation')" class="vedur-tab">🌧️ Precipitation</button>
                     <button onclick="showVedurMap('temperature')" class="vedur-tab">🌡️ Temperature</button>
                     <button onclick="showVedurMap('cloud_total')" class="vedur-tab">☁️ Cloud cover</button>
                     <button onclick="showVedurMap('aurora_clouds')" class="vedur-tab">🌌 Aurora clouds</button>
+                    <button onclick="showVedurMap('wind_ecmwf')" class="vedur-tab" title="ECMWF medium-range, +240h">💨 Wind (10-day)</button>
+                    <button onclick="showVedurMap('temperature_ecmwf')" class="vedur-tab" title="ECMWF medium-range, +240h">🌡️ Temp (10-day)</button>
                 </div>
                 <div id="vedurMapHolder" style="background:#000; border-radius:10px; min-height:400px; display:flex; align-items:center; justify-content:center; position:relative;">
                     <div style="opacity:0.5; color:#fbbf24;">Loading maps...</div>
@@ -533,6 +540,7 @@
                     <span id="vedurFrameLabel" style="font-size:0.85em; opacity:0.8;">—</span>
                     <button onclick="vedurFrame(1)" style="background:rgba(255,255,255,0.1); color:white; border:1px solid rgba(255,255,255,0.3); padding:6px 14px; border-radius:6px; cursor:pointer;">Next ▶</button>
                 </div>
+              </div>
             </div>
 
             <p style="font-size:0.72em; opacity:0.55; margin-top:14px; text-align:center;">Mirror updated by the loop · maps refresh ~4× daily (00, 06, 12, 18 UTC)</p>
@@ -581,7 +589,7 @@
                 }
                 renderVedurAlerts();
                 renderVedurText();
-                showVedurMap('wind'); // preloads wind only on initial load (~8 MB)
+                // Maps are collapsed by default — preload deferred until user expands
             }
 
             // Vedur runs at 00, 06, 12, 18 UTC. Each takes ~1.5h to publish all frames.
@@ -605,25 +613,44 @@
                 return `${yy}${mm}${dd}_${hh}00`;
             }
 
+            // ECMWF IFS runs 00 & 12 UTC, published ~8h later. Returns latest safely-available run.
+            function latestEcmwfRun() {
+                const safeTime = new Date(Date.now() - 9 * 60 * 60 * 1000); // 9h lag
+                const utcH = safeTime.getUTCHours();
+                const runHour = utcH >= 12 ? 12 : 0;
+                const d = new Date(Date.UTC(safeTime.getUTCFullYear(), safeTime.getUTCMonth(), safeTime.getUTCDate(), runHour, 0, 0));
+                const yy = String(d.getUTCFullYear()).slice(-2);
+                const mm = String(d.getUTCMonth() + 1).padStart(2, '0');
+                const dd = String(d.getUTCDate()).padStart(2, '0');
+                const hh = String(d.getUTCHours()).padStart(2, '0');
+                return `${yy}${mm}${dd}_${hh}00`;
+            }
+
             // Rebuild map URL arrays client-side using a freshly-computed latest run
             function rebuildVedurMapsClientSide() {
                 const run = latestVedurRun();
+                const ecmRun = latestEcmwfRun();
+                const ecmFrames = [];
+                for (let f = 3; f <= 144; f += 3) ecmFrames.push(f);
+                for (let f = 150; f <= 240; f += 6) ecmFrames.push(f);
                 const types = {
-                    wind:          { id: 'thattaspa_ig_island_10uv',         ext: 'gif', frames: Array.from({length:72}, (_,i)=>i+1), pad: 3 },
-                    temperature:   { id: 'thattaspa_ig_island_2t',           ext: 'gif', frames: Array.from({length:72}, (_,i)=>i+1), pad: 3 },
-                    precipitation: { id: 'thattaspa_ig_island_urk-msl-10uv', ext: 'gif', frames: Array.from({length:24}, (_,i)=>(i+1)*3), pad: 3 },
-                    cloud_total:   { id: 'harmonie_island_tcc_lcc_mcc_hcc',  ext: 'png', frames: Array.from({length:72}, (_,i)=>i+1), pad: 0 },
-                    aurora_clouds: { id: 'isl_skyjahula2',                   ext: 'png', frames: Array.from({length:72}, (_,i)=>i+1), pad: 0 },
+                    wind:              { id: 'thattaspa_ig_island_10uv',         ext: 'gif', frames: Array.from({length:72}, (_,i)=>i+1), pad: 3, run },
+                    temperature:       { id: 'thattaspa_ig_island_2t',           ext: 'gif', frames: Array.from({length:72}, (_,i)=>i+1), pad: 3, run },
+                    precipitation:     { id: 'thattaspa_ig_island_urk-msl-10uv', ext: 'gif', frames: Array.from({length:24}, (_,i)=>(i+1)*3), pad: 3, run },
+                    cloud_total:       { id: 'harmonie_island_tcc_lcc_mcc_hcc',  ext: 'png', frames: Array.from({length:72}, (_,i)=>i+1), pad: 0, run },
+                    aurora_clouds:     { id: 'isl_skyjahula2',                   ext: 'png', frames: Array.from({length:72}, (_,i)=>i+1), pad: 0, run },
+                    wind_ecmwf:        { id: 'thattaspa_ecm-is_island_10uv',     ext: 'gif', frames: ecmFrames, pad: 3, run: ecmRun },
+                    temperature_ecmwf: { id: 'thattaspa_ecm-is_island_2t',       ext: 'gif', frames: ecmFrames, pad: 3, run: ecmRun },
                 };
                 Object.entries(types).forEach(([label, t]) => {
                     const urls = t.frames.map(f => {
                         const fStr = t.pad ? String(f).padStart(t.pad, '0') : String(f);
-                        return `https://en.vedur.is/photos/${t.id}/${run}_${fStr}.${t.ext}`;
+                        return `https://en.vedur.is/photos/${t.id}/${t.run}_${fStr}.${t.ext}`;
                     });
-                    vedurData[`${label}_maps`] = { run, urls, frame_hours: t.frames };
+                    vedurData[`${label}_maps`] = { run: t.run, urls, frame_hours: t.frames };
                 });
                 vedurData._client_side_run = run;
-                console.log('vedur maps rebuilt client-side with run', run);
+                console.log('vedur maps rebuilt client-side with run', run, '/ ecmwf', ecmRun);
             }
 
             // Track which types have been preloaded so we don't re-fetch
@@ -689,6 +716,21 @@
                     html += `<div style="font-size:0.7em; opacity:0.5; margin-top:6px;">Made: ${made}</div>`;
                 }
                 el.innerHTML = html;
+            }
+
+            function toggleVedurMaps(btn) {
+                const panel = document.getElementById('vedurMapsPanel');
+                const chev = document.getElementById('vedurMapsChevron');
+                const isOpen = panel.style.display !== 'none';
+                if (isOpen) {
+                    panel.style.display = 'none';
+                    chev.textContent = '▼';
+                } else {
+                    panel.style.display = 'block';
+                    chev.textContent = '▲';
+                    // Lazy-init: first expand triggers wind preload
+                    if (!vedurPreloaded.has('wind')) showVedurMap('wind');
+                }
             }
 
             function showVedurMap(type) {
@@ -1070,9 +1112,11 @@
                     locationFetches[locKey] = {};
                     for (const [modelKey, baseUrl] of Object.entries(modelEndpoints)) {
                         const url = `${baseUrl}?latitude=${trip.lat}&longitude=${trip.lon}&${hourlyParams}&start_date=${trip.date}&end_date=${trip.date}`;
-                        locationFetches[locKey][modelKey] = fetch(url)
-                            .then(r => r.ok ? r.json() : null)
-                            .catch(() => null);
+                        const ctrl = new AbortController();
+                        const timer = setTimeout(() => ctrl.abort(), 10000);
+                        locationFetches[locKey][modelKey] = fetch(url, { signal: ctrl.signal })
+                            .then(r => { clearTimeout(timer); return r.ok ? r.json() : null; })
+                            .catch(() => { clearTimeout(timer); return null; });
                     }
                 }
 
