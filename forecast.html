@@ -1422,7 +1422,7 @@
 
                 // data is array of [time_tag, Kp, observed/predicted, noaa_scale]
                 // Skip header row
-                const forecasts = data.slice(1).filter(row => row[2] === 'predicted').slice(0, 8);
+                const forecasts = data.slice(1).filter(row => row[2] === 'predicted'); // full 3-day window (24 × 3h slots)
 
                 if (forecasts.length === 0) {
                     content.innerHTML = '<p>No predicted Kp data available right now. Check the links below for current conditions.</p>';
@@ -1479,7 +1479,7 @@
                             <p style="margin-top:8px;opacity:0.6;font-size:0.85em;">Solar Cycle 25 is near its peak — elevated Kp activity expected through 2026.</p>
                         </div>
                     </div>
-                    <h4 style="margin-bottom:10px;opacity:0.8;">3-Hour Kp Forecast</h4>
+                    <h4 style="margin-bottom:10px;opacity:0.8;">NOAA 3-Day Kp Forecast (every 3h)</h4>
                     <div class="kp-forecast-bar">${barHtml}</div>
                     <p style="font-size:0.8em;opacity:0.5;">Kp scale: 0-1 = quiet | 2-3 = unsettled | 4 = active | 5+ = storm (aurora!). April viewing window: ~23:00-02:00.</p>
                 `;
