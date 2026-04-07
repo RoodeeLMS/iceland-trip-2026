@@ -303,8 +303,6 @@ Format:
 - [ ] YYYY-MM-DD: Task description
 ```
 
-- [ ] **2026-04-07 (today)** — Trip starts tomorrow. Confirm Old Charm Reykjavik check-in instructions are in user's email (Agoda booking ref es2604070156466592469). If self-check-in code isn't visible by 12:00 UTC, post a `warning` reminding the user to email/call +354 786 3399.
-- [ ] **2026-04-07** — Verify with vedur.is whether the Day 1 storm forecast intensified or eased in the latest run. If forecast shows arrival winds >25 m/s gusts, post a `warning` about possible flight delay/diversion.
 - [ ] **Day-of each major activity decision day** (Apr 9 evening, Apr 10 evening, Apr 11 evening): post a `suggestion` with the next-day forecast summary so user has the data to make a booking call. Skaftafell Blue Ice booking decision is the priority.
 
 ---

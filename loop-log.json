@@ -1,6 +1,18 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-07T03:34:29.489743+00:00",
+      "level": "info",
+      "title": "Day 1 storm check vs 25 m/s threshold",
+      "message": "Latest Open-Meteo for Reykjavik Apr 8: gusts 72 km/h (~20 m/s). Below 25 m/s diversion-risk threshold but right at the upper end of 'gusty.' KEF arrivals should land normally; FI529 BER→KEF historically tolerates much worse. Will keep monitoring."
+    },
+    {
+      "timestamp": "2026-04-07T03:34:29.346177+00:00",
+      "level": "warning",
+      "title": "Old Charm Reykjavik: confirm self-check-in code",
+      "message": "Trip starts tomorrow. Verify Agoda booking es2604070156466592469 has self-check-in instructions/door code in your email. If not visible by 12:00 UTC today, contact host: +354 786 3399 or via Agoda chat. Arrival is late evening Apr 8 — you don't want to be locked out in 72 km/h gusts."
+    },
+    {
       "timestamp": "2026-04-07T03:26:32.564851+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -163,5 +175,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-07T03:26:32.564851+00:00"
+  "last_updated": "2026-04-07T03:34:29.489743+00:00"
 }
