@@ -1,6 +1,24 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-07T19:26:41.982036+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Day 1 forecast steady (67 km/h, 8mm rain), Day 2 slightly eased, Day 3 dry. SafeTravel/Reynisfjara stable. Kp quiet. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-07T19:26:41.851083+00:00",
+      "level": "suggestion",
+      "title": "Skyr at Bónus — Ísey Skyr vanilla is the classic",
+      "message": "When you hit Bónus/Krónan after pickup, grab Ísey Skyr (vanilla or plain) — the real Icelandic version, not the Americanized stuff. ~ISK 250 for 450g, high protein, perfect breakfast. Plain + a drizzle of local heather honey ('lynghunang', in honey aisle) is the local move."
+    },
+    {
+      "timestamp": "2026-04-07T19:26:41.707850+00:00",
+      "level": "info",
+      "title": "Day 2 slightly improved, Day 1 slightly wetter",
+      "message": "New Open-Meteo run: Day 1 gusts 67 km/h / 8.3mm (+2mm rain vs last run). Day 2 Golden Circle gusts 68 km/h / 5.8mm — down from 74/8.5, a clear improvement. Day 3 still dry (0.03mm). No change to action plan."
+    },
+    {
       "timestamp": "2026-04-07T17:27:00.346209+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -319,5 +337,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-07T17:27:00.346209+00:00"
+  "last_updated": "2026-04-07T19:26:41.982036+00:00"
 }
