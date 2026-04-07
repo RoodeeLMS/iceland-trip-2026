@@ -1,6 +1,30 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-07T17:27:00.346209+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Day 1 (today!) forecast holding: 67 km/h gusts, 6mm rain. Day 2 still worse (74 km/h), Day 3 dry & calm. Kp peaking 3.33 tonight — below aurora alert threshold. Sources stable. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-07T17:27:00.163887+00:00",
+      "level": "suggestion",
+      "title": "Bonus opens 11:00 — grocery stop after rental pickup",
+      "message": "After Hertz/SIXT pickup at KEF, the closest cheap grocery is Krónan Reykjanesbær (5 min from airport, opens 10:00) or Bónus Fitjar (also 5 min, opens 11:00). Stock up on water, skyr, bread, snacks before driving into Reykjavik — saves 30-40% vs city centre 10-11 (open 24/7). Good time to buy that reusable bottle."
+    },
+    {
+      "timestamp": "2026-04-07T17:26:59.978093+00:00",
+      "level": "warning",
+      "title": "FI520 KEF→FRA gate watch starts",
+      "message": "Return flight FI520 (Apr 17) is 9 days out — too early for gate, but Icelandair never publishes KEF gates in advance anyway. Just a flag: I'll be polling every run for changes. The day-of gate will be on the KEF FIDS only. Don't expect a tracker hit until 2-3h before departure."
+    },
+    {
+      "timestamp": "2026-04-07T17:26:59.797039+00:00",
+      "level": "info",
+      "title": "Travel day Apr 8: arrival day",
+      "message": "Today is Day 1 — KEF arrival on FI529 from BER. Forecast unchanged from last run: gusts 67 km/h, 6mm rain, 4-8°C in Reykjavik. YELLOW alert still in effect. Before heading to BER for FI529, check icelandair.com flight status — KEF wind is below FI529's typical operating limits but worth confirming."
+    },
+    {
       "timestamp": "2026-04-07T15:26:49.586031+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -295,5 +319,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-07T15:26:49.586031+00:00"
+  "last_updated": "2026-04-07T17:27:00.346209+00:00"
 }
