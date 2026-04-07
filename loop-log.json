@@ -1,6 +1,24 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-07T21:26:40.348241+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Day 2 forecast oscillating (now 76 km/h again). Day 1 holding (68 km/h), Day 3 dry. SafeTravel/Reynisfjara stable. Kp quiet (max 3.33). Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-07T21:26:40.174839+00:00",
+      "level": "suggestion",
+      "title": "Geysir tip: stand UPWIND of Strokkur",
+      "message": "With 76 km/h gusts forecast for Day 2, the Strokkur eruption plume will travel a LONG way downwind. Check the wind direction sock at the entrance and stand on the upwind side of the rope — otherwise the 90°C water lands on you within seconds. Locals pick the side, tourists get soaked."
+    },
+    {
+      "timestamp": "2026-04-07T21:26:40.003202+00:00",
+      "level": "update",
+      "title": "Day 2 forecast bumps back up to 76 km/h gusts",
+      "message": "New Open-Meteo run flips Day 2 again: gusts now 76 km/h (was 68 last run, 74 the run before). Forecasts are oscillating which means the model is uncertain — assume worst case for planning. Day 2 Golden Circle: bring full rain gear, expect Geysir steam to fly sideways, hold Þingvellir car doors firmly. Day 1 (today) and Day 3 are stable."
+    },
+    {
       "timestamp": "2026-04-07T19:26:41.982036+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -337,5 +355,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-07T19:26:41.982036+00:00"
+  "last_updated": "2026-04-07T21:26:40.348241+00:00"
 }
