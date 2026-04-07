@@ -1,6 +1,24 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-07T07:26:58.745412+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Open-Meteo still 502; met.no fallback used and confirms forecast. Sources otherwise stable, Kp quiet. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-07T07:26:58.566697+00:00",
+      "level": "suggestion",
+      "title": "Drone — Day 1 likely no-fly",
+      "message": "Sustained wind 12.9 m/s + gusts ~20 m/s in Reykjavik tomorrow exceed DJI Neo 2's safe envelope (rated to 8 m/s wind resistance). Don't unpack the drone on Day 1; first realistic window is Day 2 Golden Circle if wind eases. Keep batteries warm in inside pocket — cold drains LiPo fast."
+    },
+    {
+      "timestamp": "2026-04-07T07:26:58.373783+00:00",
+      "level": "info",
+      "title": "Day 1 (Apr 8) cross-check via met.no",
+      "message": "Open-Meteo still 502'd. Fallback met.no shows: 3-5°C, sustained wind 12.9 m/s, 14.9 mm precip. Confirms the wet/windy/cold profile from earlier runs. No significant divergence from prior forecast — Plan B (Perlan/Hallgrímskirkja) still recommended for arrival afternoon."
+    },
+    {
       "timestamp": "2026-04-07T05:26:42.059921+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -187,5 +205,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-07T05:26:42.059921+00:00"
+  "last_updated": "2026-04-07T07:26:58.745412+00:00"
 }
