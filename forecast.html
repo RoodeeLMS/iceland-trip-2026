@@ -1459,7 +1459,9 @@
                 const data = await res.json();
 
                 // NOAA returns array of {time_tag, kp, observed, noaa_scale}
-                const forecasts = data.filter(row => row.observed === 'predicted'); // full 3-day window (24 × 3h slots)
+                // Only show predicted entries that haven't already happened (file is generated daily, includes past slots)
+                const nowMs = Date.now();
+                const forecasts = data.filter(row => row.observed === 'predicted' && new Date(row.time_tag + 'Z').getTime() >= nowMs - 3 * 3600 * 1000);
 
                 if (forecasts.length === 0) {
                     content.innerHTML = '<p>No predicted Kp data available right now. Check the links below for current conditions.</p>';
