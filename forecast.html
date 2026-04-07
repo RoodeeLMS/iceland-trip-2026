@@ -741,15 +741,45 @@
                 }
             }
 
+            // Compute the valid-time (ms since epoch, UTC) for the current frame of a given map type
+            function vedurValidTimeMs(type, frameIdx) {
+                const data = vedurData[type + '_maps'] || {};
+                const hours = data.frame_hours || [];
+                if (!data.run || frameIdx == null || hours[frameIdx] == null) return null;
+                const m = data.run.match(/(\d{2})(\d{2})(\d{2})_(\d{2})(\d{2})/);
+                if (!m) return null;
+                const runUtc = Date.UTC(2000 + +m[1], +m[2] - 1, +m[3], +m[4], +m[5]);
+                return runUtc + hours[frameIdx] * 3600 * 1000;
+            }
+
+            // Find the frame index whose valid time is closest to targetMs
+            function vedurNearestFrame(type, targetMs) {
+                const data = vedurData[type + '_maps'] || {};
+                const hours = data.frame_hours || [];
+                if (!data.run || !hours.length || targetMs == null) return 0;
+                const m = data.run.match(/(\d{2})(\d{2})(\d{2})_(\d{2})(\d{2})/);
+                if (!m) return 0;
+                const runUtc = Date.UTC(2000 + +m[1], +m[2] - 1, +m[3], +m[4], +m[5]);
+                let bestIdx = 0, bestDiff = Infinity;
+                for (let i = 0; i < hours.length; i++) {
+                    const diff = Math.abs((runUtc + hours[i] * 3600 * 1000) - targetMs);
+                    if (diff < bestDiff) { bestDiff = diff; bestIdx = i; }
+                }
+                return bestIdx;
+            }
+
             function showVedurMap(type) {
                 if (!vedurData) return;
+                // Preserve currently-shown valid time so tab switch seeks to nearest equivalent frame
+                const prevValidMs = vedurValidTimeMs(vedurCurrentType, vedurCurrentFrame);
                 vedurCurrentType = type;
-                vedurCurrentFrame = 0;
                 stopVedurAnimate();
                 document.querySelectorAll('.vedur-tab').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase().includes(type.replace('_', ' ').split(' ')[0]) || (type==='cloud_total' && b.textContent.includes('Cloud'))));
                 const urls = (vedurData[type + '_maps'] || {}).urls || [];
-                document.getElementById('vedurSlider').max = Math.max(0, urls.length - 1);
-                document.getElementById('vedurSlider').value = 0;
+                vedurCurrentFrame = prevValidMs != null ? vedurNearestFrame(type, prevValidMs) : 0;
+                const slider = document.getElementById('vedurSlider');
+                slider.max = Math.max(0, urls.length - 1);
+                slider.value = vedurCurrentFrame;
                 preloadVedurType(type); // lazy preload only the active type
                 renderVedurFrame();
             }
