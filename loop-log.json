@@ -1,6 +1,36 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-07T09:27:27.223547+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Deep sweep done: no Reykjanes eruption (magma building), QR corridor-restricted but on schedule, Day 1 wet/windy unchanged, Day 3 Vík still 16 m/s. Open-Meteo still 502 (3 runs), met.no working. Kp peaks 3.33 next 72h. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-07T09:27:27.097334+00:00",
+      "level": "suggestion",
+      "title": "Photography: long-exposure waterfalls in low light",
+      "message": "Day 1-3 forecast = overcast, low light, 4-7°C. Perfect natural ND filter for silky-water shots at Seljalandsfoss/Skógafoss (Day 3). Settings starting point: ISO 100, f/11, 1-2 sec, tripod essential. Spray-proof lens cloth more useful than a real ND filter — wipe between every shot. Bring a microfiber in your jacket pocket."
+    },
+    {
+      "timestamp": "2026-04-07T09:27:15.943365+00:00",
+      "level": "update",
+      "title": "Day 3 (Apr 10) Vík forecast: still windy",
+      "message": "Per met.no for 63.42,-19.01: Apr 10 Vík = 1-5°C, sustained wind 15.7 m/s, 6 mm rain. Reynisfjara already at orange (viewpoint-only). With 15+ m/s wind on top of orange waves, treat the beach as photo-from-viewpoint only; no walking on sand. Skógafoss still good. Dyrhólaey arch road may be closed in those winds — check road.is morning-of."
+    },
+    {
+      "timestamp": "2026-04-07T09:27:15.793896+00:00",
+      "level": "info",
+      "title": "Qatar Airways status: still corridor-restricted",
+      "message": "Per gulfnews/aviationoutlook (Apr 1, 2026 schedule): QR running ~120 destinations target by mid-May, up from ~15 at lowest. Doha operating via dedicated airspace corridors. Your booking 7YXVGK (BKK→DOH→BER→KEF) is on the rebuilt schedule so should be fine, but allow extra connection buffer at DOH and check qatarairways.com travel-alerts before BKK departure."
+    },
+    {
+      "timestamp": "2026-04-07T09:27:15.635543+00:00",
+      "level": "update",
+      "title": "Reykjanes volcano: no eruption, magma still building",
+      "message": "Per vedur.is + visitreykjanes.is: no active eruption. ~21 million m³ magma accumulated beneath Svartsengi since the July 2025 Sundhnúkur eruption ended Aug 5. Most likely scenario in coming weeks = intrusion toward Sundhnúkur crater row possibly leading to eruption. Day 9 Reykjanes/Blue Lagoon plans currently SAFE but monitor — IMO bulletin is the trigger."
+    },
+    {
       "timestamp": "2026-04-07T07:26:58.745412+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -205,5 +235,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-07T07:26:58.745412+00:00"
+  "last_updated": "2026-04-07T09:27:27.223547+00:00"
 }
