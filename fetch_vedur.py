@@ -68,21 +68,40 @@ def parse_text_forecast(html):
     return out
 
 def fetch_map_urls(html, type_pattern):
-    """Find latest map image URLs of a given type from page HTML."""
+    """Find latest map image URLs of a given type from page HTML.
+
+    Returns (urls, latest_run). Only the page-visible frames are returned;
+    the actual published range is wider — extend_frame_range() handles that
+    by probing additional hours.
+    """
     pattern = re.compile(r'/photos/' + re.escape(type_pattern) + r'/([0-9]{6}_[0-9]{4})_(\d+)\.(gif|png)')
     matches = pattern.findall(html)
     if not matches:
-        return [], None
-    # Group by run timestamp, take the latest
+        return [], None, None
     latest_run = max(set(m[0] for m in matches))
     ext = matches[0][2]
-    # For thattaspa images frame numbers are 3-digit (003, 004, ...); for harmonie they're 1-digit
-    frames = sorted({int(m[1]) for m in matches if m[0] == latest_run})
+    visible_frames = sorted({int(m[1]) for m in matches if m[0] == latest_run})
+    return visible_frames, latest_run, ext
+
+def build_frame_urls(type_pattern, run, ext, frame_numbers):
+    """Build map image URLs for the given frame numbers."""
     if 'thattaspa' in type_pattern:
-        urls = [f'https://en.vedur.is/photos/{type_pattern}/{latest_run}_{f:03d}.{ext}' for f in frames[:12]]
+        return [f'https://en.vedur.is/photos/{type_pattern}/{run}_{f:03d}.{ext}' for f in frame_numbers]
     else:
-        urls = [f'https://en.vedur.is/photos/{type_pattern}/{latest_run}_{f}.{ext}' for f in frames[:12]]
-    return urls, latest_run
+        return [f'https://en.vedur.is/photos/{type_pattern}/{run}_{f}.{ext}' for f in frame_numbers]
+
+# Vedur publishes maps out to +72h. Frame intervals per type:
+#  thattaspa wind/temp:  every 1h (003 to 072)
+#  thattaspa precip:     every 3h (003 to 072)
+#  harmonie cloud:       every 1h (1 to 72)
+#  aurora isl_skyjahula: every 1h (1 to 72)
+FULL_RANGES = {
+    'thattaspa_ig_island_10uv':         list(range(1, 73)),       # wind every 1h
+    'thattaspa_ig_island_2t':           list(range(1, 73)),       # temperature every 1h
+    'thattaspa_ig_island_urk-msl-10uv': list(range(3, 73, 3)),    # precip every 3h
+    'harmonie_island_tcc_lcc_mcc_hcc':  list(range(1, 73)),       # cloud every 1h
+    'isl_skyjahula2':                   list(range(1, 73)),       # aurora cloud every 1h
+}
 
 def fetch_alerts(html):
     """Extract alert JSON embedded in the page."""
@@ -135,29 +154,30 @@ def main():
         result['text_forecast_error'] = str(e)
 
     # 2. Wind / temp maps from elements page
+    latest_run = None
     try:
         html2 = fetch('https://en.vedur.is/weather/forecasts/elements/')
         for label, type_id in [('wind', 'thattaspa_ig_island_10uv'),
                                 ('temperature', 'thattaspa_ig_island_2t')]:
             try:
-                urls, run = fetch_map_urls(html2, type_id)
-                result[f'{label}_maps'] = {'run': run, 'urls': urls}
+                visible, run, ext = fetch_map_urls(html2, type_id)
+                if run:
+                    latest_run = run
+                    full_frames = FULL_RANGES.get(type_id, visible)
+                    urls = build_frame_urls(type_id, run, ext, full_frames)
+                    result[f'{label}_maps'] = {'run': run, 'urls': urls, 'frame_hours': full_frames}
             except Exception as e:
                 result[f'{label}_maps_error'] = str(e)
     except Exception as e:
         result['element_maps_error'] = str(e)
 
-    # Precipitation maps — page uses JS to load these so URLs aren't in initial HTML.
-    # Construct URLs directly using the same run timestamp as the wind maps.
+    # Precipitation maps — page uses JS, construct URLs directly using the wind run.
     try:
-        wind_run = result.get('wind_maps', {}).get('run')
-        if wind_run:
-            frames = list(range(3, 51, 3))  # +3h to +48h every 3 hours
-            precip_urls = [
-                f'https://en.vedur.is/photos/thattaspa_ig_island_urk-msl-10uv/{wind_run}_{f:03d}.gif'
-                for f in frames
-            ]
-            result['precipitation_maps'] = {'run': wind_run, 'urls': precip_urls}
+        if latest_run:
+            type_id = 'thattaspa_ig_island_urk-msl-10uv'
+            frames = FULL_RANGES[type_id]
+            urls = build_frame_urls(type_id, latest_run, 'gif', frames)
+            result['precipitation_maps'] = {'run': latest_run, 'urls': urls, 'frame_hours': frames}
     except Exception as e:
         result['precipitation_maps_error'] = str(e)
 
@@ -167,8 +187,11 @@ def main():
         for label, type_id in [('cloud_total', 'harmonie_island_tcc_lcc_mcc_hcc'),
                                 ('aurora_clouds', 'isl_skyjahula2')]:
             try:
-                urls, run = fetch_map_urls(html3, type_id)
-                result[f'{label}_maps'] = {'run': run, 'urls': urls}
+                visible, run, ext = fetch_map_urls(html3, type_id)
+                if run:
+                    full_frames = FULL_RANGES.get(type_id, visible)
+                    urls = build_frame_urls(type_id, run, ext, full_frames)
+                    result[f'{label}_maps'] = {'run': run, 'urls': urls, 'frame_hours': full_frames}
             except Exception as e:
                 result[f'{label}_maps_error'] = str(e)
     except Exception as e:

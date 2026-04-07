@@ -686,13 +686,14 @@
                 const label = document.getElementById('vedurFrameLabel');
                 const data = vedurData[vedurCurrentType + '_maps'] || {};
                 const urls = data.urls || [];
+                const hours = data.frame_hours || [];
                 if (!urls.length) {
                     holder.innerHTML = '<div style="opacity:0.5; color:#fbbf24;">No frames available for this type.</div>';
                     label.textContent = '—';
                     return;
                 }
                 const url = urls[vedurCurrentFrame];
-                // Reuse existing img if present so the browser uses cached version (no flicker)
+                // Reuse existing img so cached frames don't flicker
                 let img = holder.querySelector('img');
                 if (!img) {
                     holder.innerHTML = `<img src="${url}" alt="${vedurCurrentType} forecast" onclick="window.open(this.src, '_blank')">`;
@@ -700,7 +701,20 @@
                     img.src = url;
                     img.alt = `${vedurCurrentType} forecast frame ${vedurCurrentFrame + 1}`;
                 }
-                label.textContent = `Frame ${vedurCurrentFrame + 1} of ${urls.length} · run ${data.run || '?'}`;
+                // Calculate forecast valid time from run + frame hour offset
+                const offsetH = hours[vedurCurrentFrame];
+                let validLabel = '';
+                if (offsetH != null && data.run) {
+                    // run is YYMMDD_HHMM in UTC
+                    const m = data.run.match(/(\d{2})(\d{2})(\d{2})_(\d{2})(\d{2})/);
+                    if (m) {
+                        const runUtc = new Date(Date.UTC(2000 + +m[1], +m[2] - 1, +m[3], +m[4], +m[5]));
+                        const valid = new Date(runUtc.getTime() + offsetH * 3600 * 1000);
+                        const d = valid.toLocaleString('en-GB', { weekday: 'short', day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit', timeZone: 'Atlantic/Reykjavik' });
+                        validLabel = ` · valid ${d} (Iceland)`;
+                    }
+                }
+                label.textContent = `+${offsetH}h · frame ${vedurCurrentFrame + 1}/${urls.length}${validLabel}`;
             }
 
             loadVedur();
