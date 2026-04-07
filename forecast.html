@@ -1638,7 +1638,12 @@
                     const avgNightCloud = nightClouds.length > 0
                         ? Math.round(nightClouds.reduce((s, v) => s + (v || 0), 0) / nightClouds.length)
                         : null;
-                    const nightKp = kpByDate[trip.date] || null;
+                    let nightKp = kpByDate[trip.date] || null;
+                    let kpSource = nightKp !== null ? '3-day' : null;
+                    if (nightKp === null && kp27ByDate[trip.date] != null) {
+                        nightKp = kp27ByDate[trip.date];
+                        kpSource = '27-day';
+                    }
 
                     let rating, ratingClass, ratingIcon;
                     if (avgNightCloud === null) {
@@ -1670,7 +1675,7 @@
                         <div style="font-size:1.6em;margin:4px 0;">${ratingIcon}</div>
                         <div style="margin-bottom:4px;">${rating}</div>
                         ${avgNightCloud !== null ? `<div style="opacity:0.7;font-size:0.85em;">Cloud: ${avgNightCloud}%</div>` : ''}
-                        ${nightKp !== null ? `<div style="opacity:0.7;font-size:0.85em;">Kp: ${nightKp.toFixed(1)}</div>` : ''}
+                        ${nightKp !== null ? `<div style="opacity:0.7;font-size:0.85em;">Kp: ${nightKp.toFixed(1)}${kpSource==='27-day'?' <span style="opacity:0.6;">(27d)</span>':''}</div>` : ''}
                     `;
                     container.appendChild(card);
                 });
@@ -1719,6 +1724,7 @@
         }
 
 
+        let kp27ByDate = {}; // { 'YYYY-MM-DD': kp } populated by fetchKp27Day
         async function fetchKp27Day() {
             const el = document.getElementById('kp27day');
             try {
@@ -1732,10 +1738,11 @@
                 const rows = [];
                 txt.split(/\r?\n/).forEach(line => {
                     const m = line.trim().match(/^(\d{4})\s+(\w{3})\s+(\d{1,2})\s+(\d+)\s+(\d+)\s+(\d+)/);
-                    if (m) rows.push({
-                        date: new Date(Date.UTC(+m[1], MONTHS[m[2]], +m[3])),
-                        f107: +m[4], a: +m[5], kp: +m[6]
-                    });
+                    if (m) {
+                        const d = new Date(Date.UTC(+m[1], MONTHS[m[2]], +m[3]));
+                        rows.push({ date: d, f107: +m[4], a: +m[5], kp: +m[6] });
+                        kp27ByDate[d.toISOString().split('T')[0]] = +m[6];
+                    }
                 });
                 const tripStart = new Date(Date.UTC(2026, 3, 8));
                 const tripEnd = new Date(Date.UTC(2026, 3, 17));
@@ -1764,7 +1771,8 @@
         }
 
         async function loadAll() {
-            await Promise.all([fetchWeather(), fetchSunData(), fetchAurora(), fetchAuroraRealtime(), fetchAuroraNights(), fetchKp27Day()]);
+            await fetchKp27Day(); // populate kp27ByDate first so nightly cards can use it as fallback
+            await Promise.all([fetchWeather(), fetchSunData(), fetchAurora(), fetchAuroraRealtime(), fetchAuroraNights()]);
             checkStormAlert();
             const now = new Date();
             document.getElementById('lastUpdated').innerHTML = `<strong>✅ Data updated:</strong> ${now.toLocaleString()} — Weather from <a href="https://open-meteo.com/" target="_blank">Open-Meteo</a> | Aurora from <a href="https://www.swpc.noaa.gov/" target="_blank">NOAA SWPC</a> | <a href="driving.html" style="color: var(--aurora-green);">Live road conditions →</a>`;
