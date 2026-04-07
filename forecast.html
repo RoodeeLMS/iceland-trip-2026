@@ -875,6 +875,10 @@
             <div id="auroraRealtime" style="background:rgba(0,0,0,0.2);border-radius:10px;padding:14px 18px;font-size:0.88em;">
                 <div class="loading">Loading solar wind + OVATION probability…</div>
             </div>
+            <h3 style="margin-top:20px;margin-bottom:10px;font-size:1.1em;">📅 27-Day Kp Outlook (NOAA SWPC)</h3>
+            <div id="kp27day" style="background:rgba(0,0,0,0.2);border-radius:10px;padding:14px 18px;font-size:0.85em;">
+                <div class="loading">Loading 27-day outlook…</div>
+            </div>
             <h3 style="margin-top:20px;margin-bottom:10px;font-size:1.1em;">Nightly Aurora Viewing Conditions</h3>
             <div class="aurora-nights" id="auroraNights"><div class="loading">Loading night conditions</div></div>
             <div class="aurora-links">
@@ -1715,8 +1719,52 @@
         }
 
 
+        async function fetchKp27Day() {
+            const el = document.getElementById('kp27day');
+            try {
+                const ctrl = new AbortController();
+                const timer = setTimeout(() => ctrl.abort(), 10000);
+                const res = await fetch('https://services.swpc.noaa.gov/text/27-day-outlook.txt', { signal: ctrl.signal });
+                clearTimeout(timer);
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const txt = await res.text();
+                const MONTHS = {Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+                const rows = [];
+                txt.split(/\r?\n/).forEach(line => {
+                    const m = line.trim().match(/^(\d{4})\s+(\w{3})\s+(\d{1,2})\s+(\d+)\s+(\d+)\s+(\d+)/);
+                    if (m) rows.push({
+                        date: new Date(Date.UTC(+m[1], MONTHS[m[2]], +m[3])),
+                        f107: +m[4], a: +m[5], kp: +m[6]
+                    });
+                });
+                const tripStart = new Date(Date.UTC(2026, 3, 8));
+                const tripEnd = new Date(Date.UTC(2026, 3, 17));
+                const tripRows = rows.filter(r => r.date >= tripStart && r.date <= tripEnd);
+                const kpColor = k => k >= 5 ? '#10b981' : k >= 4 ? '#fbbf24' : k >= 3 ? '#f59e0b' : '#9ca3af';
+                const kpLabel = k => k >= 5 ? 'Storm — GREAT' : k >= 4 ? 'Active — good' : k >= 3 ? 'Unsettled' : 'Quiet';
+                let html = '<div style="opacity:0.7; font-size:0.82em; margin-bottom:10px;">Long-range Kp outlook from NOAA SWPC. Based on 27-day solar rotation recurrence — indicative only beyond 3 days.</div>';
+                if (tripRows.length) {
+                    html += '<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:8px;">';
+                    tripRows.forEach(r => {
+                        const d = r.date.toLocaleDateString('en-GB', {weekday:'short', day:'2-digit', month:'short', timeZone:'UTC'});
+                        html += `<div style="background:rgba(255,255,255,0.06); border-left:3px solid ${kpColor(r.kp)}; padding:8px 10px; border-radius:6px;">
+                            <div style="font-size:0.78em; opacity:0.75;">${d}</div>
+                            <div style="font-size:1.3em; font-weight:700; color:${kpColor(r.kp)};">Kp ${r.kp}</div>
+                            <div style="font-size:0.72em; opacity:0.8;">${kpLabel(r.kp)}</div>
+                        </div>`;
+                    });
+                    html += '</div>';
+                } else {
+                    html += '<div style="opacity:0.6;">Trip dates outside current 27-day window.</div>';
+                }
+                el.innerHTML = html;
+            } catch (e) {
+                el.innerHTML = `<div style="opacity:0.6;">27-day outlook unavailable (${e.message}). <a href="https://services.swpc.noaa.gov/text/27-day-outlook.txt" target="_blank" style="color:#bae6fd;">Open raw file →</a></div>`;
+            }
+        }
+
         async function loadAll() {
-            await Promise.all([fetchWeather(), fetchSunData(), fetchAurora(), fetchAuroraRealtime(), fetchAuroraNights()]);
+            await Promise.all([fetchWeather(), fetchSunData(), fetchAurora(), fetchAuroraRealtime(), fetchAuroraNights(), fetchKp27Day()]);
             checkStormAlert();
             const now = new Date();
             document.getElementById('lastUpdated').innerHTML = `<strong>✅ Data updated:</strong> ${now.toLocaleString()} — Weather from <a href="https://open-meteo.com/" target="_blank">Open-Meteo</a> | Aurora from <a href="https://www.swpc.noaa.gov/" target="_blank">NOAA SWPC</a> | <a href="driving.html" style="color: var(--aurora-green);">Live road conditions →</a>`;
