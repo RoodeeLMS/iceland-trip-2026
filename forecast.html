@@ -1420,9 +1420,8 @@
                 const res = await fetch('https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json');
                 const data = await res.json();
 
-                // data is array of [time_tag, Kp, observed/predicted, noaa_scale]
-                // Skip header row
-                const forecasts = data.slice(1).filter(row => row[2] === 'predicted'); // full 3-day window (24 × 3h slots)
+                // NOAA returns array of {time_tag, kp, observed, noaa_scale}
+                const forecasts = data.filter(row => row.observed === 'predicted'); // full 3-day window (24 × 3h slots)
 
                 if (forecasts.length === 0) {
                     content.innerHTML = '<p>No predicted Kp data available right now. Check the links below for current conditions.</p>';
@@ -1430,8 +1429,8 @@
                 }
 
                 // Current/latest Kp
-                const observed = data.slice(1).filter(row => row[2] === 'observed');
-                const latestKp = observed.length > 0 ? parseFloat(observed[observed.length - 1][1]) : parseFloat(forecasts[0][1]);
+                const observed = data.filter(row => row.observed === 'observed');
+                const latestKp = observed.length > 0 ? parseFloat(observed[observed.length - 1].kp) : parseFloat(forecasts[0].kp);
 
                 let kpClass = 'kp-low';
                 let kpLabel = 'Quiet — Aurora unlikely';
@@ -1454,8 +1453,8 @@
                 // Build 3-hour forecast bar
                 let barHtml = '';
                 forecasts.forEach(f => {
-                    const kp = parseFloat(f[1]);
-                    const time = new Date(f[0]);
+                    const kp = parseFloat(f.kp);
+                    const time = new Date(f.time_tag + 'Z');
                     const timeStr = time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
                     const dateStr = time.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
                     let bg = 'rgba(255,255,255,0.05)';
@@ -1598,14 +1597,15 @@
                 try {
                     const kpRes = await fetch('https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json');
                     const kpData = await kpRes.json();
-                    kpData.slice(1).forEach(row => {
-                        const d = new Date(row[0]);
+                    kpData.forEach(row => {
+                        const d = new Date(row.time_tag + 'Z');
                         const dateKey = d.toISOString().split('T')[0];
                         const hour = d.getUTCHours();
                         // Night hours: 22-02 UTC (roughly 22-02 Iceland time since UTC+0)
                         if (hour >= 21 || hour <= 3) {
-                            if (!kpByDate[dateKey] || parseFloat(row[1]) > kpByDate[dateKey]) {
-                                kpByDate[dateKey] = parseFloat(row[1]);
+                            const k = parseFloat(row.kp);
+                            if (!kpByDate[dateKey] || k > kpByDate[dateKey]) {
+                                kpByDate[dateKey] = k;
                             }
                         }
                     });
