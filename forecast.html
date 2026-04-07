@@ -565,13 +565,65 @@
                     const r = await fetch('vedur_forecast.json?t=' + Date.now());
                     if (!r.ok) throw new Error('not found');
                     vedurData = await r.json();
-                    renderVedurAlerts();
-                    renderVedurText();
-                    showVedurMap('wind'); // preloads wind only on initial load (~8 MB)
+                    // Check if JSON is stale (vedur publishes 4× daily so >8h is suspicious)
+                    const fetchedAt = new Date(vedurData.fetched_at || 0).getTime();
+                    const ageHours = (Date.now() - fetchedAt) / (1000 * 60 * 60);
+                    if (ageHours > 8 || isNaN(ageHours)) {
+                        console.log(`vedur JSON is ${ageHours.toFixed(1)}h old, refreshing maps client-side`);
+                        rebuildVedurMapsClientSide();
+                    }
                 } catch (e) {
+                    // JSON missing entirely — build everything client-side
+                    vedurData = { fetched_at: 'client-side', text_forecast: {}, alerts: { count: 0, alerts: [] } };
+                    rebuildVedurMapsClientSide();
                     document.getElementById('vedurText').innerHTML =
-                        '<div style="opacity:0.6;">vedur_forecast.json not available yet — the loop will populate this on its next run. <a href="https://en.vedur.is/weather/forecasts/text/" target="_blank" style="color:#bae6fd;">Open vedur.is directly →</a></div>';
+                        '<div style="opacity:0.6;">Text forecast unavailable (loop hasn\'t populated vedur_forecast.json yet). Maps will still update from latest vedur run. <a href="https://en.vedur.is/weather/forecasts/text/" target="_blank" style="color:#bae6fd;">Open vedur.is directly →</a></div>';
                 }
+                renderVedurAlerts();
+                renderVedurText();
+                showVedurMap('wind'); // preloads wind only on initial load (~8 MB)
+            }
+
+            // Vedur runs at 00, 06, 12, 18 UTC. Each takes ~1.5h to publish all frames.
+            // Compute the most recent run that should be available now.
+            function latestVedurRun() {
+                const now = new Date();
+                // Subtract 1.5h to allow publish lag
+                const safeTime = new Date(now.getTime() - 90 * 60 * 1000);
+                // Round down to nearest 0/6/12/18 UTC
+                const utcH = safeTime.getUTCHours();
+                const runHour = Math.floor(utcH / 6) * 6;
+                const runDate = new Date(Date.UTC(
+                    safeTime.getUTCFullYear(), safeTime.getUTCMonth(), safeTime.getUTCDate(),
+                    runHour, 0, 0
+                ));
+                // Format as YYMMDD_HHMM
+                const yy = String(runDate.getUTCFullYear()).slice(-2);
+                const mm = String(runDate.getUTCMonth() + 1).padStart(2, '0');
+                const dd = String(runDate.getUTCDate()).padStart(2, '0');
+                const hh = String(runDate.getUTCHours()).padStart(2, '0');
+                return `${yy}${mm}${dd}_${hh}00`;
+            }
+
+            // Rebuild map URL arrays client-side using a freshly-computed latest run
+            function rebuildVedurMapsClientSide() {
+                const run = latestVedurRun();
+                const types = {
+                    wind:          { id: 'thattaspa_ig_island_10uv',         ext: 'gif', frames: Array.from({length:72}, (_,i)=>i+1), pad: 3 },
+                    temperature:   { id: 'thattaspa_ig_island_2t',           ext: 'gif', frames: Array.from({length:72}, (_,i)=>i+1), pad: 3 },
+                    precipitation: { id: 'thattaspa_ig_island_urk-msl-10uv', ext: 'gif', frames: Array.from({length:24}, (_,i)=>(i+1)*3), pad: 3 },
+                    cloud_total:   { id: 'harmonie_island_tcc_lcc_mcc_hcc',  ext: 'png', frames: Array.from({length:72}, (_,i)=>i+1), pad: 0 },
+                    aurora_clouds: { id: 'isl_skyjahula2',                   ext: 'png', frames: Array.from({length:72}, (_,i)=>i+1), pad: 0 },
+                };
+                Object.entries(types).forEach(([label, t]) => {
+                    const urls = t.frames.map(f => {
+                        const fStr = t.pad ? String(f).padStart(t.pad, '0') : String(f);
+                        return `https://en.vedur.is/photos/${t.id}/${run}_${fStr}.${t.ext}`;
+                    });
+                    vedurData[`${label}_maps`] = { run, urls, frame_hours: t.frames };
+                });
+                vedurData._client_side_run = run;
+                console.log('vedur maps rebuilt client-side with run', run);
             }
 
             // Track which types have been preloaded so we don't re-fetch
