@@ -1232,8 +1232,10 @@
             grid.innerHTML = '';
 
             allWeatherData.forEach(({ trip, models }) => {
-                // Get hourly data for current model, fall back to best_match
-                let h = models[currentModel] || models['ecmwf'] || models['best_match'];
+                // Get hourly data for current model, fall back to ANY available model
+                const fallbackOrder = [currentModel, 'best_match', 'ecmwf', 'gfs', 'gem'];
+                let h = null;
+                for (const k of fallbackOrder) { if (models[k]) { h = models[k]; break; } }
                 if (!h || !h.time || h.time.length === 0) {
                     grid.innerHTML += `<div class="error-msg">No data available for ${trip.day} yet — forecast may not extend to ${trip.date}.</div>`;
                     return;
