@@ -567,20 +567,32 @@
                     vedurData = await r.json();
                     renderVedurAlerts();
                     renderVedurText();
-                    preloadVedurImages();
-                    showVedurMap('wind');
+                    showVedurMap('wind'); // preloads wind only on initial load (~8 MB)
                 } catch (e) {
                     document.getElementById('vedurText').innerHTML =
                         '<div style="opacity:0.6;">vedur_forecast.json not available yet — the loop will populate this on its next run. <a href="https://en.vedur.is/weather/forecasts/text/" target="_blank" style="color:#bae6fd;">Open vedur.is directly →</a></div>';
                 }
             }
 
-            function preloadVedurImages() {
-                // Preload all map frames so type-switching and scrubbing are instant
-                ['wind', 'precipitation', 'temperature', 'cloud_total', 'aurora_clouds'].forEach(t => {
-                    const urls = (vedurData[t + '_maps'] || {}).urls || [];
-                    urls.forEach(u => { const img = new Image(); img.src = u; });
-                });
+            // Track which types have been preloaded so we don't re-fetch
+            const vedurPreloaded = new Set();
+
+            function preloadVedurType(type) {
+                if (vedurPreloaded.has(type)) return;
+                vedurPreloaded.add(type);
+                const urls = (vedurData[type + '_maps'] || {}).urls || [];
+                // Preload first 12 frames immediately, lazy-load the rest with a small stagger
+                urls.slice(0, 12).forEach(u => { const img = new Image(); img.src = u; });
+                if (urls.length > 12) {
+                    let i = 12;
+                    const next = () => {
+                        if (i >= urls.length) return;
+                        const img = new Image();
+                        img.onload = img.onerror = () => { i++; setTimeout(next, 50); };
+                        img.src = urls[i];
+                    };
+                    setTimeout(next, 500);
+                }
             }
 
             function renderVedurAlerts() {
@@ -636,6 +648,7 @@
                 const urls = (vedurData[type + '_maps'] || {}).urls || [];
                 document.getElementById('vedurSlider').max = Math.max(0, urls.length - 1);
                 document.getElementById('vedurSlider').value = 0;
+                preloadVedurType(type); // lazy preload only the active type
                 renderVedurFrame();
             }
 
