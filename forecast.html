@@ -1155,7 +1155,7 @@
                     for (const [modelKey, baseUrl] of Object.entries(modelEndpoints)) {
                         const url = `${baseUrl}?latitude=${trip.lat}&longitude=${trip.lon}&${hourlyParams}&start_date=${trip.date}&end_date=${trip.date}`;
                         const ctrl = new AbortController();
-                        const timer = setTimeout(() => ctrl.abort(), 25000);
+                        const timer = setTimeout(() => ctrl.abort(), 60000);
                         locationFetches[locKey][modelKey] = fetch(url, { signal: ctrl.signal })
                             .then(r => { clearTimeout(timer); return r.ok ? r.json() : null; })
                             .catch(() => { clearTimeout(timer); return null; });
