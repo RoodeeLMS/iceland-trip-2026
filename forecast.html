@@ -524,8 +524,12 @@
                 <div id="vedurMapHolder" style="background:#000; border-radius:10px; min-height:400px; display:flex; align-items:center; justify-content:center; position:relative;">
                     <div style="opacity:0.5; color:#fbbf24;">Loading maps...</div>
                 </div>
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; gap:10px; flex-wrap:wrap;">
+                <div style="margin-top: 10px;">
+                    <input type="range" id="vedurSlider" min="0" max="0" value="0" oninput="vedurSetFrame(parseInt(this.value))" style="width:100%; accent-color:#fbbf24;">
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:6px; gap:10px; flex-wrap:wrap;">
                     <button onclick="vedurFrame(-1)" style="background:rgba(255,255,255,0.1); color:white; border:1px solid rgba(255,255,255,0.3); padding:6px 14px; border-radius:6px; cursor:pointer;">◀ Prev</button>
+                    <button onclick="vedurAnimate()" id="vedurPlayBtn" style="background:#fbbf24; color:#0c4a6e; border:0; padding:6px 18px; border-radius:6px; cursor:pointer; font-weight:600;">▶ Play</button>
                     <span id="vedurFrameLabel" style="font-size:0.85em; opacity:0.8;">—</span>
                     <button onclick="vedurFrame(1)" style="background:rgba(255,255,255,0.1); color:white; border:1px solid rgba(255,255,255,0.3); padding:6px 14px; border-radius:6px; cursor:pointer;">Next ▶</button>
                 </div>
@@ -554,6 +558,7 @@
             let vedurData = null;
             let vedurCurrentType = 'wind';
             let vedurCurrentFrame = 0;
+            let vedurAnimateTimer = null;
 
             async function loadVedur() {
                 try {
@@ -562,11 +567,20 @@
                     vedurData = await r.json();
                     renderVedurAlerts();
                     renderVedurText();
+                    preloadVedurImages();
                     showVedurMap('wind');
                 } catch (e) {
                     document.getElementById('vedurText').innerHTML =
                         '<div style="opacity:0.6;">vedur_forecast.json not available yet — the loop will populate this on its next run. <a href="https://en.vedur.is/weather/forecasts/text/" target="_blank" style="color:#bae6fd;">Open vedur.is directly →</a></div>';
                 }
+            }
+
+            function preloadVedurImages() {
+                // Preload all map frames so type-switching and scrubbing are instant
+                ['wind', 'precipitation', 'temperature', 'cloud_total', 'aurora_clouds'].forEach(t => {
+                    const urls = (vedurData[t + '_maps'] || {}).urls || [];
+                    urls.forEach(u => { const img = new Image(); img.src = u; });
+                });
             }
 
             function renderVedurAlerts() {
@@ -617,7 +631,11 @@
                 if (!vedurData) return;
                 vedurCurrentType = type;
                 vedurCurrentFrame = 0;
+                stopVedurAnimate();
                 document.querySelectorAll('.vedur-tab').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase().includes(type.replace('_', ' ').split(' ')[0]) || (type==='cloud_total' && b.textContent.includes('Cloud'))));
+                const urls = (vedurData[type + '_maps'] || {}).urls || [];
+                document.getElementById('vedurSlider').max = Math.max(0, urls.length - 1);
+                document.getElementById('vedurSlider').value = 0;
                 renderVedurFrame();
             }
 
@@ -626,7 +644,41 @@
                 const urls = (vedurData[vedurCurrentType + '_maps'] || {}).urls || [];
                 if (!urls.length) return;
                 vedurCurrentFrame = (vedurCurrentFrame + delta + urls.length) % urls.length;
+                document.getElementById('vedurSlider').value = vedurCurrentFrame;
                 renderVedurFrame();
+            }
+
+            function vedurSetFrame(idx) {
+                if (!vedurData) return;
+                const urls = (vedurData[vedurCurrentType + '_maps'] || {}).urls || [];
+                if (!urls.length) return;
+                vedurCurrentFrame = Math.max(0, Math.min(urls.length - 1, idx));
+                renderVedurFrame();
+            }
+
+            function vedurAnimate() {
+                if (vedurAnimateTimer) {
+                    stopVedurAnimate();
+                    return;
+                }
+                const btn = document.getElementById('vedurPlayBtn');
+                btn.textContent = '⏸ Pause';
+                vedurAnimateTimer = setInterval(() => {
+                    const urls = (vedurData[vedurCurrentType + '_maps'] || {}).urls || [];
+                    if (!urls.length) return;
+                    vedurCurrentFrame = (vedurCurrentFrame + 1) % urls.length;
+                    document.getElementById('vedurSlider').value = vedurCurrentFrame;
+                    renderVedurFrame();
+                }, 600);
+            }
+
+            function stopVedurAnimate() {
+                if (vedurAnimateTimer) {
+                    clearInterval(vedurAnimateTimer);
+                    vedurAnimateTimer = null;
+                    const btn = document.getElementById('vedurPlayBtn');
+                    if (btn) btn.textContent = '▶ Play';
+                }
             }
 
             function renderVedurFrame() {
@@ -640,7 +692,14 @@
                     return;
                 }
                 const url = urls[vedurCurrentFrame];
-                holder.innerHTML = `<img src="${url}" alt="${vedurCurrentType} forecast frame ${vedurCurrentFrame + 1}" onclick="window.open(this.src, '_blank')" loading="lazy">`;
+                // Reuse existing img if present so the browser uses cached version (no flicker)
+                let img = holder.querySelector('img');
+                if (!img) {
+                    holder.innerHTML = `<img src="${url}" alt="${vedurCurrentType} forecast" onclick="window.open(this.src, '_blank')">`;
+                } else {
+                    img.src = url;
+                    img.alt = `${vedurCurrentType} forecast frame ${vedurCurrentFrame + 1}`;
+                }
                 label.textContent = `Frame ${vedurCurrentFrame + 1} of ${urls.length} · run ${data.run || '?'}`;
             }
 

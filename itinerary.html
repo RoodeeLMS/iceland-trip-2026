@@ -1737,6 +1737,82 @@
         }
 
         fetchSafetravelAlerts();
+
+        // Per-day weather chips — fetched live from Open-Meteo for each day's coordinates
+        // ECMWF is the most accurate global model for Iceland
+        const DAY_WEATHER = [
+            { id: 'day-1',  date: '2026-04-08', label: 'Reykjavík',          lat: 64.14, lon: -21.93 },
+            { id: 'day-2',  date: '2026-04-09', label: 'Golden Circle',      lat: 64.31, lon: -20.30 },
+            { id: 'day-3',  date: '2026-04-10', label: 'Vík / South Coast',  lat: 63.42, lon: -19.04 },
+            { id: 'day-4',  date: '2026-04-11', label: 'Skaftafell/Hali',    lat: 64.17, lon: -16.50 },
+            { id: 'day-5',  date: '2026-04-12', label: 'Hali → Hvolsvöllur', lat: 63.75, lon: -20.22 },
+            { id: 'day-6',  date: '2026-04-13', label: 'Borgarnes',          lat: 64.54, lon: -21.92 },
+            { id: 'day-7',  date: '2026-04-14', label: 'Snæfellsnes S',      lat: 64.79, lon: -23.60 },
+            { id: 'day-8',  date: '2026-04-15', label: 'Snæfellsnes N',      lat: 64.94, lon: -23.30 },
+            { id: 'day-9',  date: '2026-04-16', label: 'Reykjanes',          lat: 63.88, lon: -22.45 },
+            { id: 'day-10', date: '2026-04-17', label: 'KEF departure',      lat: 63.99, lon: -22.60 },
+        ];
+
+        const WX_ICONS = {
+            0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️',
+            45: '🌫️', 48: '🌫️',
+            51: '🌦️', 53: '🌦️', 55: '🌧️',
+            61: '🌧️', 63: '🌧️', 65: '🌧️',
+            71: '🌨️', 73: '🌨️', 75: '❄️', 77: '❄️',
+            80: '🌦️', 81: '🌧️', 82: '⛈️',
+            85: '🌨️', 86: '❄️',
+            95: '⛈️', 96: '⛈️', 99: '⛈️'
+        };
+
+        async function loadDayWeatherChips() {
+            const lats = DAY_WEATHER.map(d => d.lat).join(',');
+            const lons = DAY_WEATHER.map(d => d.lon).join(',');
+            const url = `https://api.open-meteo.com/v1/forecast?latitude=${lats}&longitude=${lons}` +
+                `&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,wind_speed_10m_max,wind_gusts_10m_max,weather_code` +
+                `&timezone=Atlantic/Reykjavik&start_date=2026-04-08&end_date=2026-04-17`;
+            try {
+                const res = await fetch(url);
+                if (!res.ok) return;
+                const arr = await res.json();
+                DAY_WEATHER.forEach((d, i) => {
+                    const loc = Array.isArray(arr) ? arr[i] : arr;
+                    if (!loc || !loc.daily) return;
+                    const dayIdx = loc.daily.time.indexOf(d.date);
+                    if (dayIdx < 0) return;
+                    const tmax = Math.round(loc.daily.temperature_2m_max[dayIdx]);
+                    const tmin = Math.round(loc.daily.temperature_2m_min[dayIdx]);
+                    const precip = loc.daily.precipitation_sum[dayIdx];
+                    const wind = Math.round(loc.daily.wind_speed_10m_max[dayIdx]);
+                    const gusts = Math.round(loc.daily.wind_gusts_10m_max[dayIdx]);
+                    const code = loc.daily.weather_code[dayIdx];
+                    const icon = WX_ICONS[code] || '🌡️';
+                    // Severity coloring
+                    let bg = '#d1fae5', border = '#10b981', text = '#065f46'; // green
+                    if (precip > 10 || gusts > 65) { bg = '#fee2e2'; border = '#dc2626'; text = '#991b1b'; }
+                    else if (precip > 3 || gusts > 45) { bg = '#fef3c7'; border = '#f59e0b'; text = '#92400e'; }
+                    const card = document.getElementById(d.id);
+                    if (!card) return;
+                    if (card.querySelector('.day-weather-chip')) return; // idempotent
+                    const chip = document.createElement('div');
+                    chip.className = 'day-weather-chip';
+                    chip.style.cssText = `background:${bg}; border-left:4px solid ${border}; color:${text}; padding:10px 14px; border-radius:8px; margin:10px 0; font-size:0.88em; display:flex; flex-wrap:wrap; align-items:center; gap:14px;`;
+                    chip.innerHTML = `
+                        <span style="font-size:1.6em;">${icon}</span>
+                        <span><strong>${tmin}° to ${tmax}°C</strong></span>
+                        <span>💧 ${precip.toFixed(1)} mm</span>
+                        <span>💨 ${wind} km/h <span style="opacity:0.7;">(gust ${gusts})</span></span>
+                        <span style="opacity:0.7; font-size:0.85em; margin-left:auto;">${d.label} · live from Open-Meteo</span>
+                    `;
+                    // Insert at the very top of the day-content
+                    const content = card.querySelector('.day-content');
+                    if (content) content.insertBefore(chip, content.firstChild);
+                });
+            } catch (err) {
+                console.error('Day weather chip load failed:', err);
+            }
+        }
+
+        loadDayWeatherChips();
     </script>
     <script src="sight-links.js" defer></script>
 </body>
