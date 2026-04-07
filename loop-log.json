@@ -1,6 +1,24 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-07T13:26:57.701804+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Open-Meteo RECOVERED after 4 failed runs. 3-day outlook rosier than expected — Day 3 nearly dry. SafeTravel/Reynisfjara stable. YELLOW alert still active. Kp quiet. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-07T13:26:57.493980+00:00",
+      "level": "suggestion",
+      "title": "Re-order Day 3: do walk-behind Seljalandsfoss early",
+      "message": "With Day 3 nearly dry (Open-Meteo 0.1mm) and wind down to 49 km/h gusts, the walk-behind path at Seljalandsfoss becomes safe and the rocks less slippery. Hit it at 09:00-10:00 before the Reykjavik tour buses (they arrive ~11:00). Skógafoss next, then Reynisfjara viewpoint in the afternoon. Vík overnight."
+    },
+    {
+      "timestamp": "2026-04-07T13:26:57.272924+00:00",
+      "level": "update",
+      "title": "Good news: Day 3 (Apr 10) much calmer & DRY",
+      "message": "Open-Meteo back online. 3-day outlook: Day 1 gusts 74 km/h / 8mm rain, Day 2 Golden Circle 66 km/h / 5mm rain, Day 3 South Coast 49 km/h / 0.1mm rain. Day 3 is the standout — nearly dry and wind drops ~34%. Reynisfjara will still be orange (sea takes days to calm), but Seljalandsfoss/Skógafoss walking will be much more pleasant. Save the long waterfall shoot for Day 3."
+    },
+    {
       "timestamp": "2026-04-07T11:27:14.987877+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -259,5 +277,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-07T11:27:14.987877+00:00"
+  "last_updated": "2026-04-07T13:26:57.701804+00:00"
 }
