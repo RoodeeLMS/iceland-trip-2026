@@ -153,7 +153,7 @@ Only post ONE weather entry per day unless conditions change significantly betwe
 curl -s "https://services.swpc.noaa.gov/products/noaa-planetary-k-index-forecast.json"
 ```
 
-The response is a 2D array. The first row is headers, subsequent rows are [time, Kp, observed/predicted, scale].
+**Response format (as of Apr 2026):** array of objects `{time_tag, kp, observed, noaa_scale}` where `observed` is `"observed"`, `"estimated"`, or `"predicted"`. (NOAA changed this from the old `[time, kp, obs, scale]` array format — don't use index-based parsing.)
 
 **Analyze:**
 - Look for forecasts within the next 24-48 hours
@@ -243,6 +243,56 @@ Alternative sources: `flightaware.com/live/flight/QTR79`, `qatarairways.com/en/f
 - **Within 6h of departure and still unknown** → post `info` flagging "FI520 gate still N/A in trackers — will be posted at KEF on day-of"
 
 When you post a gate, also update the flights.html page directly to replace the placeholder with the confirmed gate (use Edit tool to update the text in the relevant lounge card). Commit with prefix `Auto: gate update`.
+
+### Task 6b: Deep trip monitoring (spend real effort here)
+
+**This task is deliberately resource-heavy — give it generous time and tool calls each run.** The loop is the user's background safety net during travel; a shallow pass defeats the purpose. Aim for 10-20 tool calls in this task if the signals warrant it.
+
+Do ALL of the following every run:
+
+**(a) News sweep — Iceland + flights + volcanoes**
+Use `WebSearch` with focused queries; follow up promising hits with `WebFetch` (or `claude-in-chrome` MCP when blocked, see section 5a):
+- `Iceland volcanic activity eruption Reykjanes site:mbl.is OR site:ruv.is` (last 24h)
+- `Iceland weather warning storm` / `vedur.is alerts` (last 24h)
+- `Qatar Airways disruption Doha` / `Qatar Airways Iran airspace` (last 24h)
+- `Keflavik airport delay closure` (last 24h)
+- `Iceland road closure Highway 1` or `road.is closure` (last 24h)
+- `Iceland news tourism incident` (last 24h)
+
+**(b) Forward-looking itinerary check (next 72h)**
+For each trip day that falls in the next 72 hours, re-fetch weather and compare against the planned sights:
+- Pull Open-Meteo (or met.no fallback if Open-Meteo 502s) for that day's primary location
+- Cross-reference with vedur.is text forecast from `vedur_forecast.json`
+- Check if any planned activity is weather-dependent: drone flights, glacier hikes, aurora chases, long exposed drives, Reynisfjara, Dyrhólaey, Arnarstapi cliff walk
+- If conditions have **changed meaningfully** since the last run, post `update` with the diff ("Day 3 gust forecast up from 15→22 m/s — Reynisfjara now risky, reconsider visit order")
+- If a specific activity is newly at risk, call it out by name
+- Don't just repeat yesterday's assessment — highlight what *changed*
+
+**(c) Aurora outlook check**
+- Pull 3-day Kp from NOAA (see Task 3 — object format now)
+- If any night in the next 72h has predicted Kp ≥ 4 **and** forecast cloud cover < 50% at the trip's planned overnight location, post `suggestion` "Aurora window Night X"
+- Cross-reference with 27-day Kp outlook (`https://services.swpc.noaa.gov/text/27-day-outlook.txt`) for Day 4+ nights that NOAA 3-day doesn't cover
+
+**(d) Flight status (Apr 7-8 outbound window, Apr 16-18 return window)**
+- Check QR829/QR7/QR8/QR10/other relevant flights via Chrome MCP on FlightRadar24 or FlightAware
+- Trace the inbound tail when within 12h of departure (`flightradar24.com/data/aircraft/<tail>`)
+- Post `update` if any leg is delayed, or `success` if all are green
+
+**(e) Icelandic-language source check (high value, often missed)**
+Native Icelandic news moves faster than English on local events. Use `claude-in-chrome` to load:
+- `https://www.mbl.is/` (mbl.is homepage)
+- `https://www.ruv.is/` (RÚV)
+- `https://www.visir.is/`
+Skim headlines, use WebSearch to translate the one or two that look relevant. Pay particular attention to weather/volcano/road stories.
+
+**Post rules for Task 6b:**
+- Post as `warning` for anything that could disrupt the trip (eruption started, airspace closure, extended storm warning, Highway 1 closure on route)
+- Post as `update` for meaningful changes (weather diff, new forecast run, itinerary-affecting condition shift)
+- Post as `suggestion` for aurora windows, timing recommendations, activity reshuffle ideas
+- Post as `success` only when confirming something the user was worried about is safe ("QR829 on time, inbound already at BKK")
+- Post as `info` only if truly nothing changed — **keep it to one line**, don't pad
+- **Cite sources** in the message body (outlet + headline snippet, or "Per vedur.is run 260407_1200:")
+- **Deduplicate across runs** — read the last few entries in `loop-log.json` before posting, don't repeat the same finding
 
 ### Task 7: Heartbeat (always post something)
 
