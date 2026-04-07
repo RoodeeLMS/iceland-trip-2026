@@ -161,6 +161,23 @@ The response is a 2D array. The first row is headers, subsequent rows are [time,
 - If Kp ≥ 5 → post `warning` (positive sense) "Strong aurora possible tonight!" urging the user to check cloud cover
 - Otherwise skip (don't post every run about low aurora)
 
+### Task 3b: Refresh vedur.is mirror
+
+```bash
+python3 fetch_vedur.py
+```
+
+This scrapes vedur.is for the official IMO data: text forecast (5-day human-written), active alerts, and the URLs of the latest HARMONIE forecast maps (wind, temperature, precipitation, cloud cover, aurora cloud overlay). Writes everything to `vedur_forecast.json` which the website's forecast page reads.
+
+Maps refresh ~4× daily (00, 06, 12, 18 UTC) so this should run at least every 6h to stay current. **vedur.is is the most authoritative weather source for Iceland** — use it as the primary reference, not Open-Meteo.
+
+After running, commit and push the updated `vedur_forecast.json`:
+```bash
+git add vedur_forecast.json && git commit -m "Auto: refresh vedur.is mirror" && git push
+```
+
+If the text forecast or alerts changed meaningfully, also post an `update` log entry summarizing what's new.
+
 ### Task 4: Scrape vedur.is (Icelandic Met Office) for all relevant info
 
 vedur.is is the authoritative Icelandic source. Most pages have no clean API so you'll need to `WebFetch` the HTML and extract what matters. Check the following each run:

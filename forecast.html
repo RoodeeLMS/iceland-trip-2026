@@ -496,6 +496,157 @@
             <div id="stormContent"></div>
         </div>
 
+        <!-- 🇮🇸 vedur.is — Icelandic Met Office (most authoritative) -->
+        <div style="background: linear-gradient(135deg, #0c4a6e, #075985); color: white; padding: 24px 28px; border-radius: 14px; margin-bottom: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.15);">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:14px;">
+                <h2 style="font-family: 'Playfair Display', serif; color: #fbbf24; font-size: 1.5em;">🇮🇸 vedur.is — IMO Official Forecast</h2>
+                <a href="https://en.vedur.is/weather/forecasts/text/" target="_blank" style="font-size:0.78em; color:#bae6fd; text-decoration:none; border:1px solid #bae6fd; padding:4px 10px; border-radius:6px;">Open vedur.is →</a>
+            </div>
+            <p style="font-size:0.85em; opacity:0.85; margin-bottom:14px;">The Icelandic Meteorological Office's HARMONIE model + meteorologist-written text forecasts. <strong>Most accurate source for Iceland weather</strong> — locally calibrated, more reliable than global models for the next 5-7 days.</p>
+
+            <!-- Active alerts -->
+            <div id="vedurAlerts" style="margin-bottom:16px;"></div>
+
+            <!-- Text forecast -->
+            <div id="vedurText" style="margin-bottom:16px;">
+                <div style="opacity:0.6;">Loading text forecast...</div>
+            </div>
+
+            <!-- Map tabs -->
+            <div style="margin-top:18px;">
+                <div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;" id="vedurMapTabs">
+                    <button onclick="showVedurMap('wind')" class="vedur-tab active">💨 Wind</button>
+                    <button onclick="showVedurMap('precipitation')" class="vedur-tab">🌧️ Precipitation</button>
+                    <button onclick="showVedurMap('temperature')" class="vedur-tab">🌡️ Temperature</button>
+                    <button onclick="showVedurMap('cloud_total')" class="vedur-tab">☁️ Cloud cover</button>
+                    <button onclick="showVedurMap('aurora_clouds')" class="vedur-tab">🌌 Aurora clouds</button>
+                </div>
+                <div id="vedurMapHolder" style="background:#000; border-radius:10px; min-height:400px; display:flex; align-items:center; justify-content:center; position:relative;">
+                    <div style="opacity:0.5; color:#fbbf24;">Loading maps...</div>
+                </div>
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; gap:10px; flex-wrap:wrap;">
+                    <button onclick="vedurFrame(-1)" style="background:rgba(255,255,255,0.1); color:white; border:1px solid rgba(255,255,255,0.3); padding:6px 14px; border-radius:6px; cursor:pointer;">◀ Prev</button>
+                    <span id="vedurFrameLabel" style="font-size:0.85em; opacity:0.8;">—</span>
+                    <button onclick="vedurFrame(1)" style="background:rgba(255,255,255,0.1); color:white; border:1px solid rgba(255,255,255,0.3); padding:6px 14px; border-radius:6px; cursor:pointer;">Next ▶</button>
+                </div>
+            </div>
+
+            <p style="font-size:0.72em; opacity:0.55; margin-top:14px; text-align:center;">Mirror updated by the loop · maps refresh ~4× daily (00, 06, 12, 18 UTC)</p>
+        </div>
+
+        <style>
+            .vedur-tab {
+                background: rgba(255,255,255,0.08);
+                color: white;
+                border: 1px solid rgba(255,255,255,0.2);
+                padding: 6px 12px;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 0.82em;
+                font-family: inherit;
+            }
+            .vedur-tab:hover { background: rgba(255,255,255,0.15); }
+            .vedur-tab.active { background: #fbbf24; color: #0c4a6e; border-color: #fbbf24; font-weight: 600; }
+            #vedurMapHolder img { max-width: 100%; max-height: 600px; border-radius: 10px; cursor: zoom-in; }
+        </style>
+
+        <script>
+            let vedurData = null;
+            let vedurCurrentType = 'wind';
+            let vedurCurrentFrame = 0;
+
+            async function loadVedur() {
+                try {
+                    const r = await fetch('vedur_forecast.json?t=' + Date.now());
+                    if (!r.ok) throw new Error('not found');
+                    vedurData = await r.json();
+                    renderVedurAlerts();
+                    renderVedurText();
+                    showVedurMap('wind');
+                } catch (e) {
+                    document.getElementById('vedurText').innerHTML =
+                        '<div style="opacity:0.6;">vedur_forecast.json not available yet — the loop will populate this on its next run. <a href="https://en.vedur.is/weather/forecasts/text/" target="_blank" style="color:#bae6fd;">Open vedur.is directly →</a></div>';
+                }
+            }
+
+            function renderVedurAlerts() {
+                const el = document.getElementById('vedurAlerts');
+                const a = vedurData.alerts || { count: 0, alerts: [] };
+                if (!a.count) {
+                    el.innerHTML = '<div style="background:rgba(16,185,129,0.15); border-left:3px solid #10b981; padding:8px 14px; border-radius:6px; font-size:0.85em;">✅ No active weather alerts in effect for Iceland.</div>';
+                    return;
+                }
+                el.innerHTML = a.alerts.map(al =>
+                    `<div style="background:rgba(245,158,11,0.18); border-left:3px solid #f59e0b; padding:10px 14px; border-radius:6px; margin-bottom:6px; font-size:0.85em;">
+                        <strong style="color:#fde68a;">⚠️ ${al.event} — ${al.area}</strong><br>
+                        ${al.description}<br>
+                        <span style="opacity:0.7; font-size:0.85em;">Severity: ${al.severity} · Until: ${(al.expires||'').replace('T',' ').slice(0,16)}</span>
+                    </div>`
+                ).join('');
+            }
+
+            function renderVedurText() {
+                const el = document.getElementById('vedurText');
+                const tf = vedurData.text_forecast || {};
+                const outlook = tf.outlook || '';
+                const days = tf.multi_day || [];
+                const made = tf.made_at || tf.multi_made_at || '';
+                let html = '';
+                if (outlook) {
+                    html += `<div style="background:rgba(255,255,255,0.06); padding:12px 16px; border-radius:8px; margin-bottom:10px;">
+                        <strong style="color:#fbbf24;">Today/tomorrow outlook</strong>
+                        <p style="font-size:0.9em; margin-top:4px;">${outlook}</p>
+                    </div>`;
+                }
+                if (days.length) {
+                    html += `<div style="background:rgba(255,255,255,0.06); padding:12px 16px; border-radius:8px;">
+                        <strong style="color:#fbbf24;">5-day outlook</strong>
+                        <table style="width:100%; margin-top:8px; font-size:0.85em;">`;
+                    days.forEach(d => {
+                        html += `<tr><td style="padding:4px 8px 4px 0; vertical-align:top; color:#fde68a; white-space:nowrap;"><strong>${d.day}</strong></td><td style="padding:4px 0;">${d.forecast}</td></tr>`;
+                    });
+                    html += '</table></div>';
+                }
+                if (made) {
+                    html += `<div style="font-size:0.7em; opacity:0.5; margin-top:6px;">Made: ${made}</div>`;
+                }
+                el.innerHTML = html;
+            }
+
+            function showVedurMap(type) {
+                if (!vedurData) return;
+                vedurCurrentType = type;
+                vedurCurrentFrame = 0;
+                document.querySelectorAll('.vedur-tab').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase().includes(type.replace('_', ' ').split(' ')[0]) || (type==='cloud_total' && b.textContent.includes('Cloud'))));
+                renderVedurFrame();
+            }
+
+            function vedurFrame(delta) {
+                if (!vedurData) return;
+                const urls = (vedurData[vedurCurrentType + '_maps'] || {}).urls || [];
+                if (!urls.length) return;
+                vedurCurrentFrame = (vedurCurrentFrame + delta + urls.length) % urls.length;
+                renderVedurFrame();
+            }
+
+            function renderVedurFrame() {
+                const holder = document.getElementById('vedurMapHolder');
+                const label = document.getElementById('vedurFrameLabel');
+                const data = vedurData[vedurCurrentType + '_maps'] || {};
+                const urls = data.urls || [];
+                if (!urls.length) {
+                    holder.innerHTML = '<div style="opacity:0.5; color:#fbbf24;">No frames available for this type.</div>';
+                    label.textContent = '—';
+                    return;
+                }
+                const url = urls[vedurCurrentFrame];
+                holder.innerHTML = `<img src="${url}" alt="${vedurCurrentType} forecast frame ${vedurCurrentFrame + 1}" onclick="window.open(this.src, '_blank')" loading="lazy">`;
+                label.textContent = `Frame ${vedurCurrentFrame + 1} of ${urls.length} · run ${data.run || '?'}`;
+            }
+
+            loadVedur();
+        </script>
+
         <!-- Aurora Section -->
         <div class="aurora-panel" id="auroraPanel">
             <h2>🌌 Aurora Borealis Forecast</h2>
