@@ -1455,8 +1455,8 @@
                 forecasts.forEach(f => {
                     const kp = parseFloat(f.kp);
                     const time = new Date(f.time_tag + 'Z');
-                    const timeStr = time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
-                    const dateStr = time.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+                    const timeStr = time.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Atlantic/Reykjavik' });
+                    const dateStr = time.toLocaleDateString('en-GB', { month: 'short', day: 'numeric', timeZone: 'Atlantic/Reykjavik' });
                     let bg = 'rgba(255,255,255,0.05)';
                     let col = '#666';
                     if (kp >= 5) { bg = 'rgba(16,185,129,0.3)'; col = '#10b981'; }
