@@ -1,6 +1,18 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-07T05:26:42.059921+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. SafeTravel/Reynisfjara stable. Open-Meteo returned 502 this run — will retry next iteration. Kp still quiet (3.33 max). Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-07T05:26:41.902745+00:00",
+      "level": "suggestion",
+      "title": "Charge everything before the BKK flight",
+      "message": "Within hours of QR829 boarding: top up phone, drone batteries (DJI Neo 2 ×3 if you brought spares), power bank, headphones, camera. Doha layover has plug points but they're crowded. Iceland's plug is Type F (Europlug) — pack the adapter in carry-on, not checked."
+    },
+    {
       "timestamp": "2026-04-07T03:34:29.489743+00:00",
       "level": "info",
       "title": "Day 1 storm check vs 25 m/s threshold",
@@ -175,5 +187,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-07T03:34:29.489743+00:00"
+  "last_updated": "2026-04-07T05:26:42.059921+00:00"
 }
