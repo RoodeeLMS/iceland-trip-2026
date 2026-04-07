@@ -1,6 +1,24 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-07T15:26:49.586031+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Day 2 forecast worsened (74 km/h gusts, 8.5mm rain), Day 3 unchanged dry & calm but freezing overnight. SafeTravel/Reynisfjara stable. Kp quiet. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-07T15:26:49.433910+00:00",
+      "level": "warning",
+      "title": "Day 3 (Apr 10) overnight: first freeze of trip",
+      "message": "New: Day 3 low -0.3°C in Reykjavik. Combined with Day 2's 8.5mm rain, expect black ice on shaded pavement and bridge decks Apr 10 morning. If the rental car has summer tyres (most April rentals do), drive 5-10 km/h slower than feels right for the first hour out of Vík."
+    },
+    {
+      "timestamp": "2026-04-07T15:26:49.254596+00:00",
+      "level": "update",
+      "title": "Day 2 (Apr 9 Golden Circle) forecast worsened",
+      "message": "Open-Meteo new run: Day 2 gusts 74 km/h (was 66), rain 8.5mm (was 5.3). Day 1 slightly improved (67 km/h, 6mm). Day 3 unchanged — still nearly dry, 49 km/h. Translation: the wet/windy day shifted from arrival to Golden Circle. Þingvellir & Geysir steam plume photos will be challenging in 74 km/h gusts; Gullfoss spray will be brutal. Bring full waterproofs both legs and pants."
+    },
+    {
       "timestamp": "2026-04-07T13:26:57.701804+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -277,5 +295,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-07T13:26:57.701804+00:00"
+  "last_updated": "2026-04-07T15:26:49.586031+00:00"
 }
