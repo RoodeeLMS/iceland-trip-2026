@@ -178,21 +178,29 @@ git add vedur_forecast.json && git commit -m "Auto: refresh vedur.is mirror" && 
 
 If the text forecast or alerts changed meaningfully, also post an `update` log entry summarizing what's new.
 
-### Task 4: Scrape vedur.is (Icelandic Met Office) for all relevant info
+### Task 4: Vedur additional checks (NOT covered by Task 3b mirror)
 
-vedur.is is the authoritative Icelandic source. Most pages have no clean API so you'll need to `WebFetch` the HTML and extract what matters. Check the following each run:
+Task 3b already handles **text forecast**, **alerts**, and **all forecast maps** (wind/temp/precip/cloud/aurora) via `fetch_vedur.py` → `vedur_forecast.json`. This task covers what the script doesn't:
 
-**4a. Weather warnings** — `https://en.vedur.is/weather/warnings_and_alerts/` — any active weather warnings (wind, snow, ice). If new or changed, post `warning` with region + severity + validity window. Cross-check against the day's planned location from Task 2.
+**4a. Compare new vedur text forecast with previous run.** After Task 3b runs, diff the new `text_forecast` against the previous `vedur_forecast.json` (use `git show HEAD:vedur_forecast.json` to get the prior version). If the **multi-day outlook changed materially** for our trip days (Apr 8-17), post an `update` summarizing what shifted (e.g. "Day 4 outlook downgraded from 'mainly dry' to 'rain in south'"). Use the loop's git commit history to compare.
 
-**4b. Aurora forecast** — `https://en.vedur.is/weather/forecasts/aurora/` — Met Office's own combined Kp + cloud cover forecast. Extract tonight's outlook. If it says "good" or "very good" for any region we'll be in, post `suggestion` "Aurora viewing tonight: [region]".
+**4b. Cross-reference active alerts with trip days.** From `vedur_forecast.json`, check `alerts.alerts[]`. For each active alert, determine if its `area` overlaps any trip day's location:
+- Reykjavík/Capital: Day 1, 9, 10
+- South Iceland: Days 2-5 (Hvolsvöllur, Vík, Skaftafell area)
+- East Iceland: Day 4 east end (Höfn area)
+- West Iceland: Day 6
+- West fjords: not visiting
+- North: not visiting
+- Reykjanes: Day 9
+If overlap found, post a `warning` quoting the alert and noting which trip day it affects.
 
-**4c. Earthquakes** — `https://en.vedur.is/earthquakes-and-volcanism/earthquakes/` — recent quakes. Only flag if M ≥ 4.0 OR if any quake is near Reykjanes/Sundhnúkur (volcanic activity precursor). Post `warning` with magnitude, location, depth.
+**4c. Earthquakes** — `WebFetch` `https://en.vedur.is/earthquakes-and-volcanism/earthquakes/` for recent quakes. Only flag if M ≥ 4.0 OR if any quake is near **Reykjanes/Sundhnúkur** (volcanic activity precursor that affects Day 9 plans). Post `warning` with magnitude, location, depth.
 
-**4d. Volcanic / Reykjanes status** — `https://en.vedur.is/volcanoes/` and `https://en.vedur.is/about-imo/news/` — check for new press releases about Sundhnúkur/Svartsengi magma accumulation or eruption warnings. If status changed from previous run, post `update`. If eruption starts or is imminent, post `warning` with full context (affects Day 9 Reykjanes/Blue Lagoon plans).
+**4d. Reykjanes volcanic status** — `WebFetch` `https://en.vedur.is/about-imo/news/` for new press releases about Sundhnúkur/Svartsengi magma accumulation or eruption warnings. If status changed from previous run, post `update`. If an eruption starts or is imminent, post `warning` — this affects Day 9 Reykjanes/Blue Lagoon/Fagradalsfjall plans dramatically.
 
-**4e. Sea / marine** (optional) — `https://en.vedur.is/weather/forecasts/sea/` — only relevant if we plan to do whale watching or coastal walks. Skip unless storm surge is flagged.
+Skip 4e (marine forecast) — group isn't doing serious coastal/boat activities beyond a brief Fjallsárlón zodiac, which the operator handles cancellation for.
 
-Keep a short summary in one `info`/`update` post per run like "vedur.is check: 1 wind warning South coast, aurora outlook moderate, no notable quakes". Only escalate to `warning` for things that genuinely affect our plans.
+Single summary post per run is fine: `info` "Vedur check: alerts X, earthquakes Y, Reykjanes status Z, no material outlook change."
 
 ### Task 5: Check Qatar Airways flight status (only Apr 7-8 and Apr 17-18)
 
@@ -295,7 +303,9 @@ Format:
 - [ ] YYYY-MM-DD: Task description
 ```
 
-<!-- EMPTY — add one-shot tasks here -->
+- [ ] **2026-04-07 (today)** — Trip starts tomorrow. Confirm Old Charm Reykjavik check-in instructions are in user's email (Agoda booking ref es2604070156466592469). If self-check-in code isn't visible by 12:00 UTC, post a `warning` reminding the user to email/call +354 786 3399.
+- [ ] **2026-04-07** — Verify with vedur.is whether the Day 1 storm forecast intensified or eased in the latest run. If forecast shows arrival winds >25 m/s gusts, post a `warning` about possible flight delay/diversion.
+- [ ] **Day-of each major activity decision day** (Apr 9 evening, Apr 10 evening, Apr 11 evening): post a `suggestion` with the next-day forecast summary so user has the data to make a booking call. Skaftafell Blue Ice booking decision is the priority.
 
 ---
 
