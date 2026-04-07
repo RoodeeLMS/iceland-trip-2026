@@ -1383,9 +1383,14 @@
             try {
                 const dates = tripDays.map(d => d.date);
                 const url = `https://api.open-meteo.com/v1/forecast?latitude=64.15&longitude=-21.95&daily=sunrise,sunset,daylight_duration&timezone=Atlantic/Reykjavik&start_date=${dates[0]}&end_date=${dates[dates.length - 1]}`;
-                const res = await fetch(url);
+                const ctrl = new AbortController();
+                const timer = setTimeout(() => ctrl.abort(), 60000);
+                const res = await fetch(url, { signal: ctrl.signal });
+                clearTimeout(timer);
+                if (!res.ok) throw new Error('HTTP ' + res.status);
                 const data = await res.json();
                 const d = data.daily;
+                if (!d || !d.time) throw new Error('Open-Meteo returned no daily data');
 
                 timeline.innerHTML = '';
                 d.time.forEach((date, i) => {
