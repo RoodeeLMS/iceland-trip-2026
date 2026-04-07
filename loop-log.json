@@ -1,6 +1,18 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-07T03:26:32.564851+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Sources stable. Day 1 forecast steady (~72 km/h gusts, 11 mm rain, 4-6°C). Kp slightly up to 3.33 — still below aurora-alert threshold. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-07T03:26:32.372560+00:00",
+      "level": "suggestion",
+      "title": "Sandholt bakery — wet morning fuel near Hallgrímskirkja",
+      "message": "If Day 1 starts at the church then Plan-B Perlan, walk 4 min downhill to Sandholt (Laugavegur 36) for breakfast — known for sourdough cinnamon snails and proper coffee, opens 07:00. Sheltered indoor seating, perfect for waiting out a rain band. Cards accepted, no cash needed."
+    },
+    {
       "timestamp": "2026-04-07T01:26:32.546963+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -151,5 +163,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-07T01:26:32.546963+00:00"
+  "last_updated": "2026-04-07T03:26:32.564851+00:00"
 }
