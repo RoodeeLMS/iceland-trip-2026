@@ -519,14 +519,21 @@
                     <span id="vedurMapsChevron">▼</span>
                 </button>
               <div id="vedurMapsPanel" style="display:none; margin-top:12px;">
-                <div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;" id="vedurMapTabs">
-                    <button onclick="showVedurMap('wind')" class="vedur-tab active">💨 Wind</button>
-                    <button onclick="showVedurMap('precipitation')" class="vedur-tab">🌧️ Precipitation</button>
-                    <button onclick="showVedurMap('temperature')" class="vedur-tab">🌡️ Temperature</button>
-                    <button onclick="showVedurMap('cloud_total')" class="vedur-tab">☁️ Cloud cover</button>
-                    <button onclick="showVedurMap('aurora_clouds')" class="vedur-tab">🌌 Aurora clouds</button>
-                    <button onclick="showVedurMap('wind_ecmwf')" class="vedur-tab" title="ECMWF medium-range, +240h">💨 Wind (10-day)</button>
-                    <button onclick="showVedurMap('temperature_ecmwf')" class="vedur-tab" title="ECMWF medium-range, +240h">🌡️ Temp (10-day)</button>
+                <div id="vedurMapTabs">
+                    <div style="font-size:0.7em; opacity:0.65; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">HARMONIE · short-range (+72h)</div>
+                    <div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;">
+                        <button onclick="showVedurMap('wind')" class="vedur-tab active">💨 Wind</button>
+                        <button onclick="showVedurMap('precipitation')" class="vedur-tab">🌧️ Precipitation</button>
+                        <button onclick="showVedurMap('temperature')" class="vedur-tab">🌡️ Temperature</button>
+                        <button onclick="showVedurMap('cloud_total')" class="vedur-tab">☁️ Cloud cover</button>
+                        <button onclick="showVedurMap('aurora_clouds')" class="vedur-tab">🌌 Aurora clouds</button>
+                    </div>
+                    <div style="font-size:0.7em; opacity:0.65; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">ECMWF · medium-range (+240h / 10-day)</div>
+                    <div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;">
+                        <button onclick="showVedurMap('wind_ecmwf')" class="vedur-tab">💨 Wind</button>
+                        <button onclick="showVedurMap('precipitation_ecmwf')" class="vedur-tab">🌧️ Precipitation</button>
+                        <button onclick="showVedurMap('temperature_ecmwf')" class="vedur-tab">🌡️ Temperature</button>
+                    </div>
                 </div>
                 <div id="vedurMapHolder" style="background:#000; border-radius:10px; min-height:400px; display:flex; align-items:center; justify-content:center; position:relative;">
                     <div style="opacity:0.5; color:#fbbf24;">Loading maps...</div>
@@ -639,8 +646,9 @@
                     precipitation:     { id: 'thattaspa_ig_island_urk-msl-10uv', ext: 'gif', frames: Array.from({length:24}, (_,i)=>(i+1)*3), pad: 3, run },
                     cloud_total:       { id: 'harmonie_island_tcc_lcc_mcc_hcc',  ext: 'png', frames: Array.from({length:72}, (_,i)=>i+1), pad: 0, run },
                     aurora_clouds:     { id: 'isl_skyjahula2',                   ext: 'png', frames: Array.from({length:72}, (_,i)=>i+1), pad: 0, run },
-                    wind_ecmwf:        { id: 'thattaspa_ecm-is_island_10uv',     ext: 'gif', frames: ecmFrames, pad: 3, run: ecmRun },
-                    temperature_ecmwf: { id: 'thattaspa_ecm-is_island_2t',       ext: 'gif', frames: ecmFrames, pad: 3, run: ecmRun },
+                    wind_ecmwf:          { id: 'thattaspa_ecm-is_island_10uv',         ext: 'gif', frames: ecmFrames, pad: 3, run: ecmRun },
+                    temperature_ecmwf:   { id: 'thattaspa_ecm-is_island_2t',           ext: 'gif', frames: ecmFrames, pad: 3, run: ecmRun },
+                    precipitation_ecmwf: { id: 'thattaspa_ecm-is_island_urk-msl-10uv', ext: 'gif', frames: ecmFrames, pad: 3, run: ecmRun },
                 };
                 Object.entries(types).forEach(([label, t]) => {
                     const urls = t.frames.map(f => {

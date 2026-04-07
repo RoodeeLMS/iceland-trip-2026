@@ -102,8 +102,9 @@ FULL_RANGES = {
     'thattaspa_ig_island_urk-msl-10uv': list(range(3, 73, 3)),    # HARMONIE precip every 3h
     'harmonie_island_tcc_lcc_mcc_hcc':  list(range(1, 73)),       # HARMONIE cloud every 1h
     'isl_skyjahula2':                   list(range(1, 73)),       # aurora cloud every 1h
-    'thattaspa_ecm-is_island_10uv':     ECM_FRAMES,               # ECMWF IFS wind (medium-range, +240h)
-    'thattaspa_ecm-is_island_2t':       ECM_FRAMES,               # ECMWF IFS temp (medium-range, +240h)
+    'thattaspa_ecm-is_island_10uv':         ECM_FRAMES,           # ECMWF IFS wind (medium-range, +240h)
+    'thattaspa_ecm-is_island_2t':           ECM_FRAMES,           # ECMWF IFS temp (medium-range, +240h)
+    'thattaspa_ecm-is_island_urk-msl-10uv': ECM_FRAMES,           # ECMWF IFS precip+MSL (medium-range, +240h)
 }
 
 def fetch_alerts(html):
@@ -163,7 +164,8 @@ def main():
         for label, type_id in [('wind', 'thattaspa_ig_island_10uv'),
                                 ('temperature', 'thattaspa_ig_island_2t'),
                                 ('wind_ecmwf', 'thattaspa_ecm-is_island_10uv'),
-                                ('temperature_ecmwf', 'thattaspa_ecm-is_island_2t')]:
+                                ('temperature_ecmwf', 'thattaspa_ecm-is_island_2t'),
+                                ('precipitation_ecmwf', 'thattaspa_ecm-is_island_urk-msl-10uv')]:
             try:
                 visible, run, ext = fetch_map_urls(html2, type_id)
                 if run:
@@ -211,7 +213,7 @@ def main():
     print(f'Outlook: {tf.get("outlook", "")[:120]}...')
     print(f'Multi-day: {len(tf.get("multi_day", []))} days')
     print(f'Alerts: {result.get("alerts", {}).get("count", 0)}')
-    for k in ['wind_maps', 'temperature_maps', 'precipitation_maps', 'cloud_total_maps', 'aurora_clouds_maps', 'wind_ecmwf_maps', 'temperature_ecmwf_maps']:
+    for k in ['wind_maps', 'temperature_maps', 'precipitation_maps', 'cloud_total_maps', 'aurora_clouds_maps', 'wind_ecmwf_maps', 'temperature_ecmwf_maps', 'precipitation_ecmwf_maps']:
         v = result.get(k, {})
         print(f'{k}: run {v.get("run", "?")} ({len(v.get("urls", []))} frames)')
 
