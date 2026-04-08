@@ -1,6 +1,18 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-08T11:26:38.993088+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Zero change vs last run — forecast and Kp identical. Aurora G1 window Day 3 03:00 UTC on track. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-08T11:26:38.822895+00:00",
+      "level": "suggestion",
+      "title": "Brauð & Co cinnamon buns — Frakkastígur",
+      "message": "Fresh-baked kanilsnúðar (cinnamon buns) at Brauð & Co, Frakkastígur 16 (2 min from Hallgrímskirkja). ~ISK 650 each, still warm if you arrive before 10:00. Order at the counter, watch them pulled from the oven. Best breakfast in downtown Reykjavik, indoor-only, no seating but a covered doorway stays dry."
+    },
+    {
       "timestamp": "2026-04-08T09:26:44.185736+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -463,5 +475,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-08T09:26:44.185736+00:00"
+  "last_updated": "2026-04-08T11:26:38.993088+00:00"
 }
