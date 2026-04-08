@@ -1,6 +1,24 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-08T15:26:40.671978+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Day 2-3 forecast eased (wind down), Day 3 rain slightly up (3mm). Kp 5 G1 window still locked. Sources stable. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-08T15:26:40.503204+00:00",
+      "level": "suggestion",
+      "title": "Aurora backup plan — Snæfellsjökull side",
+      "message": "If Day 3 night in Vík turns out overcast, the Kp 5 window also covers Day 3 → Day 4. Day 7-8 takes you to Snæfellsnes which has darker skies than anywhere on the south coast (Kirkjufell is one of Iceland's iconic aurora spots). Even a modest Kp 3-4 there beats a Kp 5 under overcast in Vík. Keep mental flexibility."
+    },
+    {
+      "timestamp": "2026-04-08T15:26:40.317391+00:00",
+      "level": "update",
+      "title": "Day 3 Reykjavik now shows 3.2mm rain (was 0.1)",
+      "message": "Open-Meteo: Day 3 precip bumped to 3.2mm in Reykjavik (was 0.1). Wind actually eased (45 km/h gusts, was 53). Day 2 also eased (58 km/h, 5mm). The shift is small but the aurora G1 window Day 3 03:00 UTC is slightly at risk from cloud cover — still possible but not guaranteed. Check vedur.is aurora forecast page before bed Day 2."
+    },
+    {
       "timestamp": "2026-04-08T13:26:37.744647+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -487,5 +505,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-08T13:26:37.744647+00:00"
+  "last_updated": "2026-04-08T15:26:40.671978+00:00"
 }
