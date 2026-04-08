@@ -1,6 +1,30 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-08T01:26:54.074064+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. MAJOR: Kp jumped to 5.0 (G1) for Day 3 night Vík — aurora window logged. Day 2 forecast dramatically improved (60 km/h, 4mm). Day 3 still dry. SafeTravel/Reynisfjara stable. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-08T01:26:53.941069+00:00",
+      "level": "suggestion",
+      "title": "Pack a head torch for Day 3 aurora walk",
+      "message": "Given the G1 aurora alert for Day 3 night, you'll want a red-light head torch (preserves night vision) for walking from car to viewpoint near Vík at 02:00. If you didn't pack one, the N1 station in Vík sells basic LED head torches for ~ISK 2500. Set the camera to manual focus on infinity before it gets dark — autofocus fails on stars."
+    },
+    {
+      "timestamp": "2026-04-08T01:26:53.779843+00:00",
+      "level": "update",
+      "title": "Day 2 forecast much improved",
+      "message": "Open-Meteo new run: Day 2 (Apr 9 Golden Circle) gusts now 60 km/h (was 76), rain 4.2mm (was 6.2). Significant easing — Geysir/Þingvellir conditions much more pleasant than feared. Day 3 stable, slightly more rain (0.4mm) but still effectively dry. Overnight low Apr 9→10 now +0.5°C — black ice risk reduced."
+    },
+    {
+      "timestamp": "2026-04-08T01:26:53.588917+00:00",
+      "level": "warning",
+      "title": "AURORA: G1 storm forecast for Day 3 night (Vík)",
+      "message": "NOAA upgraded Kp forecast: G1 (Kp 5.0) at 03:00 UTC Apr 10 — that's the early hours of Day 3 night, exactly when you'll be overnight in Vík. Second G1 window at 21:00 UTC Apr 10 → 00:00 Apr 11 (Day 3 evening into Day 4). Day 3 forecast is also nearly dry (0.4mm) — clearest sky of the trip so far. This is your prime aurora window. Stay up, set an alarm for 02:00, and drive 5 min from Vík village toward Reynisfjall headland (away from streetlights). Cross-check cloud cover on en.vedur.is/weather/forecasts/aurora before bedtime."
+    },
+    {
       "timestamp": "2026-04-07T23:26:37.761340+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -367,5 +391,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-07T23:26:37.761340+00:00"
+  "last_updated": "2026-04-08T01:26:54.074064+00:00"
 }
