@@ -1,26 +1,34 @@
 {
-  "fetched_at": "2026-04-08T08:48:16.475036+00:00",
+  "fetched_at": "2026-04-08T10:25:09.009054+00:00",
   "source": "https://en.vedur.is/",
   "text_forecast": {
-    "outlook": "Southeast 13-20 with moderate rain, but lighter southerly winds and rainshowers by morning. Mostly dry in North-Iceland tomorrow afternoon. Temperatures 3 to 10 deg. C., mildest in the north. Southwesterly tomorrow night with rain or snow showers, but mostly dry in East Iceland. Temperature 1 to 6 deg. C.",
+    "outlook": "South 5-13 m/s in the afternoon and rainshowers, but mostly dry in North- and Northeast-Iceland. Temperature 4 to 9 deg. C. Turns to southwest 8-15 tomorrow afternoon with showers of sleet and later snow, but dry in the northeast part. Temperature 1 to 6 deg. C.",
     "multi_day": [
       {
-        "day": "Thursday",
-        "forecast": "Southwest 5-13 m/s and showers of rain or sleet, but partly fair in the northeastern part. Stronger wind in the southwestern part in the afternoon. Temperature 1 to 7 degrees C, warmest in the east."
-      },
-      {
         "day": "Friday",
-        "forecast": "Variable wind, widely light with widespread isolated snowshowers, but increasing northeast wind in the evening and sleet or snow in the southeast. Temperature close to freezing point."
+        "forecast": "Southwest 5-13 m/s and occasional snowshowers into the day. Moderating in the afternoon and widely dry and fair. Temperature near freezing point during the day, but frost in the evening."
       },
       {
         "day": "Saturday",
-        "forecast": "Northerly wind, gale with snow or sleet in the Vestfjords, elsewhere lighter northerly or variable wind and showers of rain or snow. Cool weather in the northwestern part, otherwise temperature 1 to 5 degrees C. On Sunday, Monday and Tuesday: Looks like easterly or variable wind, light showers of rain or sleet widely and temperature 0 to 5 degrees C during day."
+        "forecast": "Northeastern and northern 8-15, but 10-18 by evening. Snow or sleet in the eastern part and later also in the northern part, but mostly dry in the southern part. Temperature 0 to 5 degrees C., mildest by the southcoast."
+      },
+      {
+        "day": "Sunday",
+        "forecast": "Rather light easterly or variable wind. Widely some showers of rain or sleet. Temperature 0 to 5 degrees C. during the day."
+      },
+      {
+        "day": "Monday",
+        "forecast": "Northerly wind and intermittent snow in the North and East and rain by the coast. Fair in the southern part. Similar temperatures."
+      },
+      {
+        "day": "Tuesday",
+        "forecast": "Light variable wind and widely partly cloudy, but cloudy and some snowshowers in the northwestern part. Temperature 0 to 5 degrees C. during the day."
       }
     ],
-    "made_at": "08.04.2026 04:07",
-    "valid_until": "09.04.2026 00:00",
-    "multi_made_at": "07.04.2026 20:17",
-    "multi_valid_until": "14.04.2026 12:00"
+    "made_at": "08.04.2026 09:57",
+    "valid_until": "10.04.2026 00:00",
+    "multi_made_at": "08.04.2026 09:18",
+    "multi_valid_until": "15.04.2026 12:00"
   },
   "alerts": {
     "count": 0,
