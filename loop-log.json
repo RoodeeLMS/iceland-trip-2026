@@ -1,6 +1,24 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-08T07:26:41.835675+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Day 2 rain up to 12mm, other days stable. Aurora G1 window still locked for Day 3 03:00 UTC. SafeTravel/Reynisfjara stable. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-08T07:26:41.670685+00:00",
+      "level": "suggestion",
+      "title": "Gullfoss viewpoints: upper platform in rain",
+      "message": "On a wet Day 2 visit to Gullfoss, skip the lower iron-staircase viewpoint (slippery + spray soaks you in seconds) and use the upper platform path — still gets the two-tier cascade in frame, stays drier, wheelchair-accessible. The café at the visitor centre has free WiFi and hot soup for a reset before Geysir."
+    },
+    {
+      "timestamp": "2026-04-08T07:26:41.496397+00:00",
+      "level": "info",
+      "title": "Day 2 Reykjavik rain bumps up to 12mm",
+      "message": "Open-Meteo: Day 2 (Apr 9 Golden Circle) precip 11.6mm (was 4.2). Wind unchanged at 68 km/h. Model is still oscillating on Day 2 rain total — plan for wet regardless. Day 1 and Day 3 outlooks stable."
+    },
+    {
       "timestamp": "2026-04-08T05:26:45.999932+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -433,5 +451,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-08T05:26:45.999932+00:00"
+  "last_updated": "2026-04-08T07:26:41.835675+00:00"
 }
