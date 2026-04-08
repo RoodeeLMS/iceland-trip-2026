@@ -1,6 +1,24 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-08T05:26:45.999932+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Day 4 corrected — Jökulsárlón itself only 51 km/h but 23mm rain. Aurora G1 window still on for Day 3 03:00 UTC. SafeTravel/Reynisfjara stable. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-08T05:26:45.865742+00:00",
+      "level": "suggestion",
+      "title": "Waterproof your camera for Day 4",
+      "message": "23mm rain forecast at Jökulsárlón Day 4. Rain sleeve for the camera (~฿200 at any photography shop — or a clear plastic bag + rubber band as DIY) is essential. Microfiber in a ziploc in your jacket pocket. Don't change lenses at the lagoon; pick your lens before getting out. Diamond Beach black sand plus rain = gritty paste on everything — keep the bag zipped."
+    },
+    {
+      "timestamp": "2026-04-08T05:26:45.698816+00:00",
+      "level": "update",
+      "title": "Day 4 Jökulsárlón itself: calmer but very wet (23mm!)",
+      "message": "Correction/refinement: checked actual Jökulsárlón coordinates (64.08, -16.18) rather than Vík. Day 4 at the glacier lagoon is only 51 km/h gusts — BELOW the Vík morning 93 km/h. BUT 23mm rain + 94% cloud = a soaking. The 93 km/h gust applies to the first hour of driving (leaving Vík). Plan: leave Vík after morning wind lull (check forecast that morning), drive east, expect to be wet the whole time at the glacier. Iceberg photos will be moody/grey. Skaftafell glacier hike would be miserable in 23mm — reconsider booking."
+    },
+    {
       "timestamp": "2026-04-08T03:26:49.478349+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -415,5 +433,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-08T03:26:49.478349+00:00"
+  "last_updated": "2026-04-08T05:26:45.999932+00:00"
 }
