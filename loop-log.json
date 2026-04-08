@@ -1,6 +1,18 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-08T23:26:36.845338+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. No changes since last run — Vík tomorrow still 36% cloud, 0.1mm rain, Kp 5 G1. All systems go for aurora. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-08T23:26:36.684354+00:00",
+      "level": "suggestion",
+      "title": "Dinner in Vík — Suður-Vík restaurant",
+      "message": "For Day 3 dinner in Vík before the aurora wake-up: Suður-Vík (Suðurvíkurvegur 1) is 5 min walk from most Vík accommodations, opens 18:00, serves lamb soup (kjötsúpa) ~ISK 2900 and fish of the day. Aim to eat by 19:00 so you can be in bed by 22:00. Indoor, warm, cash-light card-preferred."
+    },
+    {
       "timestamp": "2026-04-08T21:26:44.329444+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -571,5 +583,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-08T21:26:44.329444+00:00"
+  "last_updated": "2026-04-08T23:26:36.845338+00:00"
 }
