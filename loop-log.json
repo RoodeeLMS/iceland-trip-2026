@@ -1,6 +1,30 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-08T21:26:44.329444+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Aurora outlook KEEPS improving — Day 3 Vík cloud now 36% (down from 67%). Kp G1 locked. Black ice warning for Day 4 AM. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-08T21:26:44.154731+00:00",
+      "level": "suggestion",
+      "title": "Nap strategy for tonight",
+      "message": "Given the 02:00 aurora wake-up tomorrow: take a 30 min nap late afternoon TODAY (after Golden Circle return, before dinner), then sleep 21:30→02:00. Better than trying to stay up until 02:00 straight from a long wet Golden Circle day. Caffeine in the afternoon if needed but cut off by 17:00."
+    },
+    {
+      "timestamp": "2026-04-08T21:26:44.000687+00:00",
+      "level": "warning",
+      "title": "Black ice certain Day 3→4 morning in Vík",
+      "message": "-0.8°C overnight Apr 10 + damp paved surfaces = confident black ice forecast. First 30 min of driving Day 4 morning from Vík will be dangerous if you push normal speeds. If the rental has summer tyres (most April Hertz/SIXT cars do), drive 60-70 km/h max until the sun's been up 1h. Pump brakes, no sudden steering."
+    },
+    {
+      "timestamp": "2026-04-08T21:26:43.818722+00:00",
+      "level": "update",
+      "title": "AURORA TOMORROW: cloud now just 36% — THE window",
+      "message": "Vík Day 3 latest run: cloud cover 36% mean (was 53% → 57% → 67% over past runs — trending DOWN hard), precip 0.1mm, gusts 76 km/h, overnight -0.8°C. This is now a genuinely GREAT aurora setup: Kp 5 G1, nearly clear skies, dry. Don't miss it. Plan: eat early Day 3 evening, asleep by 22:00, alarm 02:00, drive 5 min east of Vík. Bring winter layers for -1°C standing around."
+    },
+    {
       "timestamp": "2026-04-08T19:26:45.698906+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -547,5 +571,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-08T19:26:45.698906+00:00"
+  "last_updated": "2026-04-08T21:26:44.329444+00:00"
 }
