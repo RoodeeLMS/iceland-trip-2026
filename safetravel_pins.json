@@ -1,7 +1,7 @@
 {
-  "fetched_at": "2026-04-06T09:22:59.942113+00:00",
+  "fetched_at": "2026-04-08T03:38:39.245833+00:00",
   "source": "https://safetravel.is/travel-conditions/",
-  "count": 22,
+  "count": 21,
   "pins": [
     {
       "title": "Reynisfjara ",
@@ -252,18 +252,6 @@
       "widget": "",
       "lat": 64.041246,
       "long": -20.884975,
-      "weather_station": null,
-      "weater_station_distance": 999999999999999
-    },
-    {
-      "title": "Seljalandsfoss",
-      "text": "The path behind Seljalandsfoss is closed due to ice and icicle.",
-      "condition_color": "red",
-      "enable_widget": false,
-      "read_more_page": "",
-      "widget": "",
-      "lat": 63.615589,
-      "long": -19.988534,
       "weather_station": null,
       "weater_station_distance": 999999999999999
     }
