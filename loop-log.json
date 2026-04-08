@@ -1,6 +1,18 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-08T13:26:37.744647+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Forecast oscillating slightly (Day 2 rain 6-12mm range). Aurora G1 window Day 3 03:00 UTC still locked. SafeTravel/Reynisfjara stable. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-08T13:26:37.567431+00:00",
+      "level": "suggestion",
+      "title": "Drive time reality: KEF → Reykjavik ~45 min",
+      "message": "After you clear customs at KEF, figure ~45 min to Reykjavik in Day 1 wind/rain (normally 35). Route 41 is flat and exposed — no diversions needed. If you want a free detour, Sólbrekka lava walk is 5 min off the route, but skip it in 65 km/h gusts. Keep the pickup→hotel leg simple on Day 1."
+    },
+    {
       "timestamp": "2026-04-08T11:26:38.993088+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -475,5 +487,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-08T11:26:38.993088+00:00"
+  "last_updated": "2026-04-08T13:26:37.744647+00:00"
 }
