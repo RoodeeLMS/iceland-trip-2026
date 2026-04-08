@@ -1,6 +1,24 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-08T19:26:45.698906+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Day 2 today forecast holding (48 km/h, 12mm rain). Day 3 aurora window materially upgraded (53% cloud, 0.7mm rain). Kp G1 locked. Reynisfjara orange. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-08T19:26:45.564710+00:00",
+      "level": "suggestion",
+      "title": "Aurora camera settings (write these down now)",
+      "message": "For tomorrow night's Kp 5 window: start with ISO 1600, f/2.8 (or widest), 8-15 sec exposure, manual focus on infinity, RAW. Turn OFF long-exposure noise reduction (doubles capture time). Trigger via 2-sec self-timer to avoid camera shake. If wind rocks the tripod, weight it with your camera bag hanging from the centre column. Wipe the front element every 2-3 shots — sea spray carries far."
+    },
+    {
+      "timestamp": "2026-04-08T19:26:45.391367+00:00",
+      "level": "update",
+      "title": "Aurora tomorrow night UPGRADED again — 53% cloud, 0.7mm rain",
+      "message": "Vík forecast for Apr 10 keeps improving: cloud 53% (was 57%), rain just 0.7mm (was 2.8). Wind still 82 km/h but irrelevant for stargazing. With the locked Kp 5.0 G1 window at 03:00 UTC, this is shaping up to be the clearest aurora shot of the trip. Strongly recommend: set alarm 02:00 local, be ready to drive 5 min to Reynisfjall lay-by. Even if only 47% sky is clear, that's enough for a visible aurora overhead during a Kp 5 storm."
+    },
+    {
       "timestamp": "2026-04-08T17:26:53.507407+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -529,5 +547,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-08T17:26:53.507407+00:00"
+  "last_updated": "2026-04-08T19:26:45.698906+00:00"
 }
