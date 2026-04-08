@@ -1,6 +1,30 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-08T17:26:53.507407+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Day 2 today: light wind (48 km/h), heavy rain (14mm). Day 3 tomorrow: high wind (80 km/h), low rain, 57% cloud — aurora window upgraded. Kp G1 locked. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-08T17:26:53.339056+00:00",
+      "level": "update",
+      "title": "Aurora outlook UPGRADED: Vík tomorrow night 57% cloud",
+      "message": "Better news on aurora: Vík Day 3 cloud cover dropped from 67% mean to 57% mean. Combined with locked-in Kp 5.0 G1 storm at 03:00 UTC Apr 10, the viewing chance is materially better. Plan: bed early Day 3 evening, alarm 02:00 local, drive 5 min east of Vík village to Reynisfjall area (avoid lights). Cross-check vedur.is aurora map at 22:00 Day 3 — last sanity check before bed."
+    },
+    {
+      "timestamp": "2026-04-08T17:26:53.199636+00:00",
+      "level": "warning",
+      "title": "Day 3 (tomorrow) Vík: gusts back up to 80 km/h",
+      "message": "Vík tomorrow: 80 km/h gusts (~22 m/s), only 2.8mm rain, 57% cloud, -0.2 to 2.7°C. Conditions split — wind WAY up from previous forecasts, but cloud cover IMPROVED to 57% (good for aurora). Reynisfjara still orange and 80 km/h on top means even the viewpoint is risky — viewpoint photos only, NO walking past the basalt columns. Skógafoss/Seljalandsfoss still doable. Freezing overnight."
+    },
+    {
+      "timestamp": "2026-04-08T17:26:53.035045+00:00",
+      "level": "update",
+      "title": "Day 2 today: wind much calmer, but heavy rain",
+      "message": "Þingvellir/Golden Circle now (64.26,-21.13): gusts 48 km/h (very manageable), 14.2mm rain, 0.5-4°C, 100% overcast. Verdict: GO for the Golden Circle but expect to be wet all day. Þingvellir paths walkable, Geysir steam not flying away in 48 km/h, Gullfoss spray manageable on upper viewpoint. Bring full waterproofs head to toe; the wind warning from earlier runs is no longer the issue — rain is."
+    },
+    {
       "timestamp": "2026-04-08T15:26:40.671978+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -505,5 +529,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-08T15:26:40.671978+00:00"
+  "last_updated": "2026-04-08T17:26:53.507407+00:00"
 }
