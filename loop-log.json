@@ -1,6 +1,12 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-09T03:13:24.602191+00:00",
+      "level": "suggestion",
+      "title": "Day 3 decision briefing (Apr 10 — South Coast)",
+      "message": "Iceland evening Apr 9 briefing: Tomorrow's Vík forecast gusts 64-76 km/h, precip 0.1-2.7mm (oscillating low), cloud 36-47%, low -0.8°C. GO for Seljalandsfoss (9am before buses), Skógafoss, Reynisfjara VIEWPOINT only (sea still orange). BOOK AURORA WAKE-UP — Kp 5.0 G1 at 03:00 Iceland time Apr 10, skies 47-64% clear. For Day 4 (Apr 11) Skaftafell Blue Ice: 23mm rain forecast at Jökulsárlón, 97% cloud, 51 km/h gusts. A glacier cave tour in 23mm rain is miserable but not unsafe — operators usually run unless winds exceed limits. Decision: BOOK if the guided tour has a refund policy >24h; otherwise WAIT until morning-of to decide. Photos will be flat/grey regardless."
+    },
+    {
       "timestamp": "2026-04-09T01:26:34.407670+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -595,5 +601,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-09T01:26:34.407670+00:00"
+  "last_updated": "2026-04-09T03:13:24.602191+00:00"
 }
