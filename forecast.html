@@ -1459,9 +1459,13 @@
                 const data = await res.json();
 
                 // NOAA returns array of {time_tag, kp, observed, noaa_scale}
-                // Only show predicted entries that haven't already happened (file is generated daily, includes past slots)
+                // Include 'estimated' (realtime magnetometer) and 'predicted' (model) entries
+                // that are from the current 3h slot onwards, so the bar covers tonight→tomorrow.
                 const nowMs = Date.now();
-                const forecasts = data.filter(row => row.observed === 'predicted' && new Date(row.time_tag + 'Z').getTime() >= nowMs - 3 * 3600 * 1000);
+                const forecasts = data.filter(row =>
+                    (row.observed === 'predicted' || row.observed === 'estimated') &&
+                    new Date(row.time_tag + 'Z').getTime() >= nowMs - 3 * 3600 * 1000
+                );
 
                 if (forecasts.length === 0) {
                     content.innerHTML = '<p>No predicted Kp data available right now. Check the links below for current conditions.</p>';
