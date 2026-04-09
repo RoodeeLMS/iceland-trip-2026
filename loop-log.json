@@ -1,6 +1,18 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-09T01:26:34.407670+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Day 3 aurora window softened slightly (47% cloud vs 36%, 2.7mm rain vs 0.1) but still viable. Kp 5 locked. Reynisfjara orange. Next run in ~2h."
+    },
+    {
+      "timestamp": "2026-04-09T01:26:34.227756+00:00",
+      "level": "info",
+      "title": "Aurora window oscillation: cloud 47%, rain 2.7mm",
+      "message": "Vík Day 3 bumps slightly: cloud 47% (was 36), rain 2.7mm (was 0.1), gusts 64 (was 76). Still workable for aurora — 47% clear sky plus Kp 5 G1 gives high odds of a visible display, just might need to wait between cloud gaps. Wind-down is actually a plus (lighter wind on the tripod). Plan unchanged."
+    },
+    {
       "timestamp": "2026-04-08T23:26:36.845338+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -583,5 +595,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-08T23:26:36.845338+00:00"
+  "last_updated": "2026-04-09T01:26:34.407670+00:00"
 }
