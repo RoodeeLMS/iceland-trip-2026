@@ -1,6 +1,12 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-09T05:26:35.391863+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. All sources unchanged from last run. Aurora window holding (Vík tonight Iceland time: 57% cloud, 2mm rain, Kp 5 G1). Next run in ~2h."
+    },
+    {
       "timestamp": "2026-04-09T03:26:33.993232+00:00",
       "level": "info",
       "title": "Heartbeat",
@@ -607,5 +613,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-09T03:26:33.993232+00:00"
+  "last_updated": "2026-04-09T05:26:35.391863+00:00"
 }
