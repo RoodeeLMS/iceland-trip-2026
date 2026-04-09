@@ -1,6 +1,12 @@
 {
   "entries": [
     {
+      "timestamp": "2026-04-09T03:26:33.993232+00:00",
+      "level": "info",
+      "title": "Heartbeat",
+      "message": "Loop ran. Vík Apr 10 aurora window holding: cloud 57%, rain 2mm, gusts 73 km/h. Kp 5 G1 locked. SafeTravel/Reynisfjara stable. Next run in ~2h."
+    },
+    {
       "timestamp": "2026-04-09T03:13:24.602191+00:00",
       "level": "suggestion",
       "title": "Day 3 decision briefing (Apr 10 — South Coast)",
@@ -601,5 +607,5 @@
       "message": "Loop will post status updates here"
     }
   ],
-  "last_updated": "2026-04-09T03:13:24.602191+00:00"
+  "last_updated": "2026-04-09T03:26:33.993232+00:00"
 }
