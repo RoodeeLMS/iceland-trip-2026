@@ -1,33 +1,37 @@
 {
-  "fetched_at": "2026-04-09T20:28:23.817809+00:00",
+  "fetched_at": "2026-04-09T22:19:28.501021+00:00",
   "source": "https://en.vedur.is/",
   "text_forecast": {
-    "outlook": "Southwest 8-15 m/s in the evening with showers of sleet and later snow, but dry in the northeast part. Becoming colder. Moderating tomorrow and mostly fair weather, but some isolated snowshowers in South- and West-Iceland until afternoon. Temperatures 1 to 5 degrees C during daytime, but widely below freezing tomorrow evening.",
+    "outlook": "Southwest 8-15 m/s during the night with showers of snow, but dry in the northeast part. Temperatures around freezing. Calming winds tomorrow and mostly fair weather, but some isolated snowshowers in South- and West-Iceland until the afternoon. Temperatures of 1 to 5 degrees C during daytime, but widely below freezing tomorrow evening.",
     "multi_day": [
       {
         "day": "Saturday",
-        "forecast": "Increasing northeast and north wind, 10-18 m/s by evening. Snow or sleet in the east part of Iceland in the afternoon, minor snowshowers in the north part but fair in the south part. Temperature 0 to 5 degrees C. during the day, mildest in the southernmost part."
+        "forecast": "Increasing northeast and north wind, 10 to 18 m/s by evening but stronger winds in some places in the southeast part. Snow or sleet in the east part in the afternoon, minor snowshowers in the north part but fair in the south. Temperatures 0 to 5 degrees Celcius during the day, mildest in the southernmost part."
       },
       {
         "day": "Sunday",
-        "forecast": "Easterly or variable wind 3-10 but north 10-18 in the west part of the country by evening. Widely snow or sleet before noon but mainly fair in the south part. Decreasing precipitation in the afternoon. Similar temperatures."
+        "forecast": "Easterly or variable wind 3 to 10 but north 10 to 18 in the west part until evening. Widely snow or sleet before noon but mainly dry in the south part. Decreasing precipitation in the afternoon but snow or sleet in the east part in the evening. Similar temperatures."
       },
       {
         "day": "Monday",
-        "forecast": "Northerly or variable wind and snowshowers or sleetshowers but fair in the south part of the country. Temperature 0 to 5 degrees C."
+        "forecast": "Northerly or variable wind, 5 to 10 but 10 to 15 in the northwest part. Showers of snow or sleet but fair in the south part. Temperatures 0 to 8 deg, C., warmest in the south part."
       },
       {
         "day": "Tuesday",
-        "forecast": "Light variable wind and partly fair but some snow or sleet in the north part, especially by the coast. Similar temperatures."
+        "forecast": "NOrtheast or variable wind and light snow or sleet but mostly dry inland. Similar temperatures."
       },
       {
         "day": "Wednesday",
-        "forecast": "East and northeast wind. Cloudy but mainly fair in the east part and by the north coast, but mainly fair in the south and west part. Temperature 2 to 7 degrees C. during the day."
+        "forecast": "East and northeast wind. Rain or snow but mainly dry in the north part until evening. Temperatures 0 to 5 deg, C."
+      },
+      {
+        "day": "Thursday",
+        "forecast": "Looks like variable wind. Intermittent rain or sleet in most parts. North wind with snow showers by evening with falling temperatures but becoming dry in the south part."
       }
     ],
-    "made_at": "09.04.2026 18:46",
+    "made_at": "09.04.2026 21:43",
     "valid_until": "11.04.2026 00:00",
-    "multi_made_at": "09.04.2026 09:36",
+    "multi_made_at": "09.04.2026 21:26",
     "multi_valid_until": "16.04.2026 12:00"
   },
   "alerts": {
