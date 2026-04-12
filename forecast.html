@@ -522,17 +522,17 @@
                 <div id="vedurMapTabs">
                     <div style="font-size:0.7em; opacity:0.65; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">HARMONIE · short-range (+72h)</div>
                     <div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;">
-                        <button onclick="showVedurMap('wind')" class="vedur-tab active">💨 Wind</button>
-                        <button onclick="showVedurMap('precipitation')" class="vedur-tab">🌧️ Precipitation</button>
-                        <button onclick="showVedurMap('temperature')" class="vedur-tab">🌡️ Temperature</button>
-                        <button onclick="showVedurMap('cloud_total')" class="vedur-tab">☁️ Cloud cover</button>
-                        <button onclick="showVedurMap('aurora_clouds')" class="vedur-tab">🌌 Aurora clouds</button>
+                        <button onclick="showVedurMap('wind')" class="vedur-tab active" data-type="wind">💨 Wind</button>
+                        <button onclick="showVedurMap('precipitation')" class="vedur-tab" data-type="precipitation">🌧️ Precipitation</button>
+                        <button onclick="showVedurMap('temperature')" class="vedur-tab" data-type="temperature">🌡️ Temperature</button>
+                        <button onclick="showVedurMap('cloud_total')" class="vedur-tab" data-type="cloud_total">☁️ Cloud cover</button>
+                        <button onclick="showVedurMap('aurora_clouds')" class="vedur-tab" data-type="aurora_clouds">🌌 Aurora clouds</button>
                     </div>
                     <div style="font-size:0.7em; opacity:0.65; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px;">ECMWF · medium-range (+240h / 10-day)</div>
                     <div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;">
-                        <button onclick="showVedurMap('wind_ecmwf')" class="vedur-tab">💨 Wind</button>
-                        <button onclick="showVedurMap('precipitation_ecmwf')" class="vedur-tab">🌧️ Precipitation</button>
-                        <button onclick="showVedurMap('temperature_ecmwf')" class="vedur-tab">🌡️ Temperature</button>
+                        <button onclick="showVedurMap('wind_ecmwf')" class="vedur-tab" data-type="wind_ecmwf">💨 Wind</button>
+                        <button onclick="showVedurMap('precipitation_ecmwf')" class="vedur-tab" data-type="precipitation_ecmwf">🌧️ Precipitation</button>
+                        <button onclick="showVedurMap('temperature_ecmwf')" class="vedur-tab" data-type="temperature_ecmwf">🌡️ Temperature</button>
                     </div>
                 </div>
                 <div id="vedurMapHolder" style="background:#000; border-radius:10px; min-height:400px; display:flex; align-items:center; justify-content:center; position:relative;">
@@ -774,7 +774,7 @@
                 const prevValidMs = vedurValidTimeMs(vedurCurrentType, vedurCurrentFrame);
                 vedurCurrentType = type;
                 stopVedurAnimate();
-                document.querySelectorAll('.vedur-tab').forEach(b => b.classList.toggle('active', b.textContent.toLowerCase().includes(type.replace('_', ' ').split(' ')[0]) || (type==='cloud_total' && b.textContent.includes('Cloud'))));
+                document.querySelectorAll('.vedur-tab').forEach(b => b.classList.toggle('active', b.dataset.type === type));
                 const urls = (vedurData[type + '_maps'] || {}).urls || [];
                 vedurCurrentFrame = prevValidMs != null ? vedurNearestFrame(type, prevValidMs) : 0;
                 const slider = document.getElementById('vedurSlider');
