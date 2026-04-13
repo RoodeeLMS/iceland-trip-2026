@@ -1,33 +1,37 @@
 {
-  "fetched_at": "2026-04-13T20:49:01.184648+00:00",
+  "fetched_at": "2026-04-13T22:00:14.180779+00:00",
   "source": "https://en.vedur.is/",
   "text_forecast": {
     "outlook": "Easterly 3-10 m/s and showers in South-Iceland, but mainly dry with sunny periods in the north. Increasing wind at the south coast tomorrow evening. Temperature 2 to 10 deg. C during daytime, but widely frost overnight in North- and East-Iceland.",
     "multi_day": [
       {
         "day": "Wednesday",
-        "forecast": "East and northeast 8 to 15 m/s and rain. Moderating in the afternoon and becoming dry in the west part but intermittent rain in the east. Temperatures 2 to 10 degrees Celcius."
+        "forecast": "East and northeast 8-15 m/s and rain. Moderating after noon and clearing up in the west part of Iceland but ongoing precipitation in the east part. Temperature 2 to 10 degrees C."
       },
       {
         "day": "Thursday",
-        "forecast": "South 3 to 10, cloudy and light precipitation but partly fair in the northeast part. Similar temperatures."
+        "forecast": "Southerly wind 3-8, cloudy and some precipitation but partly fair in the north part. Similar temperatures."
       },
       {
         "day": "Friday",
-        "forecast": "Southeast 3 to 10 and light showers of rain but dry in the north part. Temperatures 2 to 8 deg, C."
+        "forecast": "East 3-8 and minor rainshowers but dry in the north part. Temperature 2 to 8 degrees C."
       },
       {
         "day": "Saturday",
-        "forecast": "Easterly or variable wind and intermittent rain or sleet. Temperatures 2 to 7 deg, C."
+        "forecast": "Northerly or variable wind and intermittent rain or sleet. Temperature 2 to 7 degrees C."
       },
       {
         "day": "Sunday",
-        "forecast": "Norterly or variable wind. Partly fair but light precipitation in the north part."
+        "forecast": "Light northerly or variable wind. Partly fair but minor precipitation in the northernmost part. Temperature 1 to 8 degrees C., mildest by the south coast."
+      },
+      {
+        "day": "Monday",
+        "forecast": "Rather light easterly or variable wind and widely dry and fair weather. Temperature 5 to 10 degrees C. during the day."
       }
     ],
-    "made_at": "13.04.2026 15:07",
+    "made_at": "13.04.2026 21:36",
     "valid_until": "15.04.2026 00:00",
-    "multi_made_at": "13.04.2026 09:15",
+    "multi_made_at": "13.04.2026 21:27",
     "multi_valid_until": "20.04.2026 12:00"
   },
   "alerts": {
