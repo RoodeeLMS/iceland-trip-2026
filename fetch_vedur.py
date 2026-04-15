@@ -21,9 +21,14 @@ OUT = os.path.join(ROOT, 'vedur_forecast.json')
 
 UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 IcelandTripLoop/1.0'
 
+import ssl
+_SSL_CTX = ssl.create_default_context()
+_SSL_CTX.check_hostname = False
+_SSL_CTX.verify_mode = ssl.CERT_NONE
+
 def fetch(url):
     req = urllib.request.Request(url, headers={'User-Agent': UA})
-    with urllib.request.urlopen(req, timeout=30) as r:
+    with urllib.request.urlopen(req, timeout=30, context=_SSL_CTX) as r:
         return r.read().decode('utf-8', errors='replace')
 
 def parse_text_forecast(html):
