@@ -1,38 +1,34 @@
 {
-  "fetched_at": "2026-04-15T08:46:59.123782+00:00",
+  "fetched_at": "2026-04-15T10:01:39.522398+00:00",
   "source": "https://en.vedur.is/",
   "text_forecast": {
     "outlook": "East and northeast 8-15 m/s early on with widespread rain. Moderating in the afternoon and becoming dry in the west part, but still wet weather in the east. Light variable wind tomorrow. Light drizzle in the northeast and east parts. Partly cloudy elsewhere with a few light rainshowers. Temperature 3 to 10 deg. C during daytime, coldest in the northeast.",
     "multi_day": [
       {
-        "day": "Thursday",
-        "forecast": "Light variable wind. Some intermittent precipitation but mainly dry in the northwest part of Iceland. Temperature 4 to 10 degrees C. during the day."
-      },
-      {
         "day": "Friday",
-        "forecast": "Rather light southerly wind and minor rainshowers but mainly fair in the north and east part. Similar temperatures."
+        "forecast": "Light southerly or variable wind with minor rainshowers but mainly fair in the northeast part. Temperature 5 to 10 degrees C. North 5-10 m/s and starts to rain in the east part during evening with lowering temperatures."
       },
       {
         "day": "Saturday",
-        "forecast": "Northwest 5-13 m/s, strongest by the east coast. Partly dry in the south and west part. Rain or sleet elsewhere but widely mainly dry by evening. Becoming slightly colder."
+        "forecast": "Northwest 5-13 m/s and rain or sleet in the north and east part until evening, then clearing. Lighter wind and partly cloudy elsewhere but mainly dry. Becoming rather colder."
       },
       {
         "day": "Sunday",
-        "forecast": "Southerly wind and some precipitation in the south and west part but fair in the north and east. Temperature 2 to 8 degrees C."
+        "forecast": "Rather light southeasterly wind and minor precipitation but widely fair in the north and east part. Temperature 2 to 8 degrees C."
       },
       {
         "day": "Monday",
-        "forecast": "South wind with rain or sleet but dry in the northeast part of the country. Temperature 1 to 7 degrees C."
+        "forecast": "Looks like south and southwesterly with rain or sleet but mainly dry in the east part. Becoming rather colder."
       },
       {
         "day": "Tuesday",
-        "forecast": "Westerly wind and fair but cloudy in the west part. Becoming warmer."
+        "forecast": "Westerly wind and cloudy by the west coast, elsewhere fair and rising temperatures."
       }
     ],
     "made_at": "15.04.2026 05:15",
     "valid_until": "16.04.2026 00:00",
-    "multi_made_at": "14.04.2026 21:30",
-    "multi_valid_until": "21.04.2026 12:00"
+    "multi_made_at": "15.04.2026 09:11",
+    "multi_valid_until": "22.04.2026 12:00"
   },
   "alerts": {
     "count": 0,
